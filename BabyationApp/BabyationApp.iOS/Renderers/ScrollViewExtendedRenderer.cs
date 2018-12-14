@@ -39,7 +39,7 @@ namespace BabyationApp.iOS.Renderers {
         private void ApplyScrollbarFading() {
             try
             {
-                
+                ShowsHorizontalScrollIndicator = ((ScrollViewExtended)Element).IsScrollbarFading;
             }
             catch (System.Exception exc)
             {
