@@ -43,7 +43,7 @@ namespace BabyationApp.Models
                     icon = "btn_fridge.png";
                     break;
                 case StorageType.Trash:
-                    icon = "btn_formula.png";
+                    icon = "btn_formula_bold_blue.png";
                     break;
                 default:
                     icon = "btn_other.png";

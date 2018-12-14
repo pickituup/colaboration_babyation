@@ -515,13 +515,13 @@
     <BundleResource Include="Resources\btn_cmb_drop_pressed%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\btn_formula.png" />
+    <BundleResource Include="Resources\btn_formula_bold_blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\btn_formula%402x.png" />
+    <BundleResource Include="Resources\btn_formula_bold_blue%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\btn_formula%403x.png" />
+    <BundleResource Include="Resources\btn_formula_bold_blue%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\btn_formula_pressed.png" />

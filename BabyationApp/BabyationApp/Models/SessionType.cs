@@ -65,7 +65,7 @@ namespace BabyationApp.Models
                     icon = "btn_breast_milk.png";
                     break;
                 case SessionType.Formula:
-                    icon = "btn_formula.png";
+                    icon = "btn_formula_bold_blue.png";
                     break;
                 case SessionType.Nurse:
                     icon = "icon_nurse.png";
