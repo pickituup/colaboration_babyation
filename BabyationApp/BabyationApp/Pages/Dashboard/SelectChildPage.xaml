@@ -21,9 +21,9 @@
             <extendedControls:ScrollViewExtended VerticalScrollBarVisibility="Always" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}">
                 <controls:ListedSelectorControl
                     x:Name="_childFeedingList_ListedSelector"
-                    Margin="0,20"
+                    Margin="0,6,0,20"
                     ItemSelected="ChildFeedingList_ListedSelector_ItemSelected"
-                    Spacing="50">
+                    Spacing="18">
                     <controls:ListedSelectorControl.ItemTemplate>
                         <DataTemplate>
                             <controls:ChildListedItem IsOnSelectionVisualChangesEnabled="True" IsSelectable="True" />

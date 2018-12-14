@@ -50,6 +50,7 @@
                                        ItemTemplate="{StaticResource ModeSelectableCellTemplate}"
                                        BackgroundColor="{StaticResource DarkBlueColor}"
                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
             </Grid>
         </Grid>
     </ContentView.Content>

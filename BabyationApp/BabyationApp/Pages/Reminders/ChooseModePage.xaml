@@ -13,17 +13,17 @@
     x:Name="this"
     Title="{helpers:Translate ChooseModeUpper}"
     BackgroundColor="{StaticResource MedBlue}">
-    
-    <ContentView.Resources>
+
+    <pages:PageBase.Resources>
         <ResourceDictionary>
         
             
         </ResourceDictionary>
-    </ContentView.Resources>
+    </pages:PageBase.Resources>
     
     <ContentPage.Content>
         <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid IsVisible="{Binding ShowMainPage}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid IsVisible="{Binding ShowMainPage}" BackgroundColor="{StaticResource DarkBlueColor}" Padding="0,18,0,0" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>

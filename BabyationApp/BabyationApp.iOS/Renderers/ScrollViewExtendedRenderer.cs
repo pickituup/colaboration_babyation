@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using BabyationApp.Controls;
+﻿using BabyationApp.Controls;
 using BabyationApp.iOS.Renderers;
-using Foundation;
-using UIKit;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -37,15 +30,9 @@ namespace BabyationApp.iOS.Renderers {
         private void OnNewElementPropertyChanged(object sender, PropertyChangedEventArgs e) => ApplyScrollbarFading();
 
         private void ApplyScrollbarFading() {
-            try
-            {
-                ShowsHorizontalScrollIndicator = ((ScrollViewExtended)Element).IsScrollbarFading;
-            }
-            catch (System.Exception exc)
-            {
-                System.Console.WriteLine(string.Format("ScrollViewExtendedRenderer.ApplyScrollbarFading - {0}", exc.Message));
-                Debugger.Break();
-            }
+            ///
+            /// TODO: iOS - guidelines prevent ability to make scrollbar always visible
+            /// 
         }
     }
 }
