@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.ManualSessionView">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="leftBtn" Text="Left" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="bothBtn" Text="Both" HorizontalOptions="Center" />
+        <Button x:Name="rightBtn" Text="Right" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Label Text="Time" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Ounces" HorizontalOptions="Center" />
+        <Label Text="Date" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Label Text="Fridge" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Freezer" HorizontalOptions="Center" />
+        <Label Text="Feed" HorizontalOptions="Center" />
+        <Label Text="Trash" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0">
+        <Button x:Name="saveBtn" Text="Save" />
+        <Button x:Name="cancelBtn" Text="Cancel" />
+      </StackLayout>
+    </StackLayout>
+
+  </Grid>
+</ContentView>

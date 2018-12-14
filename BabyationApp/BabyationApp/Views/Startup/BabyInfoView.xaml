@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.BabyInfoView">
+  <Grid>
+    <StackLayout x:Name="logo" Padding="24,0" VerticalOptions="Center">
+      <Label Text="LOGO" HorizontalOptions="Center" />
+    </StackLayout>
+    <StackLayout x:Name="header" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
+      <Label Text="Bacon ipsum dolor amet alcatra pork tenderloin strip steak porchetta t-bone. Ball tip tri-tip shank tail ground round jowl pastrami capicola corned beef turkey chicken cupim andouille. Swine ham hock hamburger andouille pig, brisket shoulder pork loin t-bone."
+             HorizontalOptions="Center" />
+    </StackLayout>
+    <StackLayout x:Name="babyForm" Grid.Row="2" Padding="24,0" VerticalOptions="Center">
+      <Entry Placeholder="Baby Name" HorizontalTextAlignment="Center" />
+      <Button Text="Upload Pictures" />
+    </StackLayout>
+    <StackLayout x:Name="options" Grid.Row="3" Padding="24,0" VerticalOptions="Center">
+      <Button x:Name="nextBtn" Text="Next/Skip" HorizontalOptions="Center" />
+      <Label Text="Add another child" HorizontalOptions="Center" />
+    </StackLayout>
+  </Grid>
+</ContentView>

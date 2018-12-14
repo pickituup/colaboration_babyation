@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+  <dependencies>
+    <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14" />
+    <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
+  </dependencies>
+  <scenes>
+    <!--View Controller-->
+    <scene sceneID="EHf-IW-A2E">
+      <objects>
+        <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+          <layoutGuides>
+            <viewControllerLayoutGuide type="top" id="Llm-lL-Icb" />
+            <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok" />
+          </layoutGuides>
+          <view key="view" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <subviews>
+              <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_640x960.png" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-Lk-kct">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896" />
+                <color key="backgroundColor" red="0.97254901959999995" green="0.92156862750000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                <color key="tintColor" red="0.97254901959999995" green="0.92156862750000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                <constraints>
+                  <constraint firstAttribute="width" secondItem="rdl-Lk-kct" secondAttribute="height" multiplier="207:448" id="dvk-r7-V0b" />
+                </constraints>
+              </imageView>
+              <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.1.2" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                <rect key="frame" x="16" y="620" width="343" height="17" />
+                <fontDescription key="fontDescription" type="boldSystem" pointSize="14" />
+                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB" />
+                <nil key="highlightedColor" />
+              </label>
+            </subviews>
+            <color key="backgroundColor" red="0.97254901959999995" green="0.92156862750000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <color key="tintColor" red="0.97254901959999995" green="0.92156862750000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+            <constraints>
+              <constraint firstItem="rdl-Lk-kct" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3e9-Vu-dWb" />
+              <constraint firstAttribute="bottom" secondItem="rdl-Lk-kct" secondAttribute="bottom" id="AMW-ot-T83" />
+              <constraint firstAttribute="trailing" secondItem="rdl-Lk-kct" secondAttribute="trailing" id="C6a-Yf-B1r" />
+              <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="LWF-J8-wVf" />
+              <constraint firstItem="GJd-Yh-RWb" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="TYR-Vy-8jO" />
+              <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="30" id="u2M-fZ-Tmw" />
+              <constraint firstItem="rdl-Lk-kct" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="xXH-xL-cHL" />
+            </constraints>
+          </view>
+          <nil key="simulatedStatusBarMetrics" />
+          <nil key="simulatedTopBarMetrics" />
+          <nil key="simulatedBottomBarMetrics" />
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder" />
+      </objects>
+      <point key="canvasLocation" x="52" y="374.6627" />
+    </scene>
+  </scenes>
+</document>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localButtons:ButtonEx 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    x:Class="BabyationApp.Controls.Buttons.SwitchButton"
+    x:Name="this"
+    IsCircle="False" 
+    IsTogglable="True" 
+    RadiusBasedOnSize="True" 
+    RadiusSizeRatio="0.5"
+    ContentPadding="0"
+    BackgroundColorNormal="{StaticResource MedBlue}"
+    BackgroundColorPressed="{StaticResource MedBlue}">
+    
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="3">
+        <localButtons:ButtonEx x:Name="BtnHandle" 
+                               IsCircle="True" 
+                               IsTogglable="True"
+                               Padding="0"
+                               BackgroundColorNormal="{Binding Source={x:Reference this}, Path=HandleColorNormal}"
+                               BackgroundColorPressed="{Binding Source={x:Reference this}, Path=HandleColorPressed}" 
+                               VerticalOptions="Center">
+            <Label x:Name="Lbl" 
+                   Style="Binding Source={x:Reference this}, Path=CurrentStyle"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+        </localButtons:ButtonEx>
+    </Grid>
+    
+</localButtons:ButtonEx>

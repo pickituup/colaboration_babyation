@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<localViews:RootViewBase
+    x:Class="BabyationApp.Pages.Dashboard.DashboardDetailView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+        <RelativeLayout Padding="0" HorizontalOptions="FillAndExpand">
+            <Grid
+                x:Name="GridTop"
+                Padding="0"
+                BackgroundColor="{StaticResource pageBackColor2}"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.52,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <Label
+                    x:Name="LblGreetings"
+                    Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="NoWrap"
+                    Style="{StaticResource H1_Label}"
+                    Text="{helpers:Translate HiMama}"
+                    TextColor="{StaticResource Navy}"
+                    VerticalTextAlignment="End" />
+                <RelativeLayout
+                    x:Name="_rl1"
+                    Grid.Row="1"
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand">
+                    <localButtons:CircleButton
+                        x:Name="BtnPumpSession"
+                        ImageNormal="pump_light_pink2.png"
+                        ImagePressed="pump_light_pink2.png"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                               Property=Width,
+                                                                               Factor=.4,
+                                                                               Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.4,
+                                                                              Constant=0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.3,
+                                                                          Constant=0}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Height,
+                                                                          Factor=.2,
+                                                                          Constant=0}"
+                        Style="{StaticResource RedCircleButton}"
+                        TextBottom="{helpers:Translate NowUpper}"
+                        TextTop="{helpers:Translate Pump}" />
+
+                    <localButtons:CircleButton
+                        x:Name="BtnFeedSession"
+                        HorizontalOptions="FillAndExpand"
+                        ImageNormal="inventory_med_blue2.png"
+                        ImagePressed="inventory_med_blue2.png"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                               Property=Width,
+                                                                               Factor=.4,
+                                                                               Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.4,
+                                                                              Constant=0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.1,
+                                                                          Constant=0}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Height,
+                                                                          Factor=.6,
+                                                                          Constant=0}"
+                        Style="{StaticResource NursingCircleButton}"
+                        TextBottom="{helpers:Translate FeedUpper}"
+                        TextBottomFontSize="9"
+                        TextTop="{helpers:Translate Bottle}"
+                        VerticalOptions="FillAndExpand" />
+
+                    <localButtons:CircleButton
+                        x:Name="BtnNurseSession"
+                        HorizontalOptions="FillAndExpand"
+                        ImageNormal="nurse_med_blue2.png"
+                        ImagePressed="nurse_med_blue2.png"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                               Property=Width,
+                                                                               Factor=.4,
+                                                                               Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.4,
+                                                                              Constant=0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.6,
+                                                                          Constant=0}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Height,
+                                                                          Factor=.6,
+                                                                          Constant=0}"
+                        Style="{StaticResource NursingCircleButton}"
+                        TextBottom="{helpers:Translate SessionUpper}"
+                        TextBottomFontSize="9"
+                        TextTop="{helpers:Translate Nurse}"
+                        VerticalOptions="FillAndExpand" />
+                </RelativeLayout>
+            </Grid>
+
+            <RelativeLayout
+                Padding="0"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.48,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=.52,
+                                                                  Constant=0}">
+                <Grid
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=.11,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1,
+                                                                          Constant=0}">
+                    <StackLayout
+                        Padding="0"
+                        HorizontalOptions="Center"
+                        Spacing="0"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="NoWrap"
+                            Style="{StaticResource SmallLabel_Label}"
+                            Text="{helpers:Translate PumpingModes}"
+                            TextColor="{StaticResource LightBlue}" />
+                    </StackLayout>
+                </Grid>
+
+                <localViews:ListViewEx
+                    x:Name="listView"
+                    BackgroundColor="{StaticResource pageBackColor1}"
+                    HasUnevenRows="True"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=.9,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1,
+                                                                          Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Height,
+                                                                      Factor=.11,
+                                                                      Constant=0}"
+                    SeparatorVisibility="None">
+                    <localViews:ListViewEx.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding IsSelected}"
+                                            TargetType="Grid"
+                                            Value="True">
+                                            <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            Binding="{Binding IsSelected}"
+                                            TargetType="Grid"
+                                            Value="False">
+                                            <Setter Property="BackgroundColor" Value="{StaticResource listViewBackColor}" />
+                                        </DataTrigger>
+                                    </Grid.Triggers>
+
+                                    <Grid Padding="5,10,5,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1.7*" />
+                                            <ColumnDefinition Width="8.3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <localButtons:CircleButton
+                                            Grid.Column="0"
+                                            Padding="2"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="38"
+                                            HorizontalOptions="Center"
+                                            ImageNormal="icon_checked.png"
+                                            ImagePressed="icon_checked.png"
+                                            InnerCircleColor="{StaticResource MedBlue}"
+                                            InnerCirclePadding="0"
+                                            InnerCirclePressedColor="{StaticResource MedBlue}"
+                                            IsInteractable="False"
+                                            IsTogglable="True"
+                                            IsVisible="{Binding IsSelected}"
+                                            MiddleCircleColor="{StaticResource MedBlue}"
+                                            MiddleCirclePadding="2"
+                                            MiddleCirclePressedColor="{StaticResource MedBlue}"
+                                            OuterCircleColor="{StaticResource MedBlue}"
+                                            OuterCirclePressedColor="{StaticResource MedBlue}"
+                                            TextBottom=""
+                                            TextTop=""
+                                            TranslationY="4"
+                                            VerticalOptions="Start"
+                                            WidthRequest="38" />
+                                        <localButtons:CircleButton
+                                            Grid.Column="0"
+                                            Padding="2"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="38"
+                                            HorizontalOptions="Center"
+                                            InnerCircleColor="{StaticResource listViewBackColor}"
+                                            InnerCirclePadding="4"
+                                            InnerCirclePressedColor="{StaticResource listViewBackColor}"
+                                            IsInteractable="False"
+                                            IsTogglable="True"
+                                            IsVisible="{Binding IsSelected, Converter={StaticResource BooleanInverseConverter}}"
+                                            MiddleCircleColor="{StaticResource MedBlue}"
+                                            MiddleCirclePadding="4"
+                                            MiddleCirclePressedColor="{StaticResource MedBlue}"
+                                            OuterCircleColor="{StaticResource MedBlue}"
+                                            OuterCirclePressedColor="{StaticResource MedBlue}"
+                                            TextBottom=""
+                                            TextTop=""
+                                            TranslationY="4"
+                                            VerticalOptions="Start"
+                                            WidthRequest="38" />
+
+                                        <StackLayout Grid.Column="1">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontFamily="{StaticResource fontHurmeBold}"
+                                                    FontSize="8.23"
+                                                    IsVisible="{Binding IsNew}"
+                                                    Text="{helpers:Translate New}"
+                                                    TextColor="{StaticResource Gold}"
+                                                    VerticalOptions="Center" />
+
+                                                <Label
+                                                    Style="{StaticResource H2_Label}"
+                                                    Text="{Binding Name}"
+                                                    VerticalOptions="Center">
+                                                    <Label.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding IsSelected}"
+                                                            TargetType="Label"
+                                                            Value="True">
+                                                            <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger
+                                                            Binding="{Binding IsSelected}"
+                                                            TargetType="Label"
+                                                            Value="False">
+                                                            <Setter Property="TextColor" Value="{StaticResource LightPink}" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+
+                                                <StackLayout
+                                                    IsVisible="{Binding CreatedBy, Converter={StaticResource StringNotEqualConverter}, ConverterParameter='me'}"
+                                                    Orientation="Horizontal"
+                                                    Spacing="5"
+                                                    VerticalOptions="Center">
+                                                    <Label
+                                                        Style="{StaticResource BodyCopy_Label}"
+                                                        Text="{helpers:Translate By}"
+                                                        VerticalOptions="Center">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="{StaticResource MedPink}" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                    <Label
+                                                        Style="{StaticResource BodyCopy_Label}"
+                                                        Text="{Binding CreatedBy}"
+                                                        VerticalOptions="Center">
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Label"
+                                                                Value="True">
+                                                                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Label"
+                                                                Value="False">
+                                                                <Setter Property="TextColor" Value="{StaticResource MedPink}" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <Label
+                                                HorizontalOptions="StartAndExpand"
+                                                Style="{StaticResource BodyCopy_Label}"
+                                                Text="{Binding Description}">
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        Binding="{Binding IsSelected}"
+                                                        TargetType="Label"
+                                                        Value="True">
+                                                        <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger
+                                                        Binding="{Binding IsSelected}"
+                                                        TargetType="Label"
+                                                        Value="False">
+                                                        <Setter Property="TextColor" Value="{StaticResource LightBlue}" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </localViews:ListViewEx.ItemTemplate>
+                </localViews:ListViewEx>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <StackLayout
+            x:Name="StackPumpInfo"
+            Padding="0,44,15,0"
+            HorizontalOptions="End"
+            IsVisible="False"
+            Spacing="4"
+            VerticalOptions="Start">
+            <Label
+                x:Name="PumpName"
+                HorizontalOptions="Center"
+                Style="{StaticResource H3_Label}"
+                TextColor="{StaticResource Navy}" />
+            <Label
+                x:Name="PumpCharge"
+                HorizontalOptions="Center"
+                Style="{StaticResource SmallLabel_Label}"
+                TextColor="Navy" />
+        </StackLayout>
+
+        <StackLayout
+            x:Name="StackPumpConnect"
+            Margin="0,15,15,0"
+            HorizontalOptions="End"
+            IsVisible="False"
+            Spacing="4"
+            VerticalOptions="Start">
+            <localButtons:ImageButton
+                x:Name="PumpConnect"
+                ImageTextHorizontalOptions="Center"
+                ImageTextPadding="7,0,7,2.5"
+                ImageTextVerticalOptions="Center"
+                Style="{StaticResource LeftPillButton}"
+                Text="{helpers:Translate PairPumpUpper}" />
+        </StackLayout>
+    </Grid>
+</localViews:RootViewBase>

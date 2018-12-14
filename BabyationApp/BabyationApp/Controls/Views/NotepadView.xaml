@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="BabyationApp.Controls.Views.NotepadView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:BabyationApp.Behaviors;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    x:Name="Notepad"
+    BackgroundColor="{StaticResource Peach}">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.11*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0">
+            <Grid HeightRequest="50"
+                  BackgroundColor="{StaticResource Navy}"
+                  HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Label Text="{helpers:Translate AddANote}"
+                       Style="{StaticResource PageTitle_Label}"
+                       TextColor="{StaticResource LightPink}" 
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+                <localButtons:ImageButton x:Name="BtnClose"
+                                          IsTogglable="false"
+                                          Command="{Binding CloseCommand}"
+                                          BackgroundColorNormal="{StaticResource Clear}"
+                                          BackgroundColorPressed="{StaticResource Clear}"
+                                          ImageNormal="icon_close" ImagePressed="icon_close3"
+                                          HorizontalOptions="End" VerticalOptions="Center" />
+            </Grid>
+
+            <StackLayout
+                Margin="0"
+                Padding="20"
+                BackgroundColor="{StaticResource Clear}"
+                HeightRequest="100"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                VerticalOptions="Fill">
+                <Label
+                    Style="{StaticResource Instructions_Label}"
+                    Text="{helpers:Translate AddANoteDescription}"
+                    TextColor="{StaticResource Navy}"
+                    VerticalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+
+            <StackLayout
+                Padding="20,15"
+                BackgroundColor="{StaticResource LightPink}"
+                HeightRequest="120"
+                HorizontalOptions="Fill"
+                Orientation="Vertical"
+                Spacing="4"
+                VerticalOptions="StartAndExpand">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label
+                        HorizontalOptions="Start"
+                        Style="{StaticResource Label_Label}"
+                        Text="{helpers:Translate Note}"
+                        TextColor="{StaticResource Gold}" />
+                    <Label
+                        HorizontalOptions="EndAndExpand"
+                        Style="{StaticResource BodyCopy_Label}"
+                        Text="{Binding CharsLeft}"
+                        TextColor="{StaticResource Navy}" />
+                </Grid>
+                <Editor
+                    x:Name="EditorNote"
+                    Margin="-5,0,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    MaxLength="{Binding MaxChars}"
+                    Placeholder="{helpers:Translate EnterYourNote}"
+                    PlaceholderColor="{StaticResource SeaBlueColor}"
+                    Style="{StaticResource Form_ElementEntry}"
+                    Text="{Binding NoteText}"
+                    VerticalOptions="FillAndExpand" />
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout
+            Grid.Row="1"
+            Margin="0"
+            Padding="0"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal"
+            Spacing="0"
+            VerticalOptions="EndAndExpand">
+            <localButtons:ImageButton
+                x:Name="BtnSave"
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="FillAndExpand"
+                ImageNormal="icon_save"
+                ImagePressed="icon_save"
+                ImageTranslationY="{OnPlatform iOS=-0,
+                                               Android=2}"
+                Style="{StaticResource PositiveActionButton}"
+                Text="{helpers:Translate Save}"
+                VerticalOptions="Fill" />
+        </StackLayout>
+    </Grid>
+</ContentView>

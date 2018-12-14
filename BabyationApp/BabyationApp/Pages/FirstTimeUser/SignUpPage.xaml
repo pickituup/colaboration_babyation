@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.FirstTimeUser.SignUpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helper="clr-namespace:BabyationApp.Helpers"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    BackgroundColor="{StaticResource Peach}">
+
+
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".1*" />
+            <ColumnDefinition Width=".8*" />
+            <ColumnDefinition Width=".1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".025" />
+            <RowDefinition Height=".325*" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".1*" />
+        </Grid.RowDefinitions>
+
+        <localViews:ImageEx
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="Center"
+            Source="icon_logo1.png" />
+        <localViews:ImageEx
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="35,0,35,0"
+            HorizontalOptions="Center"
+            Source="icon_logo2.png"
+            VerticalOptions="Start" />
+
+        <ActivityIndicator
+            x:Name="BusyIndicator"
+            Grid.Row="2"
+            Grid.Column="1"
+            HeightRequest="25"
+            HorizontalOptions="Center"
+            IsRunning="False"
+            VerticalOptions="Center"
+            WidthRequest="25"
+            Color="Crimson" />
+
+        <StackLayout
+            x:Name="_socialButtonLayout"
+            Grid.Row="3"
+            Grid.Column="1"
+            Padding="10"
+            Spacing="10"
+            VerticalOptions="CenterAndExpand">
+            <localButtons:ButtonEx
+                x:Name="_btnSignInFacebook"
+                BackgroundColorNormal="#0C5274"
+                Clicked="Handle_SignIntoFacebook_Tapped"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="True"
+                IsInteractable="True"
+                RadiusBasedOnSize="True"
+                RadiusSizeRatio="0.8">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalOptions="Center">
+                    <localViews:ImageEx Source="icon_f.png" VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource fontHurmeBold}"
+                        FontSize="15"
+                        Text="{helper:Translate SignInWithFacebook}"
+                        TextColor="#ffffff"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </localButtons:ButtonEx>
+
+            <localButtons:ButtonEx
+                x:Name="_btnSignInGoogle"
+                BackgroundColorNormal="#EA4046"
+                BackgroundColorPressed="{StaticResource buttonBackColor4}"
+                Clicked="Handle_SignIntoGoogle_Tapped"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="True"
+                IsInteractable="True"
+                RadiusBasedOnSize="True"
+                RadiusSizeRatio="0.8">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalOptions="Center">
+                    <localViews:ImageEx Source="icon_g.png" VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource fontHurmeBold}"
+                        FontSize="15"
+                        Text="{helper:Translate SignInWithGoogle}"
+                        TextColor="#ffffff"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </localButtons:ButtonEx>
+        </StackLayout>
+
+        <Grid
+            Grid.Row="4"
+            Grid.ColumnSpan="3"
+            Padding="35,8,8,8"
+            BackgroundColor="{StaticResource LightPink}">
+            <StackLayout
+                HorizontalOptions="Center"
+                Spacing="15"
+                VerticalOptions="Center">
+                <StackLayout Spacing="0">
+                    <Label
+                        Style="{StaticResource Form_ElementHeader}"
+                        Text="{helper:Translate Email}"
+                        VerticalTextAlignment="End" />
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <localEditors:EntryEx
+                            x:Name="EntryEmail"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Keyboard="Email"
+                            Placeholder="{helper:Translate EnterYourEmail}"
+                            Style="{StaticResource Form_ElementEntry_Bold}"
+                            TextChanged="Handle_EmailText_Changed" />
+                        <Grid Grid.Column="1" Padding="5">
+                            <localViews:ImageEx
+                                x:Name="IconEmailChecked"
+                                IsVisible="False"
+                                Source="icon_checked3.png" />
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Spacing="0">
+                    <Label
+                        Style="{StaticResource Form_ElementHeader}"
+                        Text="{helper:Translate Password}"
+                        VerticalTextAlignment="End" />
+                    <Grid >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <localEditors:EntryEx
+                            x:Name="EntryPassword"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            IsPassword="True"
+                            Placeholder="{helper:Translate EnterYourPassword}"
+                            Style="{StaticResource Form_ElementEntry_Bold}"
+                            TextChanged="Handle_PasswordText_Changed" />
+                        <Grid Grid.Column="1" Padding="5">
+                            <localViews:ImageEx
+                                x:Name="IconPasswordChecked"
+                                IsVisible="False"
+                                Source="icon_checked3.png" />
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+
+        <StackLayout
+            Grid.Row="5"
+            Grid.ColumnSpan="3"
+            Margin="35,10,35,10"
+            Orientation="Horizontal">
+            <localViews:LabelEx
+                x:Name="_btnCreateAccount"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource TappableLabel}"
+                Text="{helper:Translate CreateAccount}">
+                <localViews:LabelEx.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Handle_CreateAccount_Tapped" />
+                </localViews:LabelEx.GestureRecognizers>
+            </localViews:LabelEx>
+
+            <localViews:LabelEx
+                x:Name="_btnForgotPassword"
+                Grid.Row="4"
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource TappableLabel}"
+                Text="{helper:Translate ForgotPassword}">
+                <localViews:LabelEx.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Handle_ForgotPassword_Tapped" />
+                </localViews:LabelEx.GestureRecognizers>
+            </localViews:LabelEx>
+        </StackLayout>
+
+
+        <localButtons:ButtonEx
+            x:Name="_btnSignInLocal"
+            Grid.Row="6"
+            Grid.ColumnSpan="3"
+            Clicked="Handle_SignIn_Tapped"
+            HorizontalOptions="FillAndExpand"
+            Style="{StaticResource AuthenticationActionButton}">
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="8"
+                VerticalOptions="Center">
+                <localViews:ImageEx Source="icon_signout.png" VerticalOptions="Center" />
+                <Label
+                    Style="{StaticResource ButtonExMainLabel}"
+                    Text="{helper:Translate SignIn}"
+                    TextColor="{StaticResource White}" />
+            </StackLayout>
+        </localButtons:ButtonEx>
+
+        <!--  TODO: Componentize this (with the button above)  -->
+        <Grid
+            x:Name="_gridSignInOverlay"
+            Grid.Row="6"
+            Grid.ColumnSpan="3"
+            BackgroundColor="{StaticResource White}"
+            HorizontalOptions="FillAndExpand"
+            Opacity="0.2" />
+
+    </Grid>
+</pages:PageBase>

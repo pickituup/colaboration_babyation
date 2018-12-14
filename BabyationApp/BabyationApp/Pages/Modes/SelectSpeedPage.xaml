@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Modes.SelectSpeedPage"
+    BackgroundColor="{StaticResource Peach}">
+    
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout" Style="Grid_NavigationOnTop" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Stimulation section -->
+            <Grid Grid.Row="0" ColumnSpacing="0" BackgroundColor="{StaticResource Peach}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <localButtons:SpinNumberButton2 Grid.Column="0" x:Name="_circleSuctionStimulation" DescriptionText="{helpers:Translate Suction}" ValueText="0" />
+                <localViews:RoundedInfoView2 Grid.Column="1" x:Name="_circleInfoStimulation" TextTop ="{helpers:Translate PhaseUpper}" TextTopColor="{StaticResource Gold}" TextMiddle="{helpers:Translate Stimulation}" TextMiddleColor="{StaticResource Navy}" CircleColor="{StaticResource Clear}" Image="icon_simulation" />
+                <localButtons:SpinNumberButton2 Grid.Column="2" x:Name="_circleSpeedStimulation" DescriptionText="{helpers:Translate Speed}" ValueText="0" />
+            </Grid>
+            
+            <!-- Expression section -->
+            <Grid Grid.Row="1" ColumnSpacing="0" BackgroundColor="{StaticResource MedPink}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <localButtons:SpinNumberButton2 Grid.Column="0" x:Name="_circleSuctionExpression" DescriptionText="{helpers:Translate Suction}" ValueText="0" />
+                <localViews:RoundedInfoView2 Grid.Column="1" x:Name="_circleInfoExpression" TextTop="{helpers:Translate PhaseUpper}" TextTopColor="{StaticResource Gold}" TextMiddle="{helpers:Translate Expression}" TextMiddleColor="{StaticResource Navy}" CircleColor="{StaticResource Clear}" Image="icon_phase" />
+                <localButtons:SpinNumberButton2 Grid.Column="2" x:Name="_circleSpeedExpression" DescriptionText="{helpers:Translate Speed}" ValueText="0" />
+            </Grid>
+            
+            <!-- Navigation section -->
+            <StackLayout Grid.Row="2" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                <localButtons:ImageButton x:Name="BtnNext"
+                                          Text="{helpers:Translate Continue}"
+                                          ImageNormal="icon_next2" ImagePressed="icon_next"
+                                          Style="{StaticResource NavigationalActionButton}" 
+                                          ImageTranslationY="{OnPlatform Android=1, iOS=0}"
+                                          HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</pages:PageBase>

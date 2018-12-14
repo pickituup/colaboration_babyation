@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers"
+    x:Class="BabyationApp.Pages.FirstTimeUser.StartupPage"
+    BackgroundColor="{StaticResource Navy}">
+    
+    <ContentPage.Content>
+    <RelativeLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <StackLayout Orientation="Vertical" Padding="30" Spacing="10"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.7,Constant=0}" >
+        <Label Text="{helpers:Translate InJustFewSteps}" TextColor="{StaticResource textColor1}" FontSize="28" FontAttributes="Bold"
+               LineBreakMode="CharacterWrap"  VerticalOptions="FillAndExpand"/>
+        <Label Text="{helpers:Translate WantPreview}" TextColor="{StaticResource textColor1}" 
+               FontSize="28"  FontAttributes="Bold" LineBreakMode="CharacterWrap"  VerticalOptions="FillAndExpand"/>
+        
+      </StackLayout>
+      <localButtons:ButtonEx  BackgroundColorNormal="Transparent"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.7, Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.1,Constant=0}">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="20" Padding="30,0,30,0">
+          <localViews:ImageEx Source="video_play.png" VerticalOptions="Center"/>
+          <StackLayout VerticalOptions="Center" Spacing="-3">
+            <Label FontSize="18"  Text="{helpers:Translate WatchThe}" TextColor="{StaticResource textColor1}"/>
+            <Label FontSize="18"  Text="{helpers:Translate VideoTutorial}" TextColor="{StaticResource textColor1}"/>
+          </StackLayout>          
+        </StackLayout>
+      </localButtons:ButtonEx>
+      <localButtons:FlatButton Text="{helpers:Translate Next}" HorizontalOptions="FillAndExpand" TextFontSize="15"
+              BackgroundColorNormal="{StaticResource buttonBackColor1}" TextColor="{StaticResource buttonTextColor1}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.1,Constant=0}">
+      </localButtons:FlatButton>
+    </RelativeLayout>
+  </ContentPage.Content>
+</ContentPage>

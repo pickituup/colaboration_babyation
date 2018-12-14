@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.FirstTimeUser.SignUpViaEmailPage"
+    BackgroundColor="{StaticResource Peach}" >
+
+    <Grid RowSpacing="0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".2*" />
+            <RowDefinition Height=".35*" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height=".1*" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="1">
+            <localViews:ImageEx Source="icon_logo1.png" HorizontalOptions="Center" />
+            <localViews:ImageEx Source="icon_logo2.png" HorizontalOptions="Center" VerticalOptions="Start" />
+        </StackLayout>
+            
+        <ActivityIndicator x:Name="BusyIndicator" Grid.Row="2"
+                           IsRunning="False" HorizontalOptions="Center" VerticalOptions="End" 
+                           WidthRequest="25" HeightRequest="25" Color="Crimson" />
+              
+        <Grid Grid.Row="3" BackgroundColor="{StaticResource LightPink}" Padding="35,8,8,8" VerticalOptions="EndAndExpand">
+          <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout Spacing="0">
+              <Label Text="{helpers:Translate Email}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="9*"/>
+                  <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <localEditors:EntryEx x:Name="EntryEmail" Keyboard="Email" Grid.Column="0" 
+                                      Placeholder="{helpers:Translate EnterYourEmail}"
+                                      Style="{StaticResource Form_ElementEntry_Bold}" 
+                                      HorizontalOptions="FillAndExpand" VerticalOptions="Center"></localEditors:EntryEx>
+                <Grid Grid.Column="1" Padding="5">
+                  <localViews:ImageEx x:Name="IconEmailChecked" Source="icon_checked3.png" IsVisible="False" />
+                </Grid>
+              </Grid>
+            </StackLayout>
+            <StackLayout Spacing="0">
+              <Label Text="{helpers:Translate Password}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="9*"/>
+                  <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <localEditors:EntryEx x:Name="EntryPassword" Grid.Column="0"
+                                      Placeholder="{helpers:Translate EnterYourPassword}"
+                                      Style="{StaticResource Form_ElementEntry_Bold}" 
+                                      IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></localEditors:EntryEx>
+                <Grid  Grid.Column="1" Padding="5">
+                  <localViews:ImageEx x:Name="IconPasswordChecked" Source="icon_checked3.png" IsVisible="False"/>
+                </Grid>
+              </Grid>
+            </StackLayout>
+          </StackLayout>
+        </Grid>
+        
+        <Grid x:Name="GridPassConditions" Grid.Row="3" Margin="0,-25,0,0"
+              IsVisible="False" HorizontalOptions="End" VerticalOptions="Start"
+              RowSpacing="8" ColumnSpacing="5" Padding="8" BackgroundColor="{StaticResource buttonTextColor2}">
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />      
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="16"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="{helpers:Translate TwoCharactersRule}" TextColor="{StaticResource textColor3}" 
+                   FontSize="14" FontFamily="{StaticResource fontLarsseitMedium}" HorizontalOptions="End" VerticalOptions="Center"/>
+            <localViews:ImageEx Grid.Row="0" Grid.Column="1"  Source="icon_checked3_small.png" IsVisible="{Binding FlagChars}" />
+            <Label Grid.Row="1" Grid.Column="0" Text="{helpers:Translate TwoDigitsRule}" TextColor="{StaticResource textColor3}" 
+                   FontSize="14" FontFamily="{StaticResource fontLarsseitMedium}" HorizontalOptions="End" VerticalOptions="Center"/>
+            <localViews:ImageEx Grid.Row="1" Grid.Column="1"  Source="icon_checked3_small.png" IsVisible="{Binding FlagDigits}" />
+            <Label Grid.Row="2" Grid.Column="0" Text="{helpers:Translate OneSymbolRule}" TextColor="{StaticResource textColor3}" 
+                   FontSize="14" FontFamily="{StaticResource fontLarsseitMedium}" HorizontalOptions="End" VerticalOptions="Center"/>
+            <localViews:ImageEx Grid.Row="2" Grid.Column="1"  Source="icon_checked3_small.png" IsVisible="{Binding FlagSymbols}" />
+            <Label Grid.Row="3" Grid.Column="0" Text="{helpers:Translate MinimumLengthRule}" TextColor="{StaticResource textColor3}" 
+                   FontSize="14" FontFamily="{StaticResource fontLarsseitMedium}" HorizontalOptions="End" VerticalOptions="Center"/>
+            <localViews:ImageEx Grid.Row="3" Grid.Column="1"  Source="icon_checked3_small.png" IsVisible="{Binding FlagLength}" />
+        </Grid>
+            
+        <localButtons:ButtonEx x:Name="BtnSignup" Grid.Row="4"
+                           HorizontalOptions="FillAndExpand" 
+                           IsEnabled="{Binding ReadyToSignup}"
+                           Style="{StaticResource AuthenticationActionButton}">
+          <StackLayout Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+            <localViews:ImageEx Source="icon_email.png" VerticalOptions="Center"/>
+            <Label Text="{helpers:Translate SignUp}" 
+                   VerticalOptions="Center" 
+                   Style="{StaticResource ButtonExMainLabel}"
+                   TextColor="{StaticResource White}"  />
+          </StackLayout>
+        </localButtons:ButtonEx>
+                
+        <Grid HorizontalOptions="FillAndExpand" Grid.Row="4"
+                  BackgroundColor="{StaticResource White}" Opacity="0.2"
+                  IsVisible="{Binding ReadyToSignup, Converter={StaticResource BooleanInverseConverter}}" />
+ </Grid>
+ 
+</pages:PageBase>

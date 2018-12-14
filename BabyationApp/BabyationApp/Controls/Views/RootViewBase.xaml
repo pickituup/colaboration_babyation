@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+             x:Class="BabyationApp.Controls.Views.RootViewBase"
+             x:Name="ThisClass" 
+             ControlTemplate="{StaticResource RootViewBaseTemplate}"
+             Style="{StaticResource Default_View}"
+             BackgroundColor="{StaticResource Navy}">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="RootViewBaseTemplate">
+                <Grid  Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    </Grid>
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <localViews:Titlebar x:Name="MyTitlebar" IsVisible="False" Title="{TemplateBinding Title}" ></localViews:Titlebar>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+</ContentView>

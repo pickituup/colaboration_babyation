@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Settings.PumpSettings.MyPumpsPage"
+    BackgroundColor="{StaticResource Peach}">
+    
+  <RelativeLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+    <localButtons:ImageButton x:Name="BtnAddPump" ImageTextHorizontalOptions="Start" ImageTextPadding="30, 0, 0, 0"
+        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.05,Constant=0}"
+        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.13,Constant=0}"
+        BackgroundColorNormal="{StaticResource pageBackColor1}" BackgroundColorPressed="{StaticResource commonPressedColors}"
+        ImageNormal="btn_add1.png" ImagePressed="btn_add2.png" Text="{helpers:Translate AddAnotherPump}" TextColor="#F8EBE3" TextFontSize="15" TextFontAttributes="Bold" TextFontFamily="{StaticResource fontHurmeBold}"/>
+    
+    <localViews:ListViewEx x:Name="listView" SeparatorVisibility="None" HasUnevenRows="True" IsGroupingEnabled="true" BackgroundColor="{StaticResource pageBackColor2}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.18, Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.87,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+      <localViews:ListViewEx.GroupHeaderTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid Padding="12" BackgroundColor="#11719C"  HorizontalOptions="FillAndExpand">
+              <StackLayout Padding="30, 0, 10, 0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding GroupTitle}" TextColor="White" FontFamily="{StaticResource fontLarsseitMedium}"  FontSize="9" FontAttributes="Bold"  HorizontalOptions="StartAndExpand"/>
+                <Label Text="{Binding Count, StringFormat='({0})'}" TextColor="White" FontFamily="{StaticResource fontLarsseit}" FontSize="9" FontAttributes="None"  HorizontalOptions="EndAndExpand"/>
+              </StackLayout>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </localViews:ListViewEx.GroupHeaderTemplate>
+      <localViews:ListViewEx.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid>
+              <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding IsFocused}" Value="True">
+                  <Setter Property="BackgroundColor" Value="{StaticResource buttonBackColor1}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Grid"
+                              Binding="{Binding IsFocused}" Value="False">
+                  <Setter Property="BackgroundColor" Value="{StaticResource pageBackColor3}" />
+                </DataTrigger>
+              </Grid.Triggers>
+
+              <Grid Padding="42, 15, 15, 22" BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="2*"/>
+                  <ColumnDefinition Width="7*"/>
+                  <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <localButtons:CircleButton Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextTop="" TextBottom="" Padding="10, 10, 0, 10"
+                                           IsEnabled="False" IsInteractable="False" ImageNormal="icon_checked_dummy.png"  ImagePressed="icon_checked.png"
+                                             IsToggleOverride="{Binding InUse}"  OuterCircleColor="#11719C" MiddleCircleColor="#E6F2F8" InnerCircleColor="#E6F2F8"
+                                             OuterCirclePressedColor="{StaticResource listViewBackColor}" MiddleCirclePressedColor="{StaticResource listViewBackColor}" InnerCirclePressedColor="{StaticResource listViewBackColor}">
+                </localButtons:CircleButton>
+                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                  <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Name}" TextColor="#11719C" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" FontAttributes="Bold" VerticalOptions="Center" />
+                  </StackLayout>
+                  <Label Text="{Binding BatteryLevelText}" HorizontalOptions="StartAndExpand" FontFamily="{StaticResource fontHurmeBold}" FontSize="10" FontAttributes="Bold" >
+                    <Label.Triggers>
+                      <DataTrigger TargetType="Label" Binding="{Binding HasAlerts}" Value="True">
+                        <Setter Property="TextColor" Value="#EE4041" />
+                      </DataTrigger>
+                      <DataTrigger TargetType="Label"
+                                    Binding="{Binding HasAlerts}" Value="False">
+                        <Setter Property="TextColor" Value="{StaticResource pageBackColor1}" />
+                      </DataTrigger>
+                    </Label.Triggers>
+                  </Label>
+                </StackLayout>
+                <localViews:ImageEx  Grid.Column="2" Source="icon_warn.png"  IsVisible="{Binding HasAlerts}" HorizontalOptions="Center" VerticalOptions="Center" />
+              </Grid>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </localViews:ListViewEx.ItemTemplate>
+    </localViews:ListViewEx>
+  </RelativeLayout>
+</pages:PageBase>

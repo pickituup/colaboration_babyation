@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyationApp.Controls.Views.RoundedBoxViewEx"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+  ControlTemplate="{StaticResource RoundedBoxViewTemplate}">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ControlTemplate x:Key="RoundedBoxViewTemplate" >
+        <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          <localViews:RoundedBoxView x:Name="_innerCircle" Stroke="{TemplateBinding  RoundedViewColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+          <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>
+      </ControlTemplate>
+    </ResourceDictionary>
+  </ContentView.Resources>
+</ContentView>

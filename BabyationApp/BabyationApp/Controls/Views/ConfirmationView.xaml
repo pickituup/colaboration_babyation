@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    x:Class="BabyationApp.Controls.Views.ConfirmationView"
+    x:Name="this"
+    BackgroundColor="{StaticResource Navy}">
+    
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="0" Orientation="Vertical" Padding="0" Margin="35,35,15,5" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Label Text="{Binding Source={x:Reference this}, Path=BodyText}" 
+                   Style="{Binding Source={x:Reference this}, Path=BodyTextStyle}" 
+                   TextColor="{Binding Source={x:Reference this}, Path=BodyTextColor}" 
+                   LineBreakMode="WordWrap" 
+                   HorizontalTextAlignment="Start" VerticalTextAlignment="Start"
+                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+            
+        <!-- Navigation section -->
+        <StackLayout Grid.Row="1" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+            <localButtons:ImageButton x:Name="BtnDestructive"
+                                      Text="{Binding Source={x:Reference this}, Path=DestructiveText}"
+                                      Style="{StaticResource DestructiveActionButton}"
+                                      ImageNormal="{Binding Source={x:Reference this}, Path=DestructiveImage}" ImagePressed="{Binding Source={x:Reference this}, Path=DestructiveImagePressed}"
+                                      HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                      HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+            <localButtons:ImageButton x:Name="BtnPositive"
+                                      Text="{Binding Source={x:Reference this}, Path=PositiveText}"
+                                      Style="{StaticResource PositiveActionButton}"
+                                      ImageNormal="{Binding Source={x:Reference this}, Path=PositiveImage}" ImagePressed="{Binding Source={x:Reference this}, Path=PositiveImagePressed}"
+                                      HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                      HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />                    
+        </StackLayout>
+    
+    </Grid>
+</ContentView>

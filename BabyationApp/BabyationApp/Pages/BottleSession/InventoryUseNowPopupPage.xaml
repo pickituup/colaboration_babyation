@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.BottleSession.InventoryUseNowPopupPage">
+    
+    <Grid Style="{StaticResource Grid_NavigationOnTop}"
+          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+          BackgroundColor="{StaticResource Navy}"
+          RowSpacing="0" ColumnSpacing="0">
+    
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height=".1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="45" Spacing="15">
+            <Label Text="{helpers:Translate AreYouSureToUseThisMilk}" Style="{StaticResource SessionSaveConfirmationLabel}" 
+                   TextColor="{StaticResource LightBlue}" />
+            <Label Text="{helpers:Translate ThisWillDeleteFromInventory}" Style="{StaticResource SessionSaveConfirmationLabel}" 
+                   TextColor="{StaticResource LightBlue}" />
+        </StackLayout>
+        
+        <localButtons:ImageButton x:Name="BtnNoKeepIt"
+                                          Text="{helpers:Translate NoKeepThisMilk}" 
+                                          Grid.Row="1" Grid.Column="0"
+                                          ImageNormal="icon_close"
+                                          ImagePressed="icon_close"
+                                          Style="{StaticResource DestructiveActionButton}" 
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+        <localButtons:ImageButton x:Name="BtnYesUseNow"
+                                          Text="{helpers:Translate YesUseNow}" 
+                                          Grid.Row="1" Grid.Column="1"
+                                          ImageNormal="icon_checkmark_light_pink"
+                                          ImagePressed="icon_checkmark_light_pink"
+                                          Style="{StaticResource PositiveActionButton}" 
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+    </Grid>
+</pages:PageBase>

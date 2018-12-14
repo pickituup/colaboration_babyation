@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Settings.PumpSettings.PumpDetailPage"
+    BackgroundColor="{StaticResource Peach}" >
+    
+    <RelativeLayout HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" >
+    <StackLayout x:Name="stackLayout" Padding="0" Spacing="0" 
+                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.05,Constant=0}"
+        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.95,Constant=0}">
+      <Grid  HorizontalOptions="FillAndExpand" Padding="0" BackgroundColor="{StaticResource pageBackColor1}" HeightRequest="{Binding TagDouble1}">
+        <StackLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate ThisPumpNamed}" TextColor="{StaticResource buttonBackColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <Grid>
+            <Label x:Name="LblName" Text="{Binding Name}" TextColor="#F8DCD9" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="21" HorizontalOptions="Center" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+            <localButtons:FlatButton x:Name="BtnPumpName" Text="" TextColor="#F8DCD9" TextPressedColor="#F8DCD9" MinimumWidthRequest="50" TextFontFamily="{StaticResource fontHurmeBold}" TextFontSize="21" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" HorizontalOptions="Center" VerticalOptions="Center"
+                                     WidthRequest="{Binding Source={x:Reference LblName}, Path=Width}" HeightRequest="{Binding Source={x:Reference LblName}, Path=Height}"/>
+          </Grid>
+        </StackLayout>
+      </Grid>
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource commonPressedColors}" HeightRequest="{Binding TagDouble1}" IsVisible="{Binding HasAlerts}">
+        <StackLayout Orientation="Horizontal" Padding="30, 0, 30, 0" HorizontalOptions="StartAndExpand" VerticalOptions="End">
+          <localViews:ImageEx Source="icon_warn2.png"  HorizontalOptions="Start" VerticalOptions="Center" />
+          <Label x:Name="LblProblemCounter" Text="{helpers:Translate ProblemsIndentified}" TextColor="#F8EBE3" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+        </StackLayout>
+      </Grid>
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource commonPressedColors}" HeightRequest="{Binding TagDouble1}" IsVisible="{Binding HasAlerts}">
+        <StackLayout Padding="30, 0, 30, 20" HorizontalOptions="StartAndExpand" VerticalOptions="Start">
+          <Label x:Name="LblErrors" TextColor="#F8EBE3" LineBreakMode="CharacterWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+        </StackLayout>
+      </Grid>
+    
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="#E6F2F8" HeightRequest="{Binding TagDouble1}">
+        <StackLayout Orientation="Horizontal" Padding="30, 0, 30, 0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate Charge}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <Label Text="{Binding BatteryLevelText}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="23" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+        </StackLayout>
+      </Grid>
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource pageBackColor3}" HeightRequest="{Binding TagDouble1}">
+        <StackLayout Orientation="Horizontal" Padding="30, 0, 30, 0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate BTStatus}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <Label Text="{Binding IsConnectedText}" TextColor="{StaticResource textColor2}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="9" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+        </StackLayout>
+      </Grid>
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="#E6F2F8" HeightRequest="{Binding TagDouble1}">
+        <StackLayout Orientation="Horizontal" Padding="30, 0, 18, 0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate PumpInUse}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <localButtons:CircleButton HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextTop="" TextBottom="" Padding="10, 10, 10, 10"
+                                     IsEnabled="False" IsInteractable="False" ImageNormal="icon_checked_dummy.png"  ImagePressed="icon_checked.png"
+                                             IsToggleOverride="{Binding InUse}"  OuterCircleColor="#11719C" MiddleCircleColor="#E6F2F8" InnerCircleColor="#E6F2F8"
+                                             OuterCirclePressedColor="{StaticResource listViewBackColor}" MiddleCirclePressedColor="{StaticResource listViewBackColor}" InnerCirclePressedColor="{StaticResource listViewBackColor}">
+          </localButtons:CircleButton>          
+        </StackLayout>
+      </Grid>
+
+      <Grid  HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource pageBackColor3}" HeightRequest="{Binding TagDouble1}">
+        <StackLayout Orientation="Horizontal" Padding="30, 0, 30, 0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate UpdateStatus}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <Label x:Name="LblNoUpdate" Text="{helpers:Translate NoUpdate}" TextColor="{StaticResource textColor2}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="9" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <Label x:Name="LblUpdatePercent" IsVisible="False" Text="{Binding UpdatePercentString}" TextColor="{StaticResource buttonTextColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="23" HorizontalOptions="EndAndExpand" VerticalOptions="Center"  HorizontalTextAlignment="Center" />
+          <localButtons:ImageButton x:Name="BtnUpdateFW" IsVisible="False" RadiusBasedOnSize="True" RadiusSizeRatio="1"  HeightRequest="20"
+                                   ImageTextPadding="10, 0, 10 ,0" ImageTextSpacing="0" HorizontalOptions="End" VerticalOptions="Center"
+                                   Text="{helpers:Translate UpdateDevice}"  BackgroundColor="Transparent"
+                       BackgroundColorNormal="{StaticResource commonPressedColors}" BackgroundColorPressed="{StaticResource buttonBackColor1}"
+                       TextColor="White" TextPressedColor="White"
+                       TextFontFamily="{StaticResource fontHurmeBold}" TextFontSize="7">
+            <localButtons:ImageButton.ContentPadding>
+              <OnPlatform x:TypeArguments="Thickness" iOS="0, 2, 0, 0" Android="0" WinPhone="0" />
+            </localButtons:ImageButton.ContentPadding>
+          </localButtons:ImageButton>
+        </StackLayout>
+      </Grid>
+      
+      <localButtons:ButtonEx x:Name="BtnForgetPump" HorizontalOptions="FillAndExpand" HeightRequest="{Binding TagDouble1}"  InitViewBackground="True"
+                BackgroundColorNormal="{StaticResource commonPressedColors}" BackgroundColorPressed="{StaticResource buttonBackColor1}">
+          <StackLayout Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="{helpers:Translate ForgetThisDevice}" VerticalOptions="Center" TextColor="{StaticResource buttonTextColor2}" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" FontAttributes="Bold" />
+          </StackLayout>      
+        </localButtons:ButtonEx>
+    </StackLayout>
+  </RelativeLayout>
+</pages:PageBase>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localButtons:ButtonBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    ControlTemplate="{StaticResource ButtonExTemplate}"
+    x:Class="BabyationApp.Controls.Buttons.ButtonEx" >
+    
+    <localButtons:ButtonBase.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="ButtonExTemplate">
+                <Grid x:Name="RootGrid" 
+                      BackgroundColor="Transparent" 
+                      HorizontalOptions="FillAndExpand" 
+                      VerticalOptions="FillAndExpand" 
+                      Padding="0">
+                    <localViews:RoundedBoxView x:Name="_backgroundView" 
+                                               IsCircle="{TemplateBinding IsCircle}" 
+                                               IsRadioMode="{TemplateBinding IsTogglable}" 
+                                               CornerRadius="{TemplateBinding CornerRadius}" 
+                                               Stroke="{TemplateBinding BackgroundColorCurrent}" 
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand" 
+                                               IsInteractable="{TemplateBinding IsInteractable}" 
+                                               IsEnabled="{TemplateBinding IsEnabled}" 
+                                               RadiusBasedOnSize="{TemplateBinding RadiusBasedOnSize}"
+                                               RadiusSizeRatio="{TemplateBinding RadiusSizeRatio}">
+                    </localViews:RoundedBoxView>
+                    
+                    <Grid Padding="{TemplateBinding ContentPadding}" 
+                          HorizontalOptions="FillAndExpand" 
+                          VerticalOptions="FillAndExpand" 
+                          IsEnabled="False" 
+                          InputTransparent="True">
+                        <ContentPresenter IsEnabled="False" />
+                        <localViews:RoundedBoxView x:Name="_overlayView" 
+                                                   IsVisible="{TemplateBinding IsInteractable, Converter={StaticResource BooleanInverseConverter}}"
+                                                   IsCircle="{TemplateBinding IsCircle}" 
+                                                   IsRadioMode="{TemplateBinding IsTogglable}" 
+                                                   CornerRadius="{TemplateBinding CornerRadius}" 
+                                                   Stroke="{TemplateBinding BackgroundColorDisabled}" 
+                                                   HorizontalOptions="FillAndExpand" 
+                                                   VerticalOptions="FillAndExpand" 
+                                                   IsInteractable="{TemplateBinding IsInteractable}" 
+                                                   IsEnabled="{TemplateBinding IsEnabled}" 
+                                                   RadiusBasedOnSize="{TemplateBinding RadiusBasedOnSize}"
+                                                   RadiusSizeRatio="{TemplateBinding RadiusSizeRatio}">
+                    </localViews:RoundedBoxView>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </localButtons:ButtonBase.Resources>
+</localButtons:ButtonBase>

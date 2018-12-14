@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.PumpSession.SetTimer"
+    BackgroundColor="{StaticResource Peach}">
+    
+  <ContentPage.Content>
+        <Grid Style="{StaticResource Grid_NavigationOnTop}">
+            <Grid Padding="10" HorizontalOptions="Start" VerticalOptions="Start">
+        <Label Text="{helpers:Translate SetTime}" TextColor="{StaticResource buttonBackColor2}" FontFamily="{StaticResource fontLarsseitMedium}" FontSize="Medium"/>
+      </Grid>      
+      <AbsoluteLayout BackgroundColor="Transparent" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid Padding="0,0,0,70" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All">          
+          <StackLayout HorizontalOptions="Center" VerticalOptions="End" Spacing="20">
+            <localViews:ImageEx Source="icon_timer2.png" HorizontalOptions="Center"/>
+            <StackLayout HorizontalOptions="Center" Spacing="-15">              
+              <Label Text="{helpers:Translate TotalPumpTime}" TextColor="{StaticResource pageBackColor1}" HorizontalOptions="Center" FontFamily="{StaticResource fontLarsseitMedium}" FontSize="Small"/>
+              <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                <Label Text="{helpers:Translate TimeDelimiter}" TextColor="{StaticResource pageBackColor1}" HorizontalOptions="Center" FontFamily="{StaticResource fontHurmeBold}"  LineBreakMode="NoWrap" >
+                  <Label.FontSize><OnPlatform x:TypeArguments="x:Double" iOS="60" Android="60" WinPhone="60" /></Label.FontSize>
+                </Label>
+                <localViews:ImageEx Source="btn_cmb_drop.png" VerticalOptions="Center"/>
+              </StackLayout>
+            </StackLayout>
+          </StackLayout>
+        </Grid>
+        <RelativeLayout  x:Name="_relativeLayout" BackgroundColor="Transparent"  AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All">
+          <localButtons:CircleButton x:Name="_circleRight" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                     IsTogglable="True" IsToggled="True"
+                                     OuterCircleColor="#11719C" MiddleCircleColor="#093954" InnerCircleColor="#11719C"
+                                     OuterCirclePressedColor="#EE4041" MiddleCirclePressedColor="White" InnerCirclePressedColor="#EE4041"
+              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.3, Constant=0}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.0, Constant=-40}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+            TextTop="SET" TextTopColor="White" TextBottom="TIMER" TextBottomColor="White" TextBottomFontSize="Small">
+          </localButtons:CircleButton>
+
+          <localButtons:ButtonEx  HorizontalOptions="FillAndExpand"
+              BackgroundColorNormal="{StaticResource buttonBackColor3}" BackgroundColorPressed="{StaticResource buttonBackColor1}"                                
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.8, Constant=0}"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.2,Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+            <StackLayout Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+              <localViews:ImageEx Source="icon_stop.png" VerticalOptions="Center"/>
+              <Label Text="{helpers:Translate StopPumping}" VerticalOptions="Center" TextColor="{StaticResource buttonTextColor2}" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" />
+            </StackLayout>      
+          </localButtons:ButtonEx>
+        </RelativeLayout>
+    </AbsoluteLayout>  
+    </Grid>
+  </ContentPage.Content>
+</ContentPage>

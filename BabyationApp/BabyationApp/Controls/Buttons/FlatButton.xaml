@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<localButtons:ButtonEx xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Controls.Buttons.FlatButton"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+             xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+              IsCircle="False" IsTogglable="False">
+  <localButtons:ButtonEx.Resources>
+    <ResourceDictionary>
+      <ControlTemplate x:Key="FlatButtonTemplate" >
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="{TemplateBinding Parent.TextPadding}" BackgroundColor="Transparent">
+            <Label Text="{TemplateBinding Parent.Text}" TextColor="{TemplateBinding  Parent.TextCurrentColor}" FontFamily="{TemplateBinding Parent.TextFontFamily}" 
+                   FontSize="{TemplateBinding Parent.TextFontSize}" FontAttributes="{TemplateBinding Parent.TextFontAttributes}" VerticalOptions="{TemplateBinding Parent.TextVerticalOptions}"
+        HorizontalOptions="{TemplateBinding Parent.TextHorizontalOptions}" />
+          </Grid>
+      </ControlTemplate>
+    </ResourceDictionary>
+  </localButtons:ButtonEx.Resources>
+  <ContentView ControlTemplate="{StaticResource FlatButtonTemplate}" IsEnabled="False">    
+  </ContentView>  
+</localButtons:ButtonEx>

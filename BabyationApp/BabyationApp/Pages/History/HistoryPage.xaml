@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<localViews:RootViewBase
+    x:Class="BabyationApp.Pages.History.HistoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localBehavior="clr-namespace:BabyationApp.Behaviors"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:templateSelectors="clr-namespace:BabyationApp.TemplateSelectors"
+    x:Name="this"
+    Title="{helpers:Translate HistoryUpper}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="BarTitle"
+                BasedOn="{StaticResource Label_Label}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Gold}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+            <Style
+                x:Key="BarFooterValue"
+                BasedOn="{StaticResource H3_Label}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+            <Style
+                x:Key="BarFooterText"
+                BasedOn="{StaticResource SmallLabel_Label}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="Margin" Value="0,-4,0,0" />
+            </Style>
+            <Style x:Key="BarView" TargetType="localViews:RoundedBoxView">
+                <Setter Property="RadiusBasedOnSize" Value="True" />
+                <Setter Property="RadiusSizeRatio" Value=".7" />
+                <Setter Property="IsCircle" Value="False" />
+                <Setter Property="IsInteractable" Value="False" />
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="Stroke" Value="{StaticResource MedBlue}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="End" />
+            </Style>
+
+            <Style
+                x:Key="GridSubTitleValue"
+                BasedOn="{StaticResource BarTitle}"
+                TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+
+            <Style
+                x:Key="GridLabelValue"
+                BasedOn="{StaticResource H2_Label}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+
+            <Style
+                x:Key="GridLabelSubValue"
+                BasedOn="{StaticResource GridLabelValue}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <DataTemplate x:Key="bottleSessionTemplate">
+                <ViewCell>
+                    <Grid
+                        Padding="10"
+                        BackgroundColor="{Binding BackgroundColor}"
+                        RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".4*" />
+                            <ColumnDefinition Width=".4*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <ff:CachedImage Source="bottle_navy" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource H1_Label}"
+                                Text="{Binding Description}"
+                                TextColor="{StaticResource Navy}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate Time}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding StartTimeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{Binding ClockSystemDescriptor}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate TotalAmount}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding TotalVolumeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate OuncesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate TotalDuration}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding TotalDurationDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate MinutesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate FedBy}" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Style="{StaticResource GridLabelValue}"
+                            Text="{Binding User}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="nursingSessionTemplate">
+                <ViewCell>
+                    <Grid
+                        Padding="10"
+                        BackgroundColor="{Binding BackgroundColor}"
+                        RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".4*" />
+                            <ColumnDefinition Width=".4*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <ff:CachedImage Source="nurse_navy" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource H1_Label}"
+                                Text="{Binding Description}"
+                                TextColor="{StaticResource Navy}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate Time}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding StartTimeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{Binding ClockSystemDescriptor}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate TotalAmount}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding TotalVolumeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate OuncesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate LeftSide}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding LeftSideDurationDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate MinutesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate RightSide}" />
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding RightSideDurationDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate MinutesLower}" />
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="pumpingSessionTemplate">
+                <ViewCell>
+                    <Grid
+                        Padding="10"
+                        BackgroundColor="{Binding BackgroundColor}"
+                        RowSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".4*" />
+                            <ColumnDefinition Width=".4*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <ff:CachedImage Source="pump_navy" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource H1_Label}"
+                                Text="{Binding Description}"
+                                TextColor="{StaticResource Navy}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate Time}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding StartTimeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{Binding ClockSystemDescriptor}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate TotalAmount}" />
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding TotalVolumeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate OuncesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate PumpingMode}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Style="{StaticResource GridLabelValue}"
+                            Text="{Binding PumpingModeDescription}" />
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate LeftSide}" />
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding LeftSideVolumeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate OuncesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate RightSide}" />
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding RightSideVolumeDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate OuncesLower}" />
+                        </StackLayout>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Style="{StaticResource GridSubTitleValue}"
+                            Text="{helpers:Translate TotalDuration}" />
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Spacing="0">
+                            <Label Style="{StaticResource GridLabelValue}" Text="{Binding TotalDurationDescription}" />
+                            <Label Style="{StaticResource GridLabelSubValue}" Text="{helpers:Translate MinutesLower}" />
+                        </StackLayout>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <templateSelectors:HistoryItemDataTemplateSelector
+                x:Key="historyItemDataSelector"
+                BottleTemplate="{StaticResource bottleSessionTemplate}"
+                NursingTemplate="{StaticResource nursingSessionTemplate}"
+                PumpingTemplate="{StaticResource pumpingSessionTemplate}" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <!--  FYI:  -->
+    <!--  https://forums.xamarin.com/discussion/88367/nullreferenceexception-on-grid-calculateautocells-only-xf-ios  -->
+    <!--  https://stackoverflow.com/a/53104452  -->
+
+    <Grid x:Name="RootLayout" Style="{StaticResource Grid_NavigationOnTop}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  ADD SESSION CONTROL  -->
+        <localViews:AddControlView
+            Grid.Row="0"
+            CommandEx="{Binding AddSessionCommand}"
+            Text="{helpers:Translate AddASession}"
+            VerticalOptions="Start" />
+
+        <!--  HEADER  -->
+        <Grid
+            x:Name="NavigationHeader"
+            Grid.Row="1"
+            BackgroundColor="{StaticResource Navy}"
+            HorizontalOptions="Fill"
+            RowSpacing="0"
+            VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+
+            <localButtons:ImageButton
+                x:Name="BtnWeek"
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="0,10,0,0"
+                HeightRequest="26"
+                HorizontalOptions="Center"
+                Style="{StaticResource PillSelectorButton}"
+                Text="{helpers:Translate Weekly}"
+                VerticalOptions="Center"
+                WidthRequest="80" />
+
+            <localButtons:ImageButton
+                x:Name="BtnDay"
+                Grid.Row="0"
+                Grid.Column="2"
+                Padding="0,10,0,0"
+                HeightRequest="26"
+                HorizontalOptions="Center"
+                Style="{StaticResource PillSelectorButton}"
+                Text="{helpers:Translate Daily}"
+                VerticalOptions="Center"
+                WidthRequest="80" />
+
+            <localButtons:ImageButton
+                x:Name="BtnPrev"
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColorNormal="Transparent"
+                BackgroundColorPressed="Transparent"
+                HorizontalOptions="Start"
+                ImageNormal="ic_back.png"
+                ImagePressed="ic_back_pressed.png"
+                ImageTextOrientation="Horizontal"
+                ImageTextPadding="0"
+                ImageTextSpacing="0"
+                RadiusBasedOnSize="True"
+                RadiusSizeRatio="1"
+                Text=""
+                VerticalOptions="Center" />
+
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand">
+
+                <ff:CachedImage
+                    x:Name="ImgDatePicker"
+                    Margin="0,0,10,0"
+                    IsVisible="false"
+                    Source="history_med_blue2">
+                    <ff:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgDatePicker_Tapped" />
+                    </ff:CachedImage.GestureRecognizers>
+                </ff:CachedImage>
+
+                <localViews:DatePickerEx
+                    x:Name="DatePicker"
+                    DateSelected="Handle_DateSelected"
+                    HorizontalOptions="Center"
+                    IsVisible="false"
+                    VerticalOptions="Center" />
+
+                <Label
+                    x:Name="LblRangeInfo"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource H1_Label}"
+                    Text="{Binding RangeInfo}"
+                    TextColor="{StaticResource LightBlue}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <localButtons:ImageButton
+                x:Name="BtnNext"
+                Grid.Row="1"
+                Grid.Column="3"
+                BackgroundColorNormal="Transparent"
+                BackgroundColorPressed="Transparent"
+                HorizontalOptions="End"
+                ImageNormal="ic_next.png"
+                ImagePressed="ic_next_pressed.png"
+                IsEnabled="false"
+                RadiusBasedOnSize="True"
+                RadiusSizeRatio="1"
+                Text=""
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!--  TABS CONTENT  -->
+        <!--  WEEK TAB  -->
+        <Grid
+            x:Name="WeekContent"
+            Grid.Row="2"
+            BackgroundColor="{StaticResource Peach}">
+
+            <!--  BACKGROUND INFO  -->
+            <Label
+                x:Name="LblNoWeeklyRecords"
+                Margin="30,0"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                IsVisible="false"
+                Style="{StaticResource H1_Label}"
+                Text="{helpers:Translate NoWeeklyRecordedActivity}"
+                TextColor="{StaticResource Navy}"
+                VerticalOptions="Center" />
+
+            <!--  CONTENT  -->
+            <localViews:ListViewExNoRecycle
+                x:Name="ListWeek"
+                BackgroundColor="{StaticResource LightPink}"
+                HasUnevenRows="True"
+                SeparatorVisibility="None">
+                <localViews:ListViewExNoRecycle.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="0,15,0,0"
+                            BackgroundColor="{StaticResource Peach}"
+                            RowSpacing="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource H1_Label}"
+                                Text="{helpers:Translate WeeklyTotal}"
+                                TextColor="{StaticResource Navy}"
+                                VerticalOptions="Center" />
+
+                            <Grid Grid.Row="1" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout
+                                    Grid.Column="0"
+                                    HorizontalOptions="Center"
+                                    Spacing="0">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource Label_Label}"
+                                        Text="{helpers:Translate PumpingUpper}"
+                                        TextColor="{StaticResource Gold}" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource H2_Label}"
+                                        Text="{Binding WeeklyHeaderModel.Total[0], StringFormat='{}{0:F1} oz'}"
+                                        TextColor="{StaticResource Navy}" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Spacing="0">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource Label_Label}"
+                                        Text="{helpers:Translate NursingUpper}"
+                                        TextColor="{StaticResource Gold}" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource H2_Label}"
+                                        Text="{Binding WeeklyHeaderModel.Total[1], Converter={StaticResource TimeSpan2HoursMinutesConverter}}"
+                                        TextColor="{StaticResource Navy}" />
+                                </StackLayout>
+                            </Grid>
+
+                            <Grid Grid.Row="2" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout
+                                    Grid.Column="0"
+                                    HorizontalOptions="Center"
+                                    Spacing="0">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource Label_Label}"
+                                        Text="{helpers:Translate BottleBreast}"
+                                        TextColor="{StaticResource Gold}" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource H2_Label}"
+                                        Text="{Binding WeeklyHeaderModel.TotalBreast, StringFormat='{}{0:F1} oz'}"
+                                        TextColor="{StaticResource Navy}" />
+                                </StackLayout>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Spacing="0">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource Label_Label}"
+                                        Text="{helpers:Translate BottleFormula}"
+                                        TextColor="{StaticResource Gold}" />
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource H2_Label}"
+                                        Text="{Binding WeeklyHeaderModel.TotalFormula, StringFormat='{}{0:F1} oz'}"
+                                        TextColor="{StaticResource Navy}" />
+                                </StackLayout>
+                            </Grid>
+
+                            <Grid
+                                Grid.Row="3"
+                                BackgroundColor="{StaticResource LightPink}"
+                                VerticalOptions="StartAndExpand">
+                                <localViews:SessionTypeSelector
+                                    Padding="0,10"
+                                    BackgroundColor="{StaticResource LightPink}"
+                                    ChildsDatasource="{Binding WeeklyChilds}"
+                                    RequestReset="{Binding ResetWeeklySessionControl}"
+                                    ToggleBottleCommand="{Binding WeeklyBottleContentSelectorCommand}"
+                                    ToggleChildsCommand="{Binding WeeklyChildsSelectorCommand}"
+                                    ToggleSessionCommand="{Binding WeeklySessionSelectorCommand}"
+                                    UpdateMeasureCommand="{Binding WeeklySessionSelectorUpdateCommand}" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </localViews:ListViewExNoRecycle.HeaderTemplate>
+
+                <localViews:ListViewExNoRecycle.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                Padding="15"
+                                BackgroundColor="{StaticResource LightPink}"
+                                RowSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="22" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Graph title  -->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    HorizontalOptions="Start"
+                                    IsVisible="{Binding IsHeaderVisible}"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <localViews:ImageEx
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding Icon, Converter={StaticResource ObjectNotNullCheckConverter}}"
+                                        Source="{Binding Icon}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        LineBreakMode="TailTruncation"
+                                        Style="{StaticResource H2_Label}"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource Navy}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    HorizontalOptions="Fill"
+                                    Orientation="Horizontal"
+                                    Spacing="10">
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[0]}" />
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[0]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[0]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[0]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[1]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[1]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[1]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[1]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[1]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[2]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[2]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[2]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[2]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[2]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[3]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[3]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[3]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[3]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[3]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[4]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[4]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[4]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[4]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[4]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[5]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[5]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[5]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[5]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[5]}" />
+                                    </StackLayout>
+
+                                    <StackLayout HorizontalOptions="StartAndExpand" Spacing="8">
+                                        <localViews:LabelEx
+                                            LineHeightEx="{OnPlatform Android=0.7,
+                                                                      iOS=3}"
+                                            Style="{StaticResource BarTitle}"
+                                            Text="{Binding BinsInfo[6]}" />
+                                        <!--<Label Style="{StaticResource BarTitle}" Text="{Binding BinsInfo[6]}" />-->
+                                        <Grid HeightRequest="{Binding MaxBarHeight}">
+                                            <localViews:RoundedBoxView
+                                                HeightRequest="{Binding BarHeights[6]}"
+                                                IsCircle="false"
+                                                Style="{StaticResource BarView}" />
+                                        </Grid>
+                                        <Label Style="{StaticResource BarFooterValue}" Text="{Binding BinsAmountValue[6]}" />
+                                        <Label Style="{StaticResource BarFooterText}" Text="{Binding BinsAmountText[6]}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </localViews:ListViewExNoRecycle.ItemTemplate>
+            </localViews:ListViewExNoRecycle>
+        </Grid>
+
+        <!--  DAY TAB  -->
+        <Grid
+            x:Name="DayContent"
+            Grid.Row="2"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Fill"
+            IsVisible="false"
+            VerticalOptions="Fill">
+
+            <StackLayout
+                Padding="0"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="0"
+                VerticalOptions="CenterAndExpand">
+
+                <Label
+                    x:Name="LblNoDailyRecords"
+                    Margin="30,0"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="false"
+                    Style="{StaticResource H1_Label}"
+                    Text="{helpers:Translate NoDailyRecordedActivity}"
+                    TextColor="{StaticResource Navy}"
+                    VerticalOptions="Center" />
+
+                <localViews:ListViewEx
+                    x:Name="ListDay"
+                    BackgroundColor="White"
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    ItemTemplate="{StaticResource historyItemDataSelector}"
+                    SeparatorVisibility="None"
+                    VerticalOptions="FillAndExpand" />
+            </StackLayout>
+        </Grid>
+    </Grid>
+</localViews:RootViewBase>

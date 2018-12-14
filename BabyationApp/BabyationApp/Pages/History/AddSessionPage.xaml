@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.History.AddSessionPage"
+    BackgroundColor="{StaticResource Peach}"
+    Title="{helpers:Translate LogPastSession}">
+
+    <ContentPage.Content>
+        <RelativeLayout x:Name="RLRoot" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <localButtons:CircleButton x:Name="BtnPumpSession" TextTop="{helpers:Translate Pump}" TextBottom="{helpers:Translate SessionUpper}"
+                                 ImageNormal="pump_light_pink2.png" ImagePressed="pump_light_pink2.png" 
+                                 Style="{StaticResource RedCircleButton}"
+        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.3, Constant=0}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.2, Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"/>
+
+            <localButtons:CircleButton x:Name="BtnFeedSession" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                       ImageNormal="inventory_med_blue2.png" ImagePressed="inventory_med_blue2.png" 
+                                       Style="{StaticResource NursingCircleButton}"
+                                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.1, Constant=0}"
+                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.6, Constant=0}"
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+                                       TextTop="{helpers:Translate Bottle}" TextBottom="{helpers:Translate SessionUpper}">
+            </localButtons:CircleButton>
+
+            <localButtons:CircleButton x:Name="BtnNurseSession" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                 ImageNormal="nurse_med_blue2.png" ImagePressed="nurse_med_blue2.png" 
+                                 Style="{StaticResource NursingCircleButton}"
+          RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.6, Constant=0}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.6, Constant=0}"
+          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.4,Constant=0}"
+        TextTop="{helpers:Translate Nurse}" TextBottom="{helpers:Translate SessionUpper}">
+            </localButtons:CircleButton>
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</pages:PageBase>

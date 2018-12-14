@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.BottleSession.BottleFeedStartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:textEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp"
+    Title="{helpers:Translate BottleSession}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <AbsoluteLayout
+        x:Name="RootLayout"
+        HorizontalOptions="FillAndExpand"
+        Style="{StaticResource AbsoluteLayout_NavigationOnTop}"
+        VerticalOptions="FillAndExpand">
+
+        <Grid
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.11*" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                IsVisible="{Binding ShowBottleFeedSessionPage}"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--  Selected child section  -->
+                <StackLayout
+                    Grid.Row="0"
+                    Padding="0,10"
+                    BackgroundColor="{StaticResource Navy}"
+                    HeightRequest="50"
+                    HorizontalOptions="Fill"
+                    Orientation="Vertical"
+                    Spacing="6"
+                    VerticalOptions="Fill">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SmallLabel_Label}"
+                        Text="{helpers:Translate SelectedChild}"
+                        TextColor="{StaticResource Gold}"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource H1_Label}"
+                        Text="{Binding ChildName}"
+                        TextColor="{StaticResource LightBlue}"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+
+                <ScrollView Grid.Row="1">
+                    <!--  Content section  -->
+                    <Grid
+                        Margin="0"
+                        HorizontalOptions="Fill"
+                        RowSpacing="0"
+                        VerticalOptions="Start">
+                        <Grid.Padding>
+                            <OnPlatform
+                                x:TypeArguments="Thickness"
+                                Android="0,40,0,0"
+                                iOS="0,60,0,0" />
+                        </Grid.Padding>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Timer section  -->
+                        <StackLayout
+                            Grid.Row="0"
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="15"
+                            VerticalOptions="FillAndExpand">
+                            <localViews:ImageEx
+                                Margin="0,0,0,5"
+                                HeightRequest="50"
+                                HorizontalOptions="Center"
+                                Source="icon_timer2"
+                                WidthRequest="50" />
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource Label_Label}"
+                                    Text="{helpers:Translate Duration_Upper}"
+                                    TextColor="{StaticResource Gold}" />
+                                <Grid BackgroundColor="Transparent" HorizontalOptions="Center">
+                                    <localViews:TimePickerEx
+                                        x:Name="DuraPicker"
+                                        Format="m:ss"
+                                        HorizontalOptions="Center"
+                                        Is24HourView="true"
+                                        IsVisible="False" />
+                                    <Label
+                                        x:Name="LblDuraPicker"
+                                        HorizontalOptions="CenterAndExpand"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource Timer_Label}"
+                                        Text="{Binding DurationText}"
+                                        TextColor="{StaticResource Navy}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource BodyCopy_Label}"
+                                    Text="{helpers:Translate Minutes}"
+                                    TextColor="{StaticResource Navy}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <!--  Note button  -->
+                        <StackLayout
+                            Grid.Row="1"
+                            Padding="0,15"
+                            HorizontalOptions="Fill"
+                            Orientation="Vertical"
+                            VerticalOptions="Fill">
+                            <localButtons:BorderedButton
+                                x:Name="BtnAddNote"
+                                Command="{Binding AddNoteCommand}"
+                                HeightRequest="28"
+                                HorizontalOptions="Center"
+                                InnerCircleColor="{StaticResource Peach}"
+                                IsInteractable="true"
+                                MiddleCircleColor="{StaticResource Peach}"
+                                Style="{StaticResource ReversedPillButton}"
+                                TextTop="{Binding ButtonNoteText}">
+                                <localButtons:BorderedButton.WidthRequest>
+                                    <OnPlatform
+                                        x:TypeArguments="x:Double"
+                                        Android="100"
+                                        iOS="90" />
+                                </localButtons:BorderedButton.WidthRequest>
+                            </localButtons:BorderedButton>
+                        </StackLayout>
+
+                        <!--  Note text  -->
+                        <StackLayout
+                            Grid.Row="2"
+                            Padding="15,0"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding LabelNoteText, Converter={StaticResource ObjectNotNullCheckConverter}}"
+                            Orientation="Vertical"
+                            Spacing="3"
+                            VerticalOptions="StartAndExpand">
+                            <Label
+                                x:Name="LblNoteTitle"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource Label_Label}"
+                                Text="{helpers:Translate Note}"
+                                TextColor="{StaticResource Gold}" />
+                            <localViews:LabelEx
+                                x:Name="LblNoteDesc"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="CharacterWrap"
+                                Style="{StaticResource SmallLabel_Label}"
+                                Text="{Binding LabelNoteText}"
+                                TextColor="{StaticResource Green}"
+                                VerticalOptions="Start" />
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="0">
+                <!--  Action buttons section  -->
+                <StackLayout
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Clear}"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding IsFeedingRunning}"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="EndAndExpand">
+                    <localButtons:ImageButton
+                        x:Name="BtnStop"
+                        Command="{Binding StopCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        ImageNormal="icon_stop"
+                        ImagePressed="icon_stop"
+                        ImageScale="{OnPlatform Android=1.4,
+                                                iOS=1}"
+                        ImageTranslationY="{OnPlatform iOS=1,
+                                                       Android=1.45}"
+                        Style="{StaticResource DestructiveActionButton}"
+                        Text="{helpers:Translate StopFeeding}"
+                        VerticalOptions="Fill" />
+                </StackLayout>
+                <StackLayout
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Clear}"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding IsFeedingPaused}"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="EndAndExpand">
+                    <localButtons:ImageButton
+                        x:Name="BtnResume"
+                        Command="{Binding ResumeCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        ImageNormal="icon_play1"
+                        ImagePressed="icon_play1"
+                        ImageTranslationY="{OnPlatform iOS=0,
+                                                       Android=1.4}"
+                        Style="{StaticResource PositiveActionButton}"
+                        Text="{helpers:Translate Resume}"
+                        VerticalOptions="Fill" />
+                    <localButtons:ImageButton
+                        x:Name="BtnFinish"
+                        Command="{Binding FinishCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        ImageNormal="icon_stop"
+                        ImagePressed="icon_stop"
+                        ImageScale="{OnPlatform Android=1.4,
+                                                iOS=1}"
+                        ImageTranslationY="{OnPlatform iOS=1,
+                                                       Android=1.4}"
+                        Style="{StaticResource DestructiveActionButton}"
+                        Text="{helpers:Translate EndSession}"
+                        VerticalOptions="Fill" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+
+        <!--  Notepad section: full screen  -->
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding ShowAddNotePage}"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+            <localViews:NotepadView
+                x:Name="Notepad"
+                HorizontalOptions="FillAndExpand"
+                MaxLength="140"
+                VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </AbsoluteLayout>
+</pages:PageBase>

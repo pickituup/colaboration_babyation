@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="BabyationApp.Pages.BottleSession.MyInventoryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FilterButton" TargetType="localButtons:ImageButton">
+                <Setter Property="TextFontSize" Value="14" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColorNormal" Value="Transparent" />
+                <Setter Property="BackgroundColorPressed" Value="{StaticResource MedBlue}" />
+                <Setter Property="TextColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="TextPressedColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="RadiusBasedOnSize" Value="True" />
+                <Setter Property="RadiusSizeRatio" Value="1" />
+                <Setter Property="ImageTextPadding" Value="7,0,7,3" />
+            </Style>
+
+            <Style
+                x:Key="List_ItemLabel"
+                BasedOn="{StaticResource H1_Label}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <StackLayout BackgroundColor="{StaticResource Navy}" Spacing="0">
+
+        <StackLayout
+            Margin="0,5,0,0"
+            Padding="5,0"
+            Orientation="Horizontal"
+            Spacing="3"
+            VerticalOptions="Start">
+            <localButtons:ImageButton
+                x:Name="_btnMilkAll"
+                Grid.Column="0"
+                ImageNormal="btn_breast_milk"
+                ImagePressed="btn_breast_milk_pressed"
+                ImageTranslationY="{OnPlatform Android=1,
+                                               iOS=-0.5}"
+                Style="{StaticResource FilterButton}"
+                Text="{helpers:Translate All}" />
+
+            <localButtons:ImageButton
+                x:Name="_btnMilkFridge"
+                ImageNormal="btn_fridge"
+                ImagePressed="btn_fridge_pressed"
+                ImageTranslationY="{OnPlatform Android=1,
+                                               iOS=0}"
+                Style="{StaticResource FilterButton}"
+                Text="{helpers:Translate Fridge}" />
+
+            <localButtons:ImageButton
+                x:Name="_btnMilkFreezer"
+                ImageNormal="btn_freezer"
+                ImagePressed="btn_freezer_pressed"
+                ImageTranslationY="{OnPlatform Android=1,
+                                               iOS=2}"
+                Style="{StaticResource FilterButton}"
+                Text="{helpers:Translate Freezer}" />
+
+            <localButtons:ImageButton
+                x:Name="_btnMilkOther"
+                ImageNormal="btn_other"
+                ImagePressed="btn_other_pressed"
+                ImageTranslationY="{OnPlatform Android=1,
+                                               iOS=1}"
+                Style="{StaticResource FilterButton}"
+                Text="{helpers:Translate Other}" />
+        </StackLayout>
+
+        <localViews:ListViewEx
+            x:Name="listView"
+            BackgroundColor="{StaticResource Navy}"
+            HasUnevenRows="True"
+            HorizontalOptions="FillAndExpand"
+            SeparatorVisibility="None"
+            VerticalOptions="FillAndExpand">
+            <localViews:ListViewEx.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="{StaticResource White}">
+                            <Grid Padding="10" BackgroundColor="Green">
+                                <Grid.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsOddIndex}"
+                                        TargetType="Grid"
+                                        Value="False">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        Binding="{Binding IsOddIndex}"
+                                        TargetType="Grid"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource LightBlue20}" />
+                                    </DataTrigger>
+                                </Grid.Triggers>
+                                <Grid
+                                    ColumnSpacing="10"
+                                    HorizontalOptions="FillAndExpand"
+                                    RowSpacing="5"
+                                    VerticalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ColumnHeader}"
+                                        Text="{helpers:Translate Date}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ItemLabel}"
+                                        Text="{Binding StartTime, StringFormat='{}{0:M/d/yy}'}"
+                                        VerticalOptions="Center" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ColumnHeader}"
+                                        Text="{helpers:Translate Time}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ItemLabel}"
+                                        Text="{Binding StartTime, StringFormat='{}{0:h:mm tt}'}"
+                                        VerticalOptions="Center" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ColumnHeader}"
+                                        Text="{helpers:Translate Source}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ItemLabel}"
+                                        Text="{Binding Storage, Converter={StaticResource StorageType2StringConverter}}"
+                                        VerticalOptions="Center" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ColumnHeader}"
+                                        Text="{helpers:Translate Ounces}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="3"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="NoWrap"
+                                        Style="{StaticResource List_ItemLabel}"
+                                        Text="{Binding TotalMilkVolume}"
+                                        VerticalOptions="Center" />
+
+
+                                    <localButtons:ImageButton
+                                        Grid.Row="2"
+                                        Grid.Column="3"
+                                        BackgroundColorNormal="{StaticResource MedBlue}"
+                                        BackgroundColorPressed="{StaticResource MedBlue}"
+                                        Command="{Binding UseNowCommand}"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Center"
+                                        ImageTextPadding="0"
+                                        ImageTextSpacing="0"
+                                        RadiusBasedOnSize="True"
+                                        RadiusSizeRatio="1"
+                                        Text="{helpers:Translate Use}"
+                                        TextColor="{StaticResource pageBackColor2}"
+                                        TextFontAttributes="Bold"
+                                        TextFontSize="8"
+                                        VerticalOptions="Center"
+                                        WidthRequest="60" />
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="3"
+                                        Margin="5,0,5,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource List_DescriptionSubText}"
+                                        Text="{Binding Description}" />
+                                </Grid>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </localViews:ListViewEx.ItemTemplate>
+        </localViews:ListViewEx>
+    </StackLayout>
+</ContentView>

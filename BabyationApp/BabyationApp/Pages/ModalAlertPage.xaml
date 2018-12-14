@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors" 
+    x:Class="BabyationApp.Pages.ModalAlertPage"
+    BackgroundColor="{StaticResource Clear}">
+    
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid.Padding>
+      <OnPlatform
+          x:TypeArguments="Thickness"
+          Android="0, 36, 0, 0"
+          iOS="{StaticResource NavBarInsets}"
+          WinPhone="0, 35, 0, 0"/>
+    </Grid.Padding>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+  
+    <StackLayout Grid.Row="0" Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand" HeightRequest="65" BackgroundColor="{StaticResource commonPressedColors}" Padding="10, 1, 10, 1" >
+      <Label x:Name="LblMsg" HorizontalOptions="FillAndExpand" VerticalOptions="Center" LineBreakMode="CharacterWrap" TextColor="{StaticResource LightPink}"
+              Style="{StaticResource H2_Label}" FontSize="12" />
+      <localButtons:ImageButton x:Name="BtnClose1" HorizontalOptions="End" ImageTextPadding="0" ImageTextSpacing="0" Text="" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" ImageNormal="icon_close.png" ImagePressed="icon_close3.png" VerticalOptions="Center"/>
+      <localButtons:ImageButton x:Name="BtnInfo1" RadiusBasedOnSize="True" RadiusSizeRatio="1" ImageTextPadding="0" HorizontalOptions="End" IsVisible="False" WidthRequest="82.33" HeightRequest="22.33"
+                                ImageTextSpacing="0" Text=" " BackgroundColorNormal="{StaticResource buttonBackColor2}" BackgroundColorPressed="{StaticResource buttonBackColor1}" 
+                                VerticalOptions="Center" TextFontFamily="{StaticResource fontHurmeBold}" TextFontSize="8.235" TextColor="{StaticResource buttonTextColor2}"/>
+    </StackLayout>
+  
+    <Frame BackgroundColor="Transparent" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Grid>
+    </Frame>
+  </Grid>
+  
+</pages:PopupPage>

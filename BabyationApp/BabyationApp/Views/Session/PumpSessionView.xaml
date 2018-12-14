@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.PumpSessionView">
+  <Grid>
+    <StackLayout x:Name="header" Padding="24,0" VerticalOptions="Center">
+      <StackLayout Padding="0,0" Orientation="Horizontal" VerticalOptions="Center">
+        <Button x:Name="cancelBtn" Text="Cancel" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Choose Experience" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout x:Name="expBtns" Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="expWorkBtn" Text="Work" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="expEasyBtn" Text="Easy" HorizontalOptions="Center" />
+        <Button x:Name="expHomeBtn" Text="Home" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+    </StackLayout>
+    
+    <StackLayout x:Name="phaseGrp" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
+      <Label Text="STIMULATION PHASE" HorizontalOptions="Center" />
+      <Button x:Name="pumpBtn" Text="Suction" />
+      <Button x:Name="nurseBtn" Text="Speed" />
+      <Label Text="Letdown Button" HorizontalOptions="Center" />
+    </StackLayout>
+    
+    <StackLayout x:Name="controls" Grid.Row="2" Padding="24,0" VerticalOptions="Center">
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="leftBtn" Text="Left" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="bothBtn" Text="Both" HorizontalOptions="Center" />
+        <Button x:Name="rightBtn" Text="Right" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Label Text="Time" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Ounces" HorizontalOptions="Center" />
+        <Label Text="Date" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Label Text="Fridge" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Freezer" HorizontalOptions="Center" />
+        <Label Text="Feed" HorizontalOptions="Center" />
+        <Label Text="Trash" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal" VerticalOptions="Center">
+        <Button x:Name="stopBtn" Text="Stop" HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="0,0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
+          <Label Text="Set Timer" HorizontalOptions="Center"/>
+          <Label Text="Baby Pic" HorizontalOptions="Center" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+
+  </Grid>
+</ContentView>

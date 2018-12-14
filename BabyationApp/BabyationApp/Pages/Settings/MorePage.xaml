@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PageBase
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    x:Class="BabyationApp.Pages.Settings.MorePage"
+    BackgroundColor="{StaticResource MedPink}">
+    
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+
+        <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Padding="20, 0, 20, 0"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.0, Constant=0}"
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.15,Constant=0}"
+                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+            <localViews:ImageEx Source="logo_settings.png" 
+                                HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <localButtons:ImageButton x:Name="BtnClose" Text="" 
+                                      ImageNormal="cancel_med_blue2.png" ImagePressed="cancel_med_blue2.png" 
+                                      MinimumWidthRequest="25" MinimumHeightRequest="25" 
+                                      BackgroundColorNormal="{StaticResource Clear}" BackgroundColorPressed="{StaticResource Clear}"
+                                      HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+          </Grid>
+          <Grid RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.1, Constant=0}"
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.85,Constant=0}"
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+            <StackLayout x:Name="StackButtons" 
+                         HorizontalOptions="FillAndExpand" VerticalOptions="Start"
+                         Padding="0" Spacing="0"
+                         BackgroundColor="White">
+              </StackLayout>
+          </Grid>
+        </RelativeLayout> 
+            
+    </Grid>
+   
+</pages:PageBase>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.StyleGuide.StyleGuidePage"
+    BackgroundColor="White"
+    Title="Style Guide">
+    
+    <ContentPage.Content>
+        <Grid Style="{StaticResource Grid_NavigationOnTop}" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                
+                <!-- Typography -->
+                <Grid RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <!-- Buttons -->
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label Grid.Row="0" Text="System Label - no style" />
+                    <Label Grid.Row="1" Text="PAGE TITLE" Style="{StaticResource PageTitle_Label}" />
+                    <Label Grid.Row="2" Text="TIMER" Style="{StaticResource Timer_Label}" />
+                    <Label Grid.Row="3" Text="Instructions" Style="{StaticResource Instructions_Label}" />
+                    <Label Grid.Row="4" Text="Header 1" Style="{StaticResource H1_Label}" />
+                    <Label Grid.Row="5" Text="Header 2" Style="{StaticResource H2_Label}" />
+                    <Label Grid.Row="6" Text="Header 3" Style="{StaticResource H3_Label}" />
+                    <Label Grid.Row="7" Text="Body copy" Style="{StaticResource BodyCopy_Label}" />
+                    <Label Grid.Row="8" Text="LABELS" Style="{StaticResource Label_Label}" />
+                    <Label Grid.Row="9" Text="SMALL LABELS" Style="{StaticResource SmallLabel_Label}" />
+                    <Label Grid.Row="10" Text="Tracking entry" Style="{StaticResource TrackingEntry_Label}" />
+                    <Label Grid.Row="11" Text="SECONDARY ACTION BUTTON TEXT" Style="{StaticResource SecondaryAction_Label}" />
+                    <BoxView Grid.Row="12" HeightRequest="5" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                    <localButtons:ImageButton Grid.Row="13" Text="Positive action" Style="{StaticResource PositiveActionButton}" ImageNormal="icon_save" ImagePressed="icon_save" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    <localButtons:ImageButton Grid.Row="14" Text="Destructive action" Style="{StaticResource DestructiveActionButton}" ImageNormal="icon_stop" ImagePressed="icon_stop" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    <localButtons:ImageButton Grid.Row="15" Text="Navigational action" Style="{StaticResource NavigationalActionButton}" ImageNormal="icon_next2" ImagePressed="icon_next" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+    
+</pages:PageBase>

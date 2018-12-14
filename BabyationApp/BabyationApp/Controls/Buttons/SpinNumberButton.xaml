@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Controls.Buttons.SpinNumberButton"
+             xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views">
+  <ContentView.Content>
+    <RelativeLayout x:Name="_rl1">			
+      <localButtons:CircleButton x:Name="_circleUp" TextTop="" TextTopColor="#EE4041" TextBottom=""
+          OuterCircleColor="White" MiddleCircleColor="White" InnerCircleColor="White"
+                                 ImageNormal="icon_plus_small.png" ImagePressed="icon_plus_small_pressed.png"
+          OuterCirclePressedColor="#EE4041" MiddleCirclePressedColor="#EE4041" InnerCirclePressedColor="#EE4041">
+	  </localButtons:CircleButton>
+
+      <localButtons:CircleButton x:Name="_circleDown" TextTop="" TextTopColor="#EE4041"  TextBottom=""
+                                 ImageNormal="icon_minus_small.png" ImagePressed="icon_minus_small_pressed.png"
+          OuterCircleColor="White" MiddleCircleColor="White" InnerCircleColor="White" MiddleCirclePadding="6" InnerCirclePadding="9"
+          OuterCirclePressedColor="#EE4041" MiddleCirclePressedColor="#EE4041" InnerCirclePressedColor="#EE4041">		
+	  </localButtons:CircleButton>
+			
+      <localButtons:CircleButton x:Name="_circleView" TextTop="--" TextTopColor="{StaticResource pageBackColor1}" 
+          TextBottom="--" TextBottomColor="{StaticResource pageBackColor1}" IsInteractable="False"
+          FontFamilyTop="{StaticResource fontLarsseitMedium}" FontAttributesTop="None" FontFamilyBottom="{StaticResource fontHurmeBold}" FontAttributesBottom="Bold"
+          OuterCircleColor="White" MiddleCircleColor="#F8EBE3" InnerCircleColor="White"
+          OuterCirclePressedColor="#EE4041" MiddleCirclePressedColor="White" InnerCirclePressedColor="#EE4041">
+			<localButtons:CircleButton.TextTopFontSize>
+              <OnPlatform x:TypeArguments="x:Double" iOS="10" Android="10" WinPhone="10" />
+            </localButtons:CircleButton.TextTopFontSize>
+			<localButtons:CircleButton.TextBottomFontSize>
+              <OnPlatform x:TypeArguments="x:Double" iOS="35" Android="35" WinPhone="35" />
+            </localButtons:CircleButton.TextBottomFontSize>
+        <localButtons:CircleButton.TextTopBottomSpacing><OnPlatform x:TypeArguments="x:Double" iOS="0" Android="-6" WinPhone="0" /></localButtons:CircleButton.TextTopBottomSpacing>
+	  </localButtons:CircleButton>
+
+    </RelativeLayout>
+  </ContentView.Content>
+</ContentView>

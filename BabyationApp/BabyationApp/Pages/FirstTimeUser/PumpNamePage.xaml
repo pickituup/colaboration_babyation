@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.FirstTimeUser.PumpNamePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    Title="{helpers:Translate NameYourPump}"
+    BackgroundColor="{StaticResource Navy}">
+
+    <RelativeLayout
+        Padding="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <RelativeLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}">
+            <Grid
+                Padding="50,40,50,40"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.75,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                VerticalOptions="FillAndExpand">
+                <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!--<Label Text="{helpers:Translate ConnectToYourPump}" TextColor="{StaticResource buttonBackColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" FontAttributes="Bold"  HorizontalOptions="FillAndExpand"
+							RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.0, Constant=0}"
+	               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.05,Constant=0}"
+	               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>-->
+                    <Label
+                        HorizontalOptions="FillAndExpand"
+                        LineBreakMode="WordWrap"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                               Property=Height,
+                                                                               Factor=.9,
+                                                                               Constant=0}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=1,
+                                                                              Constant=0}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Height,
+                                                                          Factor=.15,
+                                                                          Constant=0}"
+                        Style="{StaticResource Instructions_Label}"
+                        Text="{helpers:Translate WhatYouWantCallThePump}"
+                        TextColor="{StaticResource textColor1}" />
+                </RelativeLayout>
+            </Grid>
+            <Grid
+                Margin="0"
+                BackgroundColor="{StaticResource pageBackColor3}"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.15,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=.85,
+                                                                  Constant=0}"
+                VerticalOptions="FillAndExpand">
+                <StackLayout
+                    Margin="20,0"
+                    Spacing="0"
+                    VerticalOptions="Center">
+                    <Label
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource Form_ElementHeader}"
+                        Text="{helpers:Translate PumpName}"
+                        VerticalTextAlignment="End" />
+                    <localEditors:EntryEx
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Start"
+                        Placeholder="{helpers:Translate EnterPumpNickname}"
+                        Style="{StaticResource Form_ElementEntry}"
+                        TranslationX="{OnPlatform Android=-5,
+                                                  iOS=-1}"
+                        VerticalOptions="Start" />
+                </StackLayout>
+            </Grid>
+        </RelativeLayout>
+        <localButtons:ImageButton
+            x:Name="BtnNext"
+            HorizontalOptions="FillAndExpand"
+            ImageNormal="icon_checkmark_light_pink.png"
+            ImagePressed="icon_checkmark_light_pink.png"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=.1,
+                                                                   Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=.9,
+                                                              Constant=0}"
+            Style="{StaticResource PositiveActionButton}"
+            Text="{helpers:Translate Continue}" />
+    </RelativeLayout>
+</pages:PageBase>

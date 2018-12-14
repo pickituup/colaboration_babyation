@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.FirstTimeUser.BabySelectionPage"
+    BackgroundColor="{StaticResource Navy}">
+    
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+        <StackLayout Padding="40,0,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+      <StackLayout Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+        <Grid Padding="0" HorizontalOptions="FillAndExpand">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Text="{helpers:Translate SelectChild}"  HorizontalOptions="Start" VerticalOptions="Center" TextColor="{StaticResource buttonBackColor1}" FontFamily="{StaticResource fontHurmeBold}" FontSize="14"/>
+          <localButtons:ImageButton x:Name="BtnClose" Grid.Column="1" Text="" ImageNormal="icon_close3.png" ImagePressed="icon_close.png" HorizontalOptions="End" VerticalOptions="Center"/>
+        </Grid>
+      </StackLayout>
+      <localViews:ListViewEx x:Name="listView" SeparatorVisibility="None" HasUnevenRows="True" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+              <localViews:ListViewEx.ItemTemplate>
+                  <DataTemplate>
+                      <ViewCell>                                                   
+                        <Grid BackgroundColor="#083953">
+                         <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="20, 56, 56, 40" Spacing="30">
+                           <localButtons:ButtonEx BackgroundColorNormal="{StaticResource pageBackColor2}" WidthRequest="122" HeightRequest="122" 
+                                             BackgroundColorPressed="{StaticResource buttonBackColor1}" IsCircle="True" Command="{Binding SelectCommand}">
+                              <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="122" HeightRequest="122" >
+                                <localViews:CachedImageEx  x:Name="PictureBox" Source="{Binding Picture}" WidthRequest="122" HeightRequest="122" HorizontalOptions="Center" VerticalOptions="Center">
+                                  <localViews:CachedImageEx.Transformations>
+                                    <fftransformations:CircleTransformation/>
+                                  </localViews:CachedImageEx.Transformations>
+                                </localViews:CachedImageEx>
+                                <localButtons:CircleButton HorizontalOptions="End" VerticalOptions="End" WidthRequest="42" HeightRequest="42" TextTop="" TextBottom="" MiddleCirclePadding="5"
+                                                            OuterCircleColor="{StaticResource buttonBackColor1}" OuterCirclePressedColor="{StaticResource buttonBackColor1}"
+                                                            MiddleCircleColor="{StaticResource pageBackColor1}" MiddleCirclePressedColor="{StaticResource buttonBackColor1}"
+                                                            InnerCircleColor="{StaticResource pageBackColor1}" InnerCirclePressedColor="{StaticResource buttonBackColor1}"                                                           
+                                                           ImageNormal="icon_checked_dummy.png" ImagePressed="icon_checked_dummy.png" IsInteractable="False" IsVisible="{Binding IsSelected, Converter={StaticResource BooleanInverseConverter}}"/>
+                                <localButtons:CircleButton HorizontalOptions="End" VerticalOptions="End" WidthRequest="42" HeightRequest="42" TextTop="" TextBottom="" MiddleCirclePadding="5"
+                                                            OuterCircleColor="{StaticResource buttonBackColor1}" OuterCirclePressedColor="{StaticResource buttonBackColor1}"
+                                                            MiddleCircleColor="{StaticResource buttonBackColor1}" MiddleCirclePressedColor="{StaticResource buttonBackColor1}"
+                                                            InnerCircleColor="{StaticResource buttonBackColor1}" InnerCirclePressedColor="{StaticResource buttonBackColor1}"                                                           
+                                                           ImageNormal="icon_checked3.png" ImagePressed="icon_checked3.png" IsInteractable="False" IsVisible="{Binding IsSelected}"/>
+                              </Grid>                           
+                            </localButtons:ButtonEx>
+                            <Label Text="{Binding Name}" HorizontalOptions="Center" TextColor="{StaticResource pageBackColor3}" FontFamily="{StaticResource fontHurmeBold}" FontSize="21" />
+                         </StackLayout>
+                        </Grid>
+                      </ViewCell>
+                    </DataTemplate>
+                  </localViews:ListViewEx.ItemTemplate>
+        </localViews:ListViewEx>
+    </StackLayout>
+  </Grid>
+</pages:PageBase>

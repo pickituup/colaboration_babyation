@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<controls:Item
+    x:Class="BabyationApp.Controls.ListedSelector.ChildListedItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:BabyationApp.Controls.ListedSelector"
+    xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    HorizontalOptions="Center">
+
+    <Grid RowSpacing="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <AbsoluteLayout
+            Grid.Row="0"
+            HeightRequest="136"
+            WidthRequest="136">
+
+            <!--  AVATAR  -->
+            <ffImage:CachedImage
+                AbsoluteLayout.LayoutBounds=".5,.5,.8,.8"
+                AbsoluteLayout.LayoutFlags="All"
+                Source="{Binding Picture}">
+                <ffImage:CachedImage.Transformations>
+                    <transformations:CircleTransformation />
+                </ffImage:CachedImage.Transformations>
+            </ffImage:CachedImage>
+
+            <!--  TAP EFFECT  -->
+            <BoxView
+                x:Name="_tapFadeEffect_BoxView"
+                AbsoluteLayout.LayoutBounds=".5,.5,.8,.8"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="{StaticResource buttonBackColor1}"
+                CornerRadius="{OnPlatform Android=220,
+                                          iOS=55}"
+                Opacity="0" />
+
+            <!--  BOTTOM SELECTOR  -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds=".85,.85,.2,.2" AbsoluteLayout.LayoutFlags="All">
+                <BoxView
+                    AbsoluteLayout.LayoutBounds="1,1,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="{StaticResource MedBlue}"
+                    CornerRadius="{OnPlatform Android=55,
+                                              iOS=14}" />
+                <BoxView
+                    x:Name="_todo_BoxView"
+                    AbsoluteLayout.LayoutBounds=".5,.5,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="{StaticResource Peach}"
+                    CornerRadius="{OnPlatform Android=55,
+                                              iOS=14}"
+                    Scale=".75" />
+                <ffImage:CachedImage
+                    x:Name="_bottomIndicatorCachedImage"
+                    AbsoluteLayout.LayoutBounds=".5,.5"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Scale=".8"
+                    Source="icon_checked.png"
+                    TranslationX="777" />
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+
+        <!--  MAIN LABEL  -->
+        <Label
+            x:Name="_contentText_Label"
+            Grid.Row="1"
+            AbsoluteLayout.LayoutBounds=".5,1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            HorizontalTextAlignment="Center"
+            Style="{StaticResource H1_Label}"
+            Text="{Binding Name}"
+            TextColor="{StaticResource Navy}" />
+    </Grid>
+</controls:Item>

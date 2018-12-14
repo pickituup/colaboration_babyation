@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.PresetsView">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <Button x:Name="addNewBtn" Text="Create New" />
+      
+      <Label Text="Your Experiences" />
+      <ListView x:Name="listExperiences" ItemsSource="{Binding Experiences}" RefreshCommand="{Binding GetExperiences}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RowHeight="220">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell ImageSource="{Binding .}" Text="Time Pump Auto Start" Detail="">
+            </ImageCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <Label Text="Babyation Experiences" />
+      <ListView x:Name="listPresets" ItemsSource="{Binding Presets}" RefreshCommand="{Binding GetPresets}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RowHeight="220">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell ImageSource="{Binding .}" Text="Time Pump Auto Start" Detail="">
+            </ImageCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+    </StackLayout>
+  </Grid>
+</ContentView>

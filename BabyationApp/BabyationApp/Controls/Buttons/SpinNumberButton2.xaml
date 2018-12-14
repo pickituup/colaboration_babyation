@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Controls.Buttons.SpinNumberButton2"
+             xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+             x:Name="this">
+  <ContentView.Content>
+    <RelativeLayout x:Name="_rl1">			
+      	
+      <localButtons:CircleButton x:Name="_circleView" 
+                                 ContentPadding="0,10,0,0"
+                                 IsInteractable="False"
+                                 TextTop="--" TextTopColor="{StaticResource Gold}" FontFamilyTop="{StaticResource fontLarsseitMedium}" TextTopFontSize="14"
+                                 TextBottom="--" TextBottomColor="{StaticResource Navy}" FontFamilyBottom="{StaticResource fontHurmeBold}" TextBottomFontSize="32" FontAttributesBottom="Bold"
+                                 OuterCircleColor="White" MiddleCircleColor="White" InnerCircleColor="White"
+                                 OuterCirclePressedColor="White" MiddleCirclePressedColor="White" InnerCirclePressedColor="White">
+                <localButtons:CircleButton.TextTopBottomSpacing>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="-6" WinPhone="0" />
+                </localButtons:CircleButton.TextTopBottomSpacing>
+            </localButtons:CircleButton>
+            
+        <localButtons:CircleButton x:Name="_circleUp" 
+                                 TextTop="" TextTopColor="{StaticResource Clear}"
+                                 TextBottom="" TextBottomColor="{StaticResource Clear}" 
+                                 OuterCircleColor="White" MiddleCircleColor="{StaticResource Peach}" InnerCircleColor="White"
+                                 OuterCirclePressedColor="{StaticResource MedBlue}" MiddleCirclePressedColor="{StaticResource Peach}" InnerCirclePressedColor="{StaticResource MedBlue}" 
+                                 MiddleCirclePadding="6" InnerCirclePadding="9"
+                                 ImageNormal="icon_plus_small_blue.png" ImagePressed="icon_plus_small_pressed.png"
+                                 IsVisible="{Binding Source={x:Reference this}, Path=HideControls}">
+                
+      </localButtons:CircleButton>
+            
+        <localButtons:CircleButton x:Name="_circleDown" 
+                                 TextTop="" TextTopColor="{StaticResource Clear}"
+                                 TextBottom="" TextBottomColor="{StaticResource Clear}"
+                                 OuterCircleColor="White" MiddleCircleColor="{StaticResource Peach}" InnerCircleColor="White" 
+                                 OuterCirclePressedColor="{StaticResource MedBlue}" MiddleCirclePressedColor="{StaticResource Peach}" InnerCirclePressedColor="{StaticResource MedBlue}"
+                                 MiddleCirclePadding="6" InnerCirclePadding="9"
+                                 ImageNormal="icon_minus_small_blue.png" ImagePressed="icon_minus_small_pressed.png"
+                                 IsVisible="{Binding Source={x:Reference this}, Path=HideControls}">
+      </localButtons:CircleButton>
+            
+    </RelativeLayout>
+  </ContentView.Content>
+</ContentView>

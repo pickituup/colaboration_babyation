@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors;" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    xmlns:pages="clr-namespace:BabyationApp.Pages" 
+    xmlns:converters="clr-namespace:BabyationApp.Converters"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+    xmlns:pumpSession="clr-namespace:BabyationApp.Pages.PumpSession;assembly=BabyationApp" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    x:Class="BabyationApp.Pages.PumpSession.PumpSessionPage"
+    x:Name="this"
+    BackgroundColor="{StaticResource Peach}" >
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <!-- Converters -->
+            <converters:PumpPhaseToToggleConverter x:Key="PumpPhaseToToggleConverter"/>
+            <converters:PumpPhaseToImageConverter x:Key="PumpPhaseToImageConverter"/>
+            <converters:PumpPhaseToTextConverter x:Key="PumpPhaseToTextConverter"/>
+            
+            <!-- Header Labes -->
+            <Style x:Key="LocalHeaderTitleLabel" TargetType="Label" BasedOn="{StaticResource Label_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Gold}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+            </Style>
+            <Style x:Key="LocalHeaderTextLabel" TargetType="Label" BasedOn="{StaticResource H1_Label}">
+                <Setter Property="TextColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+            
+            <!-- Data Pad Labels -->
+            <Style x:Key="LocalPadHeaderLabel" TargetType="Label" BasedOn="{StaticResource Label_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Gold}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+            
+            <Style x:Key="LocalValueLabel" TargetType="Label" BasedOn="{StaticResource H1_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style x:Key="LocalPadFooterLabel" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="End" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+            </Style>
+            
+            <Style x:Key="LocalModesHeader" TargetType="Label" BasedOn="{StaticResource H2_Label}">
+                <Setter Property="Margin" Value="0,15,0,0" />
+                <Setter Property="TextColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <!-- MilkTypeSelector labels -->   
+            <scg:List x:Key="MilkSelectorLabels" 
+                      x:TypeArguments="x:String"> 
+                <helpers:Translate>Fridge</helpers:Translate>
+                <helpers:Translate>Freezer</helpers:Translate>
+                <helpers:Translate>Bottle</helpers:Translate>
+                <helpers:Translate>Trash</helpers:Translate>
+            </scg:List> 
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid IsVisible="{Binding IsPumpingMode}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Header -->
+                <Grid Grid.Row="0" Padding="5" RowSpacing="0" HeightRequest="70" 
+                      BackgroundColor="{StaticResource Navy}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical" Padding="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                        <Label Text="{helpers:Translate SelectedMode_Upper}" Style="{StaticResource LocalHeaderTitleLabel}" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Vertical" Padding="0,-5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                        <Label Text="{Binding CurrentModeName}" Style="{StaticResource LocalHeaderTextLabel}" />
+                    </StackLayout>
+                     <Grid Grid.Row="1" Grid.Column="2" Padding="0,0,0,0" HorizontalOptions="Start" VerticalOptions="Start">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleModesCommand}" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                        <localButtons:ImageButton InputTransparent="true"
+                                                  IsPressed="{Binding IsModesMode}" IsCircle="true" IsTogglable="true" 
+                                                  Text="" ImageTextPadding="0" ImageTextSpacing="0"
+                                                  ImageNormal="icon_down_light_pink" ImagePressed="icon_up_light_pink" 
+                                                  WidthRequest="18" HeightRequest="18"
+                                                  BackgroundColorNormal ="{StaticResource MedBlue}" BackgroundColorPressed="{StaticResource MedBlue}"
+                                                  HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Grid>
+                </Grid>                
+                
+                <!-- Pump stats and controls -->
+                <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsPumpingMode}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!-- Statistics pad -->
+                    <Grid HeightRequest="{OnPlatform iOS=70, Android=80}" BackgroundColor="{StaticResource LightBlue}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Grid Margin="10" ColumnSpacing="18" RowSpacing="1" HorizontalOptions="Center" VerticalOptions="FillAndExpand" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Row="0" Grid.Column="0" Text="{helpers:Translate Duration_Upper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Data.Duration, Converter={StaticResource TimeSpan2StringConverter}, StringFormat='{0}'}" Style="{StaticResource LocalValueLabel}" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="{helpers:Translate MinutesLower}" Style="{StaticResource LocalPadFooterLabel}" />
+                            
+                            <Label Grid.Row="0" Grid.Column="1" Text="{helpers:Translate Left_Upper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Data.LeftBreastMilkLevelText}" Style="{StaticResource LocalValueLabel}" />
+                            <Label Grid.Row="2" Grid.Column="1" Text="{helpers:Translate OuncesLower}" Style="{StaticResource LocalPadFooterLabel}" />
+                            
+                            <Label Grid.Row="0" Grid.Column="2" Text="{helpers:Translate Right_Upper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding Data.RightBreastMilkLevelText}" Style="{StaticResource LocalValueLabel}" />
+                            <Label Grid.Row="2" Grid.Column="2" Text="{helpers:Translate OuncesLower}" Style="{StaticResource LocalPadFooterLabel}" />
+                            
+                            <Label Grid.Row="0" Grid.Column="3" Text="{helpers:Translate Total_Upper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding Data.TotalBreastMilkLevelText}" Style="{StaticResource LocalValueLabel}"  />
+                            <Label Grid.Row="2" Grid.Column="3" Text="{helpers:Translate OuncesLower}" Style="{StaticResource LocalPadFooterLabel}" />
+                        </Grid>
+                    </Grid>
+                    
+                    <!-- Mode controls -->
+                    <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        
+                        <!-- Suction/Speed controls -->
+                        <localButtons:SpinNumberButton2 Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="_circleSuctionStimulation" DescriptionText="{helpers:Translate Suction}" ValueText="{Binding Data.ActualSuction, StringFormat='{0:D}'}" />
+                        <localButtons:SpinNumberButton2 Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" x:Name="_circleSpeedStimulation" DescriptionText="{helpers:Translate Speed}" ValueText="{Binding Data.ActualSpeed, StringFormat='{0:D}'}" />
+                        
+                        <!-- Media buttons -->
+                        <Grid Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
+                            <localViews:PhotoBoxControl Source="{Binding Picture}" Command="{Binding SelectMedia}" BoxWidth="74" BoxHeight="74" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <!--<localButtons:ButtonEx x:Name="BtnPicture" WidthRequest="72" HeightRequest="72" IsCircle="True" HorizontalOptions="Center" VerticalOptions="Start" BackgroundColorNormal="{StaticResource pageBackColor1}" BackgroundColorPressed="{StaticResource buttonBackColor1}">
+                                <Grid WidthRequest="72" HeightRequest="72" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <localViews:CachedImageEx x:Name="PictureBox" Source="{Binding Picture}" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <localViews:CachedImageEx.Transformations>
+                                            <fftransformations:CircleTransformation />
+                                        </localViews:CachedImageEx.Transformations>
+                                    </localViews:CachedImageEx>
+                                    <localButtons:ButtonEx WidthRequest="25" HeightRequest="25" BackgroundColorNormal="{StaticResource textColor2}" IsCircle="True" HorizontalOptions="End" VerticalOptions="End">
+                                        <localViews:ImageEx x:Name="ImgCamera" Source="icon_camera.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </localButtons:ButtonEx>
+                                </Grid>
+                            </localButtons:ButtonEx>-->
+                        </Grid>
+                        
+                        <Grid Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                            <StackLayout Orientation="Vertical" Spacing="3" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="{helpers:Translate PhaseUpper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                                <Label Text="{Binding CurrentPumpPhase, Converter={StaticResource PumpPhaseToTextConverter}}" Style="{StaticResource H3_Label}" TextColor="{StaticResource Navy}" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                                <localViews:ImageEx Source="{Binding CurrentPumpPhase, Converter={StaticResource PumpPhaseToImageConverter}}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <localButtons:ImageButton Text="{helpers:Translate ChangePhase_Upper}" IsTogglable="false" Command="{Binding Source={x:Reference this}, Path=BindingContext.TogglePhaseCommand}}" Style="{StaticResource PillButton}"/>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                  
+                    <!-- Milk selection section -->
+                    <Grid HeightRequest="70" BackgroundColor="{StaticResource LightPink}"
+                          HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                        <localViews:MilkTypeSelector TitleText="{helpers:Translate GotMilkHowWouldYouLikeStoreItOptional}"
+                                                     ResetMilkTypeSelector="{Binding ResetMilkTypeControl}"
+                                                     UpdateMilkType="{Binding MilkType, Mode=TwoWay}"
+                                                     ToggleMilkTypeCommand="{Binding MilkTypeCommand}"
+                                                     MilkTypeSelectorLabels="{StaticResource MilkSelectorLabels}"
+                                                     VerticalOptions="Center"
+                                                     Margin="10" />
+                    </Grid>                  
+                </StackLayout>
+                
+                <!-- Modes -->
+                <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsModesMode}" Spacing="6" Padding="0,0,0,0" BackgroundColor="{StaticResource DarkBlueColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <localViews:ListViewEx x:Name="listView" 
+                                           SeparatorVisibility="None" 
+                                           SelectionMode="None"
+                                           HasUnevenRows="true" 
+                                           IsPullToRefreshEnabled="false" 
+                                           IsGroupingEnabled="false" 
+                                           ItemsSource="{Binding ModesDatasource}"
+                                           ItemTemplate="{StaticResource ModeCellTemplate}"
+                                           BackgroundColor="{StaticResource Navy}"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <localViews:ListViewEx.Header>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Label Text="{helpers:Translate SelectPumpingMode}" 
+                                       Style="{StaticResource LocalModesHeader}" />
+                            </Grid>
+                        </localViews:ListViewEx.Header>
+                    </localViews:ListViewEx>
+                </StackLayout>
+                
+<!--                
+                <Grid IsVisible="{Binding IsSetTimerMode}" BackgroundColor="{StaticResource pageBackColor2}" Padding="0" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
+                    <Grid Padding="40, 0, 20, 0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{helpers:Translate SetTime}" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{StaticResource buttonBackColor2}" FontFamily="{StaticResource fontHurmeBold}" FontSize="14" />
+                        <localButtons:ImageButton x:Name="BtnCloseTimer" Grid.Column="1" Text="" ImageNormal="icon_close2.png" ImagePressed="icon_close3.png" HorizontalOptions="End" VerticalOptions="Center" />
+                    </Grid>
+                    <AbsoluteLayout BackgroundColor="Transparent" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid Padding="0,0,0,40" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,.6" AbsoluteLayout.LayoutFlags="All">
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="End" Spacing="20">
+                                <localViews:ImageEx Source="icon_timer2.png" HorizontalOptions="Center" />
+                                <StackLayout HorizontalOptions="Center">
+                                    <StackLayout.Spacing>
+                                        <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="-10" WinPhone="0" />
+                                    </StackLayout.Spacing>
+                                    <Label Text="{helpers:Translate TotalPumpTime}" TextColor="{StaticResource pageBackColor1}" HorizontalOptions="Center" FontFamily="{StaticResource fontLarsseitMedium}" FontSize="9" />
+                                    <localEditors:EntryEx x:Name="EntrySetTimeMinute" Keyboard="Numeric" Placeholder="{helpers:Translate TimeDelimiter}" PlaceholderColor="{StaticResource pageBackColor1}" TextColor="{StaticResource pageBackColor1}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontFamily="{StaticResource fontHurmeBold}">
+                                        <localEditors:EntryEx.FontSize>
+                                            <OnPlatform x:TypeArguments="x:Double" iOS="64" Android="64" WinPhone="64" />
+                                        </localEditors:EntryEx.FontSize>
+                                    </localEditors:EntryEx>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        <RelativeLayout x:Name="_relativeLayout" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,1,1,.4" AbsoluteLayout.LayoutFlags="All">
+                            <localButtons:CircleButton x:Name="BtnTimerSet" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" OuterCircleColor="#EE4041" MiddleCircleColor="White" InnerCircleColor="#EE4041" OuterCircleCurrentColor="#EE4041" MiddleCircleCurrentColor="White" InnerCircleCurrentColor="#EE4041" OuterCirclePressedColor="#11719C"
+                                MiddleCirclePressedColor="#093954" InnerCirclePressedColor="#11719C" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.35, Constant=0}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.0, Constant=-10}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.3,Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.3,Constant=0}" TextTop="Set" TextTopColor="White" TextTopFontSize="21" TextBottom="Timer"
+                                TextBottomColor="White" TextBottomFontSize="21">
+                                <localButtons:CircleButton.TextTopBottomSpacing>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="-10" WinPhone="0" />
+                                </localButtons:CircleButton.TextTopBottomSpacing>
+                            </localButtons:CircleButton>
+                        </RelativeLayout>
+                    </AbsoluteLayout>
+                </Grid>
+                
+                
+                <Grid IsVisible="{Binding IsMediaMode}" Padding="0, 7, 0, 0" BackgroundColor="{StaticResource pageBackColor2}" HorizontalOptions="FillAndExpand" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.04, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.86, Constant=0}">
+                    <pumpSession:MyMediaView x:Name="myMediaView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+               
+                
+                <localButtons:ButtonEx IsVisible="{Binding IsRunningMode}" x:Name="BtnStop" HorizontalOptions="FillAndExpand" BackgroundColorNormal="{StaticResource buttonBackColor3}" BackgroundColorPressed="{StaticResource buttonBackColor1}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.1,Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+                    <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                        <localViews:ImageEx Source="icon_stop.png" VerticalOptions="Center" />
+                        <Label Text="{helpers:Translate StopPumping}" VerticalOptions="Center" FontFamily="{StaticResource fontHurmeBold}" TextColor="{StaticResource buttonTextColor2}" FontAttributes="Bold" FontSize="16" />
+                    </StackLayout>
+                </localButtons:ButtonEx>
+                
+           
+           <StackLayout Orientation="Vertical" IsVisible="{Binding IsSaveMode}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid Padding="40, 0, 20, 0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <StackLayout Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid Padding="0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{helpers:Translate YouMadeSomeEdits}" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{StaticResource buttonBackColor1}" FontFamily="{StaticResource fontHurmeBold}" FontSize="14.7" />
+                            <localButtons:ImageButton x:Name="BtnClosePopup" ImageTextPadding="0" ImageTextSpacing="0" Grid.Column="1" Text="" ImageNormal="icon_close3.png" ImagePressed="icon_close.png" HorizontalOptions="End" VerticalOptions="Center" />
+                        </Grid>
+                        <Label Text="{helpers:Translate YouMadeSomeChangesToPumpMode}" TextColor="{StaticResource textColor1}" FontFamily="{StaticResource fontHurmeBold}" FontSize="28.8" FontAttributes="Bold" LineBreakMode="CharacterWrap" VerticalOptions="FillAndExpand" />
+                        <Label Text="{helpers:Translate WouldYouLikeToSaveThisExperienceAsNewMode}" TextColor="{StaticResource textColor1}" FontFamily="{StaticResource fontHurmeBold}" FontSize="28.8" FontAttributes="Bold" LineBreakMode="CharacterWrap" VerticalOptions="FillAndExpand" />
+                    </StackLayout>
+                </Grid>
+                <localButtons:FlatButton x:Name="BtnNoThanks" Text="{helpers:Translate NoThanks}" HorizontalOptions="FillAndExpand" BackgroundColorNormal="{StaticResource buttonBackColor1}" TextColor="{StaticResource pageBackColor1}" TextFontSize="16" TextFontAttributes="Bold" />
+                <localButtons:ButtonEx x:Name="BtnYesSave" HorizontalOptions="FillAndExpand" InitViewBackground="True" BackgroundColorNormal="{StaticResource buttonBackColor2}" BackgroundColorPressed="{StaticResource buttonBackColor3}" >
+                    <StackLayout Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                        <localViews:ImageEx Source="icon_save.png" VerticalOptions="Center" />
+                        <Label Text="{helpers:Translate YesSaveAsNewMode}" VerticalOptions="Center" TextColor="{StaticResource buttonTextColor2}" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" FontSize="16" />
+                    </StackLayout>
+                </localButtons:ButtonEx>
+            </StackLayout>
+            -->     
+                
+                <!-- Navigation section -->
+                <Grid Grid.Row="2" x:Name="StackBottomBar" Style="{StaticResource Grid_BottomNavigation}" >
+                    <StackLayout  IsVisible="{Binding IsRunningMode}" Style="{StaticResource StackLayout_BottomNavigation}">
+                        <localButtons:ImageButton Text="{helpers:Translate StopPumping}"
+                                                  Command="{Binding StopCommand}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  Style="{StaticResource DestructiveActionButton}" 
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </StackLayout>
+                    <Grid IsVisible="{Binding IsPausedMode}" Style="{StaticResource Grid_BottomNavigation}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <localButtons:ImageButton Grid.Column="0" 
+                                                  Text="{helpers:Translate Resume}"
+                                                  Command="{Binding ResumeCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=0, Android=1.4}"
+                                                  ImageNormal="icon_play1" ImagePressed="icon_play1"
+                                                  Style="{StaticResource PositiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                        <localButtons:ImageButton Grid.Column="1"
+                                                  Text="{helpers:Translate EndSession}"
+                                                  Command="{Binding FinishCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  Style="{StaticResource DestructiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            
+            <!-- Media with duplicated navigation controls -->
+            <Grid IsVisible="{Binding IsMediaMode}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <pumpSession:MyMediaView Grid.Row="0" x:Name="myMediaView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                
+                <!-- Navigation section -->
+                <Grid Grid.Row="1" x:Name="StackBottomBar2" Style="{StaticResource Grid_BottomNavigation}" >
+                    <StackLayout  IsVisible="{Binding IsRunningMode}" Style="{StaticResource StackLayout_BottomNavigation}">
+                        <localButtons:ImageButton Text="{helpers:Translate StopPumping}"
+                                                  Command="{Binding StopCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  Style="{StaticResource DestructiveActionButton}" 
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar2}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </StackLayout>
+                    <Grid IsVisible="{Binding IsPausedMode}" Style="{StaticResource Grid_BottomNavigation}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <localButtons:ImageButton Grid.Column="0" 
+                                                  Text="{helpers:Translate Resume}"
+                                                  Command="{Binding ResumeCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=0, Android=1.4}"
+                                                  ImageNormal="icon_play1" ImagePressed="icon_play1"
+                                                  Style="{StaticResource PositiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar2}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                        <localButtons:ImageButton Grid.Column="1"
+                                                  Text="{helpers:Translate EndSession}"
+                                                  Command="{Binding FinishCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  Style="{StaticResource DestructiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</pages:PageBase>

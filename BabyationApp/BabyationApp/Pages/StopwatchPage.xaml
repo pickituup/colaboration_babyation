@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Pages.StopwatchPage">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <Label x:Name="stopWatchTime" Text="00:00:00" HorizontalOptions="Center" />
+      <Button x:Name="startBtn" Text="Start" />
+      <Button x:Name="stopBtn" Text="Stop" />
+      <Button x:Name="saveBtn" Text="Save" />
+    </StackLayout>
+  </Grid>
+</ContentPage>

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.BottleSession.SelectChildPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extendedControls="clr-namespace:BabyationApp.Controls"
+    xmlns:controls="clr-namespace:BabyationApp.Controls.ListedSelector"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    Title="{helpers:Translate WhoAreYouFeeding}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+        <RelativeLayout
+            x:Name="RLRoot"
+            BackgroundColor="Transparent"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <extendedControls:ScrollViewExtended VerticalScrollBarVisibility="Always" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}">
+                <controls:ListedSelectorControl
+                    x:Name="_childFeedingList_ListedSelector"
+                    Margin="0,20"
+                    ItemSelected="ChildFeedingList_ListedSelector_ItemSelected"
+                    Spacing="50">
+                    <controls:ListedSelectorControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ChildListedItem IsOnSelectionVisualChangesEnabled="True" IsSelectable="True" />
+                        </DataTemplate>
+                    </controls:ListedSelectorControl.ItemTemplate>
+                </controls:ListedSelectorControl>
+            </extendedControls:ScrollViewExtended>
+
+            <localButtons:ImageButton
+                x:Name="BtnNext"
+                HorizontalOptions="FillAndExpand"
+                ImageNormal="icon_next2.png"
+                ImagePressed="icon_next2.png"
+                ImageTranslationY="{OnPlatform iOS=0,
+                                               Android=1}"
+                IsEnabled="False"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=.9,
+                                                                  Constant=0}"
+                Style="{StaticResource NavigationalActionButton}"
+                Text="{helpers:Translate Continue}" />
+        </RelativeLayout>
+    </Grid>
+</pages:PageBase>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.BottleSession.SelectChildPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:views="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp"
+    Title="{helpers:Translate WhoAreYouFeeding}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <Grid Style="{StaticResource Grid_NavigationOnTop}">
+        <RelativeLayout
+            x:Name="RLRoot"
+            BackgroundColor="Transparent"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <views:ListViewEx
+                x:Name="listView"
+                BackgroundColor="Transparent"
+                HasUnevenRows="True"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.9,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                SelectionMode="None"
+                SeparatorVisibility="None"
+                VerticalOptions="FillAndExpand">
+                <views:ListViewEx.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <StackLayout
+                                    Padding="20,56,56,40"
+                                    HorizontalOptions="Center"
+                                    Orientation="Vertical"
+                                    Spacing="20"
+                                    VerticalOptions="Center">
+                                    <localButtons:ButtonEx
+                                        BackgroundColorNormal="{StaticResource pageBackColor2}"
+                                        BackgroundColorPressed="{StaticResource buttonBackColor1}"
+                                        Clicked="ChildClicked"
+                                        Command="{Binding SelectCommand}"
+                                        HeightRequest="122"
+                                        IsCircle="True"
+                                        WidthRequest="122">
+                                        <Grid
+                                            HeightRequest="122"
+                                            HorizontalOptions="FillAndExpand"
+                                            InputTransparent="True"
+                                            VerticalOptions="FillAndExpand"
+                                            WidthRequest="122">
+                                            <views:CachedImageEx
+                                                x:Name="PictureBox"
+                                                HeightRequest="100"
+                                                HorizontalOptions="Start"
+                                                InputTransparent="True"
+                                                Source="{Binding Picture}"
+                                                VerticalOptions="Start"
+                                                WidthRequest="100">
+                                                <views:CachedImageEx.Transformations>
+                                                    <transformations:CircleTransformation />
+                                                </views:CachedImageEx.Transformations>
+                                            </views:CachedImageEx>
+
+                                            <localButtons:CircleButton
+                                                Command="{Binding SelectCommand}"
+                                                HeightRequest="30"
+                                                HorizontalOptions="End"
+                                                ImageNormal="icon_checked_dummy.png"
+                                                ImagePressed="icon_checked_dummy.png"
+                                                InnerCircleColor="{StaticResource Peach}"
+                                                InnerCirclePadding="4"
+                                                InnerCirclePressedColor="{StaticResource Peach}"
+                                                IsVisible="{Binding IsSelected, Converter={StaticResource BooleanInverseConverter}}"
+                                                MiddleCircleColor="{StaticResource MedBlue}"
+                                                MiddleCirclePadding="4"
+                                                MiddleCirclePressedColor="{StaticResource MedBlue}"
+                                                OuterCircleColor="{StaticResource MedBlue}"
+                                                OuterCirclePressedColor="{StaticResource MedBlue}"
+                                                TextBottom=""
+                                                TextTop=""
+                                                VerticalOptions="End"
+                                                WidthRequest="30" />
+                                            <localButtons:CircleButton
+                                                HeightRequest="30"
+                                                HorizontalOptions="End"
+                                                ImageNormal="icon_checked.png"
+                                                ImagePressed="icon_checked.png"
+                                                InnerCircleColor="{StaticResource MedBlue}"
+                                                InnerCirclePadding="0"
+                                                InnerCirclePressedColor="{StaticResource MedBlue}"
+                                                IsInteractable="false"
+                                                IsVisible="{Binding IsSelected}"
+                                                MiddleCircleColor="{StaticResource MedBlue}"
+                                                MiddleCirclePadding="2"
+                                                MiddleCirclePressedColor="{StaticResource MedBlue}"
+                                                OuterCircleColor="{StaticResource MedBlue}"
+                                                OuterCirclePressedColor="{StaticResource MedBlue}"
+                                                TextBottom=""
+                                                TextTop=""
+                                                VerticalOptions="End"
+                                                WidthRequest="30" />
+                                        </Grid>
+                                    </localButtons:ButtonEx>
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Style="{StaticResource H1_Label}"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource Navy}" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </views:ListViewEx.ItemTemplate>
+            </views:ListViewEx>
+
+            <localButtons:ImageButton
+                x:Name="BtnNext"
+                HorizontalOptions="FillAndExpand"
+                ImageNormal="icon_next2.png"
+                ImagePressed="icon_next2.png"
+                ImageTranslationY="{OnPlatform iOS=0, Android=1}"
+                IsEnabled="False"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=.9,
+                                                                  Constant=0}"
+                Style="{StaticResource NavigationalActionButton}"
+                Text="{helpers:Translate Continue}" />
+        </RelativeLayout>
+    </Grid>
+</pages:PageBase>-->

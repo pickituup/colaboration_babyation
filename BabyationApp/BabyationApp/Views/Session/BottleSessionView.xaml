@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.BottleSessionView">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <StackLayout Padding="0,0" Orientation="Horizontal" VerticalOptions="Center">
+        <Button x:Name="formulaBtn" Text="Formula" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="milkBtn" Text="Breastmilk" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" x:Name="milkStorage" IsVisible="False" Orientation="Horizontal" VerticalOptions="Center">
+        <Button x:Name="fridgeBtn" Text="Fridge" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="freezerBtn" Text="Freezer" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="manualBtn" Text="Manual" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      
+      <StackLayout x:Name="bottleGrp">
+        <Label Text="Name" />
+        <StackLayout Padding="0,0" Orientation="Horizontal">
+          <Label Text="Time" HorizontalOptions="CenterAndExpand" />
+          <Label Text="Ounces" HorizontalOptions="Center" />
+          <Label Text="Date" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+        <StackLayout Padding="0,0" Orientation="Horizontal">
+          <Label Text="Start Time" HorizontalOptions="CenterAndExpand" />
+          <Label Text="End Time" HorizontalOptions="Center" />
+          <Label Text="Duration" HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+        <StackLayout Padding="0,0">
+          <Button x:Name="stopWatchBtn" Text="Stopwatch" />
+          <Button x:Name="saveBtn" Text="Save" />
+          <Button x:Name="cancelBtn" Text="Cancel" />
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout x:Name="invGrp" IsVisible="False" >
+        <ListView x:Name="listFridge" ItemsSource="{Binding Bottles}" RefreshCommand="{Binding GetBottles}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RowHeight="220">
+			    <ListView.ItemTemplate>
+				    <DataTemplate>
+					    <ImageCell ImageSource="{Binding .}" Text="Date Time Ounces" Detail="Use Now">
+					    </ImageCell>
+				    </DataTemplate>
+			    </ListView.ItemTemplate>
+		    </ListView>
+      </StackLayout>
+      
+    </StackLayout>
+  </Grid>
+</ContentView>

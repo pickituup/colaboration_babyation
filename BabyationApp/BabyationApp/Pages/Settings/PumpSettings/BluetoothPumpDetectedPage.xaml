@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"             
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Settings.PumpSettings.BluetoothPumpDetectedPage"
+    BackgroundColor="{StaticResource Navy}" >
+    
+  <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid BackgroundColor="Transparent"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.05, Constant=0}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.1,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+      <Grid Padding="40, 0, 20, 0" HorizontalOptions="FillAndExpand">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="LblTitle" Text="{helpers:Translate PumpDetected}" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{StaticResource pageBackColor2}" FontFamily="{StaticResource fontHurmeBold}"  FontSize="21" FontAttributes="Bold" />
+        <localButtons:ImageButton x:Name="BtnClose" Grid.Column="1" Text="" ImageNormal="icon_close.png" ImagePressed="icon_close3.png" HorizontalOptions="End" VerticalOptions="Center"/>
+      </Grid>
+    </Grid>
+    
+    <Grid RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=.2, Constant=0}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.15, Constant=0}"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.4,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=.6,Constant=0}">
+      <Label x:Name="LblInfo" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{StaticResource pageBackColor2}" FontFamily="{StaticResource fontHurmeBold}" FontSize="18" FontAttributes="Bold"/>      
+    </Grid>
+    
+    <localViews:ListViewEx x:Name="listView" SeparatorVisibility="None" HasUnevenRows="True" IsGroupingEnabled="False" BackgroundColor="{StaticResource pageBackColor1}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.55, Constant=0}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.45,Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+      <localViews:ListViewEx.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid>
+              <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding IsFocused}" Value="True">
+                  <Setter Property="BackgroundColor" Value="{StaticResource buttonBackColor1}" />
+                </DataTrigger>
+                <DataTrigger TargetType="Grid"
+                              Binding="{Binding IsFocused}" Value="False">
+                  <Setter Property="BackgroundColor" Value="{StaticResource pageBackColor3}" />
+                </DataTrigger>
+              </Grid.Triggers>
+
+              <Grid Padding="42, 15, 15, 22" BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="2*"/>
+                  <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <localButtons:CircleButton Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextTop="" TextBottom="" IsTogglable="True" ImageNormal="icon_checked_dummy.png" ImagePressed="icon_checked.png"
+                                           OuterCircleColor="#11719C" MiddleCircleColor="#E6F2F8" InnerCircleColor="#E6F2F8"
+                                           OuterCirclePressedColor="{StaticResource listViewBackColor}" MiddleCirclePressedColor="{StaticResource listViewBackColor}" InnerCirclePressedColor="{StaticResource listViewBackColor}"/>
+                <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                  <Label Text="{Binding Name}" TextColor="#11719C" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" FontAttributes="Bold" VerticalOptions="Center" />
+                </StackLayout>
+              </Grid>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </localViews:ListViewEx.ItemTemplate>
+    </localViews:ListViewEx>
+  </RelativeLayout>
+</pages:PageBase>

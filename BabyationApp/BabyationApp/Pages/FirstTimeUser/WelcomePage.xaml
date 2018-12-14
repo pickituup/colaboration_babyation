@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers"
+    x:Class="BabyationApp.Pages.FirstTimeUser.WelcomePage"
+    BackgroundColor="{StaticResource Navy}"
+    Title="{Binding PageTitle}">
+    
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            
+            <!-- Welcom content -->
+            <StackLayout x:Name="WelcomContent" Orientation="Vertical" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ScrollView Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Padding="50, 50, 50, 30" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Label x:Name="LblTitle" Text="{helpers:Translate HelloAndWelcome}" TextColor="{StaticResource buttonBackColor1}" FontSize="14" FontAttributes="Bold"
+                               FontFamily="{StaticResource fontHurmeBold}" LineBreakMode="CharacterWrap"  VerticalOptions="Start"/>
+                        
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Spacing="20">
+                            <Label x:Name="LblTop" Text="{helpers:Translate InJustFewSteps}" TextColor="{StaticResource pageBackColor3}" FontSize="29" FontAttributes="Bold"
+                                   FontFamily="{StaticResource fontHurmeBold}" LineBreakMode="WordWrap"  VerticalOptions="FillAndExpand"/>
+                            <Label x:Name="LblBottom" Text="{helpers:Translate WantPreview}" TextColor="{StaticResource pageBackColor3}"
+                                   FontFamily="{StaticResource fontHurmeBold}" FontSize="29"  FontAttributes="Bold" LineBreakMode="WordWrap"  VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Padding="50, 10, 10, 10" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <localButtons:ButtonEx BackgroundColorNormal="Transparent" BackgroundColorPressed="{StaticResource buttonBackColor1}" >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="20" Padding="50,0,50,0">
+                                <localViews:ImageEx Source="video_play.png" VerticalOptions="Center"/>
+                                <StackLayout VerticalOptions="Center" Spacing="-3">
+                                    <Label FontSize="18"  Text="{helpers:Translate WatchThe}" TextColor="{StaticResource buttonTextColor2}" FontFamily="{StaticResource fontHurmeBold}" />
+                                    <Label FontSize="18"  Text="{helpers:Translate VideoTutorial}" TextColor="{StaticResource buttonTextColor2}" FontFamily="{StaticResource fontHurmeBold}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </localButtons:ButtonEx>
+                        <localButtons:ButtonEx x:Name="BtnToS" HorizontalOptions="FillAndExpand" BackgroundColorNormal="Transparent" BackgroundColorPressed="{StaticResource buttonBackColor1}">
+                            <StackLayout  Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="50, 0, 0, 0">
+                                <Label Text="{helpers:Translate PrivacyPolicyTermsOfService}" TextColor="{StaticResource commonPressedColors}" VerticalOptions="Center" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" FontSize="14.5"/>
+                            </StackLayout>
+                        </localButtons:ButtonEx>
+                        <localButtons:ButtonEx x:Name="BtnVisitPage" HorizontalOptions="FillAndExpand" BackgroundColorNormal="{StaticResource buttonBackColor2}">
+                            <StackLayout  Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="{helpers:Translate VistOurSite}" TextColor="{StaticResource buttonTextColor2}" VerticalOptions="Center" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" FontSize="16"/>
+                            </StackLayout>
+                        </localButtons:ButtonEx>
+                    </StackLayout>
+                </ScrollView> 
+                
+                <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                    <localButtons:ButtonEx x:Name="BtnNext" HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" BackgroundColorNormal="{StaticResource buttonBackColor1}">
+                        <StackLayout  Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                            <localViews:ImageEx Source="icon_next2.png" VerticalOptions="Center"/>
+                            <Label Text="{helpers:Translate Next}" TextColor="{StaticResource pageBackColor1}" VerticalOptions="Center" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" FontSize="16"/>
+                        </StackLayout>
+                    </localButtons:ButtonEx>
+                </StackLayout>
+            </StackLayout>
+            
+            <!-- About content -->
+            <ScrollView x:Name="AboutContent" Orientation="Vertical" IsVisible="{Binding ShowAbout}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Orientation="Vertical" Padding="30,40,20,20" Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <Label Text="{Binding AboutTitleText}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightBlue}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                    <Label Text="{Binding AboutBodyText}" Style="{StaticResource H1_Label}" LineHeight="1.1" TextColor="{StaticResource LightBlue}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</pages:PageBase>

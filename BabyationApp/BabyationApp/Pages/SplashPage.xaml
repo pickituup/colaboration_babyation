@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+	x:Class="BabyationApp.Pages.SplashPage">
+<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+	<Image Source="splash.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill">
+	</Image>
+</Grid>
+</ContentPage>

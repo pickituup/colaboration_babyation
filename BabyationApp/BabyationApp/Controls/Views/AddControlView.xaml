@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    x:Class="BabyationApp.Controls.Views.AddControlView"
+    x:Name="this"
+    BackgroundColor="{StaticResource LightBlue}">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            
+            <!-- Solid style  -->
+            <Style x:Key="LocalSolidButton" TargetType="localButtons:CircleButton" BasedOn="{StaticResource CheckboxButton}">
+                <Setter Property="InnerCircleColor" Value="{StaticResource MedBlue}" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <!-- Outlined style  -->
+            <Style x:Key="LocalOutlinedButton" TargetType="localButtons:CircleButton" BasedOn="{StaticResource CheckboxButton}">
+                <Setter Property="InnerCircleColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="InnerCirclePressedColor" Value="{StaticResource LightBlue}" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <localButtons:ButtonEx x:Name="RootButton" Padding="20, 0" 
+                               Style="{StaticResource ButtonEx}" 
+                               HeightRequest="50" 
+                               Command="{Binding Source={x:Reference this}, Path=CommandEx}"
+                               HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+            <StackLayout Orientation="Horizontal" Padding="0" Spacing="15" 
+                         HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                         
+                <!-- Option: show outlined or solid button -->
+                <localButtons:CircleButton ImageNormal="{Binding Source={x:Reference this}, Path=Image}"
+                                           ImagePressed="{Binding Source={x:Reference this}, Path=Image}" >
+                    <localButtons:CircleButton.Triggers>
+                        <DataTrigger TargetType="localButtons:CircleButton" Binding="{Binding Source={x:Reference this}, Path=ShowOutlinedButton}" Value="True">
+                            <Setter Property="Style" Value="{StaticResource LocalOutlinedButton}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="localButtons:CircleButton" Binding="{Binding Source={x:Reference this}, Path=ShowOutlinedButton}" Value="False">
+                            <Setter Property="Style" Value="{StaticResource LocalSolidButton}" />
+                        </DataTrigger>
+                    </localButtons:CircleButton.Triggers>
+                </localButtons:CircleButton>
+                <Label x:Name="LabelText" Text="{Binding Source={x:Reference this}, Path=Text}" Style="{StaticResource H3_Label}" TextColor="{StaticResource MedBlue}" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+            
+            </StackLayout>
+        </localButtons:ButtonEx>
+    </Grid>
+</ContentView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<localButtons:ButtonEx
+    x:Class="BabyationApp.Controls.Buttons.ImageButton"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views">
+
+    <localButtons:ButtonEx.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="ImageButtonTemplate">
+                <StackLayout
+                    Margin="{TemplateBinding Parent.ImageTextPadding}"
+                    HorizontalOptions="{TemplateBinding Parent.ImageTextHorizontalOptions}"
+                    Orientation="{TemplateBinding Parent.ImageTextOrientation}"
+                    Spacing="{TemplateBinding Parent.ImageTextSpacing}"
+                    TranslationY="1"
+                    VerticalOptions="{TemplateBinding Parent.ImageTextVerticalOptions}">
+                    <localViews:ImageEx
+                        x:Name="_imgView"
+                        HorizontalOptions="Center"
+                        IsVisible="{TemplateBinding Parent.ImageCurrent,
+                                                    Converter={StaticResource ObjectNotNullCheckConverter}}"
+                        Scale="{TemplateBinding Parent.ImageScale}"
+                        Source="{TemplateBinding Parent.ImageCurrent}"
+                        TranslationY="{TemplateBinding Parent.ImageTranslationY}"
+                        VerticalOptions="Center" />
+                    <Label
+                        x:Name="lbl"
+                        FontAttributes="{TemplateBinding Parent.TextFontAttributes}"
+                        FontFamily="{TemplateBinding Parent.TextFontFamily}"
+                        FontSize="{TemplateBinding Parent.TextFontSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="NoWrap"
+                        Text="{TemplateBinding Parent.Text}"
+                        TextColor="{TemplateBinding Parent.TextCurrentColor}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center">
+                        <Label.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Source={x:Reference lbl}, Path=Text.Length}"
+                                TargetType="Label"
+                                Value="0">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </StackLayout>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </localButtons:ButtonEx.Resources>
+
+    <ContentView ControlTemplate="{StaticResource ImageButtonTemplate}" IsEnabled="False" />
+</localButtons:ButtonEx>

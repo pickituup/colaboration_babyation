@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localButtons:ButtonBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="BabyationApp.Controls.Buttons.BorderedButton"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    x:Name="ThisClass" ControlTemplate="{StaticResource BorderedButtonTemplate}">
+    
+    <localButtons:ButtonBase.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="BorderedButtonTemplate">
+                <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <localViews:RoundedBoxView x:Name="_outerCircle" IsCircle="{TemplateBinding IsCircle}" CornerRadius="{TemplateBinding CornerRadius}" 
+                                               Stroke="{TemplateBinding  OuterCircleCurrentColor}" HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand" IsInteractable="{TemplateBinding IsInteractable}" 
+                                               IsEnabled="{TemplateBinding IsEnabled}" RadiusBasedOnSize="{TemplateBinding RadiusBasedOnSize}" 
+                                               RadiusSizeRatio="{TemplateBinding RadiusSizeRatio}" />
+                    <Grid Padding="{TemplateBinding MiddleCirclePadding}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <localViews:RoundedBoxView x:Name="_middleCircle" Stroke="{TemplateBinding  MiddleCircleCurrentColor}" 
+                                                   IsCircle="{TemplateBinding IsCircle}" IsInteractable="{TemplateBinding IsInteractable}" 
+                                                   IsEnabled="{TemplateBinding IsEnabled}" RadiusBasedOnSize="{TemplateBinding RadiusBasedOnSize}" 
+                                                   RadiusSizeRatio="{TemplateBinding RadiusSizeRatio}" CornerRadius="{TemplateBinding CornerRadius}" 
+                                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                    </Grid>
+                    <Grid Padding="{TemplateBinding InnerCirclePadding}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <localViews:RoundedBoxView x:Name="_innerCircle" IsCircle="{TemplateBinding IsCircle}" 
+                                                   CornerRadius="{TemplateBinding CornerRadius}" IsInteractable="{TemplateBinding IsInteractable}" 
+                                                   IsEnabled="{TemplateBinding IsEnabled}" RadiusBasedOnSize="{TemplateBinding RadiusBasedOnSize}" 
+                                                   RadiusSizeRatio="{TemplateBinding RadiusSizeRatio}" Stroke="{TemplateBinding  InnerCircleCurrentColor}" 
+                                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                            IsRadioMode="{TemplateBinding IsTogglable}" />
+                        <StackLayout Padding="{TemplateBinding ContentPadding}" HorizontalOptions="Center" VerticalOptions="Center" 
+                                     Spacing="{TemplateBinding TextTopBottomSpacing}" InputTransparent="True">
+                            <localViews:ImageEx x:Name="imgTop" Source="{TemplateBinding ImageCurrent}" HorizontalOptions="Center">
+                                <localViews:ImageEx.Triggers>
+                                    <DataTrigger TargetType="localViews:ImageEx" Binding="{Binding Source={x:Reference imgTop}, Path=Source}" Value="{x:Null}">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </localViews:ImageEx.Triggers>
+                            </localViews:ImageEx>
+                            <Label x:Name="lblTop" Text="{TemplateBinding TextTop}" TextColor="{TemplateBinding TextTopCurrentColor}" 
+                                   FontFamily="{TemplateBinding FontFamilyTop}" FontAttributes="{TemplateBinding FontAttributesTop}" 
+                                   FontSize="{TemplateBinding TextFontSizeTop}" HorizontalOptions="Center" VerticalTextAlignment="Center" LineBreakMode="NoWrap">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lblTop}, Path=Text.Length}" Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label x:Name="lblBottom" Text="{TemplateBinding TextBottom}" TextColor="{TemplateBinding TextBottomCurrentColor}" 
+                                   FontFamily="{TemplateBinding FontFamilyBottom}" FontAttributes="{TemplateBinding FontAttributesBottom}" 
+                                   FontSize="{TemplateBinding TextBottomFontSize}" HorizontalOptions="Center" LineBreakMode="NoWrap">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lblBottom}, Path=Text.Length}" Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                    <ContentPresenter IsEnabled="False" InputTransparent="True" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </localButtons:ButtonBase.Resources>
+</localButtons:ButtonBase>

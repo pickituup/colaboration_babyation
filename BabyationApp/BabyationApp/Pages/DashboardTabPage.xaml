@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.DashboardTabPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localAlarmPages="clr-namespace:BabyationApp.Pages.Reminders"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localDashboardPages="clr-namespace:BabyationApp.Pages.Dashboard"
+    xmlns:localHistoryPages="clr-namespace:BabyationApp.Pages.History"
+    xmlns:localModesPages="clr-namespace:BabyationApp.Pages.Modes"
+    xmlns:localSettingsPages="clr-namespace:BabyationApp.Pages.Settings"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    BackgroundColor="{StaticResource Navy}">
+
+    <RelativeLayout
+        Padding="0"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Grid
+            x:Name="_gridTabContents"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=.9,
+                                                                   Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=0}">
+            <localDashboardPages:DashboardDetailView x:Name="PageDashboardDetail" />
+            <localHistoryPages:HistoryPage x:Name="PageHistory" />
+            <localModesPages:ModesDashboardView x:Name="PageModesDashboard" />
+            <localAlarmPages:RemindersPage x:Name="PageReminder" />
+<!--            <localViews:RootViewBase x:Name="PageReminder" />-->
+            <localViews:RootViewBase x:Name="PageSettings" BackgroundColor="#E6F2F8">
+                <Grid
+                    BackgroundColor="#E6F2F8"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" />
+            </localViews:RootViewBase>
+        </Grid>
+
+        <Grid
+            x:Name="_gridTabBtns"
+            Padding="0,0,0,5"
+            BackgroundColor="{StaticResource MedPink}"
+            HorizontalOptions="FillAndExpand"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=.1,
+                                                                   Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=.9,
+                                                              Constant=0}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width=".19*" />
+                <ColumnDefinition Width=".17*" />
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width=".15*" />
+            </Grid.ColumnDefinitions>
+
+            <localButtons:ImageButton
+                x:Name="BtnDash"
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="dashboard_med_blue2.png"
+                ImagePressed="dashboard_navy2.png"
+                Text="{helpers:Translate Dash}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnHistory"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="history_med_blue2.png"
+                ImagePressed="history_navy2.png"
+                Text="{helpers:Translate History}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnModes"
+                Grid.Column="2"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="modes_med_blue2.png"
+                ImagePressed="modes_navy2.png"
+                Text="{helpers:Translate Modes}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnAlarms"
+                Grid.Column="3"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="timer_med_blue2.png"
+                ImagePressed="timer_navy2.png"
+                Text="{helpers:Translate Reminders}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnSettings"
+                Grid.Column="4"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="tab_more.png"
+                ImagePressed="tab_more_pressed.png"
+                Text="{helpers:Translate More}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+        </Grid>
+    </RelativeLayout>
+</pages:PageBase>

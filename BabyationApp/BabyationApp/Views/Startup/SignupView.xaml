@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.SignupView">
+  <Grid>
+    <StackLayout x:Name="logo" Padding="24,0" VerticalOptions="Center">
+      <Label Text="LOGO" HorizontalOptions="Center" />
+    </StackLayout>
+    <StackLayout x:Name="regForm" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
+      <Entry Placeholder="Email" HorizontalTextAlignment="Center" />
+      <Entry Placeholder="Password" IsPassword="True" HorizontalTextAlignment="Center" />
+      <Button x:Name="signupBtn" Text="Signup" />
+      <Label Text="Or" HorizontalOptions="Center" />
+      <Button Text="Facebook &amp; Google" />
+    </StackLayout>
+    <StackLayout x:Name="disclaimer" Grid.Row="2" Padding="24,0" VerticalOptions="Center">
+      <Label Text="I have read the terms" HorizontalOptions="Center" />
+      <Button x:Name="haveAcctBtn" Text="I already have an account" />
+    </StackLayout>
+  </Grid>
+</ContentView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<localViews:RootViewBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Modes.ModesDashboardView"
+    x:Name="this"
+    BackgroundColor="{StaticResource Peach}">
+    
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ModeHeaderTemplate">
+                <ViewCell Height="46">
+                    <ViewCell.View>
+                        <Grid Padding="0" BackgroundColor="{StaticResource DarkBlueColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout Padding="22,5,22,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <Label Text="{Binding GroupTitle}" TextColor="{StaticResource LightBlue}" Style="{StaticResource H1_Label}" HorizontalOptions="StartAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+        <Grid x:Name="RootLayout" Style="{StaticResource Grid_NavigationOnTop}">
+            <Grid IsVisible="{Binding ShowMainPage}" Padding="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Add new mode -->
+                <localViews:AddControlView Grid.Row="0" x:Name="btnCreateNewMode" Text="{helpers:Translate CreateANewMode}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                
+                <!-- List -->
+                <localViews:ListViewEx Grid.Row="1"
+                                       x:Name="listView" 
+                                       SeparatorVisibility="None" 
+                                       SelectionMode="None"
+                                       HasUnevenRows="true" 
+                                       RowHeight="70" 
+                                       IsPullToRefreshEnabled="false" 
+                                       IsGroupingEnabled="true"
+                                       GroupHeaderTemplate="{StaticResource ModeHeaderTemplate}"
+                                       ItemTemplate="{StaticResource ModeSelectableCellTemplate}"
+                                       BackgroundColor="{StaticResource DarkBlueColor}"
+                                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</localViews:RootViewBase>

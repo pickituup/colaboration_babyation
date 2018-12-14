@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.NurseSession.NurseSessionLogPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bv="clr-namespace:BabyationApp.Behaviors"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:pickers="clr-namespace:BabyationApp.Controls.Pickers;assembly=BabyationApp"
+    xmlns:textEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp"
+    Title="{helpers:Translate LogPastNurse}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <AbsoluteLayout
+        x:Name="RootLayout"
+        HorizontalOptions="FillAndExpand"
+        Style="{StaticResource AbsoluteLayout_NavigationOnTop}"
+        VerticalOptions="FillAndExpand">
+
+        <Grid
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.11*" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                IsVisible="{Binding ShowBottleFeedSessionPage}"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0" />
+                </Grid.RowDefinitions>
+                <!--  CHILD NAME  -->
+                <StackLayout
+                    Grid.Row="0"
+                    Margin="0"
+                    Padding="0,10"
+                    BackgroundColor="{StaticResource Navy}"
+                    HeightRequest="50">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource SmallLabel_Label}"
+                        Text="{helpers:Translate SelectedChild}"
+                        TextColor="{StaticResource Gold}"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource H1_Label}"
+                        Text="{Binding ChildName}"
+                        TextColor="{StaticResource LightBlue}"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+
+                <ScrollView Grid.Row="1">
+                    <Grid
+                        Margin="0,20,0,0"
+                        RowSpacing="30"
+                        VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  DATE  -->
+                        <pickers:MaskedDatePicker
+                            x:Name="NurseDate"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            DateFormat="MM/dd/yyyy"
+                            HeaderStyle="{StaticResource Form_ElementHeader}"
+                            HeaderText="{helpers:Translate Date}"
+                            HorizontalOptions="FillAndExpand"
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />
+
+                        <!--  START TIME  -->
+                        <pickers:MaskedTimePicker
+                            x:Name="NurseStartTime"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HeaderStyle="{StaticResource Form_ElementHeader}"
+                            HeaderText="{helpers:Translate StartTime_Upper}"
+                            HorizontalOptions="FillAndExpand"
+                            TimeFormat="HH:mm"
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />
+
+                        <!--  LEFT SIDE DURATION  -->
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource Form_ElementHeader}"
+                                Text="{helpers:Translate DurationLeftSide}"
+                                TextColor="{StaticResource Gold}"
+                                VerticalOptions="Center" />
+                            <textEditors:EntryEx
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                Placeholder="__:__"
+                                PlaceholderColor="{StaticResource MedBlue}"
+                                Style="{StaticResource Form_ElementLabel}"
+                                Text="{Binding FirstTime, Mode=TwoWay}"
+                                Unfocused="EntryEx_Unfocused">
+                                <Entry.Behaviors>
+                                    <bv:MaskedBehavior Mask="XX:XX" />
+                                </Entry.Behaviors>
+                            </textEditors:EntryEx>
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource BodyCopy_Label}"
+                                Text="{helpers:Translate MinutesLower}"
+                                TextColor="{StaticResource Navy}"
+                                TranslationY="0" />
+                        </StackLayout>
+                        <!--<pickers:MaskedTimePicker
+                            x:Name="NurseLeftSideTime"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            BottomStyle="{StaticResource BodyCopy_Label_Ex}"
+                            BottomText="{helpers:Translate MinutesLower}"
+                            HeaderStyle="{StaticResource Form_ElementHeader}"
+                            HeaderText="{helpers:Translate DurationLeftSide}"
+                            HorizontalOptions="FillAndExpand"
+                            Time="{Binding FirstTime}"
+                            TimeFormat="HH:mm"
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />-->
+
+                        <!--  RIGHT SIDE DURATION  -->
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource Form_ElementHeader}"
+                                Text="{helpers:Translate DurationRightSide}"
+                                TextColor="{StaticResource Gold}"
+                                VerticalOptions="Center" />
+                            <textEditors:EntryEx
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                Placeholder="__:__"
+                                PlaceholderColor="{StaticResource MedBlue}"
+                                Style="{StaticResource Form_ElementLabel}"
+                                Text="{Binding LastTime, Mode=TwoWay}"
+                                Unfocused="EntryEx_Unfocused">
+                                <Entry.Behaviors>
+                                    <bv:MaskedBehavior Mask="XX:XX" />
+                                </Entry.Behaviors>
+                            </textEditors:EntryEx>
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource BodyCopy_Label}"
+                                Text="{helpers:Translate MinutesLower}"
+                                TextColor="{StaticResource Navy}"
+                                TranslationY="0" />
+                        </StackLayout>
+                        <!--<pickers:MaskedTimePicker
+                            x:Name="NurseRightSideTime"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            BottomStyle="{StaticResource BodyCopy_Label_Ex}"
+                            BottomText="{helpers:Translate MinutesLower}"
+                            HeaderStyle="{StaticResource Form_ElementHeader}"
+                            HeaderText="{helpers:Translate DurationRightSide}"
+                            HorizontalOptions="FillAndExpand"
+                            Time="{Binding LastTime}"
+                            TimeFormat="HH:mm"
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />-->
+
+                        <!--  TOTAL  -->
+                        <pickers:MaskedTimePicker
+                            x:Name="NurseTotalTime"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BottomStyle="{StaticResource BodyCopy_Label_Ex}"
+                            BottomText="{helpers:Translate MinutesLower}"
+                            HeaderStyle="{StaticResource Form_ElementHeader}"
+                            HeaderText="{helpers:Translate TotalDuration}"
+                            HorizontalOptions="FillAndExpand"
+                            IsEnabled="False"
+                            TimeFormat="mm:ss"
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />
+
+                        <!--  NOTE BUTTON  -->
+                        <localButtons:BorderedButton
+                            x:Name="BtnAddNote"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Command="{Binding AddNoteCommand}"
+                            HeightRequest="28"
+                            HorizontalOptions="Center"
+                            InnerCircleColor="{StaticResource Peach}"
+                            IsInteractable="true"
+                            MiddleCircleColor="{StaticResource Peach}"
+                            Style="{StaticResource ReversedPillButton}"
+                            TextTop="{helpers:Translate AddNote}"
+                            VerticalOptions="Center">
+                            <localButtons:BorderedButton.WidthRequest>
+                                <OnPlatform
+                                    x:TypeArguments="x:Double"
+                                    Android="100"
+                                    iOS="90" />
+                            </localButtons:BorderedButton.WidthRequest>
+                        </localButtons:BorderedButton>
+
+                        <!--  Note text  -->
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Padding="15,0"
+                            HorizontalOptions="Fill"
+                            IsVisible="{Binding NoteText, Converter={StaticResource ObjectNotNullCheckConverter}}"
+                            Orientation="Vertical"
+                            Spacing="3"
+                            VerticalOptions="StartAndExpand">
+                            <Label
+                                x:Name="LblNoteTitle"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource Label_Label}"
+                                Text="{helpers:Translate Note}"
+                                TextColor="{StaticResource Gold}" />
+                            <localViews:LabelEx
+                                x:Name="LblNoteDesc"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="CharacterWrap"
+                                Style="{StaticResource SmallLabel_Label}"
+                                Text="{Binding NoteText}"
+                                TextColor="{StaticResource Green}"
+                                VerticalOptions="Start" />
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+
+                <StackLayout
+                    Grid.Row="2"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <AbsoluteLayout
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Grid
+                            Padding="5,40,5,5"
+                            AbsoluteLayout.LayoutBounds="0,0,1,.55"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="Transparent">
+                            <StackLayout
+                                Padding="0,0,0,15"
+                                HorizontalOptions="FillAndExpand"
+                                Spacing="15"
+                                VerticalOptions="End">
+                                <localViews:ImageEx HorizontalOptions="Center" Source="icon_timer2.png" />
+                                <StackLayout HorizontalOptions="Center">
+                                    <StackLayout.Spacing>
+                                        <OnPlatform
+                                            x:TypeArguments="x:Double"
+                                            Android="-15"
+                                            iOS="0" />
+                                    </StackLayout.Spacing>
+                                    <Label
+                                        x:Name="LblDurationText"
+                                        FontFamily="{StaticResource fontLarsseitMedium}"
+                                        FontSize="8"
+                                        HorizontalOptions="Center"
+                                        Text="{helpers:Translate Duration}"
+                                        TextColor="{StaticResource pageBackColor1}" />
+                                    <Label
+                                        x:Name="LblDuraPickerBig"
+                                        FontFamily="{StaticResource fontHurmeBold}"
+                                        FontSize="64"
+                                        HorizontalOptions="CenterAndExpand"
+                                        LineBreakMode="NoWrap"
+                                        Text="{helpers:Translate TimeDelimiter}"
+                                        TextColor="{StaticResource textColor2}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+
+                        <RelativeLayout
+                            x:Name="_relativeLayout"
+                            AbsoluteLayout.LayoutBounds="0,1,1,.45"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="Transparent">
+                            <Grid
+                                Padding="30"
+                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                       Property=Height,
+                                                                                       Factor=1,
+                                                                                       Constant=0}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=1,
+                                                                                      Constant=0}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=.0,
+                                                                                  Constant=0}">
+                                <StackLayout
+                                    x:Name="StackButtons"
+                                    Padding="30,0,30,0"
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="40"
+                                    VerticalOptions="FillAndExpand">
+                                    <localButtons:CircleButton
+                                        x:Name="BtnLeft"
+                                        FontFamilyBottom="{StaticResource fontLarsseitMedium}"
+                                        FontFamilyTop="{StaticResource fontHurmeBold}"
+                                        HeightRequest="{Binding Source={x:Reference StackButtons}, Path=Height}"
+                                        InnerCircleColor="{StaticResource pageBackColor2}"
+                                        InnerCirclePressedColor="{StaticResource textColor2}"
+                                        IsTogglable="True"
+                                        MiddleCircleColor="White"
+                                        MiddleCirclePressedColor="{StaticResource textColor2}"
+                                        OuterCircleColor="{StaticResource pageBackColor2}"
+                                        OuterCirclePressedColor="{StaticResource textColor2}"
+                                        TextBottom="Side"
+                                        TextBottomColor="{StaticResource textColor2}"
+                                        TextBottomFontSize="10"
+                                        TextBottomPressedColor="{StaticResource pageBackColor2}"
+                                        TextTop="Left"
+                                        TextTopColor="{StaticResource textColor2}"
+                                        TextTopFontSize="21"
+                                        TextTopPressedColor="{StaticResource pageBackColor2}"
+                                        WidthRequest="{Binding Source={x:Reference StackButtons}, Path=Height}" />
+                                    <localButtons:CircleButton
+                                        x:Name="BtnRight"
+                                        FontFamilyBottom="{StaticResource fontLarsseitMedium}"
+                                        FontFamilyTop="{StaticResource fontHurmeBold}"
+                                        HeightRequest="{Binding Source={x:Reference StackButtons}, Path=Height}"
+                                        HorizontalOptions="FillAndExpand"
+                                        InnerCircleColor="{StaticResource pageBackColor2}"
+                                        InnerCirclePressedColor="{StaticResource textColor2}"
+                                        IsTogglable="True"
+                                        MiddleCircleColor="White"
+                                        MiddleCirclePressedColor="{StaticResource textColor2}"
+                                        OuterCircleColor="{StaticResource pageBackColor2}"
+                                        OuterCirclePressedColor="{StaticResource textColor2}"
+                                        TextBottom="Side"
+                                        TextBottomColor="{StaticResource textColor2}"
+                                        TextBottomFontSize="10"
+                                        TextBottomPressedColor="{StaticResource pageBackColor2}"
+                                        TextTop="Right"
+                                        TextTopColor="{StaticResource textColor2}"
+                                        TextTopFontSize="21"
+                                        TextTopPressedColor="{StaticResource pageBackColor2}"
+                                        VerticalOptions="FillAndExpand"
+                                        WidthRequest="{Binding Source={x:Reference StackButtons}, Path=Height}" />
+                                </StackLayout>
+                            </Grid>
+                        </RelativeLayout>
+                    </AbsoluteLayout>
+                </StackLayout>
+            </Grid>
+
+            <Grid Grid.Row="1" RowSpacing="0">
+                <localButtons:ImageButton
+                    x:Name="BtnSave"
+                    HorizontalOptions="FillAndExpand"
+                    ImageNormal="icon_save.png"
+                    ImageTranslationY="{OnPlatform Android=1,
+                                                   iOS=0.3}"
+                    InitViewBackground="True"
+                    IsEnabled="{Binding NotReadyToSave, Converter={StaticResource BooleanInverseConverter}}"
+                    Style="{StaticResource PositiveActionButton}"
+                    Text="{helpers:Translate Save}" />
+            </Grid>
+        </Grid>
+
+        <localViews:SaveView
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            IsVisible="{Binding ShowSavedPopupPage}"
+            Tapped="Handle_SaveView_Tapped"
+            Text="{helpers:Translate SavedNursingSession}" />
+
+        <!--  Notepad section: full screen  -->
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding ShowAddNotePage}"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+            <localViews:NotepadView
+                x:Name="Notepad"
+                HorizontalOptions="FillAndExpand"
+                MaxLength="140"
+                VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </AbsoluteLayout>
+</pages:PageBase>

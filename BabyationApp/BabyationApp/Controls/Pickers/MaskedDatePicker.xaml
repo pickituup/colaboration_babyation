@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    x:Class="BabyationApp.Controls.Pickers.MaskedDatePicker" 
+    ControlTemplate="{StaticResource MaskedDatePickerTemplate}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="MaskedDatePickerTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="{TemplateBinding HeaderText}" Style="{TemplateBinding HeaderStyle}" HorizontalTextAlignment="Center" Grid.Row="0"/>
+                    <localViews:DatePickerEx Grid.Row="1" x:Name="_dtPicker" IsVisible="False" 
+                                             Format="{TemplateBinding DateFormat}" Date="{TemplateBinding CalendarDate}"
+                                             MinimumDate="{TemplateBinding MinimumDate}" MaximumDate="{TemplateBinding MaximumDate}"
+                                             HorizontalOptions="Center" VerticalOptions="Center" />
+                    <localButtons:ButtonEx Grid.Row="1" x:Name="_btnDtPicker" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                           Command="{TemplateBinding HandleButtonClick}">
+                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="{TemplateBinding ValueText}" Style="{TemplateBinding ValueStyle}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{TemplateBinding Date, Converter={StaticResource ObjectNotNullCheckConverter}}"/>
+                            <Label Text="{TemplateBinding PlaceHolderText}" Style="{TemplateBinding ValuePlaceholderStyle}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{TemplateBinding Date, Converter={StaticResource ObjectIsNullCheckConverter}}"/>
+                        </Grid>
+                    </localButtons:ButtonEx>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+</ContentView>

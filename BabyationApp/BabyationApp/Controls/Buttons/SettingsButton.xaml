@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<localButtons:ButtonEx xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+             x:Class="BabyationApp.Controls.Buttons.SettingsButton"
+             xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+  HorizontalOptions="FillAndExpand" HeightRequest="76.25" IsEnabled="{Binding IsEnabled}" IsTogglable="False"
+                                       BackgroundColorNormal="{Binding BackColorNormal}" BackgroundColorPressed="{Binding BackColorPressed}" Command="{Binding Command}">
+ <StackLayout Orientation="Horizontal"  Padding="50, 0, 0, 0" Spacing="25" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+    <localViews:ImageEx x:Name="Img" Source="{Binding Image}" IsVisible="{Binding Image, Converter={StaticResource ObjectNotNullCheckConverter}}" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="25"/>
+    <Label x:Name="Lbl" VerticalOptions="Center" Text="{Binding Text}" TextColor="{StaticResource MedBlue}" Style="{StaticResource H1_Label}"
+            FontAttributes="Bold"   LineBreakMode="NoWrap"/>
+  </StackLayout>
+</localButtons:ButtonEx>

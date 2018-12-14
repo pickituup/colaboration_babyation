@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.Settings.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    Title="{helpers:Translate SettingsUpper}"
+    BackgroundColor="{StaticResource LightBlue}">
+
+    <Grid
+        x:Name="RootLayout"
+        BackgroundColor="{StaticResource LightBlue}"
+        RowSpacing="0"
+        Style="{StaticResource Grid_NavigationOnTop}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.11*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackLayout x:Name="StackButtons" Spacing="0" />
+        </Grid>
+
+        <localButtons:ImageButton
+            x:Name="BtnSignout"
+            Grid.Row="1"
+            ImageNormal="log_out_light_pink.png"
+            ImagePressed="log_out_light_pink.png"
+            ImageTranslationY="{OnPlatform Android=1,
+                                           iOS=0.3}"
+            Style="{StaticResource DestructiveActionButton}"
+            Text="{helpers:Translate Signout}" />
+    </Grid>
+
+</pages:PageBase>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.Settings.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    Title="{helpers:Translate SettingsUpper}"
+    BackgroundColor="{StaticResource LightBlue}">
+
+    <RelativeLayout
+        BackgroundColor="#E6F2F8"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <Grid
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=.9,
+                                                                   Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=.0,
+                                                              Constant=0}">
+            <StackLayout
+                x:Name="StackButtons"
+                Padding="0,32,0,0"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+
+        <localButtons:ImageButton
+            x:Name="BtnSignout"
+            ImageNormal="log_out_light_pink.png"
+            ImagePressed="log_out_light_pink.png"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                   Property=Height,
+                                                                   Factor=.1,
+                                                                   Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=1,
+                                                                  Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                              Property=Height,
+                                                              Factor=.9,
+                                                              Constant=0}"
+            Style="{StaticResource DestructiveActionButton}"
+            Text="{helpers:Translate Signout}" />
+    </RelativeLayout>
+</pages:PageBase>-->

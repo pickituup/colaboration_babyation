@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.NurseSession.NurseSessionSelectionPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    Title="{helpers:Translate NursingSession}"
+    BackgroundColor="{StaticResource Peach}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform
+                x:Key="PlatformColor"
+                x:TypeArguments="Color"
+                Android="{StaticResource Red}"
+                iOS="{StaticResource MedBlue}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="20" Style="{StaticResource Grid_NavigationOnTop}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <localButtons:CircleButton
+            x:Name="BtnStartNursing"
+            Grid.Row="0"
+            BindingContext="{x:Reference Name=BtnStartNursing}"
+            HeightRequest="110"
+            ImageNormal="timer_light_pink.png"
+            ImagePressed="timer_light_pink.png"
+            InnerCircleColor="{StaticResource Red}"
+            InnerCirclePadding="{OnPlatform Android=8.5,
+                                            iOS=7}"
+            InnerCirclePressedColor="White"
+            MiddleCircleColor="White"
+            MiddleCirclePadding="{OnPlatform Android=7,
+                                             iOS=5}"
+            MiddleCirclePressedColor="{StaticResource pageBackColor2}"
+            OuterCircleColor="{StaticResource Red}"
+            OuterCirclePressedColor="White"
+            TextBottom="{helpers:Translate Nursing}"
+            TextBottomColor="{StaticResource LightPink}"
+            TextBottomFontSize="9"
+            TextBottomPressedColor="{StaticResource LightPink}"
+            TextTop="{helpers:Translate Start}"
+            TextTopColor="{StaticResource LightPink}"
+            TextTopFontSize="21"
+            TextTopPressedColor="{StaticResource LightPink}"
+            TranslationY="-55"
+            VerticalOptions="End"
+            WidthRequest="110" />
+        <localButtons:CircleButton
+            x:Name="BtnPastNursing"
+            Grid.Row="1"
+            HeightRequest="110"
+            ImageNormal="nurse_med_blue.png"
+            ImagePressed="nurse_med_blue.png"
+            InnerCircleColor="White"
+            InnerCirclePadding="{OnPlatform Android=8.5,
+                                            iOS=7}"
+            InnerCirclePressedColor="{StaticResource PlatformColor}"
+            MiddleCircleColor="{StaticResource pageBackColor2}"
+            MiddleCirclePadding="{OnPlatform Android=7,
+                                             iOS=5}"
+            MiddleCirclePressedColor="White"
+            OuterCircleColor="White"
+            OuterCirclePressedColor="{StaticResource PlatformColor}"
+            TextBottom="{helpers:Translate PastNurse}"
+            TextBottomColor="{StaticResource MedBlue}"
+            TextBottomFontSize="9"
+            TextBottomPressedColor="{StaticResource MedBlue}"
+            TextTop="{helpers:Translate Log}"
+            TextTopColor="{StaticResource MedBlue}"
+            TextTopFontSize="21"
+            TextTopPressedColor="{StaticResource MedBlue}"
+            TranslationY="-55"
+            VerticalOptions="Start"
+            WidthRequest="110" />
+    </Grid>
+
+    <!--<ContentPage.Content>
+        <Grid Style="{StaticResource Grid_NavigationOnTop}">
+            <RelativeLayout
+                x:Name="RLRoot"
+                BackgroundColor="Transparent"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <localButtons:CircleButton
+                    x:Name="BtnStartNursing"
+                    BindingContext="{x:Reference Name=BtnStartNursing}"
+                    HeightRequest="{Binding Height}"
+                    ImageNormal="timer_light_pink.png"
+                    ImagePressed="timer_light_pink.png"
+                    InnerCircleColor="{StaticResource Red}"
+                    InnerCirclePressedColor="White"
+                    MiddleCircleColor="White"
+                    MiddleCirclePressedColor="{StaticResource pageBackColor2}"
+                    OuterCircleColor="{StaticResource Red}"
+                    OuterCirclePressedColor="White"
+                    TextBottom="{helpers:Translate Nursing}"
+                    TextBottomColor="{StaticResource LightPink}"
+                    TextBottomFontSize="10"
+                    TextBottomPressedColor="{StaticResource LightPink}"
+                    TextTop="{helpers:Translate Start}"
+                    TextTopColor="{StaticResource LightPink}"
+                    TextTopFontSize="21"
+                    TextTopPressedColor="{StaticResource LightPink}"
+                    TranslationY="-55"
+                    WidthRequest="{Binding Width}" />
+                <localButtons:CircleButton
+                    x:Name="BtnPastNursing"
+                    ImageNormal="nurse_med_blue.png"
+                    ImagePressed="nurse_med_blue.png"
+                    InnerCircleColor="White"
+                    InnerCirclePressedColor="{StaticResource PlatformColor}"
+                    MiddleCircleColor="{StaticResource pageBackColor2}"
+                    MiddleCirclePressedColor="White"
+                    OuterCircleColor="White"
+                    OuterCirclePressedColor="{StaticResource PlatformColor}"
+                    TextBottom="{helpers:Translate PastNurse}"
+                    TextBottomColor="{StaticResource MedBlue}"
+                    TextBottomFontSize="10"
+                    TextBottomPressedColor="{StaticResource MedBlue}"
+                    TextTop="{helpers:Translate Log}"
+                    TextTopColor="{StaticResource MedBlue}"
+                    TextTopFontSize="21"
+                    TextTopPressedColor="{StaticResource MedBlue}"
+                    TranslationY="-55" />
+            </RelativeLayout>
+        </Grid>
+    </ContentPage.Content>-->
+</pages:PageBase>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.Settings.AddAnotherChildPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localBehavior="clr-namespace:BabyationApp.Behaviors"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    Title="{helpers:Translate AddYourChild}">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Style="{StaticResource StackLayout_NavigationOnTop}">
+            <StackLayout
+                Margin="0"
+                Padding="0"
+                BackgroundColor="{StaticResource Navy}"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand">
+                <Label
+                    Margin="30"
+                    HorizontalOptions="StartAndExpand"
+                    Style="{StaticResource Instructions_Label}"
+                    Text="{helpers:Translate AddAnotherChild}"
+                    TextColor="{StaticResource LightBlue}"
+                    VerticalOptions="Start" />
+            </StackLayout>
+            <StackLayout
+                Margin="0"
+                Padding="0"
+                HeightRequest="50"
+                HorizontalOptions="Fill"
+                Orientation="Horizontal"
+                Spacing="0"
+                VerticalOptions="Fill">
+                <localButtons:ImageButton
+                    x:Name="BtnNO"
+                    Command="{Binding NOCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    ImageNormal="icon_close"
+                    ImagePressed="icon_close4"
+                    Style="{StaticResource DestructiveActionButton}"
+                    Text="{helpers:Translate NO}"
+                    VerticalOptions="Fill" />
+                <localButtons:ImageButton
+                    x:Name="BtnSave"
+                    Command="{Binding YESCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    ImageNormal="icon_checked2"
+                    ImagePressed="icon_checked3"
+                    Style="{StaticResource PositiveActionButton}"
+                    Text="{helpers:Translate YES}"
+                    VerticalOptions="Fill" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PageBase>

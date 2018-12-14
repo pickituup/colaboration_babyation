@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.StartSessionView">
+  <Grid>
+    <StackLayout x:Name="header" Padding="24,0" Orientation="Horizontal" VerticalOptions="Center">
+      <Label Text="PUMP NAME" />
+      <Label Text=""  HorizontalOptions="CenterAndExpand"/>
+      <Label Text="75% Charge"  HorizontalOptions="End"/>
+    </StackLayout>
+    
+    <StackLayout x:Name="regForm" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
+      <Label Text="START A SESSION" HorizontalOptions="Center" />
+      <Button x:Name="pumpBtn" Text="PUMP" />
+      <Button x:Name="nurseBtn" Text="NURSE" />
+      <Button x:Name="bottleBtn" Text="BOTTLE" />
+      <Button Text="Helpful Information" />
+      <Button Text="Getting Started" />
+      <Button Text="Tips &amp; Tricks" />
+    </StackLayout>
+    
+    <StackLayout x:Name="footer" Grid.Row="2" Padding="24,0" VerticalOptions="Center">
+      <Label Text="Choose Experience" HorizontalOptions="Center" />
+      <StackLayout x:Name="expBtns" Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="expWorkBtn" Text="Work" HorizontalOptions="Start" />
+        <Button x:Name="expEasyBtn" Text="Easy" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="expHomeBtn" Text="Home" HorizontalOptions="End" />
+      </StackLayout>
+    </StackLayout>
+  
+</Grid>
+</ContentView>

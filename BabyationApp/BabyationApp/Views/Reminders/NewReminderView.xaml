@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.NewReminderView">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="backBtn" Text="Back" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="saveBtn" Text="Save" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="pumpBtn" Text="Pump" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="nurseBtn" Text="Nurse" HorizontalOptions="Center" />
+        <Button x:Name="bottleBtn" Text="Bottle" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+      <Entry Placeholder="Time" HorizontalTextAlignment="Center" />
+      <Entry Placeholder="Name" HorizontalTextAlignment="Center" />
+      <Entry Placeholder="Sound" HorizontalTextAlignment="Center" />
+
+      <StackLayout Padding="0,0" Orientation="Horizontal">
+        <Switch x:Name="pumpSwitch" HorizontalOptions="CenterAndExpand" />
+        <Label Text="Auto Start Pump" HorizontalOptions="CenterAndExpand" />
+      </StackLayout>
+
+    </StackLayout>
+    
+    <StackLayout x:Name="footer" Grid.Row="1" Padding="24,0" VerticalOptions="Center">
+      <Label Text="Choose Experience" HorizontalOptions="Center" />
+      <StackLayout x:Name="expBtns" Padding="0,0" Orientation="Horizontal">
+        <Button x:Name="expWorkBtn" Text="Work" HorizontalOptions="Start" />
+        <Button x:Name="expEasyBtn" Text="Easy" HorizontalOptions="CenterAndExpand" />
+        <Button x:Name="expHomeBtn" Text="Home" HorizontalOptions="End" />
+      </StackLayout>
+    </StackLayout>
+  </Grid>
+</ContentView>

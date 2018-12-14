@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Views.ReminderListView">
+  <Grid>
+    <StackLayout x:Name="controls" Padding="24,0" VerticalOptions="Center">
+      <Label Text="Delay Start/Reminders" />
+      <ListView x:Name="listReminders" ItemsSource="{Binding Reminders}" RefreshCommand="{Binding GetReminders}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RowHeight="220">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ImageCell ImageSource="{Binding .}" Text="Time Pump Auto Start" Detail="">
+            </ImageCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+      <Button x:Name="addNewBtn" Text="+" />
+
+    </StackLayout>
+  </Grid>
+</ContentView>

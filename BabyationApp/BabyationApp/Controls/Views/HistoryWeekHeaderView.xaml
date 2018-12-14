@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    x:Class="BabyationApp.Controls.Views.HistoryWeekHeaderView">
+    
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource Peach}" Padding="0,5,0,0" RowSpacing="20" HeightRequest="150" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0"
+                   Text="{helpers:Translate PumpingAverages}" 
+                   Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" 
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+            
+            <Grid Grid.Row="1" HorizontalOptions="Fill" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout Grid.Column="0" Spacing="0" HorizontalOptions="Center">
+                    <Label Text="{helpers:Translate PumpingUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}"/>
+                    <Label Text="{Binding TotalAverage[0], StringFormat='{}{0:F1}oz'}" Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center">
+                    <Label Text="{helpers:Translate NursingUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}"/>                    
+                    <Label Text="{Binding TotalAverage[1], Converter={StaticResource TimeSpan2HoursMinutesConverter}}"  Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Center" />
+                </StackLayout>
+            </Grid>
+            
+            <Grid Grid.Row="2" HorizontalOptions="Fill" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout Grid.Column="0" Spacing="0" HorizontalOptions="Center">
+                    <Label Text="{helpers:Translate BottleBreast}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" />
+                    <Label Text="{Binding TotalAverage[2], StringFormat='{}{0:F1}oz'}"  Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center">
+                    <Label Text="{helpers:Translate BottleFormula}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}"/>
+                    <Label Text="{Binding TotalAverage[3], StringFormat='{}{0:F1}oz'}"  Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Center" />
+                </StackLayout>
+            </Grid>
+            
+            <Grid Grid.Row="3" BackgroundColor="{StaticResource LightPink}" HorizontalOptions="Fill" ColumnSpacing="0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
+                     <localButtons:ImageButton 
+                                               Text="{helpers:Translate Pumping}"
+                                               ImageNormal="icon_drop" ImagePressed="icon_drop_red"
+                                               Style="{StaticResource PillSelectorButton}"
+                                               WidthRequest="80" HeightRequest="26"
+                                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                    
+                    <localButtons:ImageButton
+                                               Text="{helpers:Translate Nursing}"
+                                               ImageNormal="icon_nurse" ImagePressed="icon_nurse_red"
+                                               Style="{StaticResource PillSelectorButton}"
+                                               WidthRequest="80" HeightRequest="26"
+                                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                    
+                    <localButtons:ImageButton
+                                               Text="{helpers:Translate Bottle}"
+                                               ImageNormal="icon_drop" ImagePressed="icon_drop_red"
+                                               Style="{StaticResource PillSelectorButton}"
+                                               WidthRequest="80" HeightRequest="26"
+                                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

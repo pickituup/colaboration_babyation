@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    x:Class="BabyationApp.Controls.Views.PhotoBoxControl"
+    x:Name="this">
+    
+       <Grid x:Name="PhotoBoxLayout" 
+             RowSpacing="0" ColumnSpacing="0"
+             HorizontalOptions="Center" VerticalOptions="Center" 
+             WidthRequest="{Binding Source={x:Reference this}, Path=BoxWidth}"
+             HeightRequest="{Binding Source={x:Reference this}, Path=BoxHeight}" >
+        
+        <localButtons:ButtonEx IsCircle="True"
+                               BackgroundColorNormal="{StaticResource MedPink}" 
+                               BackgroundColorPressed="{StaticResource LightPink}" 
+                               Command="{Binding Source={x:Reference this}, Path=Command}"
+                               HeightRequest="{Binding Source={x:Reference PhotoBoxLayout}, Path=Height}" 
+                               WidthRequest="{Binding Source={x:Reference PhotoBoxLayout}, Path=Width}" 
+                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+            <Grid HorizontalOptions="Fill" VerticalOptions="Fill" >
+
+                <!-- Image itself -->
+                <localViews:CachedImageEx x:Name="PictureBox" 
+                                          Source="{Binding Source={x:Reference this}, Path=Source}"
+                                          HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <localViews:CachedImageEx.Transformations>
+                        <fftransformations:CircleTransformation />
+                    </localViews:CachedImageEx.Transformations>
+                </localViews:CachedImageEx>
+               
+                <!-- Motivation texts -->
+                <Grid HorizontalOptions="Center" VerticalOptions="Fill">
+                    <StackLayout InputTransparent="true" IsVisible="{Binding Source={x:Reference this}, Path=Source, Converter={StaticResource ObjectIsNullCheckConverter}}" Spacing="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="{helpers:Translate AddPhoto}" Style="{StaticResource SmallLabel_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Center"/>
+                        <Label Text="{helpers:Translate HelpsLetdown}" Style="{StaticResource SmallLabel_Label}" TextColor="{StaticResource Navy}"  HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+                
+                <!-- Plus or Camera icon -->
+                <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <localButtons:ButtonEx InputTransparent="true"
+                                           IsCircle="True"
+                                           BackgroundColorNormal="{StaticResource MedBlue}" 
+                                           HeightRequest="25" WidthRequest="25"
+                                           HorizontalOptions="End" VerticalOptions="End">
+                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                            <localViews:ImageEx IsVisible="{Binding Source={x:Reference this}, Path=Source, Converter={StaticResource ObjectIsNullCheckConverter}}" Source="icon_plus_pink" HeightRequest="15" WidthRequest="15"/>
+                            <localViews:ImageEx IsVisible="{Binding Source={x:Reference this}, Path=Source, Converter={StaticResource ObjectNotNullCheckConverter}}" Source="icon_camera" HeightRequest="15" WidthRequest="15"/>
+                       </Grid>
+                    </localButtons:ButtonEx>
+                </Grid>
+                
+            </Grid>
+        </localButtons:ButtonEx>
+    </Grid>
+</ContentView>

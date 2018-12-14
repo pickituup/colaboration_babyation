@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Settings.PumpSettings.BluetoothPumpSetupPage"
+    BackgroundColor="{StaticResource Navy}">
+    
+    <RelativeLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Grid Padding="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.05, Constant=0}"  
+        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.2,Constant=0}" >
+        <StackLayout Padding="8" Spacing="8" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+          <Label Text="{helpers:Translate WhatWillYouCallThisPump}" TextColor="{StaticResource buttonBackColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="10" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+          <localEditors:EntryEx x:Name="EntryPumpName" Placeholder="{helpers:Translate WriteNameHere}" TextColor="{StaticResource pageBackColor2}" FontFamily="{StaticResource fontHurmeBold}" FontSize="21" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" HeightRequest="50" ></localEditors:EntryEx>
+        </StackLayout>
+      </Grid>      
+      <Grid Padding="50, 30, 50, 30" BackgroundColor="{StaticResource pageBackColor2}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.25, Constant=0}"  
+        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.65,Constant=0}" >
+        <Label Text="{helpers:Translate LoremIpsum}" 
+                   TextColor="{StaticResource pageBackColor1}" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" FontSize="28" LineBreakMode="CharacterWrap"  VerticalOptions="FillAndExpand"/>
+      </Grid> 
+      <localButtons:ButtonEx x:Name="BtnAdd" HorizontalOptions="FillAndExpand"
+              BackgroundColorNormal="{StaticResource buttonBackColor2}" BackgroundColorPressed="{StaticResource buttonBackColor3}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.1,Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+        <StackLayout Orientation="Horizontal" Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+          <!--<localViews:ImageEx Source="icon_save.png" VerticalOptions="Center" />-->
+          <Label Text="{helpers:Translate PairPump}" VerticalOptions="Center" FontFamily="{StaticResource fontHurmeBold}" TextColor="{StaticResource textColor1}" FontAttributes="Bold" FontSize="15" />
+        </StackLayout>
+      </localButtons:ButtonEx>
+    </RelativeLayout>
+</pages:PageBase>

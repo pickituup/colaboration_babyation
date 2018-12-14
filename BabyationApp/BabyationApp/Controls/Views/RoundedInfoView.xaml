@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BabyationApp.Controls.Views.RoundedInfoView"
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+  ControlTemplate="{StaticResource CircleInfoTemplate}">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ControlTemplate x:Key="CircleInfoTemplate" >
+        <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          <localViews:RoundedBoxView x:Name="_innerCircle" Stroke="{TemplateBinding  CircleColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+          <StackLayout HorizontalOptions="Center" VerticalOptions="Center"  Padding="0">
+            <Label Text="{TemplateBinding  TextTop}" TextColor="{TemplateBinding  TextTopColor}" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="{StaticResource fontHurmeBold}"/>
+            <localViews:ImageEx Source="{TemplateBinding  Image}" />
+            <Label Text="{TemplateBinding  TextBottom}" TextColor="{TemplateBinding  TextBottomColor}" FontFamily="{StaticResource fontHurmeSemiBold}" FontSize="8"  HorizontalOptions="Center" />
+          </StackLayout>
+        </Grid>
+      </ControlTemplate>
+    </ResourceDictionary>
+  </ContentView.Resources>
+</ContentView>

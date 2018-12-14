@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:bv="clr-namespace:BabyationApp.Behaviors;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.Modes.EnterOtherInfoPage"
+    BackgroundColor="{StaticResource Navy}">
+
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid IsVisible="{Binding ShowMainPage}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="64"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Name section -->
+                <Grid Grid.Row="0" ColumnSpacing="0" BackgroundColor="{StaticResource LightPink}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="20, 5, 5 ,5" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label Text="{helpers:Translate ModeNameUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}"/>
+                        <localEditors:EntryEx x:Name="EntryName" Placeholder="{helpers:Translate EnterNamePumpingMode}" Style="{StaticResource Form_ElementEntry}">
+                            <localEditors:EntryEx.Behaviors>
+                                <bv:MaxLengthValidatorBehavior MaxLength="25"/>
+                            </localEditors:EntryEx.Behaviors>
+                        </localEditors:EntryEx>
+                    </StackLayout>
+                </Grid>
+
+                <!-- Description section -->
+                <Grid Grid.Row="1" ColumnSpacing="0" BackgroundColor="{StaticResource LightPink}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Padding="20, 5, 5, 5" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Label Text="{helpers:Translate ModeDescriptionUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" />
+                        <localEditors:EntryEx x:Name="EntryDesc" Placeholder="{helpers:Translate DescribePumpMode}" Style="{StaticResource Form_ElementEntry}">
+                            <localEditors:EntryEx.Behaviors>
+                                <bv:MaxLengthValidatorBehavior MaxLength="50"/>
+                            </localEditors:EntryEx.Behaviors>
+                        </localEditors:EntryEx>
+                    </StackLayout>
+                </Grid>
+
+                <!-- Stimulation section -->
+                <Grid Grid.Row="2" ColumnSpacing="0" BackgroundColor="{StaticResource Peach}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <localButtons:SpinNumberButton2 Grid.Column="0" 
+                                                    x:Name="_circleSuctionStimulation" 
+                                                    DescriptionText="{helpers:Translate Suction}" 
+                                                    ValueText="0" RatioBig="0.5" RatioSmall="0" 
+                                                    ShowControls="false"/>
+                    <localViews:RoundedInfoView2 Grid.Column="1" 
+                                                 x:Name="_circleInfoStimulation" 
+                                                 TextTop ="{helpers:Translate PhaseUpper}" TextTopColor="{StaticResource Gold}" 
+                                                 TextMiddle="{helpers:Translate Stimulation}" TextMiddleColor="{StaticResource Navy}" 
+                                                 CircleColor="{StaticResource Clear}" 
+                                                 Image="icon_simulation" />
+                    <localButtons:SpinNumberButton2 Grid.Column="2" 
+                                                    x:Name="_circleSpeedStimulation" 
+                                                    DescriptionText="{helpers:Translate Speed}" 
+                                                    ValueText="0" RatioBig="0.5" RatioSmall="0" 
+                                                    ShowControls="false"/>
+                </Grid>
+
+                <!-- Expression section -->
+                <Grid Grid.Row="3" ColumnSpacing="0" BackgroundColor="{StaticResource MedPink}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <localButtons:SpinNumberButton2 Grid.Column="0" x:Name="_circleSuctionExpression" DescriptionText="{helpers:Translate Suction}" ValueText="0" RatioBig="0.5" RatioSmall="0" ShowControls="false"/>
+                    <localViews:RoundedInfoView2 Grid.Column="1" x:Name="_circleInfoExpression" TextTop="{helpers:Translate PhaseUpper}" TextTopColor="{StaticResource Gold}" TextMiddle="{helpers:Translate Expression}" TextMiddleColor="{StaticResource Navy}" CircleColor="{StaticResource Clear}" Image="icon_phase" />
+                    <localButtons:SpinNumberButton2 Grid.Column="2" x:Name="_circleSpeedExpression" DescriptionText="{helpers:Translate Speed}" ValueText="0" RatioBig="0.5" RatioSmall="0" ShowControls="false"/>
+                </Grid>
+
+                <!-- Milk selection section -->
+                <Grid Grid.Row="4" ColumnSpacing="0" BackgroundColor="{StaticResource LightPink}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <localViews:MilkTypeSelector TitleText="{helpers:Translate GotMilkHowWouldYouLikeStoreItOptional}"
+                                                 ResetMilkTypeSelector="{Binding ResetMilkTypeControl}"
+                                                 UpdateMilkType="{Binding MilkType}"
+                                                 ToggleMilkTypeCommand="{Binding MilkTypeCommand}"/>
+                </Grid>
+
+                <!-- Navigation section -->
+                <StackLayout Grid.Row="5" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                    <localButtons:ImageButton x:Name="BtnBack"
+                                              Text="{helpers:Translate Back}"
+                                              Style="{StaticResource NavigationalActionButton}"
+                                              ImageTranslationY="{OnPlatform Android=1.4, iOS=0}"
+                                              ImageNormal="icon_reverse2" ImagePressed="icon_reverse"
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    <localButtons:ImageButton x:Name="BtnSave"
+                                              Text="{helpers:Translate Save}"
+                                              Style="{StaticResource PositiveActionButton}"
+                                              ImageTranslationY="{OnPlatform Android=1.4, iOS=0}"
+                                              ImageNormal="icon_save" ImagePressed="icon_save2"
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                </StackLayout>
+            </Grid>
+
+            <!--  Saved popup: Full screen  -->
+            <localViews:SaveView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                                 IsVisible="{Binding ShowSavedPopupPage}" 
+                                 TappedCommand="{Binding CloseSaveViewCommand}"
+                                 Text="{helpers:Translate SavedPumpMode}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</pages:PageBase>

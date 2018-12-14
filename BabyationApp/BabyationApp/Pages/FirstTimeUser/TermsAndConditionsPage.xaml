@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase
+    x:Class="BabyationApp.Pages.FirstTimeUser.TermsAndConditionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    Title="{helpers:Translate TermsServiceTopLargeTitle}"
+    BackgroundColor="{StaticResource DarkBlueColor}">
+
+
+    <ContentPage.Content>
+        <RelativeLayout
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <RelativeLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.9, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}">
+                <Grid
+                    Padding="50,0,50,0"
+                    HorizontalOptions="FillAndExpand"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=.85,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1,
+                                                                          Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Height,
+                                                                      Factor=.1,
+                                                                      Constant=0}"
+                    VerticalOptions="FillAndExpand">
+                    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <!--<Label Text="{helpers:Translate ConnectToYourPump}" TextColor="{StaticResource buttonBackColor1}" LineBreakMode="NoWrap" FontFamily="{StaticResource fontHurmeBold}" FontSize="13" FontAttributes="Bold"  HorizontalOptions="FillAndExpand"
+							RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=.0, Constant=0}"
+	               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.05,Constant=0}"
+	               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>-->
+                        <Label
+                            HorizontalOptions="FillAndExpand"
+                            LineBreakMode="WordWrap"
+                            Style="{StaticResource BodyCopy_Label}"
+                            Text="{helpers:Translate TermsAndConditionText}"
+                            TextColor="{StaticResource textColor1}" />
+                    </ScrollView>
+                </Grid>
+            </RelativeLayout>
+            <Grid
+                ColumnSpacing="0"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=.1,
+                                                                       Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=.9,
+                                                                  Constant=0}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <localButtons:ImageButton
+                    x:Name="BtnCancel"
+                    Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    ImageNormal="icon_close.png"
+                    ImagePressed="icon_close.png"
+                    Style="{StaticResource DestructiveActionButton}"
+                    Text="{helpers:Translate Cancel}" />
+                <localButtons:ImageButton
+                    x:Name="BtnNext"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    ImageNormal="icon_checked2.png"
+                    ImagePressed="icon_checked2.png"
+                    Style="{StaticResource PositiveActionButton}"
+                    Text="{helpers:Translate IAgree}" />
+            </Grid>
+        </RelativeLayout>
+    </ContentPage.Content>
+</pages:PageBase>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localPickers="clr-namespace:BabyationApp.Controls.Pickers"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:behaviors="clr-namespace:BabyationApp.Behaviors"
+    x:Class="BabyationApp.Pages.Reminders.ChooseModePage"
+    x:Name="this"
+    Title="{helpers:Translate ChooseModeUpper}"
+    BackgroundColor="{StaticResource MedBlue}">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+        
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid IsVisible="{Binding ShowMainPage}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- List -->
+                <localViews:ListViewEx Grid.Row="0"
+                                       x:Name="listView" 
+                                       SeparatorVisibility="None" 
+                                       SelectionMode="None"
+                                       HasUnevenRows="false" 
+                                       RowHeight="70" 
+                                       IsPullToRefreshEnabled="false" 
+                                       IsGroupingEnabled="false" 
+                                       ItemsSource="{Binding Datasource}"
+                                       ItemTemplate="{StaticResource ModeCellTemplate}"
+                                       BackgroundColor="{StaticResource DarkBlueColor}"
+                                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                
+                <!-- Navigation section -->
+                <StackLayout Grid.Row="1" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                    <localButtons:ImageButton x:Name="BtnBack"
+                                              Text="{helpers:Translate Back}"
+                                              Command="{Binding BackCommand}"
+                                              Style="{StaticResource NavigationalActionButton}"
+                                              ImageNormal="icon_reverse2" ImagePressed="icon_reverse"
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    <localButtons:ImageButton x:Name="BtnSave"
+                                              Text="{helpers:Translate Save}"
+                                              Command="{Binding SaveCommand}"
+                                              IsEnabled="{Binding IsReadyToGo}"
+                                              Style="{StaticResource PositiveActionButton}"
+                                              ImageNormal="icon_save" ImagePressed="icon_save2"
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />                    
+                </StackLayout>
+            </Grid>
+      
+            <!--  Saved popup: Full screen  -->
+            <localViews:SaveView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                                 IsVisible="{Binding ShowSavedPopupPage}" 
+                                 TappedCommand="{Binding CloseSaveViewCommand}"
+                                 Text="{helpers:Translate SavedPumpMode}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</pages:PageBase>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="BabyationApp.Controls.Views.Titlebar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    ControlTemplate="{StaticResource TitlebarTemplate}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="TitlebarTemplate">
+                <Grid BackgroundColor="{TemplateBinding TitleBackColor}" RowSpacing="0">
+                    <Grid.Padding>
+                        <OnPlatform
+                            x:TypeArguments="Thickness"
+                            Android="20,0,5,0"
+                            iOS="20,0,5,0" />
+                    </Grid.Padding>
+                    <localButtons:ImageButton
+                        x:Name="BtnLeft"
+                        ImageTextPadding="7,0,7,2.5"
+                        IsVisible="false"
+                        Style="{StaticResource LeftPillButton}"
+                        VerticalOptions="Center" />
+                    <localViews:LabelEx
+                        FontFamily="{TemplateBinding TitleFontFamily}"
+                        FontSize="{TemplateBinding TitleFontSize}"
+                        Style="{StaticResource GlobalHeaderLabel}"
+                        Text="{TemplateBinding Title}"
+                        TextColor="{TemplateBinding TitleTextColor}"
+                        VerticalOptions="Center" />
+                    <localButtons:ImageButton
+                        x:Name="BtnRight"
+                        ImageTextPadding="7,0,7,2.5"
+                        IsVisible="false"
+                        Style="{StaticResource RightPillButton}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+</ContentView>

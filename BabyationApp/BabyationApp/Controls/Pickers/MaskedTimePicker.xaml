@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    x:Class="BabyationApp.Controls.Pickers.MaskedTimePicker" 
+    ControlTemplate="{StaticResource MaskedTimePickerTemplate}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="MaskedTimePickerTemplate">
+                <Grid>
+                    <localViews:TimePickerEx x:Name="_timePicker" 
+                                             IsVisible="False" 
+                                             Time="{TemplateBinding CalendarTime}" 
+                                             Format="{TemplateBinding TimeFormat}" 
+                                             HorizontalOptions="Center" VerticalOptions="Center" />
+                    
+                    <StackLayout VerticalOptions="Start" Orientation="Vertical">
+                        <Label Text="{TemplateBinding HeaderText}" 
+                               Style="{TemplateBinding HeaderStyle}" 
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="End" 
+                               VerticalOptions="End" />
+                        
+                        <localButtons:ButtonEx x:Name="_btnDtPicker" 
+                                               BackgroundColorNormal="Transparent" 
+                                               BackgroundColorPressed="Transparent" 
+                                               HorizontalOptions="FillAndExpand" 
+                                               Command="{TemplateBinding HandleButtonClick}">
+                            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="{TemplateBinding ValueText}" 
+                                       Style="{TemplateBinding ValueStyle}" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" 
+                                       IsVisible="{TemplateBinding Time, Converter={StaticResource ObjectNotNullCheckConverter}}" />
+                                <Label Text="{TemplateBinding PlaceHolderText}" 
+                                       Style="{TemplateBinding ValuePlaceholderStyle}" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" 
+                                       IsVisible="{TemplateBinding Time, Converter={StaticResource ObjectIsNullCheckConverter}}" />
+                            </Grid>
+                        </localButtons:ButtonEx>
+                        
+                        <Label Text="{TemplateBinding BottomText}" 
+                               Style="{TemplateBinding BottomStyle}"
+                               HorizontalTextAlignment="Start" 
+                               HorizontalOptions="Center" VerticalOptions="Start" 
+                               IsVisible="{TemplateBinding BottomText, Converter={StaticResource ObjectNotNullCheckConverter}}" />
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+</ContentView>

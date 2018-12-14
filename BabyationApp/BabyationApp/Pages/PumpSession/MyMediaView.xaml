@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:buttons="clr-namespace:BabyationApp.Controls.Buttons;assembly=BabyationApp" 
+    xmlns:views="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    x:Class="BabyationApp.Pages.PumpSession.MyMediaView"
+    BackgroundColor="{StaticResource Peach}">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            
+            <!-- Navigation media style -->
+            <Style x:Key="LocalNavigationButton" TargetType="buttons:ImageButton" BasedOn="{StaticResource ButtonEx}">
+                <Setter Property="IsCircle" Value="true" />
+                <Setter Property="IsTogglable" Value="false" />
+                <Setter Property="Text" Value="" />
+                <Setter Property="ImageTextPadding" Value="0" />
+                <Setter Property="ImageTextSpacing" Value="0" />
+                <Setter Property="BackgroundColorNormal" Value="{StaticResource MedBlue}" />
+                <Setter Property="BackgroundColorPressed" Value="{StaticResource MedBlue}" />
+                <Setter Property="HeightRequest" Value="52" />
+                <Setter Property="WidthRequest" Value="52" />
+                <Setter Property="VerticalOptions" Value="Center" />                
+            </Style>
+            
+            <!-- Delete button style -->
+            <Style x:Key="LocalDeleteButton" TargetType="buttons:CircleButton" BasedOn="{StaticResource CheckboxButton}">
+                <Setter Property="TextTopBottomSpacing" Value="2" />
+                <Setter Property="InputTransparent" Value="true" />
+                <Setter Property="InnerCircleColor" Value="{StaticResource MedBlue}" />
+                <Setter Property="InnerCirclePressedColor" Value="{StaticResource MedBlue}" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="ImageNormal" Value="icon_close" />
+                <Setter Property="ImagePressed" Value="icon_close" />
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="1,1,0,0" Android="0,0,0,0" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Add control -->
+        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+        
+        <!-- Single view -->
+        <Grid Grid.Row="1" IsVisible="{Binding IsSingleViewMode}" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            
+            <!-- User's image -->
+            <Image x:Name="ImgCurrent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+            
+            <!-- Left --> 
+            <buttons:ImageButton x:Name="BtnLeft"
+                                 Style="{StaticResource LocalNavigationButton}"
+                                 ImageNormal="icon_back_light_pink" ImagePressed="icon_back_light_pink"
+                                 HorizontalOptions="Start">
+                <buttons:ImageButton.ImageTextPadding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="0,5,0,0" Android="0" />
+                </buttons:ImageButton.ImageTextPadding>
+            </buttons:ImageButton>
+            
+            <!-- Right -->
+            <buttons:ImageButton x:Name="BtnRight" 
+                                 Style="{StaticResource LocalNavigationButton}"
+                                 ImageNormal="icon_next_light_pink" ImagePressed="icon_next_light_pink" 
+                                 HorizontalOptions="End">
+                <buttons:ImageButton.ImageTextPadding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="3,5,0,0" Android="0" />
+                </buttons:ImageButton.ImageTextPadding>
+            </buttons:ImageButton>
+        </Grid>
+
+        <!-- Edit mode -->
+        <StackLayout Grid.Row="1" IsVisible="{Binding IsMediaEditMode}" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <views:ListViewEx x:Name="listView" 
+                              SeparatorVisibility="None" 
+                              HasUnevenRows="True" 
+                              BackgroundColor="{StaticResource Peach}" 
+                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <views:ListViewEx.ItemTemplate>
+                    <DataTemplate>
+                        <views:ViewCellEx CellBackColor="{StaticResource Peach}">
+                            <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Padding="1" Spacing="2">
+                                    <Grid WidthRequest="109" HeightRequest="109">
+                                        <Grid WidthRequest="109" HeightRequest="109" Padding="2" IsVisible="{Binding Cell1, Converter={StaticResource ObjectNotNullCheckConverter}}">
+                                            <buttons:ButtonEx WidthRequest="107" HeightRequest="107" Command="{Binding Cell1.CellClicked}" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Grid WidthRequest="107" HeightRequest="107" BackgroundColor="{StaticResource Peach}">
+                                                    <Image Source="{Binding Cell1.Picture}" WidthRequest="107" HeightRequest="107" Aspect="AspectFill" />
+                                                    <views:ImageEx IsVisible="{Binding Cell1.IsVideo}" Source="icon_video.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                </Grid>
+                                            </buttons:ButtonEx>
+                                            <Grid Padding="0,3,3,0" HorizontalOptions="End" VerticalOptions="Start">
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Cell1.DeleteCommand}" CommandParameter="{Binding Cell1}" />    
+                                                </Grid.GestureRecognizers>
+                                                
+                                                <buttons:CircleButton Style="{StaticResource LocalDeleteButton}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid WidthRequest="109" HeightRequest="109">
+                                        <Grid WidthRequest="109" HeightRequest="109" Padding="2" IsVisible="{Binding Cell2, Converter={StaticResource ObjectNotNullCheckConverter}}">
+                                            <buttons:ButtonEx WidthRequest="107" HeightRequest="107" Command="{Binding Cell2.CellClicked}" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Grid WidthRequest="107" HeightRequest="107" BackgroundColor="{StaticResource Peach}">
+                                                    <Image Source="{Binding Cell2.Picture}" WidthRequest="107" HeightRequest="107" Aspect="AspectFill" />
+                                                    <views:ImageEx IsVisible="{Binding Cell2.IsVideo}" Source="icon_video.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                </Grid>
+                                            </buttons:ButtonEx>
+                                            <Grid Padding="0,3,3,0" HorizontalOptions="End" VerticalOptions="Start">
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Cell2.DeleteCommand}" CommandParameter="{Binding Cell2}" />    
+                                                </Grid.GestureRecognizers>
+                                                
+                                                <buttons:CircleButton Style="{StaticResource LocalDeleteButton}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid WidthRequest="109" HeightRequest="109">
+                                        <Grid WidthRequest="109" HeightRequest="109" Padding="2" IsVisible="{Binding Cell3, Converter={StaticResource ObjectNotNullCheckConverter}}">
+                                            <buttons:ButtonEx WidthRequest="107" HeightRequest="107" Command="{Binding Cell3.CellClicked}" BackgroundColorNormal="Transparent" BackgroundColorPressed="Transparent" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Grid WidthRequest="107" HeightRequest="107" BackgroundColor="{StaticResource Peach}">
+                                                    <Image Source="{Binding Cell3.Picture}" WidthRequest="107" HeightRequest="107" Aspect="AspectFill" />
+                                                    <views:ImageEx IsVisible="{Binding Cell3.IsVideo}" Source="icon_video.png" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                </Grid>
+                                            </buttons:ButtonEx>
+                                            <Grid Padding="0,3,3,0" HorizontalOptions="End" VerticalOptions="Start">
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Cell3.DeleteCommand}" CommandParameter="{Binding Cell3}" />    
+                                                </Grid.GestureRecognizers>
+                                                
+                                                <buttons:CircleButton Style="{StaticResource LocalDeleteButton}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </views:ViewCellEx>
+                    </DataTemplate>
+                </views:ListViewEx.ItemTemplate>
+            </views:ListViewEx>
+        </StackLayout>
+    </Grid>
+</ContentView>

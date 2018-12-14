@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
+    xmlns:bottleSession="clr-namespace:BabyationApp.Pages.BottleSession;assembly=BabyationApp"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    x:Class="BabyationApp.Pages.BottleSession.MyInventoryPage"
+    BackgroundColor="{StaticResource MedPink}" 
+    Title="{helpers:Translate MyInventory}">
+  
+    <StackLayout Style="{StaticResource StackLayout_NavigationOnTop}">
+        <bottleSession:MyInventoryView x:Name="InventoryView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    </StackLayout>
+     
+</pages:PageBase>

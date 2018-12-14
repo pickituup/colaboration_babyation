@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" x:Class="BabyationApp.Controls.Views.SessionTypeSelector" x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SessionSelectorButton" TargetType="localButtons:ImageButton" BasedOn="{StaticResource PillButton}">
+                <Setter Property="BackgroundColorNormal" Value="{StaticResource LightPink}" />
+                <Setter Property="BackgroundColorPressed" Value="{StaticResource MedBlue}" />
+                <Setter Property="BackgroundColorDisabled" Value="{StaticResource LightPink40}" />
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+                <Setter Property="TextPressedColor" Value="{StaticResource LightPink}" />
+                <Setter Property="TextFontFamily" Value="{StaticResource fontHurmeBold}" />
+                <Setter Property="TextFontSize" Value="14" />
+                <Setter Property="ImageTextPadding" Value="4" />
+                <Setter Property="ImageTextSpacing" Value="6" />
+                <Setter Property="WidthRequest" Value="110" />
+                <Setter Property="HeightRequest" Value="28" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="ImageTextPadding" Value="7,0,7,2.5" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout Orientation="Vertical" Margin="0" Padding="0" Spacing="10" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Clear}">
+            <!-- Session selector section -->
+            <Grid x:Name="GridSessionLine" HorizontalOptions="Fill" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <localButtons:ImageButton Grid.Column="0" x:Name="BtnPumping" Text="{helpers:Translate Pumping}" ImageNormal="icon_drop" ImagePressed="icon_drop_red" Style="{StaticResource SessionSelectorButton}" />
+                <localButtons:ImageButton Grid.Column="1" x:Name="BtnNursing" Text="{helpers:Translate Nursing}" ImageNormal="icon_nurse" ImagePressed="icon_nurse_red" Style="{StaticResource SessionSelectorButton}" />
+                <localButtons:ImageButton Grid.Column="2" x:Name="BtnBottle" Text="{helpers:Translate Bottle}" ImageNormal="icon_inventory" ImagePressed="icon_inventory_red" Style="{StaticResource SessionSelectorButton}" />
+            </Grid>
+            <!-- Childs selector section -->
+            <Grid x:Name="GridChildsLine" IsVisible="false" HorizontalOptions="Fill" VerticalOptions="Start">
+                <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                    <StackLayout x:Name="ChildsContainer" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+                </ScrollView>
+            </Grid>
+            <!-- Bottle content selector section -->
+            <Grid x:Name="GridBottleLine" IsVisible="false" ColumnSpacing="0" HorizontalOptions="Fill" VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <localButtons:ImageButton ImageScale="0.8" Grid.Column="0" x:Name="BtnBreastMilk" Text="{helpers:Translate BreastMilk}" ImageNormal="breast_milk_bold_blue" ImagePressed="breast_milk_bold_red" Style="{StaticResource SessionSelectorButton}" />
+                <localButtons:ImageButton ImageScale="{OnPlatform Default=1,Android=.8}" Grid.Column="1" x:Name="BtnFormula" Text="{helpers:Translate Formula}" ImageNormal="btn_formula_bold_blue" ImagePressed="btn_formula_bold_red" Style="{StaticResource SessionSelectorButton}" />
+                <!--<localButtons:ImageButton ImageScale="0.7" Grid.Column="0" x:Name="BtnBreastMilk" Text="{helpers:Translate BreastMilk}" ImageNormal="breast_milk_med_blue" ImagePressed="breast_milk_red" Style="{StaticResource SessionSelectorButton}" />
+                <localButtons:ImageButton Grid.Column="1" x:Name="BtnFormula" Text="{helpers:Translate Formula}" ImageNormal="formula_med_blue" ImagePressed="formula_red" Style="{StaticResource SessionSelectorButton}" />-->
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

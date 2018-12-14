@@ -1,0 +1,1415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddANote" xml:space="preserve">
+    <value>ADD NOTE</value>
+  </data>
+  <data name="AddANoteDescription" xml:space="preserve">
+    <value>Add a note about this session</value>
+  </data>
+  <data name="AddAnotherBaby" xml:space="preserve">
+    <value>Add another child</value>
+  </data>
+  <data name="AddAnotherPeople" xml:space="preserve">
+    <value>Add another people</value>
+  </data>
+  <data name="AddAnotherPump" xml:space="preserve">
+    <value>Add another pump</value>
+  </data>
+  <data name="AddMoreMedia" xml:space="preserve">
+    <value>Add more media</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>Add a photo</value>
+  </data>
+  <data name="AddASession" xml:space="preserve">
+    <value>Add a session</value>
+  </data>
+  <data name="TellUsAboutLittleOne" xml:space="preserve">
+    <value>Tell us about your little one!</value>
+  </data>
+  <data name="AddYourChild" xml:space="preserve">
+    <value>ADD YOUR CHILD (OPTIONAL)</value>
+  </data>
+  <data name="AddAnotherChild" xml:space="preserve">
+    <value>Do you want to add another child?</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllDone" xml:space="preserve">
+    <value>All Done!</value>
+  </data>
+  <data name="AllModes" xml:space="preserve">
+    <value>All Modes</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>ANSWER</value>
+  </data>
+  <data name="AreYouSureToUseThisMilk" xml:space="preserve">
+    <value>Are you sure you want to start a bottle feeding session using this milk now?</value>
+  </data>
+  <data name="AreYouSureWantToDelete" xml:space="preserve">
+    <value>Are you sure you want to remove this child?</value>
+  </data>
+  <data name="AreYouSureWantToDeleteReminder" xml:space="preserve">
+    <value>Are you sure you want to delete this scheduled pumping session?</value>
+  </data>
+  <data name="AuthenticationFailure" xml:space="preserve">
+    <value>Oops, that email or password is incorrect</value>
+  </data>
+  <data name="AutoStart" xml:space="preserve">
+    <value>Auto Start</value>
+  </data>
+  <data name="AutoStartUpper" xml:space="preserve">
+    <value>AUTO-START</value>
+  </data>
+  <data name="AutoStartPump" xml:space="preserve">
+    <value>Auto-start my pump</value>
+  </data>
+  <data name="AutoStartForSession" xml:space="preserve">
+    <value>Auto-start my pump for this session</value>
+  </data>
+  <data name="AutoStartForSessionDescription" xml:space="preserve">
+    <value>You’ll get an alert two minutes before your pump automatically starts.</value>
+  </data>
+  <data name="AverageOuncesPerDay" xml:space="preserve">
+    <value>Average ounces pumped per day:</value>
+  </data>
+  <data name="AverageNursedPerDay" xml:space="preserve">
+    <value>Average minutes nursed per day:</value>
+  </data>
+  <data name="AverageBottlePerDay" xml:space="preserve">
+    <value>Average amount bottle fed per day:</value>
+  </data>
+  <data name="BestBy" xml:space="preserve">
+    <value>BestBy</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>BIRTHDAY</value>
+  </data>
+  <data name="BreastMilk" xml:space="preserve">
+    <value>Breast milk</value>
+  </data>
+  <data name="BTStatus" xml:space="preserve">
+    <value>BT Status</value>
+  </data>
+  <data name="Bottle" xml:space="preserve">
+    <value>Bottle</value>
+  </data>
+  <data name="BottleUpper" xml:space="preserve">
+    <value>BOTTLE</value>
+  </data>
+  <data name="BottleSession" xml:space="preserve">
+    <value>BOTTLE SESSION</value>
+  </data>
+  <data name="BottleInSession" xml:space="preserve">
+    <value>BOTTLE FEED IN SESSION</value>
+  </data>
+  <data name="BottleBreast" xml:space="preserve">
+    <value>BOTTLE - BREAST MILK</value>
+  </data>
+  <data name="BottleFormula" xml:space="preserve">
+    <value>BOTTLE - FORMULA</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="CalibrateLevelSensors" xml:space="preserve">
+    <value>Calibrate Level Sensors</value>
+  </data>
+  <data name="CalibrationUpdated" xml:space="preserve">
+    <value>CALIBRATION UDPATED!</value>
+  </data>
+  <data name="ChangeMyPassword" xml:space="preserve">
+    <value>Change my password</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>CHANGE PASSWORD</value>
+  </data>
+  <data name="CharactersLeft" xml:space="preserve">
+    <value>characters left</value>
+  </data>
+  <data name="Charge" xml:space="preserve">
+    <value>Charge</value>
+  </data>
+  <data name="ChooseModeUpper" xml:space="preserve">
+    <value>CHOOSE A MODE</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>CHOOSE TYPE</value>
+  </data>
+  <data name="ClickToNext" xml:space="preserve">
+    <value>CLICK TO NEXT</value>
+  </data>
+  <data name="CombinedTotal" xml:space="preserve">
+    <value>Combined Total</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>CONFIRM PASSWORD</value>
+  </data>
+  <data name="ConnectToYourPump" xml:space="preserve">
+    <value>Pair your pump to control it with the app and track real-time milk expression!</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create an account</value>
+  </data>
+  <data name="CreateANewMode" xml:space="preserve">
+    <value>Add another mode</value>
+  </data>
+  <data name="CreateNewModeUpper" xml:space="preserve">
+    <value>CREATE NEW MODE</value>
+  </data>
+  <data name="CreateNewReminder" xml:space="preserve">
+    <value>Create a new reminder</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>CURRENT PASSWORD</value>
+  </data>
+  <data name="DarnYourPasswordOrEmailIsNotValid" xml:space="preserve">
+    <value>Darn your password or email is not valid.</value>
+  </data>
+  <data name="Dash" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>DATE</value>
+  </data>
+  <data name="DateDelimiter" xml:space="preserve">
+    <value>--/--</value>
+  </data>
+  <data name="DateDelimiter2" xml:space="preserve">
+    <value>__/__/____</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="DescribePumpMode" xml:space="preserve">
+    <value>Describe what this mode's for</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteUpper" xml:space="preserve">
+    <value>DELETE</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Duration_Upper" xml:space="preserve">
+    <value>DURATION</value>
+  </data>
+  <data name="EditUpper" xml:space="preserve">
+    <value>EDIT</value>
+  </data>
+  <data name="EditNote" xml:space="preserve">
+    <value>EDIT NOTE</value>
+  </data>
+  <data name="EnterChildsName" xml:space="preserve">
+    <value>Enter your child’s name here</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>EMAIL</value>
+  </data>
+  <data name="EmailNewPasswordUpper" xml:space="preserve">
+    <value>EMAIL NEW PASSWORD</value>
+  </data>
+  <data name="DontSweatIt" xml:space="preserve">
+    <value>Don't sweat it! We can email you a new password.</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>EMAIL SENT!</value>
+  </data>
+  <data name="EmailOnTheWay" xml:space="preserve">
+    <value>The email is on its way!</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="EndSession" xml:space="preserve">
+    <value>END SESSION</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Enter your email</value>
+  </data>
+  <data name="EnterYourPassword" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="FactoryReset" xml:space="preserve">
+    <value>Factory Reset</value>
+  </data>
+  <data name="Feed" xml:space="preserve">
+    <value>Feed</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter:</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>FINISHED</value>
+  </data>
+  <data name="FirstTimePumper" xml:space="preserve">
+    <value>First Time Pumper</value>
+  </data>
+  <data name="ForgetThisDevice" xml:space="preserve">
+    <value>Forget This Device</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Formula</value>
+  </data>
+  <data name="Freezer" xml:space="preserve">
+    <value>Freezer</value>
+  </data>
+  <data name="Fridge" xml:space="preserve">
+    <value>Fridge</value>
+  </data>
+  <data name="GotMilkHowWouldYouLikeStoreIt" xml:space="preserve">
+    <value>Got milk? How would you like to store it?</value>
+  </data>
+  <data name="GotMilkHowWouldYouLikeStoreItOptional" xml:space="preserve">
+    <value>Got milk? What will you do with it next? (optional)</value>
+  </data>
+  <data name="HelloAndWelcome" xml:space="preserve">
+    <value>HELLO and WELCOME!</value>
+  </data>
+  <data name="HelpsLetdown" xml:space="preserve">
+    <value>(helps letdown)</value>
+  </data>
+  <data name="HiMama" xml:space="preserve">
+    <value>Hello!</value>
+  </data>
+  <data name="HistoryUpper" xml:space="preserve">
+    <value>HISTORY</value>
+  </data>
+  <data name="HowMuchEat" xml:space="preserve">
+    <value>How much did the little one eat?</value>
+  </data>
+  <data name="HowWillYouStoreMilk" xml:space="preserve">
+    <value>How will you store your milk? (optional)</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="HoursLower" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="IfYouRemoveBabyYoullLoseAllData" xml:space="preserve">
+    <value>If you remove this child, you'll lose all the data associated with them.</value>
+  </data>
+  <data name="IHaveReadThe" xml:space="preserve">
+    <value>I have read the</value>
+  </data>
+  <data name="InJustFewSteps" xml:space="preserve">
+    <value>In just a few quick steps, we'll have you all setup!</value>
+  </data>
+  <data name="InvalidEntry" xml:space="preserve">
+    <value>INVALID ENTRY</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>INVALID PASSWORD</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Left_Upper" xml:space="preserve">
+    <value>LEFT</value>
+  </data>
+  <data name="LeftBreast" xml:space="preserve">
+    <value>Left Breast</value>
+  </data>
+  <data name="LeftTotal" xml:space="preserve">
+    <value>Left Total</value>
+  </data>
+  <data name="Letdown" xml:space="preserve">
+    <value>Letdown</value>
+  </data>
+  <data name="LogPastBottleFeed" xml:space="preserve">
+    <value>LOG A PAST BOTTLE FEED</value>
+  </data>
+  <data name="LogBottleSession" xml:space="preserve">
+    <value>LOG BOTTLE SESSION</value>
+  </data>
+  <data name="LogPastPump" xml:space="preserve">
+    <value>LOG A PAST PUMP</value>
+  </data>
+  <data name="LogPastNurse" xml:space="preserve">
+    <value>LOG NURSING SESSION</value>
+  </data>
+  <data name="LoremIpsum" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</value>
+  </data>
+  <data name="MinimumLengthRule" xml:space="preserve">
+    <value>At least 8 characters long</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="MinutesLower" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="ModeNameUpper" xml:space="preserve">
+    <value>MODE NAME</value>
+  </data>
+  <data name="ModeDescriptionUpper" xml:space="preserve">
+    <value>MODE DESCRIPTION (OPTIONAL)</value>
+  </data>
+  <data name="ModesUpper" xml:space="preserve">
+    <value>MODES</value>
+  </data>
+  <data name="Mom" xml:space="preserve">
+    <value>MOM</value>
+  </data>
+  <data name="MomsEmail" xml:space="preserve">
+    <value>MOM's EMAIL</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="MyBabies" xml:space="preserve">
+    <value>My Children</value>
+  </data>
+  <data name="MyInfo" xml:space="preserve">
+    <value>My Info</value>
+  </data>
+  <data name="MyInventory" xml:space="preserve">
+    <value>MY INVENTORY</value>
+  </data>
+  <data name="MyPeople" xml:space="preserve">
+    <value>My People</value>
+  </data>
+  <data name="MyProfileUpper" xml:space="preserve">
+    <value>MY PROFILE</value>
+  </data>
+  <data name="MyReminders" xml:space="preserve">
+    <value>My Reminders</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>NAME</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>NEW</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>NEW PASSWORD</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>NEXT</value>
+  </data>
+  <data name="NickNameUpper" xml:space="preserve">
+    <value>NICKNAME</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="NoKeepUpper" xml:space="preserve">
+    <value>NO, KEEP</value>
+  </data>
+  <data name="NoKeepMyBaby" xml:space="preserve">
+    <value>NO, KEEP</value>
+  </data>
+  <data name="NoKeepThisMilk" xml:space="preserve">
+    <value>NO, KEEP</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>NOTE</value>
+  </data>
+  <data name="NotePlaceholder" xml:space="preserve">
+    <value>This is a note that someone wrote</value>
+  </data>
+  <data name="NoteDetails" xml:space="preserve">
+    <value>note details note details note details note details note details note details note details note details note details</value>
+  </data>
+  <data name="NoThanks" xml:space="preserve">
+    <value>NO, THANKS</value>
+  </data>
+  <data name="NoUpdate" xml:space="preserve">
+    <value>No Update</value>
+  </data>
+  <data name="NoWarriesWeCanUpdateYourPassword" xml:space="preserve">
+    <value>No worries, mama. We can update your password.</value>
+  </data>
+  <data name="NoWorriesWellSendNewPasswordToYourEmail" xml:space="preserve">
+    <value>No worries, mama. We'll send a new password to your email.</value>
+  </data>
+  <data name="NumericDelimiter" xml:space="preserve">
+    <value>--.--</value>
+  </data>
+  <data name="NursingSession" xml:space="preserve">
+    <value>NURSING SESSION</value>
+  </data>
+  <data name="OneFillBothBottlesToOneOzAndClickBelow" xml:space="preserve">
+    <value>1. Fill both bottles to 1 oz and click below</value>
+  </data>
+  <data name="OneSymbolRule" xml:space="preserve">
+    <value>At least 1 symbol</value>
+  </data>
+    <data name="OnUpper" xml:space="preserve">
+    <value>ON</value>
+  </data>
+    <data name="OffUpper" xml:space="preserve">
+    <value>OFF</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Ounces" xml:space="preserve">
+    <value>OUNCES</value>
+  </data>
+  <data name="OuncesLower" xml:space="preserve">
+    <value>ounces</value>
+  </data>
+  <data name="OuncesPumped" xml:space="preserve">
+    <value>OUNCES PUMPED</value>
+  </data>
+  <data name="PairPump" xml:space="preserve">
+    <value>PAIR PUMP</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>PASSWORD</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>PASSWORD CHANGED!</value>
+  </data>
+  <data name="PhaseUpper" xml:space="preserve">
+    <value>PHASE</value>
+  </data>
+  <data name="PerSession" xml:space="preserve">
+    <value>Per Session</value>
+  </data>
+  <data name="PlusSign" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="Prefered" xml:space="preserve">
+    <value>PREFERRED</value>
+  </data>
+  <data name="PrivacyPolicyTermsOfService" xml:space="preserve">
+    <value>Privacy Policy  |  Terms of Service</value>
+  </data>
+  <data name="ProblemsIndentified" xml:space="preserve">
+    <value>Problems Indentified</value>
+  </data>
+  <data name="Pump" xml:space="preserve">
+    <value>Pump</value>
+  </data>
+  <data name="Pumping" xml:space="preserve">
+    <value>Pumping</value>
+  </data>
+  <data name="PumpingUpper" xml:space="preserve">
+    <value>PUMPING</value>
+  </data>
+    <data name="PumpingSession_Upper" xml:space="preserve">
+    <value>PUMPING SESSION</value>
+  </data>
+  <data name="PumpDetected" xml:space="preserve">
+    <value>PUMP DETECTED</value>
+  </data>
+  <data name="PumpingAverages" xml:space="preserve">
+    <value>Pumping Averages</value>
+  </data>
+  <data name="PumpInUse" xml:space="preserve">
+    <value>Pump in Use</value>
+  </data>
+  <data name="PumpLater" xml:space="preserve">
+    <value>PUMP LATER</value>
+  </data>
+  <data name="PumpMode" xml:space="preserve">
+    <value>PUMP MODE</value>
+  </data>
+  <data name="PumpPhase" xml:space="preserve">
+    <value>Pump Phase</value>
+  </data>
+  <data name="Reminders" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="ScheduleSession" xml:space="preserve">
+    <value>Schedule a pumping session</value>
+  </data>
+  <data name="SchedulePumpSessionUpper" xml:space="preserve">
+    <value>SCHEDULE PUMP SESSION</value>
+  </data>
+  <data name="RemindMe" xml:space="preserve">
+    <value>Remind Me</value>
+  </data>
+  <data name="RemoveBaby" xml:space="preserve">
+    <value>Remove child</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Repeat?</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>RESUME</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="Right_Upper" xml:space="preserve">
+    <value>RIGHT</value>
+  </data>
+  <data name="RightBreast" xml:space="preserve">
+    <value>Right Breast</value>
+  </data>
+  <data name="RightTotal" xml:space="preserve">
+    <value>Right Total</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>SAVED!</value>
+  </data>
+  <data name="Side" xml:space="preserve">
+    <value>SIDE</value>
+  </data>
+  <data name="SavedPumpMode" xml:space="preserve">
+    <value>Your new mode is saved!</value>
+  </data>
+  <data name="SavedBottleSession" xml:space="preserve">
+    <value>Your bottle session has been saved!</value>
+  </data>
+  <data name="SavedNursingSession" xml:space="preserve">
+    <value>Your nursing session has been saved!</value>
+  </data>
+  <data name="SavePastPump" xml:space="preserve">
+    <value>SAVE PAST PUMP</value>
+  </data>
+  <data name="SaveReminder" xml:space="preserve">
+    <value>SAVE THIS REMINDER</value>
+  </data>
+  <data name="SaveThisMode" xml:space="preserve">
+    <value>SAVE THIS MODE</value>
+  </data>
+  <data name="SaveThisNote" xml:space="preserve">
+    <value>SAVE THIS NOTE</value>
+  </data>
+  <data name="SaveThisSession" xml:space="preserve">
+    <value>SAVE THIS SESSION</value>
+  </data>
+  <data name="SessionNameUpper" xml:space="preserve">
+    <value>SESSION NAME</value>
+  </data>
+  <data name="SelectChild" xml:space="preserve">
+    <value>SELECT A CHILD</value>
+  </data>
+    <data name="SelectedMode_Upper" xml:space="preserve">
+    <value>SELECTED MODE</value>
+  </data>
+  <data name="SelectedChild" xml:space="preserve">
+    <value>SELECTED CHILD</value>
+  </data>
+  <data name="SelectSound" xml:space="preserve">
+    <value>--Select a Sound--</value>
+  </data>
+  <data name="SelectDateUpper" xml:space="preserve">
+    <value>SELECT DATE</value>
+  </data>
+  <data name="SelectTimeUpper" xml:space="preserve">
+    <value>SELECT TIME</value>
+  </data>
+  <data name="SelectYourSides" xml:space="preserve">
+    <value>SELECT YOUR SIDES</value>
+  </data>
+  <data name="SetCalibrationPointOne" xml:space="preserve">
+    <value>Set Calibration Point 1</value>
+  </data>
+  <data name="SetCalibrationPointTwo" xml:space="preserve">
+    <value>Set Calibration Point 2</value>
+  </data>
+  <data name="SetTime" xml:space="preserve">
+    <value>SET TIME</value>
+  </data>
+  <data name="SetTimer" xml:space="preserve">
+    <value>Set Timer</value>
+  </data>
+  <data name="SettingsUpper" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>LOG IN</value>
+  </data>
+  <data name="SignInWithFacebook" xml:space="preserve">
+    <value>Log in with Facebook</value>
+  </data>
+  <data name="SignInWithGoogle" xml:space="preserve">
+    <value>Log in with Google</value>
+  </data>
+  <data name="Signout" xml:space="preserve">
+    <value>LOG OUT</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>SIGN UP</value>
+  </data>
+  <data name="SignUpViaEmail" xml:space="preserve">
+    <value>SIGN UP VIA EMAIL</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>SOUND</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>SOURCE</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>SPEED</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="StartTime_Upper" xml:space="preserve">
+    <value>START TIME</value>
+  </data>
+  <data name="StopFeeding" xml:space="preserve">
+    <value>STOP FEEDING</value>
+  </data>
+  <data name="StopNursing" xml:space="preserve">
+    <value>STOP NURSING</value>
+  </data>
+  <data name="StopPumping" xml:space="preserve">
+    <value>STOP PUMPING</value>
+  </data>
+  <data name="Suction" xml:space="preserve">
+    <value>SUCTION</value>
+  </data>
+  <data name="TapSideToBegin" xml:space="preserve">
+    <value>Tap a side to begin</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>terms</value>
+  </data>
+  <data name="TermsServiceTopLargeTitle" xml:space="preserve">
+    <value>TERMS OF SERVICE</value>
+  </data>
+  <data name="TestMenu" xml:space="preserve">
+    <value>TEST MENU</value>
+  </data>
+  <data name="ThisCanNotBeUndone" xml:space="preserve">
+    <value>This cannot be undone.</value>
+  </data>
+  <data name="ThisPumpNamed" xml:space="preserve">
+    <value>This pump is named</value>
+  </data>
+  <data name="ThisWillDeleteFromInventory" xml:space="preserve">
+    <value>It will permanently delete it from your inventory.</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>TIME</value>
+  </data>
+  <data name="TimeDelimiter" xml:space="preserve">
+    <value>--:--</value>
+  </data>
+  <data name="TimeDelimiter2" xml:space="preserve">
+    <value>__:__</value>
+  </data>
+  <data name="TimeToGivePumpName" xml:space="preserve">
+    <value>Time to give your pump a name!</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+    <data name="Total_Upper" xml:space="preserve">
+    <value>TOTAL</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>TOTAL AMOUNT</value>
+  </data>
+  <data name="TotalDuration" xml:space="preserve">
+    <value>TOTAL DURATION</value>
+  </data>
+  <data name="TotalFed" xml:space="preserve">
+    <value>TOTAL FED</value>
+  </data>
+  <data name="TotalOunces" xml:space="preserve">
+    <value>TOTAL OUNCES</value>
+  </data>
+  <data name="TotalPumpTime" xml:space="preserve">
+    <value>TOTAL PUMP TIME</value>
+  </data>
+  <data name="Trash" xml:space="preserve">
+    <value>Trash</value>
+  </data>
+  <data name="TwoCharactersRule" xml:space="preserve">
+    <value>At least 2 letters</value>
+  </data>
+  <data name="TwoDigitsRule" xml:space="preserve">
+    <value>At least 2 digits</value>
+  </data>
+  <data name="TwoFillBothBottlesToFiveOzAndClickBelow" xml:space="preserve">
+    <value>2. Fill both bottles to 5 oz and click below</value>
+  </data>
+  <data name="UpdateDevice" xml:space="preserve">
+    <value>UPDATE DEVICE</value>
+  </data>
+  <data name="UpdateStatus" xml:space="preserve">
+    <value>Update Status</value>
+  </data>
+  <data name="Use" xml:space="preserve">
+    <value>USE</value>
+  </data>
+  <data name="VideoTutorial" xml:space="preserve">
+    <value>VIDEO TUTORIAL</value>
+  </data>
+  <data name="VistOurSite" xml:space="preserve">
+    <value>VISIT OUR SITE</value>
+  </data>
+  <data name="WantPreview" xml:space="preserve">
+    <value>Want a preview? Checkout our video or dive right in and get started.</value>
+  </data>
+  <data name="WatchThe" xml:space="preserve">
+    <value>WATCH THE</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="WeeklyTotal" xml:space="preserve">
+    <value>Weekly total</value>
+  </data>
+  <data name="WhatShouldCallCutie" xml:space="preserve">
+    <value>What should we call the cutie?</value>
+  </data>
+  <data name="WhatTypeOfMilk" xml:space="preserve">
+    <value>What's in the bottle?</value>
+  </data>
+  <data name="WhatWillYouCallThisMode" xml:space="preserve">
+    <value>What will you call this mode?</value>
+  </data>
+  <data name="WhatWillYouCallThisPump" xml:space="preserve">
+    <value>What will you call this pump?</value>
+  </data>
+  <data name="WhatWouldYouLikeNameThis" xml:space="preserve">
+    <value>What would you like to name this?</value>
+  </data>
+  <data name="WouldYouLikeAddDescription" xml:space="preserve">
+    <value>Would you like to add a description?</value>
+  </data>
+  <data name="WouldYouLikeToSaveThisExperienceAsNewMode" xml:space="preserve">
+    <value>Would you like to save this experience as a new mode?</value>
+  </data>
+  <data name="WriteMoreAboutModeHere" xml:space="preserve">
+    <value>Write more about your mode here.</value>
+  </data>
+  <data name="WriteNameHere" xml:space="preserve">
+    <value>Write a name here</value>
+  </data>
+  <data name="WriteYourPassword" xml:space="preserve">
+    <value>Write your password</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="YesDeleteUpper" xml:space="preserve">
+    <value>YES, DELETE</value>
+  </data>
+  <data name="YesDeleteMyBaby" xml:space="preserve">
+    <value>YES, REMOVE</value>
+  </data>
+  <data name="YesSaveAsNewMode" xml:space="preserve">
+    <value>YES, SAVE AS A NEW MODE</value>
+  </data>
+  <data name="YesUseNow" xml:space="preserve">
+    <value>YES, USE</value>
+  </data>
+  <data name="YouMadeSomeChangesToPumpMode" xml:space="preserve">
+    <value>You made some changes to your pump mode.</value>
+  </data>
+  <data name="YouMadeSomeEdits" xml:space="preserve">
+    <value>YOU MADE SOME EDITS</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>BACK</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>CLOSE</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>CONTINUE</value>
+  </data>
+  <data name="EnterNamePumpingMode" xml:space="preserve">
+    <value>Enter a name for this pumping mode</value>
+  </data>
+  <data name="EnterNicknameForSession" xml:space="preserve">
+    <value>Enter a nickname for this session</value>
+  </data>
+  <data name="EnterPumpNickname" xml:space="preserve">
+    <value>Enter a nickname for this pump</value>
+  </data>
+  <data name="IfThePasskeyMatchecOnPump" xml:space="preserve">
+    <value>If the passkey on your phone matches the one on your pump, press the control knob on your pump to complete the pairing process.</value>
+  </data>
+  <data name="NameYourPump" xml:space="preserve">
+    <value>NAME YOUR PUMP</value>
+  </data>
+  <data name="PairYouPumpOptional" xml:space="preserve">
+    <value>PAIR YOUR PUMP (OPTIONAL)</value>
+  </data>
+  <data name="PumpName" xml:space="preserve">
+    <value>PUMP NAME</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>SKIP</value>
+  </data>
+  <data name="WhatYouWantCallThePump" xml:space="preserve">
+    <value>What do you want to call this pump?</value>
+  </data>
+  <data name="IAgree" xml:space="preserve">
+    <value>I AGREE</value>
+  </data>
+  <data name="TermsAndConditionText" xml:space="preserve">
+    <value>Acceptance of the Terms
+
+    This agreement is entered into by and between You and Babyation LLC (“Company”, “we”, “our” or “us”). The following terms and conditions, together with any documents they expressly incorporate by reference (collectively, these “Terms”), govern your access to and use of our Babyation software and any updates thereto (the “Software”), http://www.babayation.com (the “Website”), and any functionality and services offered on or through our Software or Website (collectively, “Services”), whether as a guest or a registered user.
+ 
+    Please read the Terms carefully before you start to use the Services. By using the Services or by clicking to accept or agree to these Terms when the option is made available to you, you accept and agree to be bound and abide by these Terms including our Privacy Policy, incorporated herein by reference. If you do not want to agree to these Terms, you must not access or use our Services.
+ 
+    The Services are offered and available to users who are 18 years of age or older, and reside in the United States. By using the Services, you represent and warrant that you are of legal age to form a binding contract with the Company and meet all of the foregoing eligibility requirements. If you do not meet all of these requirements, you must not access or use the Services.
+
+Changes to the Terms  
+
+    We may revise and update these Terms from time to time in our sole discretion. All changes are effective immediately when we post them on the Website or otherwise make them available through our Services, and apply to all access to and use of the Services thereafter. However, any changes to the dispute resolution provisions set forth in the section on Governing Law and Jurisdiction will not apply to any disputes for which the parties have actual notice prior to the date the change is posted.
+ 
+    Your continued use of the Services following the posting of revised Terms means that you accept and agree to the changes. You are expected to check the Website from time to time so you are aware of any changes, as they are binding on you.
+
+License
+
+    So long as you comply with these Terms, and subject to any limitations or restrictions in these Terms, we give you a limited, nonexclusive, nontransferable, revocable license to download and use the Software, solely to access the Services. You may not copy, modify, or reproduce any part of the Software, nor may you reverse engineer or attempt to extract the source code of the Software.  You may not distribute, sell, rent, lease, or transfer, or attempt to sell, rent, lease, or transfer, the Software or your license to use the Software. Your use of the Software does not give you of any intellectual property rights in the Software.
+
+Accessing the Services and Account Security  
+
+    We reserve the right to withdraw or amend the Services in our sole discretion without notice. We will not be liable if for any reason all or any part of the Services are unavailable at any time or for any period. From time to time, we may restrict access to some or all of the Services to users, including registered users.
+ 
+    You are responsible for:
+ 
+•	Making all arrangements necessary for you to have access to the Services.
+•	Ensuring that all persons who access the Services through your internet connection, computer or mobile device are aware of these Terms and comply with them.
+
+    To access the Services, you may be asked to provide certain registration details or other information. It is a condition of your use of the Services that all the information you provide on through the Services is correct, current and complete. You agree that all information you provide to register with us, for the Services, or otherwise, including but not limited to through the use of any interactive features in the Services, is governed by our Privacy Policy, and you consent to all actions we take with respect to your information consistent with our Privacy Policy.
+ 
+    We have the right to disable any user name, password or other identifier, whether chosen by you or provided by us, at any time in our sole discretion for any or no reason, including if, in our opinion, you have violated any provision of these Terms.
+
+Intellectual Property Rights  
+
+    The Services and their contents, features and functionality, including but not limited to all information, including but not limited to personal information (as that term is defined in the Privacy Policy), software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by the Company, its licensors or other providers of such material and are protected by United States and international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws.
+ 
+    These Terms permit you to use the Services for your personal, non-commercial use only. You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store or transmit any of the material available through our Services, except as follows:
+ 
+•	As expressly permitted by the license herein, you may download a copy of the Software to your computer or mobile device.
+•	Your computer or mobile device may temporarily store copies of material in RAM incidental to your accessing and viewing those materials.
+•	You may store files that are automatically cached by your web browser for display enhancement purposes.
+•	You may print or download one copy of a reasonable number of pages of the Website for your own personal, non-commercial use and not for further reproduction, publication or distribution.
+•	If we provide social media features with certain content, you may take such actions as are enabled by such features.
+
+    You must not:
+ 
+•	Modify copies of any materials accessible through the Services.
+•	Use any illustrations, photographs, video or audio sequences or any graphics separately from the accompanying text.
+•	Delete or alter any copyright, trademark or other proprietary rights notices from copies of materials accessible through the Services.
+
+    You must not access or use for any commercial purposes any part of the Services or any materials accessible through the Services.
+ 
+    If you print, copy, modify, download or otherwise use or provide any other person with access to any part of the Services in breach of the Terms, your right to use the Services will cease immediately and you must, at our option, return or destroy any copies of the materials you have made. No right, title or interest in or to the Services or any content accessible through the Services is transferred to you, and all rights not expressly granted are reserved by the Company. Any use of the Services not expressly permitted by these Terms is a breach of these Terms and may violate copyright, trademark and other laws.
+ 
+Trademarks  
+
+    The Company name, the term BABYATION, the Company logo and all related names, logos, product and service names, designs and slogans are trademarks of the Company or its affiliates or licensors. You must not use such marks without the prior written permission of the Company. All other names, logos, product and service names, designs and slogans on the Website or Software are the trademarks of their respective owners.
+
+Prohibited Uses  
+
+    You may use the Services only for lawful purposes and in accordance with these Terms. You agree not to use the Services:
+ 
+•	In any way that violates any applicable federal, state, local or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the US or other countries). 
+•	For the purpose of exploiting, harming or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information or otherwise.
+•	To send, knowingly receive, upload, download, use or re-use any material which does not comply with the Content Standards set out in these Terms.
+•	To transmit, or procure the sending of, any advertising or promotional material, including any “junk mail”, “chain letter” or “spam” or any other similar solicitation.
+•	To impersonate or attempt to impersonate the Company, a Company employee, another user or any other person or entity (including, without limitation, by using e-mail addresses or screen names associated with any of the foregoing).
+•	To engage in any other conduct that restricts or inhibits anyone’s use or enjoyment of the Services, or which, as determined by us, may harm the Company or users of the Services or expose them to liability.
+
+    Additionally, you agree not to:
+ 
+•	Use the Services in any manner that could disable, overburden, damage, or impair the Services or interfere with any other party’s use of the Services, including their ability to engage in real time activities through the Services.
+•	Use any robot, spider or other automatic device, process or means to access the Services for any purpose, including monitoring or copying any of the material on the Services.
+•	Use any manual process to monitor or copy any of the material on the Services or for any other unauthorized purpose without our prior written consent.
+•	Use any device, software or routine that interferes with the proper working of the Services.
+•	Introduce any viruses, Trojan horses, worms, logic bombs or other material which is malicious or technologically harmful.
+•	Attempt to gain unauthorized access to, interfere with, damage or disrupt any parts of the Services, the server on which the Website or Software is stored, or any server, computer or database connected to the Services.
+•	Attack the Services via a denial-of-service attack or a distributed denial-of-service attack.
+•	Otherwise attempt to interfere with the proper working of the Services.
+
+User Contributions  
+
+    The Services may allow you to communicate with third parties, and may include other interactive features (collectively, “Interactive Services”) that allow users to submit, display or transmit to other users or other persons (hereinafter, “post”) content or materials (collectively, “User Contributions”) on or through the Services.
+ 
+    All User Contributions must comply with the Content Standards set out in these Terms.
+ 
+    Any User Contribution you submit on or through the Services will be considered non-confidential and non-proprietary. By providing any User Contribution through the Services, you grant us and our affiliates and service providers, and each of their and our respective licensees, successors and assigns, the right to use, reproduce, modify, perform, display, distribute and otherwise disclose to third parties any such material for any purpose.
+ 
+    You represent and warrant that:
+ 
+•	You own or control all rights in and to the User Contributions and have the right to grant the license granted above to us and our affiliates and service providers, and each of their and our respective licensees, successors and assigns.
+•	All of your User Contributions do and will comply with these Terms.
+
+    You understand and acknowledge that you are responsible for any User Contributions you submit or contribute, and you, not the Company, have fully responsibility for such content, including its legality, reliability, accuracy and appropriateness.
+ 
+     We are not responsible, or liable to any third party, for the content or accuracy of any User Contributions posted by you or any other user of the Services.
+
+Monitoring and Enforcement; Termination  
+
+    We have the right to:
+ 
+•	Remove or refuse to post any User Contributions for any or no reason in our sole discretion.
+•	Take any action with respect to any User Contribution that we deem necessary or appropriate in our sole discretion, including if we believe that such User Contribution violates the Terms, including the Content Standards, infringes any intellectual property right or other right of any person or entity, threatens the personal safety of users of the Services or the public or could create liability for the Company.
+•	Disclose your identity or other information about you to any third party who claims that material posted by you violates their rights, including their intellectual property rights or their right to privacy.
+•	Take appropriate legal action, including without limitation, referral to law enforcement, for any illegal or unauthorized use of the Services.
+•	Terminate or suspend your access to all or part of the Services for any or no reason, including without limitation, any violation of these Terms.
+
+    Without limiting the foregoing, we have the right to fully cooperate with any law enforcement authorities or court order requesting or directing us to disclose the identity or other information of anyone posting any materials on or through the Services. YOU WAIVE AND HOLD HARMLESS THE COMPANY AND ITS AFFILIATES, LICENSEES AND SERVICE PROVIDERS FROM ANY CLAIMS RESULTING FROM ANY ACTION TAKEN BY THE COMPANY AND ANY OF THE FOREGOING PARTIES DURING OR AS A RESULT OF ITS INVESTIGATIONS AND FROM ANY ACTIONS TAKEN AS A CONSEQUENCE OF INVESTIGATIONS BY EITHER THE COMPANY OR SUCH PARTIES OR LAW ENFORCEMENT AUTHORITIES.
+ 
+    However, we do not undertake to review material before it is posted on or through the Services, and cannot ensure prompt removal of objectionable material after it has been posted. Accordingly, we assume no liability for any action or inaction regarding transmissions, communications or content provided by any user or third party. We have no liability or responsibility to anyone for performance or nonperformance of the activities described in this section.
+
+Content Standards  
+
+    These content standards (“Content Standards”) apply to any and all User Contributions and use of Interactive Services. User Contributions must in their entirety comply with all applicable federal, state, local and international laws and regulations. Without limiting the foregoing, User Contributions must not:
+ 
+•	Contain any material which is defamatory, obscene, indecent, abusive, offensive, harassing, violent, hateful, inflammatory or otherwise objectionable.
+•	Promote sexually explicit or pornographic material, violence, or discrimination based on race, sex, religion, nationality, disability, sexual orientation or age.
+•	Infringe any patent, trademark, trade secret, copyright or other intellectual property or other rights of any other person.
+•	Violate the legal rights (including the rights of publicity and privacy) of others or contain any material that could give rise to any civil or criminal liability under applicable laws or regulations or that otherwise may be in conflict with these Terms including our Privacy Policy.
+•	Be likely to deceive any person.
+•	Promote any illegal activity, or advocate, promote or assist any unlawful act.
+•	Cause annoyance, inconvenience or needless anxiety or be likely to upset, embarrass, alarm or annoy any other person.
+•	Impersonate any person, or misrepresent your identity or affiliation with any person or organization.
+•	Involve commercial activities or sales, such as contests, sweepstakes and other sales promotions, barter or advertising.
+•	Give the impression that they emanate from or are endorsed by us or any other person or entity, if this is not the case.
+
+Copyright Infringement  
+
+    If you believe that any User Contributions violate your copyright, please contact us at hi@babyation.com. It is the policy of the Company to terminate the user accounts of repeat infringers.
+
+Reliance on Information Posted  
+
+    The information presented on or through the Services is made available solely for general information purposes. We do not warrant the accuracy, completeness or usefulness of this information. Any reliance you place on such information is strictly at your own risk. We disclaim all liability and responsibility arising from any reliance placed on such materials by you or any other visitor to the Services, or by anyone who may be informed of any of its contents.
+ 
+    The Services include content provided by third parties, including materials provided by other users, bloggers and third-party licensors, syndicators, aggregators and/or reporting services. All statements and/or opinions expressed in these materials, and all articles and responses to questions and other content, other than the content provided by the Company, are solely the opinions and the responsibility of the person or entity providing those materials. These materials do not necessarily reflect the opinion of the Company. We are not responsible, or liable to you or any third party, for the content or accuracy of any materials provided by any third parties.
+
+Changes to the Services  
+
+    We may update the content available on or through the Services from time to time, but its content is not necessarily complete or up-to-date. Any of the material on the Services may be out of date at any given time, and we are under no obligation to update such material.
+
+Information About You and Your Use of the Services  
+
+    All information we collect on or through the Services is subject to our Privacy Policy. By using the Services, you consent to all actions taken by us with respect to your information in compliance with the Privacy Policy.
+
+Online Purchases and Other Terms and Conditions  
+
+    All purchases through our site or other transactions for the sale of products or services formed through the Services or as a result of visits made by you are governed by our Terms of Sale, which are hereby incorporated into these Terms.
+ 
+    Additional terms and conditions may also apply to specific portions, services or features of the Website. All such additional terms and conditions are hereby incorporated by this reference into these Terms.
+
+Linking to the Website and Social Media Features  
+
+    You may link to our Website, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it, but you must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part.
+ 
+    The Services may provide certain social media features that enable you to:
+ 
+•	Link from your own or certain third-party websites to certain content available on or through the Services.
+•	Send e-mails or other communications with certain content, or links to certain content, on or through the Services. 
+•	Cause limited portions of content available on or through the Services to be displayed or appear to be displayed on your own or certain third-party websites.
+
+    You may use these features solely as they are provided by us and solely with respect to the content they are displayed with and otherwise in accordance with any additional terms and conditions we provide with respect to such features. Subject to the foregoing, you must not:
+ 
+•	Establish a link from any website that is not owned by you.
+•	Cause the Website or portions of it to be displayed, or appear to be displayed by, for example, framing, deep linking or in-line linking, on any other website.
+•	Link to any part of the Website other than the homepage.
+•	Otherwise take any action with respect to the materials available on or through the Services that is inconsistent with any other provision of these Terms.
+
+    The website from which you are linking, or on which you make certain content accessible, must comply in all respects with the Content Standards set out in these Terms.
+ 
+    You agree to cooperate with us in causing any unauthorized framing or linking immediately to cease. We reserve the right to withdraw linking permission without notice.
+ 
+    We may disable all or any social media features and any links at any time without notice in our discretion.
+
+Links from the Services  
+
+    If the Services contain or provide links to other websites and resources provided by third parties, these links are provided for your convenience only. This includes links contained in advertisements, including banner advertisements and sponsored links. We have no control over the contents of those websites or resources, and accept no responsibility for them or for any loss or damage that may arise from your use of them. If you decide to access any of the third party websites linked on or through the Services, you do so entirely at your own risk and subject to the terms and conditions of use for such websites.
+
+Geographic Restrictions  
+
+    We are based in the state of Missouri in the United States. We provide the Services for use only by persons located in the United States. We make no claims that the Services or any of its content is accessible or appropriate outside of the United States. Access to the Services may not be legal by certain persons or in certain countries. If you access the Services from outside the United States, you do so on your own initiative and are responsible for compliance with local laws.
+Service Outages 
+    We will use commercially reasonable efforts to make the Services available.  However, we make no guarantee of uninterrupted use or operation of the Services.  We may temporarily or permanently suspend the Services, in whole or in part, where required by law, in the case of security violations or threats, for service improvements, maintenance or repair, or for any other reason deemed necessary or desirable by us or beyond our control.
+    You acknowledge and understand that some or all of the Services may not function in the event of power failure or cellular service or internet outage, including failures or outages suffered by the Company or you. Should there be an interruption in the power supply or cellular service or internet outage, the Services may not function until power or cellular service or internet service is restored. You acknowledge that Company or any of its service providers or third-parties, are not responsible for any service outage related to the loss of electrical power, cellular service, internet connectivity, or any failures resulting from local or national disasters.  You acknowledge and understand that the Disclaimer of Warranties and Limitation on Liability described below apply to any such power failures or cellular service or internet outages, including but not limited to any liability for injuries suffered by you.
+Disclaimer of Warranties  
+
+    You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or through the Services will be free of viruses or other destructive code. You are responsible for implementing sufficient procedures and checkpoints to satisfy your particular requirements for anti-virus protection and accuracy of data input and output, and for maintaining a means external to our Services for any reconstruction of any lost data. WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR MOBILE DEVICE, COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES OR TO YOUR DOWNLOADING OF ANY MATERIAL POSTED ON THE WEBSITE, THROUGH THE SERVICES, OR ON ANY WEBSITE LINKED TO IT.
+ 
+    YOUR USE OF THE SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES IS AT YOUR OWN RISK. THE SERVICES, THEIR CONTENT AND ANY OTHER SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES ARE PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER THE COMPANY NOR ANY PERSON ASSOCIATED WITH THE COMPANY MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE SERVICES. WITHOUT LIMITING THE FOREGOING, NEITHER THE COMPANY NOR ANYONE ASSOCIATED WITH THE COMPANY REPRESENTS OR WARRANTS THAT THE SERVICES, THEIR CONTENT OR ANY OTHER SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES WILL BE ACCURATE, RELIABLE, ERROR-FREE OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT THE SERVICES OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.
+ 
+    THE COMPANY HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR PARTICULAR PURPOSE.
+
+THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
+
+Limitation on Liability  
+
+IN NO EVENT WILL THE COMPANY, ITS AFFILIATES OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE SERVICES, ANY WEBSITES LINKED TO IT, ANY CONTENT AVAILABLE ON OR THROUGH THE SERVICES OR SUCH OTHER WEBSITES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES OR SUCH OTHER WEBSITES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO, PERSONAL INJURY, PAIN AND SUFFERING, EMOTIONAL DISTRESS, LOSS OF REVENUE, LOSS OF PROFITS, LOSS OF BUSINESS OR ANTICIPATED SAVINGS, LOSS OF USE, LOSS OF GOODWILL, LOSS OF DATA, AND WHETHER CAUSED BY TORT (INCLUDING NEGLIGENCE), BREACH OF CONTRACT OR OTHERWISE, EVEN IF FORESEEABLE.
+
+ 
+    THE FOREGOING DOES NOT AFFECT ANY LIABILITY WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
+Indemnification  
+    You agree to defend, indemnify and hold harmless the Company, its affiliates, licensors and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses or fees (including reasonable attorneys’ fees) arising out of or relating to your violation of these Terms or your use of the Services, including, but not limited to, your User Contributions, any use of the Software or Website’s content, services and products other than as expressly authorized in these Terms or your use of any information obtained from or through the Services.
+
+Governing Law and Jurisdiction  
+
+    All matters relating to the Services and these Terms and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims), shall be governed by and construed in accordance with the internal laws of the State of Missouri without giving effect to any choice or conflict of law provision or rule (whether of the State of Missouri or any other jurisdiction).
+ 
+    Any legal suit, action or proceeding arising out of, or related to, these Terms or the Services shall be instituted exclusively in the federal courts of the United States or the courts of St. Louis County, Missouri. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.
+
+Limitation on Time to File Claims  
+
+    ANY CAUSE OF ACTION OR CLAIM YOU MAY HAVE ARISING OUT OF OR RELATING TO THESE TERMS OR THE SERVICES MUST BE COMMENCED WITHIN ONE (1) YEAR AFTER THE CAUSE OF ACTION ACCRUES, OTHERWISE, SUCH CAUSE OF ACTION OR CLAIM IS PERMANENTLY BARRED. 
+ 
+Waiver and Severability  
+
+    No waiver by the Company of any term or condition set forth in these Terms shall be deemed a further or continuing waiver of such term or condition or a waiver of any other term or condition, and any failure of the Company to assert a right or provision under these Terms shall not constitute a waiver of such right or provision.
+ 
+    If any provision of these Terms is held by a court or other tribunal of competent jurisdiction to be invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent such that the remaining provisions of the Terms will continue in full force and effect.
+
+Entire Agreement  
+
+    The Terms, including our Privacy Policy, constitute the sole and entire agreement between you and Company with respect to the Services and supersede all prior and contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the Services.
+
+Your Comments and Concerns  
+
+    This website is operated by Babyation LLC. 
+ 
+    All other feedback, comments, requests for technical support and other communications relating to the Services should be directed to hi@babyation.com.</value>
+  </data>
+  <data name="AboutUpper" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="AboutBabyation" xml:space="preserve">
+    <value>About Babyation</value>
+  </data>
+  <data name="AboutBabyationUpper" xml:space="preserve">
+    <value>ABOUT BABYATION</value>
+  </data>
+  <data name="ByBabyationLower" xml:space="preserve">
+    <value>by babyation</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>We're all about empowerment, inclusion, and openness.</value>
+  </data>
+  <data name="AboutBody" xml:space="preserve">
+    <value>Hello! We are Sam and Jared, a wife-and-husband team based in St. Louis, Missouri. We have a toddler son named Exton (who is Babyation's Chief Baby Officer). We created Babyation from a desire to improve the breast pump, but we quickly realized parenting is more than just that. Every day, we are inspired to create new and better experiences for parents, and we look forward to sharing them with you.
+        
+Almost as much as we look forward to taking a nap.</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="MyPumps" xml:space="preserve">
+    <value>My pumps</value>
+  </data>
+  <data name="MyScheduleUpper" xml:space="preserve">
+    <value>MY SCHEDULE</value>
+  </data>
+  <data name="WhoAreYouFeeding" xml:space="preserve">
+    <value>WHO ARE YOU FEEDING?</value>
+  </data>
+  <data name="FromTheOptional" xml:space="preserve">
+    <value>From the... (optional)</value>
+  </data>
+  <data name="Feeding" xml:space="preserve">
+    <value>FEEDING</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Nursing" xml:space="preserve">
+    <value>Nursing</value>
+  </data>
+  <data name="NursingUpper" xml:space="preserve">
+    <value>NURSING</value>
+  </data>
+  <data name="PastFeed" xml:space="preserve">
+    <value>PAST FEED</value>
+  </data>
+  <data name="PastNurse" xml:space="preserve">
+    <value>PAST NURSE</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="DurationLeftSide" xml:space="preserve">
+    <value>DURATION LEFT SIDE</value>
+  </data>
+  <data name="DurationRightSide" xml:space="preserve">
+    <value>DURATION RIGHT SIDE</value>
+  </data>
+  <data name="AddNote" xml:space="preserve">
+    <value>ADD NOTE</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="ModeUpper" xml:space="preserve">
+    <value>MODE</value>
+  </data>
+  <data name="Modes" xml:space="preserve">
+    <value>Modes</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="FAQs" xml:space="preserve">
+    <value>FAQs</value>
+  </data>
+  <data name="LogPastSession" xml:space="preserve">
+    <value>LOG PAST SESSION</value>
+  </data>
+  <data name="Nurse" xml:space="preserve">
+    <value>Nurse</value>
+  </data>
+  <data name="SessionUpper" xml:space="preserve">
+    <value>SESSION</value>
+  </data>
+  <data name="DashboardUpper" xml:space="preserve">
+    <value>DASHBOARD</value>
+  </data>
+  <data name="FeedUpper" xml:space="preserve">
+    <value>FEED</value>
+  </data>
+  <data name="NoChildError" xml:space="preserve">
+    <value>Whoops, you have to add a child under Settings to do that</value>
+  </data>
+  <data name="PairPumpUpper" xml:space="preserve">
+    <value>PAIR PUMP</value>
+  </data>
+  <data name="PairYouPump" xml:space="preserve">
+    <value>PAIR YOUR PUMP</value>
+  </data>
+  <data name="PumpingModes" xml:space="preserve">
+    <value>PUMPING MODES</value>
+  </data>
+  <data name="PumpingMode" xml:space="preserve">
+    <value>PUMPING MODE</value>
+  </data>
+  <data name="LeftSide" xml:space="preserve">
+    <value>LEFT SIDE</value>
+  </data>
+  <data name="RightSide" xml:space="preserve">
+    <value>RIGHT SIDE</value>
+  </data>
+  <data name="FedBy" xml:space="preserve">
+    <value>FED BY</value>
+  </data>
+    <data name="NoWeeklyRecordedActivity" xml:space="preserve">
+    <value>There is no recorded activity for this week</value>
+  </data>
+  <data name="NoDailyRecordedActivity" xml:space="preserve">
+    <value>There is no recorded activity for this day</value>
+  </data>
+  <data name="NotApplicable" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Stimulation" xml:space="preserve">
+    <value>Stimulation</value>
+  </data>
+  <data name="Expression" xml:space="preserve">
+    <value>Expression</value>
+  </data>
+  <data name="BabyationModes" xml:space="preserve">
+    <value>Babyation modes</value>
+  </data>
+    <data name="SelectPumpingMode" xml:space="preserve">
+    <value>Select a pumping mode</value>
+  </data>
+  <data name="EditYourPumpingModes" xml:space="preserve">
+    <value>Edit your pumping modes</value>
+  </data>
+  <data name="EnterYourNote" xml:space="preserve">
+    <value>Enter your note</value>
+  </data>
+    <data name="ChangePhase_Upper" xml:space="preserve">
+    <value>CHANGE PHASE</value>
+  </data>
+  <data name="LogPumpingSessionUpper" xml:space="preserve">
+    <value>LOG PUMPING SESSION</value>
+  </data>
+  <data name="AmountLeftSideUpper" xml:space="preserve">
+    <value>AMOUNT LEFT SIDE</value>
+  </data>
+  <data name="AmountRightSideUpper" xml:space="preserve">
+    <value>AMOUNT RIGHT SIDE</value>
+  </data>
+  <data name="WhatDidYouDoWithMilk" xml:space="preserve">
+    <value>What did you do with the milk? (optional)</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="CreateNewPassword" xml:space="preserve">
+    <value>Create new password</value>
+  </data>
+  <data name="EnterYourCurrentPassword" xml:space="preserve">
+    <value>Enter your current password</value>
+  </data>
+  <data name="YouNeedLogBackWithNewPass" xml:space="preserve">
+    <value>You'll need to log back in with your new password.</value>
+  </data>
+  <data name="MyMedia_Upper" xml:space="preserve">
+    <value>MY MEDIA</value>
+  </data>  
+    <data name="EditMyMedia_Upper" xml:space="preserve">
+    <value>EDIT MY MEDIA</value>
+  </data>  
+    <data name="EditMedia" xml:space="preserve">
+    <value>Edit media</value>
+  </data>  
+  <data name="CurrentPasswordIncorrect" xml:space="preserve">
+    <value>Current password isn't correct. Please try again.</value>
+  </data>
+  <data name="NowUpper" xml:space="preserve">
+    <value>NOW</value>
+  </data>
+    <data name="NoCamera" xml:space="preserve">
+    <value>No camera available.</value>
+  </data>
+    <data name="CameraPermissionsDenied" xml:space="preserve">
+    <value>Access to your camera has been declined. This setting can be changed in your device settings."</value>
+  </data>  
+    <data name="PhotoPermissionsDenied" xml:space="preserve">
+    <value>Access to your photo library has been declined. This setting can be changed in your device settings."</value>
+  </data>  
+</root>
