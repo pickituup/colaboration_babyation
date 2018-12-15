@@ -1,7 +1,12 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
 
-namespace BabyationApp.Controls {
-    public class ScrollViewExtended : ScrollView {
+namespace BabyationApp.Controls
+{
+    public class ScrollViewExtended : ScrollView
+    {
 
         public static readonly BindableProperty IsScrollbarFadingProperty = BindableProperty.Create(
             nameof(IsScrollbarFading),
@@ -11,7 +16,8 @@ namespace BabyationApp.Controls {
 
         public ScrollViewExtended() { }
 
-        public bool IsScrollbarFading {
+        public bool IsScrollbarFading
+        {
             get => (bool)GetValue(IsScrollbarFadingProperty);
             set => SetValue(IsScrollbarFadingProperty, value);
         }

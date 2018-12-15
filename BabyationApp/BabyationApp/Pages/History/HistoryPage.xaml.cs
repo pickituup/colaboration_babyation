@@ -554,7 +554,8 @@ namespace BabyationApp.Pages.History
             _selectedChildIndex = -1;
             _selectedBottleType = SessionType.Max;
 
-            _weeklyChilds = null;
+            //_weeklyChilds = null;
+            WeeklyChilds = null;
 
             _currentWeekDate = DateTime.Today;
             CurrentWeekDate = HistoryManager.Instance.GetMinDate();

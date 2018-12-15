@@ -515,15 +515,6 @@
     <BundleResource Include="Resources\btn_cmb_drop_pressed%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\btn_formula_bold_blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\btn_formula_bold_blue%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\btn_formula_bold_blue%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\btn_formula_pressed.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1819,13 +1810,22 @@
     <BundleResource Include="Resources\breast_milk_bold_red%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\btn_formula_bold_red%403x.png" />
+    <BundleResource Include="Resources\btn_formula_bold_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\btn_formula_bold_blue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\btn_formula_bold_blue%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\btn_formula_bold_red.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\btn_formula_bold_red%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\btn_formula_bold_red%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="UpdateSplashScreenVersion" Condition=" '$(Configuration)' != 'Debug' " BeforeTargets="PrepareForBuild">

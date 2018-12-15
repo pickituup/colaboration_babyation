@@ -742,15 +742,6 @@
                 </ViewCell>
             </DataTemplate>
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <!-- Checkable Mode Cell -->
             <DataTemplate x:Key="ModeCellTemplate">
                 <ViewCell>

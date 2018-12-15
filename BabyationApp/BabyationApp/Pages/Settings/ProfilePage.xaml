@@ -11,8 +11,8 @@
     x:Class="BabyationApp.Pages.Settings.ProfilePage" 
     x:Name="Profile"
     Title="{helpers:Translate MyProfileUpper}">
-
-    <ContentPage.Resources>
+    
+     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="LocalSelectorButton" TargetType="localButtons:ImageButton" BasedOn="{StaticResource PillSelectorButton}">
                 <Setter Property="Padding" Value="0,10,0,0" />
@@ -27,18 +27,18 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
+            
             <Style x:Key="LocalCheckboxButton" TargetType="localButtons:CircleButton" BasedOn="{StaticResource CheckboxButton}">
                 <Setter Property="InnerCircleColor" Value="{StaticResource Peach}" />
             </Style>
-
+            
             <Style x:Key="LocalKeepMyBabyButton" TargetType="localButtons:ImageButton" BasedOn="{StaticResource DestructiveActionButton}">
                 <Setter Property="ImageNormal" Value="icon_close" />
                 <Setter Property="ImagePressed" Value="icon_close4" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
-
+            
             <Style x:Key="LocalDeleteMyBabyButton" TargetType="localButtons:ImageButton" BasedOn="{StaticResource PositiveActionButton}">
                 <Setter Property="ImageNormal" Value="icon_checked2" />
                 <Setter Property="ImagePressed" Value="icon_checked3" />
@@ -47,42 +47,42 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
+        <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">    
+      
             <!-- Main page -->
             <Grid IsVisible="{Binding ShowBabyDeleteAlert, Converter={StaticResource BooleanInverseConverter}}" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Peach}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
+                </Grid.RowDefinitions> 
+            
                 <!-- Tab buttons -->
                 <Grid x:Name="NavigationHeader" Grid.Row="0" RowSpacing="0" HeightRequest="70" BackgroundColor="{StaticResource Navy}" HorizontalOptions="Fill" VerticalOptions="Start">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
-                    </Grid.RowDefinitions>
+                    </Grid.RowDefinitions> 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
+                    
                     <localButtons:ImageButton x:Name="BtnMyInfo" Grid.Row="0" Grid.Column="0"
                                               Text="{helpers:Translate MyInfo}"
                                               Style="{StaticResource LocalSelectorButton}"/>
-
+                                             
                     <localButtons:ImageButton x:Name="BtnMyBabies" Grid.Row="0" Grid.Column="1"
                                               Text="{helpers:Translate MyBabies}"
                                               Style="{StaticResource LocalSelectorButton}"/>
-
+                    
                     <localButtons:ImageButton x:Name="BtnMyPeople" Grid.Row="0" Grid.Column="2"
                                               IsEnabled="False"
                                               Text="{helpers:Translate MyPeople}"
                                               Style="{StaticResource LocalSelectorButton}"/>
                 </Grid>
-
+            
                 <!-- My Info View -->
                 <Grid x:Name="RLMyInfo" Grid.Row="1" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" Spacing="0" >
@@ -102,14 +102,14 @@
                             BackgroundColorPressed="{StaticResource commonPressedColors}" TextColor="{StaticResource commonPressedColors}" TextPressedColor="{StaticResource pageBackColor3}" />
                     </StackLayout>
                 </Grid>
-
+        
                 <!-- My Babies View -->
                 <Grid x:Name="RLMyBabies" Grid.Row="1" IsVisible="False" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" Spacing="0">
-
+                    
                         <!-- Add child control -->
                         <localViews:AddControlView x:Name="BtnAddAnotherChild" Text="{helpers:Translate AddAnotherBaby}" HeightRequest="70" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
-
+                    
                         <!-- Babies list -->
                         <localViews:ListViewExNoRecycle x:Name="ListBabies" 
                                                SeparatorVisibility="None" 
@@ -130,8 +130,8 @@
                                                         <Setter Property="BackgroundColor" Value="{StaticResource Peach70}" />
                                                     </DataTrigger>
                                                 </Grid.Triggers>
-
-                                                <Grid.ColumnDefinitions>
+                                                
+                                               <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="15*"/>
                                                     <ColumnDefinition Width="65*"/>
                                                     <ColumnDefinition Width="30*"/>
@@ -141,18 +141,18 @@
                                                     <RowDefinition Height="50"/>
                                                     <RowDefinition Height="10"/>
                                                 </Grid.RowDefinitions>
-
+                                
                                                 <Grid Grid.Column="0" Grid.Row="0" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center" >
                                                     <Grid.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding SelectCommand}"/>
                                                     </Grid.GestureRecognizers>
-
+                                                    
                                                     <localButtons:CircleButton x:Name="checkbox"
                                                                                InputTransparent="true"
                                                                                IsCircle="True" IsTogglable="true" IsPressed="{Binding IsSelected}"
                                                                                Style="{StaticResource LocalCheckboxButton}"/>
                                                 </Grid>
-
+                               
                                                 <!-- Name and Email -->
                                                 <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="2" Spacing="4">
                                                     <Label Text="{helpers:Translate Name}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start" VerticalOptions="Start"/>
@@ -167,7 +167,7 @@
                                                         </Label.GestureRecognizers>
                                                     </Label>
                                                 </StackLayout>
-
+                                                
                                                 <!-- Photo -->
                                                 <localButtons:ButtonEx Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
                                                                        Margin="2,10"
@@ -204,8 +204,8 @@
                                                         </Grid>
                                                     </Grid>
                                                 </localButtons:ButtonEx>
-
-                                                <!-- Remove child -->
+                                                
+                                                <!-- Remove child-->
                                                 <localViews:LabelEx
                                                     Grid.Row="1"
                                                     Grid.RowSpan="2"
@@ -231,7 +231,7 @@
                         </localViews:ListViewExNoRecycle>
                     </StackLayout>
                 </Grid>
-
+        
                 <!-- My People View -->
                 <Grid x:Name="RLMyPeople" Grid.Row="1" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" Spacing="0">
@@ -275,15 +275,15 @@
                     </StackLayout>
                 </Grid>
             </Grid>
-
+            
             <!-- Remove child popup -->
-            <StackLayout Orientation="Vertical" IsVisible="{Binding ShowBabyDeleteAlert}" BackgroundColor="{StaticResource Navy}" Padding="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Orientation="Vertical" IsVisible="{Binding ShowBabyDeleteAlert}" BackgroundColor="{StaticResource Navy}" Padding="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"> 
                 <StackLayout Orientation="Vertical" Padding="0" Margin="30,10,10,10" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="{helpers:Translate IfYouRemoveBabyYoullLoseAllData}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                     <Label Text="{helpers:Translate ThisCanNotBeUndone}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                     <Label Text="{helpers:Translate AreYouSureWantToDelete}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                 </StackLayout>
-
+                
                 <!-- Navigation section -->
                 <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
                     <localButtons:ImageButton x:Name="BtnDontDeleteBaby"
@@ -295,10 +295,10 @@
                                               Clicked="BtnYesDeleteBaby_OnClicked"
                                               Text="{helpers:Translate YesDeleteMyBaby}"
                                               Style="{StaticResource LocalDeleteMyBabyButton}" 
-                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"/>
-                </StackLayout>
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"/> 
+                </StackLayout>                
             </StackLayout>
-
+            
         </AbsoluteLayout>
     </ContentPage.Content>
 </pages:PageBase>

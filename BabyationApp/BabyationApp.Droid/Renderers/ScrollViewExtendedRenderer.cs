@@ -7,13 +7,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRendererAttribute(typeof(ScrollViewExtended), typeof(ScrollViewExtendedRenderer))]
-namespace BabyationApp.Droid.Renderers {
-    public class ScrollViewExtendedRenderer : ScrollViewRenderer {
+namespace BabyationApp.Droid.Renderers
+{
+    public class ScrollViewExtendedRenderer : ScrollViewRenderer
+    {
 
         public ScrollViewExtendedRenderer(Context context)
             : base(context) { }
 
-        protected override void OnElementChanged(VisualElementChangedEventArgs e) {
+        protected override void OnElementChanged(VisualElementChangedEventArgs e)
+        {
             base.OnElementChanged(e);
 
             if (e.OldElement != null)
@@ -34,7 +37,8 @@ namespace BabyationApp.Droid.Renderers {
 
         private void OnNewElementPropertyChanged(object sender, PropertyChangedEventArgs e) => ApplyScrollbarFading();
 
-        private void ApplyScrollbarFading() {
+        private void ApplyScrollbarFading()
+        {
             try
             {
                 ScrollbarFadingEnabled = ((ScrollViewExtended)Element).IsScrollbarFading;

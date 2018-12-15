@@ -225,7 +225,7 @@
                 
                 <!-- Modes -->
                 <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsModesMode}" Spacing="6" Padding="0,0,0,0" BackgroundColor="{StaticResource DarkBlueColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <localViews:ListViewEx x:Name="listView"
+                    <localViews:ListViewEx x:Name="listView" 
                                            SeparatorVisibility="None" 
                                            SelectionMode="None"
                                            HasUnevenRows="true" 

@@ -240,10 +240,12 @@ namespace BabyationApp.Controls.ListedSelector
             }
             catch (Exception exc)
             {
-                try {
+                try
+                {
                     FillLayout();
                 }
-                catch (Exception innerExc) {
+                catch (Exception innerExc)
+                {
                     throw new InvalidOperationException("ListedSelector.OnListedSelectorCollectionChanged. Exception while items collection changed. Look at the inner exception.", innerExc);
                 }
             }

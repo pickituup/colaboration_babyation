@@ -47,8 +47,6 @@
                 </Grid.ColumnDefinitions>
                 <localButtons:ImageButton ImageScale="0.8" Grid.Column="0" x:Name="BtnBreastMilk" Text="{helpers:Translate BreastMilk}" ImageNormal="breast_milk_bold_blue" ImagePressed="breast_milk_bold_red" Style="{StaticResource SessionSelectorButton}" />
                 <localButtons:ImageButton ImageScale="{OnPlatform Default=1,Android=.8}" Grid.Column="1" x:Name="BtnFormula" Text="{helpers:Translate Formula}" ImageNormal="btn_formula_bold_blue" ImagePressed="btn_formula_bold_red" Style="{StaticResource SessionSelectorButton}" />
-                <!--<localButtons:ImageButton ImageScale="0.7" Grid.Column="0" x:Name="BtnBreastMilk" Text="{helpers:Translate BreastMilk}" ImageNormal="breast_milk_med_blue" ImagePressed="breast_milk_red" Style="{StaticResource SessionSelectorButton}" />
-                <localButtons:ImageButton Grid.Column="1" x:Name="BtnFormula" Text="{helpers:Translate Formula}" ImageNormal="formula_med_blue" ImagePressed="formula_red" Style="{StaticResource SessionSelectorButton}" />-->
             </Grid>
         </StackLayout>
     </ContentView.Content>
