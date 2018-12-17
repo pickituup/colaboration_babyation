@@ -153,6 +153,29 @@
                                             x:Name="_btnMilkFormula"
                                             Grid.Column="0"
                                             HorizontalOptions="End"
+                                            ImageNormal="btn_formula_bold_blue.png"
+                                            ImagePressed="btn_formula_bold_red.png"
+                                            ImageScale="{OnPlatform Default=1,Android=.8}"
+                                            ImageTextPadding="7,0,7,3"
+                                            ImageTranslationY="1"
+                                            Style="{StaticResource PillReversedButton}"
+                                            Text="{helpers:Translate Formula}" />
+                                        <localButtons:ImageButton
+                                            x:Name="_btnBreastMilk"
+                                            Grid.Column="1"
+                                            ImageScale="0.8"
+                                            HorizontalOptions="Start"
+                                            ImageNormal="breast_milk_bold_blue.png"
+                                            ImagePressed="breast_milk_bold_red.png"
+                                            ImageTextPadding="7,0,7,3"
+                                            ImageTranslationY="1"
+                                            Style="{StaticResource PillReversedButton}"
+                                            Text="{helpers:Translate BreastMilk}" />
+
+                                        <!--<localButtons:ImageButton
+                                            x:Name="_btnMilkFormula"
+                                            Grid.Column="0"
+                                            HorizontalOptions="End"
                                             ImageNormal="formula_med_blue.png"
                                             ImagePressed="formula_red.png"
                                             ImageTextPadding="7,0,7,3"
@@ -168,7 +191,7 @@
                                             ImageTextPadding="7,0,7,3"
                                             ImageTranslationY="1"
                                             Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate BreastMilk}" />
+                                            Text="{helpers:Translate BreastMilk}" />-->
                                     </Grid>
                                     <Grid
                                         x:Name="_gridMilkOptions"
