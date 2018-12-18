@@ -11,16 +11,19 @@ using Xamarin.Forms;
 using System.IO;
 using FFImageLoading;
 
-namespace BabyationApp.Managers {
+namespace BabyationApp.Managers
+{
     public delegate void EventProfilePropertyChanged(ProfileModel profile, string propertyName);
     public delegate void EventBabyModelPropertyChanged(BabyModel baby, string propertyName);
-    public class ProfileManager {
+    public class ProfileManager
+    {
         public event EventHandler CurrentBabyChanged;
         private static ProfileManager _instance = null;
         private ProfileModel _currentProfile = null;
         private bool _isFirstTimeUser = false;
 
-        public static ProfileManager Instance {
+        public static ProfileManager Instance
+        {
             get
             {
                 if (_instance == null)
@@ -31,10 +34,12 @@ namespace BabyationApp.Managers {
             }
         }
 
-        private ProfileManager() {
+        private ProfileManager()
+        {
         }
 
-        public bool IsFirstTimeUser {
+        public bool IsFirstTimeUser
+        {
             get
             {
                 return _isFirstTimeUser;
@@ -48,15 +53,18 @@ namespace BabyationApp.Managers {
         public event EventProfilePropertyChanged ProfilePropertyChanged;
         public event EventBabyModelPropertyChanged BabyModelPropertyChanged;
 
-        public void Reset() {
+        public void Reset()
+        {
             _currentProfile = null;
         }
 
-        public async Task Initialize() {
+        public async Task Initialize()
+        {
             await Sync();
         }
 
-        public async Task Sync() {
+        public async Task Sync()
+        {
             User user = await DataManager.Instance.GetUser();
             Profile profile = await DataManager.Instance.GetUserProfiles(LoginManager.Instance.UserId);
             MediaManager mediaManager = MediaManager.Instance;
@@ -68,7 +76,7 @@ namespace BabyationApp.Managers {
                 string userName = (user.Name != null) ? user.Name : Name;
 
                 // These will be grabbed from LoginManager once it is finished
-                if (_currentProfile == null)
+                if (_currentProfile == null )
                 {
                     _currentProfile = new ProfileModel()
                     {
@@ -87,7 +95,7 @@ namespace BabyationApp.Managers {
 
                     ProfilePropertyChanged?.Invoke(_currentProfile, nameof(CurrentProfile));
                 }
-
+              
                 foreach (Children child in children)
                 {
                     var existing = _currentProfile.Babies.Where(c => c.Id == child.Id).FirstOrDefault();
@@ -122,14 +130,16 @@ namespace BabyationApp.Managers {
             }
         }
 
-        public BabyModel CreateBaby() {
+        public BabyModel CreateBaby()
+        {
             BabyModel babyModel = new BabyModel();
             babyModel.Id = Guid.NewGuid().ToString();
             babyModel.PropertyChanged += BabyModel_PropertyChanged;
             return babyModel;
         }
 
-        public async void AddBaby(BabyModel babyModel) {
+        public async void AddBaby(BabyModel babyModel)
+        {
             if (_currentProfile != null)
             {
                 try
@@ -174,7 +184,8 @@ namespace BabyationApp.Managers {
             }
         }
 
-        public async void RemoveBaby(BabyModel babyModel) {
+        public async void RemoveBaby(BabyModel babyModel)
+        {
             if (_currentProfile != null)
             {
                 DataManager dataManager = DataManager.Instance;
@@ -202,13 +213,14 @@ namespace BabyationApp.Managers {
             }
         }
 
-        private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+        private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             if (_currentProfile == null)
             {
                 return;
             }
 
-            BabyModel babyModel = (BabyModel)sender;
+            BabyModel babyModel = (BabyModel)sender;            
 
             if (e.PropertyName == "Picture")
             {
@@ -247,7 +259,8 @@ namespace BabyationApp.Managers {
             BabyModelPropertyChanged?.Invoke(babyModel, e.PropertyName);
         }
 
-        private async void _currentProfile_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+        private async void _currentProfile_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
             if (e.PropertyName == "CurrentBaby")
             {
                 CurrentBabyChanged?.Invoke(this, EventArgs.Empty);
@@ -263,14 +276,16 @@ namespace BabyationApp.Managers {
             }
         }
 
-        public ProfileModel CurrentProfile {
+        public ProfileModel CurrentProfile
+        {
             get
             {
                 return _currentProfile;
             }
         }
 
-        public string UserEmail {
+        public string UserEmail
+        {
             get
             {
                 return Settings.UserEmail;
@@ -284,7 +299,8 @@ namespace BabyationApp.Managers {
             }
         }
 
-        public string Name {
+        public string Name
+        {
             get
             {
                 return Settings.Name;

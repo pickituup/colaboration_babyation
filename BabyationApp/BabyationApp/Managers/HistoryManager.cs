@@ -67,8 +67,6 @@ namespace BabyationApp.Managers
 
         public void Reset()
         {
-
-
             _inventory.Clear();
             _sessions.Clear();
         }

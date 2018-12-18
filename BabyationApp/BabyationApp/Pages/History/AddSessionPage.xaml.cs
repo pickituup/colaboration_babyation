@@ -76,13 +76,13 @@ namespace BabyationApp.Pages.History
             var c1 = BoundsConstraint.FromExpression((Expression<Func<Rectangle>>)(() => new Rectangle(x1, y1, w, h)));
             RelativeLayout.SetBoundsConstraint(BtnPumpSession, c1);
 
-            var x2 = RLRoot.Width / 2 - w - w / 2;
-            var y2 = RLRoot.Height / 2 - h/2 + 10;
+            var x2 = RLRoot.Width / 1.7 - w - w / 2;
+            var y2 = RLRoot.Height / 2 - h / 1.1;
             var c2 = BoundsConstraint.FromExpression((Expression<Func<Rectangle>>)(() => new Rectangle(x2, y2, w, h)));
             RelativeLayout.SetBoundsConstraint(BtnFeedSession, c2);
 
-            var x3 = RLRoot.Width / 2 + w / 2;
-            var y3 = RLRoot.Height / 2 - h/2 + 10;
+            var x3 = RLRoot.Width / 2.3 + w / 2;
+            var y3 = RLRoot.Height / 2 - h / 1.1;
             var c3 = BoundsConstraint.FromExpression((Expression<Func<Rectangle>>)(() => new Rectangle(x3, y3, w, h)));
             RelativeLayout.SetBoundsConstraint(BtnNurseSession, c3);
             RLRoot.ForceLayout();

@@ -9,7 +9,7 @@
     xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp" 
     xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
     x:Class="BabyationApp.Pages.Settings.ProfilePage" 
-    x:Name="Profile"
+    x:Name="this"
     Title="{helpers:Translate MyProfileUpper}">
     
      <ContentPage.Resources>
@@ -50,9 +50,9 @@
     
     <ContentPage.Content>
         <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">    
-      
+            
             <!-- Main page -->
-            <Grid IsVisible="{Binding ShowBabyDeleteAlert, Converter={StaticResource BooleanInverseConverter}}" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Peach}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid IsVisible="{Binding IsShowMainPage}" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource Peach}" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition Height="*" />
@@ -78,46 +78,162 @@
                                               Style="{StaticResource LocalSelectorButton}"/>
                     
                     <localButtons:ImageButton x:Name="BtnMyPeople" Grid.Row="0" Grid.Column="2"
-                                              IsEnabled="False"
-                                              Text="{helpers:Translate MyPeople}"
+                                              Text="{helpers:Translate Caregivers}"
                                               Style="{StaticResource LocalSelectorButton}"/>
                 </Grid>
             
                 <!-- My Info View -->
                 <Grid x:Name="RLMyInfo" Grid.Row="1" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" Spacing="0" >
-                        <Grid BackgroundColor="{StaticResource Peach}" Padding="25, 30, 25, 30" HorizontalOptions="FillAndExpand">
-                            <StackLayout Spacing="25">
-                                <StackLayout Spacing="2">
-                                    <Label Text="{helpers:Translate Mom}" TextColor="{StaticResource buttonBackColor1}" FontSize="9" FontFamily="{StaticResource fontLarsseitMedium}" />
-                                    <localEditors:EntryEx x:Name="EntryName" Text="{Binding Name, Mode=OneWay}" Placeholder="{helpers:Translate Name}" PlaceholderColor="{StaticResource pageBackColor4}" TextColor="{StaticResource pageBackColor4}" FontSize="18" FontAttributes="Bold" FontFamily="{StaticResource fontHurmeBold}" Keyboard="Text" />
+                        <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="40*" />
+                            </Grid.RowDefinitions>
+                            
+                            <!-- Primary account -->
+                            <Grid Grid.Row="0" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="85*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Title -->
+                                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                             Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                                    <Label Text="{helpers:Translate PrimaryAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
                                 </StackLayout>
-                                <StackLayout Spacing="2">
-                                    <Label Text="{helpers:Translate MomsEmail}" TextColor="{StaticResource buttonBackColor1}" FontSize="9" FontFamily="{StaticResource fontLarsseitMedium}" />
-                                    <Label Text="{Binding Email}" TextColor="{StaticResource pageBackColor4}" FontSize="18" FontAttributes="Bold" FontFamily="{StaticResource fontHurmeBold}" />
+                                
+                                <!-- Checkbox -->
+                                <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" >
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectPrimaryAccountCommand}" />
+                                    </Grid.GestureRecognizers>
+                                    
+                                    <localButtons:CircleButton x:Name="_primaryAccount"
+                                                               InputTransparent="true"
+                                                               IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected}"
+                                                               Style="{StaticResource LocalCheckboxButton}"/>
+                                </Grid>
+                                
+                                <!-- Name -->
+                                <StackLayout Grid.Row="1" Grid.Column="1" 
+                                             Orientation="Vertical" 
+                                             Spacing="2" Padding="0,0,0,8" 
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                                    <Label Text="{helpers:Translate NameUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                                    <localEditors:EntryEx Text="{Binding UserName}" Placeholder="{helpers:Translate EnterYourName}" Style="{StaticResource Form_ElementEntry}" Keyboard="Text" />
                                 </StackLayout>
-                            </StackLayout>
+                                
+                                <!-- Email-->
+                                <StackLayout Grid.Row="2" Grid.Column="1" 
+                                             Orientation="Vertical" 
+                                             Spacing="2" Padding="0,8" 
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                                    <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding UserEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                                
+                                <!-- Change password -->
+                                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" 
+                                      HorizontalOptions="Fill" VerticalOptions="Fill" >
+                                    <Label Text="{helpers:Translate ChangePassword}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Grid>
+                            
+                            <!-- Caregiver -->
+                            <Grid Grid.Row="1" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource Peach70}" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="24" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="85*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Title -->
+                                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                             Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                                    <Label Text="{helpers:Translate CaregiverAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                </StackLayout>
+                                
+                                <!-- Add auth code -->
+                                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                                      IsVisible="{Binding IsCaregiverExist, Converter={StaticResource BooleanInverseConverter}}" 
+                                      Padding="-15,0,0,0"
+                                      HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                                    <localViews:AddControlView Text="{helpers:Translate AddAuthCode}" CommandEx="{Binding AddCodeCommand}" HeightRequest="50" BackgroundColor="{StaticResource Clear}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                                </Grid>
+                                
+                                <!-- Checkbox -->
+                                <Grid Grid.Row="1" Grid.Column="0" 
+                                      IsVisible="{Binding IsCaregiverExist}" 
+                                      HorizontalOptions="Center" VerticalOptions="Start">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectCaregiversAccountCommand}" />
+                                    </Grid.GestureRecognizers>
+                                    
+                                    <localButtons:CircleButton x:Name="_caregiverAccount"
+                                                               InputTransparent="true"
+                                                               IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected, Converter={StaticResource BooleanInverseConverter}}"
+                                                               Style="{StaticResource LocalCheckboxButton}"/>
+                                </Grid>
+                                
+                                <!-- Email-->
+                                <StackLayout Grid.Row="1" Grid.Column="1" 
+                                             Orientation="Vertical" 
+                                             IsVisible="{Binding IsCaregiverExist}" 
+                                             Spacing="2" Padding="0,0,0,8"
+                                             HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                                    <Label Text="{helpers:Translate AuthorizedCaregiverUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding CaregiverEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                                                                
+                                <!-- Remove -->
+                                <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+                                      IsVisible="{Binding IsCaregiverExist}" 
+                                      HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                                    <Label Text="{helpers:Translate RemoveFromAccount}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding RemoveFromAccountCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                                
+                            </Grid>
                         </Grid>
-                        <localButtons:FlatButton x:Name="BtnChangePassword" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="72" Text="{helpers:Translate ChangeMyPassword}" TextFontSize="13" BackgroundColorNormal="Transparent" TextHorizontalOptions="Start" TextPadding="30, 0, 0, 0" TextFontAttributes="Bold"
-                            BackgroundColorPressed="{StaticResource commonPressedColors}" TextColor="{StaticResource commonPressedColors}" TextPressedColor="{StaticResource pageBackColor3}" />
                     </StackLayout>
                 </Grid>
         
                 <!-- My Babies View -->
                 <Grid x:Name="RLMyBabies" Grid.Row="1" IsVisible="False" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout Orientation="Vertical" Spacing="0">
+                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsBabyDeleteRequested, Converter={StaticResource BooleanInverseConverter}}">
                     
                         <!-- Add child control -->
                         <localViews:AddControlView x:Name="BtnAddAnotherChild" Text="{helpers:Translate AddAnotherBaby}" HeightRequest="70" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                     
                         <!-- Babies list -->
-                        <localViews:ListViewExNoRecycle x:Name="ListBabies" 
-                                               SeparatorVisibility="None" 
-                                               SelectionMode="None"
-                                               HasUnevenRows="True" 
-                                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                                               BackgroundColor="{StaticResource Peach}">
-                            <localViews:ListViewExNoRecycle.ItemTemplate>
+                        <ListView x:Name="ListBabies" 
+                                  ItemsSource="{Binding BabiesList, Mode=OneWay}"
+                                  SeparatorVisibility="None" 
+                                  HasUnevenRows="True" 
+                                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                  BackgroundColor="Transparent">
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
@@ -160,10 +276,10 @@
                                                 </StackLayout>
                                                 <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="2" Spacing="4">
                                                     <Label Text="{helpers:Translate Birthday}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start" VerticalOptions="Start"/>
-                                                    <DatePicker x:Name="BirthdayDatePicker" Date="{Binding Birthday}" MinimumDate="{Binding Source={x:Reference Profile}, Path=MinimumDate}" MaximumDate="{Binding Source={x:Reference Profile}, Path=MaximumDate}" Format="MM/dd/yyyy" IsVisible="false" HorizontalOptions="Start" VerticalOptions="Start" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Margin="0,0,0,0"/>
+                                                    <DatePicker x:Name="BirthdayDatePicker" Date="{Binding Birthday}" MinimumDate="{Binding Source={x:Reference this}, Path=ContextMyChildren.MinimumDate}" MaximumDate="{Binding Source={x:Reference this}, Path=ContextMyChildren.MaximumDate}" Format="MM/dd/yyyy" IsVisible="false" HorizontalOptions="Start" VerticalOptions="Start" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Margin="0,0,0,0"/>
                                                     <Label Text="{Binding Birthday, Converter={StaticResource Datetime2StringConverter}}" Style="{StaticResource Form_ElementLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Margin="0,0,0,0">
                                                         <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference Profile}, Path=PickerFocusCommand}" CommandParameter="{x:Reference BirthdayDatePicker}" />
+                                                            <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=PickerFocusCommand}" CommandParameter="{x:Reference BirthdayDatePicker}" />
                                                         </Label.GestureRecognizers>
                                                     </Label>
                                                 </StackLayout>
@@ -206,19 +322,14 @@
                                                 </localButtons:ButtonEx>
                                                 
                                                 <!-- Remove child-->
-                                                <localViews:LabelEx
-                                                    Grid.Row="1"
-                                                    Grid.RowSpan="2"
-                                                    Grid.Column="2"
-                                                    HeightRequest="35"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    HorizontalTextAlignment="Center"
-                                                    IsUnderlined="true"
-                                                    Style="{StaticResource SmallLabel_Label}"
-                                                    Text="{helpers:Translate RemoveBaby}"
-                                                    TextColor="{StaticResource Red}"
-                                                    VerticalOptions="End"
-                                                    VerticalTextAlignment="End">
+                                                <localViews:LabelEx Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+                                                                    HeightRequest="35"
+                                                                    Text="{helpers:Translate RemoveBaby}"
+                                                                    Style="{StaticResource SmallLabel_Label}"
+                                                                    TextColor="{StaticResource Red}"
+                                                                    IsUnderlined="true"
+                                                                    HorizontalTextAlignment="Center" VerticalTextAlignment="End"
+                                                                    HorizontalOptions="FillAndExpand" VerticalOptions="End">
                                                     <localViews:LabelEx.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding DeleteCommand}" />
                                                     </localViews:LabelEx.GestureRecognizers>
@@ -227,26 +338,35 @@
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
-                            </localViews:ListViewExNoRecycle.ItemTemplate>
-                        </localViews:ListViewExNoRecycle>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
                 </Grid>
         
-                <!-- My People View -->
-                <Grid x:Name="RLMyPeople" Grid.Row="1" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout Orientation="Vertical" Spacing="0">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Padding="20, 20, 20, 20" BackgroundColor="#FEFAF7">
-                            <localButtons:ImageButton x:Name="BtnAddAnotherPople" ImageTextHorizontalOptions="Start" ImageTextPadding="0" VerticalOptions="StartAndExpand" BackgroundColorNormal="Transparent" BackgroundColorPressed="{StaticResource commonPressedColors}" ImageNormal="btn_add2.png" ImagePressed="btn_add1.png" Text="{helpers:Translate AddAnotherPeople}" TextColor="{StaticResource buttonBackColor1}"
-                                TextFontSize="15" TextFontAttributes="Bold" TextFontFamily="{StaticResource fontHurmeBold}" />
+                <!-- My Caregivers View -->
+                <Grid x:Name="RLMyCaregivers" Grid.Row="1" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsCaregiverDeleteRequested, Converter={StaticResource BooleanInverseConverter}}">
+                        
+                        <!-- Add caregiver control -->
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                            <localViews:AddControlView Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HeightRequest="60" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                         </Grid>
-                        <Grid BackgroundColor="{StaticResource pageBackColor3}" Padding="30, 12, 30, 12" HorizontalOptions="FillAndExpand">
-                            <Label Text="{helpers:Translate MyPeople}" TextColor="{StaticResource pageBackColor4}" FontSize="9" FontFamily="{StaticResource fontLarsseitMedium}" VerticalOptions="Center" />
-                        </Grid>
-                        <localViews:ListViewEx x:Name="ListPeople" SeparatorVisibility="None" HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
-                            <localViews:ListViewEx.ItemTemplate>
+                        
+                        <ListView x:Name="ListCaregivers" 
+                                  ItemsSource="{Binding CaregiversList, Mode=OneWay}"
+                                  SeparatorVisibility="None" 
+                                  HasUnevenRows="True" 
+                                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                  BackgroundColor="Transparent">
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid Padding="25, 30, 25, 30">
+                                        <Grid Padding="15, 15, 10, 15">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="20" />
+                                            </Grid.RowDefinitions>
+                                            
                                             <Grid.Triggers>
                                                 <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
                                                     <Setter Property="BackgroundColor" Value="#FEFAF7" />
@@ -255,47 +375,67 @@
                                                     <Setter Property="BackgroundColor" Value="#FDF7F2" />
                                                 </DataTrigger>
                                             </Grid.Triggers>
-                                            <Grid RowSpacing="5" ColumnSpacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <StackLayout Spacing="2" Grid.Row="0" Grid.Column="0" VerticalOptions="End" HorizontalOptions="Start">
-                                                    <Label Text="{helpers:Translate Name}" TextColor="{StaticResource buttonBackColor1}" FontSize="9" FontFamily="{StaticResource fontLarsseitMedium}" />
-                                                    <Label Text="{Binding Name}" TextColor="{StaticResource pageBackColor4}" FontSize="18" FontFamily="{StaticResource fontHurmeBold}" FontAttributes="Bold" />
-                                                </StackLayout>
-                                                <localButtons:ImageButton Grid.Row="0" Grid.Column="1" Text="{helpers:Translate DeleteUpper}" BackgroundColorNormal="{StaticResource buttonBackColor3}" BackgroundColorPressed="#0B5274" TextColor="{StaticResource pageBackColor2}" ImageTextPadding="0" ImageTextSpacing="0" TextFontSize="7" TextFontAttributes="Bold"
-                                                    HorizontalOptions="End" VerticalOptions="End" WidthRequest="80" HeightRequest="20" CornerRadius="20" Command="{Binding DeletePeople}" />
+                                                
+                                            <StackLayout Grid.Row="0" Spacing="2" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                                <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Form_ElementHeader}" />
+                                                <Label Text="{Binding Email}" Style="{StaticResource Form_ElementLabel}"/>
+                                            </StackLayout>                                                
+                                            
+                                            <!-- Change password -->
+                                            <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                                                <Label Text="{helpers:Translate RemoveCaregiver}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.RemoveCaregiverCommand}" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
                                             </Grid>
+
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
-                            </localViews:ListViewEx.ItemTemplate>
-                        </localViews:ListViewEx>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
                 </Grid>
+                
             </Grid>
             
-            <!-- Remove child popup -->
-            <StackLayout Orientation="Vertical" IsVisible="{Binding ShowBabyDeleteAlert}" BackgroundColor="{StaticResource Navy}" Padding="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"> 
+            <!-- Remove caregiver confirmation dialog -->
+            <localViews:ConfirmationView x:Name="ConfirmationView" 
+                                         AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+                                         IsVisible="{Binding Source={x:Reference this}, Path=ShowCaregiverDeleteConfirmation}"
+                                         BodyText="{helpers:Translate AreYouSureRemoveCaregiver}" 
+                                         BodyTextStyle="{StaticResource Instructions_Label}" 
+                                         BodyTextColor="{StaticResource LightBlue}"
+                                         DestructiveCommand="{Binding KeepCaregiverCommand}" 
+                                         DestructiveText="{helpers:Translate NoKeepUpper}" DestructiveImage="icon_close" DestructiveImagePressed="icon_close"
+                                         PositiveCommand="{Binding ConfirmDeleteCaregiverCommand}" 
+                                         PositiveText="{helpers:Translate YesRemoveUpper}" PositiveImage="icon_checkmark_light_pink" PositiveImagePressed="icon_checkmark_light_pink"/>
+            
+            
+            <!-- Remove child confirmation popup -->
+            <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical"
+                         IsVisible="{Binding Source={x:Reference this}, Path=ShowBabyDeleteConfirmation}" 
+                         Padding="0,30,0,0" 
+                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                         BackgroundColor="{StaticResource Navy}" > 
                 <StackLayout Orientation="Vertical" Padding="0" Margin="30,10,10,10" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="{helpers:Translate IfYouRemoveBabyYoullLoseAllData}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                     <Label Text="{helpers:Translate ThisCanNotBeUndone}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                     <Label Text="{helpers:Translate AreYouSureWantToDelete}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                 </StackLayout>
-                
+       
                 <!-- Navigation section -->
-                <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
-                    <localButtons:ImageButton x:Name="BtnDontDeleteBaby"
-                                              Clicked="BtnDontDeleteBaby_OnClicked"
+                <StackLayout x:Name="StackBabyBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                    <localButtons:ImageButton Command="{Binding KeepBabyCommand}"
                                               Text="{helpers:Translate NoKeepMyBaby}"
                                               Style="{StaticResource LocalKeepMyBabyButton}" 
-                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"/>
-                    <localButtons:ImageButton x:Name="BtnYesDeleteBaby"
-                                              Clicked="BtnYesDeleteBaby_OnClicked"
+                                              HeightRequest="{Binding Source={x:Reference StackBabyBottomBar}, Path=Height}"/>
+                    <localButtons:ImageButton Command="{Binding RemoveBabyCommand}"
                                               Text="{helpers:Translate YesDeleteMyBaby}"
                                               Style="{StaticResource LocalDeleteMyBabyButton}" 
-                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"/> 
+                                              HeightRequest="{Binding Source={x:Reference StackBabyBottomBar}, Path=Height}"/> 
                 </StackLayout>                
             </StackLayout>
             

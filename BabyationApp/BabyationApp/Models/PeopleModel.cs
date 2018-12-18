@@ -10,14 +10,8 @@ namespace BabyationApp.Models
         public PeopleModel(ProfileModel profile)
         {
             _profileModel = profile;
-            DeletePeople = new Command(() => OnDeletePeopleCommand());
         }
-        public String Name { get; set; }
 
-        public ICommand DeletePeople { get; set; }
-
-        private void OnDeletePeopleCommand()
-        {
-        }
+        public String Email { get; set; }
     }
 }

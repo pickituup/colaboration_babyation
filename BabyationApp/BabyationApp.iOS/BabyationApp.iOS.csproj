@@ -1827,6 +1827,69 @@
   <ItemGroup>
     <BundleResource Include="Resources\btn_formula_bold_red%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_blue_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_blue_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_blue_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_red_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_red_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freezer_red_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_blue_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_blue_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_blue_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_red_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_red_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fridge_red_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_blue_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_blue_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_blue_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_red_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_red_bold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\other_red_bold%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab_more_med_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab_more_med_blue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tab_more_med_blue%403x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="UpdateSplashScreenVersion" Condition=" '$(Configuration)' != 'Debug' " BeforeTargets="PrepareForBuild">
     <Message Text="Updating splash screen text" Importance="high" />

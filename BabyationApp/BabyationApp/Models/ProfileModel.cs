@@ -1,43 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace BabyationApp.Models {
-    public class ProfileModel : ModelItemBase {
+namespace BabyationApp.Models
+{
+    public class ProfileModel : ModelItemBase
+    {
         private ObservableCollection<BabyModel> _babies = new ObservableCollection<BabyModel>();
         private BabyModel _currentBaby;
         private string _name = "";
-        //private List<PeopleModel> _peoples = new List<PeopleModel>();
-        public ProfileModel() {
+        private List<PeopleModel> _peoples = new List<PeopleModel>();
+        public ProfileModel()
+        {
             ShowBabyDeleteAlert = false;
+
+            // Demo:
+            _peoples.Add(new PeopleModel(this) { Email = "abc@.happy.com" });
+            _peoples.Add(new PeopleModel(this) { Email = "def@.unhappy.com" });
+            _peoples.Add(new PeopleModel(this) { Email = "ghj@.sloppy.com" });
+            _peoples.Add(new PeopleModel(this) { Email = "klm@.dry.com" });
+
+            CaregiverAccountSelected = false;
         }
 
         private bool _showBabyDeleteAlert = false;
 
-        public bool ShowBabyDeleteAlert {
+        public bool ShowBabyDeleteAlert
+        {
             get => _showBabyDeleteAlert;
             set => SetPropertyChanged(ref _showBabyDeleteAlert, value);
         }
 
-        public String Name {
+        public String Name
+        {
             get => _name;
             set => SetPropertyChanged(ref _name, value);
         }
 
         public String Email { get; set; }
 
-        public ObservableCollection<BabyModel> Babies {
+        public ObservableCollection<BabyModel> Babies
+        {
             get { return _babies; }
-            private set => _babies = value;
         }
 
-        public BabyModel CurrentBaby {
+        public BabyModel CurrentBaby
+        {
             get
             {
                 return _currentBaby;
@@ -63,22 +76,50 @@ namespace BabyationApp.Models {
             }
         }
 
-        //public void TODO_CLEAR_PROFILE_DATA() {
-        //    try
-        //    {
-        //        this.Babies?.Clear();
-        //        this.Babies = new ObservableCollection<BabyModel>();
+        public bool CaregiverAccountSelected { get; set; }
 
-        //        this.CurrentBaby = null;
-        //        this.Email = "";
-        //        this.Name = "";
-        //        this.ShowBabyDeleteAlert = default(bool);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        string message = exc.Message;
-        //        Debugger.Break();
-        //    }
-        //}
+        private PeopleModel _currentCaregiver;
+        public PeopleModel CurrentCaregiver
+        {
+            get => _currentCaregiver;
+            private set
+            {
+                SetPropertyChanged(ref _currentCaregiver, value);
+            }
+        }
+
+        private String _errorMessage;
+        public String ErrorMessage => _errorMessage;
+
+        public List<PeopleModel> Caregivers
+        {
+            get => _peoples;
+        }
+
+        public bool AddCaregiver(PeopleModel caregiver)
+        {
+            if( _peoples.Contains(caregiver) )
+            {
+                _errorMessage = "Caregiver already exists";
+                return false;
+            }
+
+            _peoples.Add(caregiver);
+
+            return true;
+        }
+
+        public bool DeleteCaregiver(PeopleModel caregiver)
+        {
+            bool result = false;
+            if(_peoples.Contains(caregiver))
+            {
+                result = _peoples.Remove(caregiver);
+            }
+
+            SetPropertyChanged(nameof(Caregivers));
+
+            return result;
+        }
     }
 }

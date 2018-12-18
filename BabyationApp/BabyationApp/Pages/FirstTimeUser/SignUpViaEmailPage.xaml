@@ -32,7 +32,7 @@
         <Grid Grid.Row="3" BackgroundColor="{StaticResource LightPink}" Padding="35,8,8,8" VerticalOptions="EndAndExpand">
           <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
             <StackLayout Spacing="0">
-              <Label Text="{helpers:Translate Email}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
+              <Label Text="{helpers:Translate EmailUpper}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
               <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="9*"/>

@@ -12,6 +12,7 @@ using BabyationApp.Managers;
 using BabyationApp.Models;
 using System.Diagnostics;
 using System.Windows.Input;
+using BabyationApp.Resources;
 
 namespace BabyationApp.Pages.History
 {
@@ -212,6 +213,41 @@ namespace BabyationApp.Pages.History
     /// </summary>
     public class LogPastPumpModel : ObservableObject
     {
+        public string TimeFormat => "h:mm";
+        public string TimeValue
+        {
+            get
+            {
+                if (TimeSpan.Zero == Time)
+                {
+                    return AppResource.TimeDelimiter2; //__:__
+                }
+                return new DateTime(Time.Ticks).ToString(TimeFormat);
+            }
+        }
+
+        private TimeSpan _time;
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                if (SetPropertyChanged(ref _time, value))
+                {
+                    SetPropertyChanged(nameof(TimeAbbr));
+                    SetPropertyChanged(nameof(TimeValue));
+                }
+            }
+        }
+
+        public string TimeAbbr
+        {
+            get
+            {
+                return TimeSpan.Zero == Time ? null : new DateTime(Time.Ticks).ToString("tt").ToLower(); //AM or PM
+            }
+        }
+
         bool _resetMilkTypeControl;
         public bool ResetMilkTypeControl
         {

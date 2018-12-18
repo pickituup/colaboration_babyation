@@ -106,8 +106,8 @@
                 x:Name="BtnSettings"
                 Grid.Column="4"
                 HorizontalOptions="CenterAndExpand"
-                ImageNormal="tab_more.png"
-                ImagePressed="tab_more_pressed.png"
+                ImageNormal="tab_more_med_blue.png"
+                ImagePressed="tab_more.png"
                 Text="{helpers:Translate More}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />

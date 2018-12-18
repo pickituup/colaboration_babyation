@@ -473,6 +473,12 @@ namespace BabyationApp.Resources {
             }
         }
         
+        internal static string EmailUpper {
+            get {
+                return ResourceManager.GetString("EmailUpper", resourceCulture);
+            }
+        }
+        
         internal static string EmailNewPasswordUpper {
             get {
                 return ResourceManager.GetString("EmailNewPasswordUpper", resourceCulture);
@@ -506,6 +512,12 @@ namespace BabyationApp.Resources {
         internal static string EndSession {
             get {
                 return ResourceManager.GetString("EndSession", resourceCulture);
+            }
+        }
+        
+        internal static string EnterYourName {
+            get {
+                return ResourceManager.GetString("EnterYourName", resourceCulture);
             }
         }
         
@@ -809,9 +821,9 @@ namespace BabyationApp.Resources {
             }
         }
         
-        internal static string MyPeople {
+        internal static string Caregivers {
             get {
-                return ResourceManager.GetString("MyPeople", resourceCulture);
+                return ResourceManager.GetString("Caregivers", resourceCulture);
             }
         }
         
@@ -830,6 +842,12 @@ namespace BabyationApp.Resources {
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        internal static string NameUpper {
+            get {
+                return ResourceManager.GetString("NameUpper", resourceCulture);
             }
         }
         
@@ -2180,6 +2198,120 @@ namespace BabyationApp.Resources {
         internal static string PhotoPermissionsDenied {
             get {
                 return ResourceManager.GetString("PhotoPermissionsDenied", resourceCulture);
+            }
+        }
+        
+        internal static string PrimaryAccount {
+            get {
+                return ResourceManager.GetString("PrimaryAccount", resourceCulture);
+            }
+        }
+        
+        internal static string CaregiverAccount {
+            get {
+                return ResourceManager.GetString("CaregiverAccount", resourceCulture);
+            }
+        }
+        
+        internal static string RemoveFromAccount {
+            get {
+                return ResourceManager.GetString("RemoveFromAccount", resourceCulture);
+            }
+        }
+        
+        internal static string AddAuthCode {
+            get {
+                return ResourceManager.GetString("AddAuthCode", resourceCulture);
+            }
+        }
+        
+        internal static string AuthorizedCaregiverUpper {
+            get {
+                return ResourceManager.GetString("AuthorizedCaregiverUpper", resourceCulture);
+            }
+        }
+        
+        internal static string AddAuthCodeTitle {
+            get {
+                return ResourceManager.GetString("AddAuthCodeTitle", resourceCulture);
+            }
+        }
+        
+        internal static string AddAuthCodeDetails {
+            get {
+                return ResourceManager.GetString("AddAuthCodeDetails", resourceCulture);
+            }
+        }
+        
+        internal static string AuthCodeUpper {
+            get {
+                return ResourceManager.GetString("AuthCodeUpper", resourceCulture);
+            }
+        }
+        
+        internal static string AddCodeFromEmail {
+            get {
+                return ResourceManager.GetString("AddCodeFromEmail", resourceCulture);
+            }
+        }
+        
+        internal static string AuthCodeOnTheWay {
+            get {
+                return ResourceManager.GetString("AuthCodeOnTheWay", resourceCulture);
+            }
+        }
+        
+        internal static string InviteCaregiverTitle {
+            get {
+                return ResourceManager.GetString("InviteCaregiverTitle", resourceCulture);
+            }
+        }
+        
+        internal static string InviteCaregiverDetails {
+            get {
+                return ResourceManager.GetString("InviteCaregiverDetails", resourceCulture);
+            }
+        }
+        
+        internal static string EnterCaregiversEmail {
+            get {
+                return ResourceManager.GetString("EnterCaregiversEmail", resourceCulture);
+            }
+        }
+        
+        internal static string AddCaregiverUpper {
+            get {
+                return ResourceManager.GetString("AddCaregiverUpper", resourceCulture);
+            }
+        }
+        
+        internal static string InviteOnTheWay {
+            get {
+                return ResourceManager.GetString("InviteOnTheWay", resourceCulture);
+            }
+        }
+        
+        internal static string AddCaregiver {
+            get {
+                return ResourceManager.GetString("AddCaregiver", resourceCulture);
+            }
+        }
+        
+        internal static string RemoveCaregiver {
+            get {
+                return ResourceManager.GetString("RemoveCaregiver", resourceCulture);
+            }
+        }
+        
+        internal static string AreYouSureRemoveCaregiver {
+            get {
+                return ResourceManager.GetString("AreYouSureRemoveCaregiver", resourceCulture);
+            }
+        }
+        
+        internal static string YesRemoveUpper {
+            get {
+                return ResourceManager.GetString("YesRemoveUpper", resourceCulture);
             }
         }
     }

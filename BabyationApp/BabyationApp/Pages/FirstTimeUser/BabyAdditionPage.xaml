@@ -29,7 +29,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="1" Grid.Column="0" Padding="20,20,10,10" BackgroundColor="{StaticResource LightBlue}" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="20" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Vertical" Spacing="5">
-                        <Label HorizontalOptions="Start" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Name}" VerticalOptions="Start" />
+                        <Label HorizontalOptions="Start" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate NameUpper}" VerticalOptions="Start" />
                         <localEditors:EntryEx x:Name="EntryBabyName" HorizontalOptions="FillAndExpand" Placeholder="{helpers:Translate EnterChildsName}" Style="{StaticResource Form_ElementEntry}" Text="{Binding Name}" VerticalOptions="Start" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Spacing="5">

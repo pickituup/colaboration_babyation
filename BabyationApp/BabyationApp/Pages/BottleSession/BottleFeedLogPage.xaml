@@ -399,29 +399,6 @@
                             Style="{StaticResource PillReversedButton}"
                             Text="{helpers:Translate BreastMilk}" />
 
-                        <!--<localButtons:ImageButton
-                            x:Name="_btnMilkFormula"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            HorizontalOptions="End"
-                            ImageNormal="formula_med_blue.png"
-                            ImagePressed="formula_red.png"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="-0.5"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate Formula}" />
-                        <localButtons:ImageButton
-                            x:Name="_btnBreastMilk"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            HorizontalOptions="Start"
-                            ImageNormal="breast_milk_med_blue.png"
-                            ImagePressed="breast_milk_red.png"
-                            ImageScale="0.8"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="-0.5"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate BreastMilk}" />-->
                     </Grid>
                     <Grid
                         x:Name="_gridMilkOptions"
@@ -467,8 +444,8 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalOptions="Center"
-                            ImageNormal="freezer_med_blue.png"
-                            ImagePressed="freezer_red.png"
+                            ImageNormal="freezer_blue_bold.png"
+                            ImagePressed="freezer_red_bold.png"
                             ImageTextPadding="7,0,7,3"
                             ImageTranslationY="{OnPlatform Android=1,
                                                            iOS=0.5}"

@@ -542,6 +542,12 @@
             </Style>
             <!-- END Checkbox button -->
             
+            <!-- Link-like label -->
+            <Style x:Key="RedLinkLabel" TargetType="Label" BasedOn="{StaticResource BodyCopy_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Red}"/>
+                <Setter Property="TextDecorations" Value="Underline" />
+            </Style>
+            
             <!-- Switch button -->
             <Style x:Key="SwitchOnStyle" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}">
                 <Setter Property="TextColor" Value="LightPink"/>
@@ -567,7 +573,7 @@
             <!-- END Secondary buttons styles -->
             
             <!-- Form style: label -->
-            <Style x:Key="Form_BaseLabel" TargetType="Label" ApplyToDerivedTypes="true">
+            <Style x:Key="Form_BaseLabel" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}" ApplyToDerivedTypes="true">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
             </Style>
             <Style x:Key="Form_ElementLabel" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
@@ -597,8 +603,6 @@
             <Style x:Key="Form_ElementHeader" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
                 <Setter Property="LineBreakMode" Value="NoWrap" />
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
-                <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
-                <Setter Property="FontSize" Value="12" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
             <Style x:Key="Form_ElementEntry" BasedOn="{StaticResource Form_BaseEntry}" TargetType="localEditors:EntryEx">

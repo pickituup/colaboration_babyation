@@ -24,7 +24,7 @@
 	<key>MinimumOSVersion</key>
 	<string>9.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.peak.mvp</string>
+	<string>com.pe.babyation</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
