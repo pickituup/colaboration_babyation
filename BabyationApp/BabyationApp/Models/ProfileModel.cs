@@ -82,9 +82,13 @@ namespace BabyationApp.Models
         public PeopleModel CurrentCaregiver
         {
             get => _currentCaregiver;
-            private set
+            set
             {
                 SetPropertyChanged(ref _currentCaregiver, value);
+                if (null == value)
+                {
+                    CaregiverAccountSelected = false;
+                }
             }
         }
 

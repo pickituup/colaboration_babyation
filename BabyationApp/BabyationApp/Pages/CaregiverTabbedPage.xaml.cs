@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 using BabyationApp.Controls.Buttons;
 using BabyationApp.Controls.Views;
-using BabyationApp.Pages.Settings;
+using Xamarin.Forms;
 
 namespace BabyationApp.Pages
 {
-    /// <summary>
-    /// This class is the container of the 5 tab pages (see enum TabType)
-    /// </summary>
-    public partial class DashboardTabPage : PageBase
+    public partial class CaregiverTabbedPage : PageBase
     {
         public enum TabType
         {
-            Dashboard, History, Modes, Alarms, Settings
+            Dashboard, Inventory, Settings, FAQ
         }
 
         private ButtonExGroup _btnGroup = new ButtonExGroup();
@@ -24,29 +20,34 @@ namespace BabyationApp.Pages
         /// <summary>
         /// Constructor -- Initialize the model and binds buttons events and other ui actions
         /// </summary> 
-        public DashboardTabPage()
+        public CaregiverTabbedPage()
         {
-            try {
+            try
+            {
                 InitializeComponent();
 
-                _tabViews = new List<RootViewBase>() { PageDashboardDetail, PageHistory, PageModesDashboard, PageReminder, PageSettings };
+                _tabViews = new List<RootViewBase>() { PageCaregiverDashboard };//, PageInventory, PageSettings, PageFAQ };
 
                 _btnGroup.Toggled += (sender, btn, index) =>
                 {
-                    if (btn != BtnSettings) {
+                    if (btn != BtnSettings)
+                    {
                         _lastSelectedButton = btn;
                     }
                     SetCurrentIndex(index);
                 };
 
-                foreach (View v in _gridTabBtns.Children) {
+                foreach (View v in _gridTabBtns.Children)
+                {
                     var btn = v as ButtonEx;
-                    if (btn != null) {
+                    if (btn != null)
+                    {
                         _btnGroup.AddButton(btn);
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 throw;
             }
@@ -63,14 +64,14 @@ namespace BabyationApp.Pages
                 case TabType.Dashboard:
                     _btnGroup.UpdateCurrentButton(BtnDash);
                     break;
-                case TabType.History:
-                    _btnGroup.UpdateCurrentButton(BtnHistory);
+                case TabType.Inventory:
+                    _btnGroup.UpdateCurrentButton(BtnInventory);
                     break;
-                case TabType.Modes:
-                    _btnGroup.UpdateCurrentButton(BtnModes);
+                case TabType.Settings:
+                    _btnGroup.UpdateCurrentButton(BtnSettings);
                     break;
-                case TabType.Alarms:
-                    _btnGroup.UpdateCurrentButton(BtnAlarms);
+                case TabType.FAQ:
+                    _btnGroup.UpdateCurrentButton(BtnFAQ);
                     break;
             }
         }
@@ -84,24 +85,24 @@ namespace BabyationApp.Pages
             {
                 return TabType.Dashboard;
             }
-            else if (_lastSelectedButton == BtnHistory)
+            else if (_lastSelectedButton == BtnInventory)
             {
-                return TabType.History;
+                return TabType.Inventory;
             }
-            else if (_lastSelectedButton == BtnModes)
-            {
-                return TabType.Modes;
-            }
-            else if (_lastSelectedButton == BtnAlarms)
-            {
-                return TabType.Alarms;
-            }
-            else
+            else if (_lastSelectedButton == BtnSettings)
             {
                 return TabType.Settings;
             }
+            else if (_lastSelectedButton == BtnFAQ)
+            {
+                return TabType.FAQ;
+            }
+            else
+            {
+                return TabType.FAQ;
+            }
         }
-        
+
         /// <summary>
         /// Sets the current tab based on index
         /// </summary>
@@ -116,11 +117,6 @@ namespace BabyationApp.Pages
                 }
                 _gridTabContents.Children[i].IsVisible = i == index;
             }
-
-            if (_btnGroup.CurrentButton == BtnSettings)
-            {
-                PageManager.Me.SetCurrentPage(typeof(MorePage));
-            }
         }
 
         private bool _isFirstShow = true;
@@ -130,9 +126,7 @@ namespace BabyationApp.Pages
         public override void AboutToShow()
         {
             base.AboutToShow();
-
-            IsFirstTime = "no";
-
+            
             ButtonBase currentBtn = _lastSelectedButton;
             if (_isFirstShow)
             {
@@ -152,7 +146,7 @@ namespace BabyationApp.Pages
         public override void PageCreationDone()
         {
             base.PageCreationDone();
-            foreach(RootViewBase rvb in _tabViews)
+            foreach (RootViewBase rvb in _tabViews)
             {
                 rvb.PageCreationDone();
             }
@@ -162,26 +156,7 @@ namespace BabyationApp.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AboutToShow();      
-        }
-
-        /// <summary>
-        /// Gets sets whether this is the first time showing of this page
-        /// </summary>
-        protected string IsFirstTime
-        {
-            get
-            {
-                return Helpers.Settings.IsFirstTimeUser;
-            }
-            set
-            {
-                if (Helpers.Settings.IsFirstTimeUser != value)
-                {
-                    Helpers.Settings.IsFirstTimeUser = value;
-                    OnPropertyChanged();
-                }
-            }
+            AboutToShow();
         }
     }
 }

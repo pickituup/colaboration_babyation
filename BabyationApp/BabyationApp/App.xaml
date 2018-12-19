@@ -767,6 +767,8 @@
                                 <localButtons:CircleButton x:Name="checkbox"
                                                            TranslationY="4"
                                                            InputTransparent="true"
+                                                           ImageNormal="icon_checked_dummy"
+                                                           ImagePressed="icon_checked"
                                                            IsCircle="True" IsTogglable="true" IsPressed="{Binding IsSelected}"
                                                            Style="{StaticResource CheckboxButton}"
                                                            VerticalOptions="Start" />

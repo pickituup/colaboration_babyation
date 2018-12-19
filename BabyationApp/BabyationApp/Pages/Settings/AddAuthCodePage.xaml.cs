@@ -6,11 +6,14 @@ using BabyationApp.Managers;
 using System.Windows.Input;
 using BabyationApp.Resources;
 using BabyationApp.Pages.Settings;
+using System.Linq;
 
 namespace BabyationApp.Pages.Settings
 {
     public partial class AddAuthCodePage : PageBase
     {
+        private bool _updateStatus = false;
+
         private AddAuthCodeModel ViewModel { get; set; }
 
         public AddAuthCodePage()
@@ -45,10 +48,11 @@ namespace BabyationApp.Pages.Settings
                 return;
 
             ViewModel.IsCodeSending = true;
-            bool success = true;//await LoginManager.Instance.ForgotPassword(ViewModel.Text);
+            _updateStatus = true;//await LoginManager.Instance.ForgotPassword(ViewModel.Text);
+            ProfileManager.Instance.CurrentProfile.CurrentCaregiver = ProfileManager.Instance.CurrentProfile.Caregivers.FirstOrDefault();
             ViewModel.IsCodeSending = false;
 
-            if (success)
+            if (_updateStatus)
             {
                 ShowSavedOverlay();
             }
@@ -68,7 +72,10 @@ namespace BabyationApp.Pages.Settings
 
         private void FinishSession()
         {
-            PageManager.Me.SetCurrentPage(typeof(ProfilePage));
+            PageManager.Me.SetCurrentPage(typeof(ProfilePage), View => 
+            {
+                (View as ProfilePage).UpdateCaregiverStatus(_updateStatus);
+            });
         }
 
         #endregion

@@ -2314,5 +2314,35 @@ namespace BabyationApp.Resources {
                 return ResourceManager.GetString("YesRemoveUpper", resourceCulture);
             }
         }
+        
+        internal static string AreYouSureRemoveYourselfCaregiver {
+            get {
+                return ResourceManager.GetString("AreYouSureRemoveYourselfCaregiver", resourceCulture);
+            }
+        }
+        
+        internal static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        internal static string LoggedAsUpper {
+            get {
+                return ResourceManager.GetString("LoggedAsUpper", resourceCulture);
+            }
+        }
+        
+        internal static string Caregiver {
+            get {
+                return ResourceManager.GetString("Caregiver", resourceCulture);
+            }
+        }
+        
+        internal static string SwapAccountsUpper {
+            get {
+                return ResourceManager.GetString("SwapAccountsUpper", resourceCulture);
+            }
+        }
     }
 }

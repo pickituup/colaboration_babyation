@@ -241,7 +241,7 @@ namespace BabyationApp.Pages.BottleSession
 
         private void FinishSession()
         {
-            PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
+            PageManager.Me.SetCurrentPage(CurrentDashboard());
         }
 
         #endregion

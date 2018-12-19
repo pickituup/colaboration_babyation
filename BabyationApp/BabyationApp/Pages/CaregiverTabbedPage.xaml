@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    xmlns:localPages="clr-namespace:BabyationApp.Pages"
+    xmlns:localDashboardPages="clr-namespace:BabyationApp.Pages.Dashboard"
+    xmlns:localInventoryPages="clr-namespace:BabyationApp.Pages.BottleSession"
+    xmlns:localSettingsPages="clr-namespace:BabyationApp.Pages.Settings"
+    x:Class="BabyationApp.Pages.CaregiverTabbedPage"
+    BackgroundColor="{StaticResource Peach}">
+    
+    
+    <Grid Padding="0" Style="{StaticResource Grid_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        
+        <!-- Pages -->
+        <Grid x:Name="_gridTabContents" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            
+            <localDashboardPages:CaregiverDashboardView x:Name="PageCaregiverDashboard" />
+<!--            <localDashboardPages:DashboardDetailView x:Name="PageCaregiverDashboard" />-->
+<!--            <localInventoryPages:MyInventoryPage x:Name="PageInventory" />
+            <localSettingsPages:ProfilePage x:Name="PageSettings" />
+            <localPages:SupportPage x:Name="PageFAQ"/>
+-->        
+        </Grid>
+        
+        <!-- Tabs -->
+        <Grid x:Name="_gridTabBtns" Style="{StaticResource Grid_BottomNavigation}" BackgroundColor="{StaticResource MedPink}" >
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width=".25*" />
+            </Grid.ColumnDefinitions>
+            
+            <localButtons:ImageButton
+                x:Name="BtnDash"
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="dashboard_med_blue2.png"
+                ImagePressed="dashboard_navy2.png"
+                Text="{helpers:Translate Dash}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnInventory"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="inventory_med_blue2.png"
+                ImagePressed="inventory_navy2.png"
+                Text="{helpers:Translate Inventory}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnSettings"
+                Grid.Column="2"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="settings_med_blue2.png"
+                ImagePressed="settings_navy2.png"
+                Text="{helpers:Translate Settings}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+            <localButtons:ImageButton
+                x:Name="BtnFAQ"
+                Grid.Column="3"
+                HorizontalOptions="CenterAndExpand"
+                ImageNormal="faqs_med_blue2.png"
+                ImagePressed="faqs_navy2.png"
+                Text="{helpers:Translate FAQs}"
+                Style="{StaticResource BottomMenuButton}"
+                VerticalOptions="End" />
+        </Grid>
+        
+    </Grid>
+</pages:PageBase>

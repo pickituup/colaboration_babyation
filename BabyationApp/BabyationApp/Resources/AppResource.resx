@@ -1481,4 +1481,19 @@ Almost as much as we look forward to taking a nap.</value>
     <data name="YesRemoveUpper" xml:space="preserve">
     <value>YES, REMOVE</value>
   </data>
+    <data name="AreYouSureRemoveYourselfCaregiver" xml:space="preserve">
+    <value>Are you sure you want to remove yourself as a caregiver from this account?</value>
+  </data>
+    <data name="Hello" xml:space="preserve">
+    <value>Hello!</value>
+  </data>
+    <data name="LoggedAsUpper" xml:space="preserve">
+    <value>LOGGED IN AS</value>
+  </data>
+    <data name="Caregiver" xml:space="preserve">
+    <value>Caregiver</value>
+  </data>
+    <data name="SwapAccountsUpper" xml:space="preserve">
+    <value>SWAP ACCOUNTS</value>
+  </data>
 </root>

@@ -399,10 +399,20 @@
                 </Grid>
                 
             </Grid>
+
+            <!-- Remove yourself as caregiver confirmation dialog -->
+            <localViews:ConfirmationView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+                                         IsVisible="{Binding Source={x:Reference this}, Path=ShowCaregiverDeleteYourselfConfirmation}"
+                                         BodyText="{helpers:Translate AreYouSureRemoveYourselfCaregiver}" 
+                                         BodyTextStyle="{StaticResource Instructions_Label}" 
+                                         BodyTextColor="{StaticResource LightBlue}"
+                                         DestructiveCommand="{Binding KeepYourselfAsCaregiverCommand}" 
+                                         DestructiveText="{helpers:Translate NoKeepUpper}" DestructiveImage="icon_close" DestructiveImagePressed="icon_close"
+                                         PositiveCommand="{Binding ConfirmDeleteYourselfAsCaregiverCommand}" 
+                                         PositiveText="{helpers:Translate YesRemoveUpper}" PositiveImage="icon_checkmark_light_pink" PositiveImagePressed="icon_checkmark_light_pink"/>
             
             <!-- Remove caregiver confirmation dialog -->
-            <localViews:ConfirmationView x:Name="ConfirmationView" 
-                                         AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+            <localViews:ConfirmationView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
                                          IsVisible="{Binding Source={x:Reference this}, Path=ShowCaregiverDeleteConfirmation}"
                                          BodyText="{helpers:Translate AreYouSureRemoveCaregiver}" 
                                          BodyTextStyle="{StaticResource Instructions_Label}" 

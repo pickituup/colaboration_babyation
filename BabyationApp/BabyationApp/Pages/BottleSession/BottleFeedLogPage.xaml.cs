@@ -56,7 +56,7 @@ namespace BabyationApp.Pages.BottleSession
             _btnGroupMilk.Toggled += _btnGroupMilk_Toggled;
 
             Titlebar.IsVisible = true;
-            LeftPageType = typeof(DashboardTabPage);
+            LeftPageType = CurrentDashboard();
             //TODO: Update this approach
             BtnAddNote.IsPressed = true;
         }
@@ -298,7 +298,7 @@ namespace BabyationApp.Pages.BottleSession
         private void FinishSession()
         {
             SaveLogSession();
-            PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
+            PageManager.Me.SetCurrentPage(CurrentDashboard());
         }
 
         #endregion

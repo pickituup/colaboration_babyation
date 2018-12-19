@@ -123,10 +123,19 @@
                             <TapGestureRecognizer Command="{Binding ToggleModesCommand}" CommandParameter="{Binding .}" />
                         </Grid.GestureRecognizers>
                         <localButtons:ImageButton InputTransparent="true"
+                                                  ImageScale=".5"
+                                                  ImageTranslationY="0"
+                                                  IsEnabledTemplateStrategy="True"
+                                                  TemplateStrategy="Absolute"
                                                   IsPressed="{Binding IsModesMode}" IsCircle="true" IsTogglable="true" 
-                                                  Text="" ImageTextPadding="0" ImageTextSpacing="0"
-                                                  ImageNormal="icon_down_light_pink" ImagePressed="icon_up_light_pink" 
+                                                  IsSelectedActionAvailable="True"
+                                                  ImageTextPadding="0" ImageTextSpacing="0"
+                                                  ImageNormal="icon_down_light_pink" ImagePressed="icon_down_light_pink" 
                                                   WidthRequest="18" HeightRequest="18"
+                                                  ImageTextVerticalOptions="Center"
+                                                  TranslationY="2"
+                                                  ImageTextHorizontalOptions="Center"
+                                                  ImageTextOrientation="Vertical"
                                                   BackgroundColorNormal ="{StaticResource MedBlue}" BackgroundColorPressed="{StaticResource MedBlue}"
                                                   HorizontalOptions="Center" VerticalOptions="Center" />
                     </Grid>
@@ -135,8 +144,8 @@
                 <!-- Pump stats and controls -->
                 <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsPumpingMode}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <!-- Statistics pad -->
-                    <Grid HeightRequest="{OnPlatform iOS=70, Android=80}" BackgroundColor="{StaticResource LightBlue}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                        <Grid Margin="10" ColumnSpacing="18" RowSpacing="1" HorizontalOptions="Center" VerticalOptions="FillAndExpand" >
+                    <Grid HeightRequest="{OnPlatform iOS=95, Android=105}" BackgroundColor="{StaticResource LightBlue}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Grid Margin="10" ColumnSpacing="18" RowSpacing="1" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -201,8 +210,8 @@
                         </Grid>
                         
                         <Grid Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
-                            <StackLayout Orientation="Vertical" Spacing="3" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Label Text="{helpers:Translate PhaseUpper}" Style="{StaticResource LocalPadHeaderLabel}" />
+                            <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="{helpers:Translate PhaseUpper}" Style="{StaticResource LocalPadHeaderLabel}" FontSize="14" />
                                 <Label Text="{Binding CurrentPumpPhase, Converter={StaticResource PumpPhaseToTextConverter}}" Style="{StaticResource H3_Label}" TextColor="{StaticResource Navy}" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                                 <localViews:ImageEx Source="{Binding CurrentPumpPhase, Converter={StaticResource PumpPhaseToImageConverter}}" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <localButtons:ImageButton Text="{helpers:Translate ChangePhase_Upper}" IsTogglable="false" Command="{Binding Source={x:Reference this}, Path=BindingContext.TogglePhaseCommand}}" Style="{StaticResource PillButton}"/>

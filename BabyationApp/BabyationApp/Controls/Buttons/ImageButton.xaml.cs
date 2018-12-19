@@ -27,11 +27,104 @@ namespace BabyationApp.Controls.Buttons
                 HandlePressedChanged();
 
                 ImageTranslationY = Device.RuntimePlatform == Device.Android ? 1.4 : -2;
+
+                OnTemplateStrategy();
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
                 throw;
+            }
+        }
+
+        public static readonly BindableProperty TemplateStrategyProperty =
+            BindableProperty.Create(propertyName: nameof(TemplateStrategy),
+                                    returnType: typeof(ImageButtonTemplateStrategies),
+                                    declaringType: typeof(ImageButton),
+                                    defaultValue: default(ImageButtonTemplateStrategies),
+                                    propertyChanged: (BindableObject bindable, object oldValue, object newValue) => { if (bindable is ImageButton declarer) declarer.OnTemplateStrategy(); });
+
+        public ImageButtonTemplateStrategies TemplateStrategy
+        {
+            get { return (ImageButtonTemplateStrategies)GetValue(TemplateStrategyProperty); }
+            set { SetValue(TemplateStrategyProperty, value); }
+        }
+
+        private bool _isEnabledTemplateStrategy = false;
+        public bool IsEnabledTemplateStrategy
+        {
+            get => _isEnabledTemplateStrategy;
+            set
+            {
+                _isEnabledTemplateStrategy = value;
+                OnTemplateStrategy();
+            }
+        }
+
+        public bool IsSelectedActionAvailable { get; set; }
+
+        public ImageButtonActionStrategies ActionStartegy { get; set; }
+
+        private void OnTemplateStrategy()
+        {
+            try
+            {
+                if (IsEnabledTemplateStrategy)
+                {
+                    switch (TemplateStrategy)
+                    {
+                        case ImageButtonTemplateStrategies.Default:
+                            _mainContent_ContentView.ControlTemplate = (ControlTemplate)Resources["ImageButtonTemplate"];
+                            break;
+                        case ImageButtonTemplateStrategies.Absolute:
+                            _mainContent_ContentView.ControlTemplate = (ControlTemplate)Resources["AbsoluteTemplate"];
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unsuported ImageButtonTemplateStrategies");
+                    }
+                }
+                else
+                {
+                    _mainContent_ContentView.ControlTemplate = (ControlTemplate)Resources["ImageButtonTemplate"];
+                }
+            }
+            catch (Exception exc)
+            {
+                Debugger.Break();
+                throw new InvalidOperationException(string.Format("ImageButton.OnTemplateStrategy. {0}", exc.Message), exc);
+            }
+        }
+
+        protected override void OnIsPressed()
+        {
+            base.OnIsPressed();
+
+            try
+            {
+                if (IsSelectedActionAvailable)
+                {
+                    switch (ActionStartegy)
+                    {
+                        case ImageButtonActionStrategies.RotateOn180:
+                            if (IsPressed)
+                            {
+
+                                ((View)((Layout)_mainContent_ContentView).Children[0]).RotationX = 180;
+                            }
+                            else
+                            {
+                                ((View)((Layout)_mainContent_ContentView).Children[0]).RotationX = 0;
+                            }
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unsuported ImageButtonActionStrategies");
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                Debugger.Break();
+                throw new InvalidOperationException(string.Format("ImageButton.OnIsPressed. {0}", exc.Message), exc);
             }
         }
 
@@ -253,5 +346,16 @@ namespace BabyationApp.Controls.Buttons
             get { return (FontAttributes)GetValue(TextFontAttributeProperty); }
             set { SetValue(TextFontAttributeProperty, value); }
         }
+    }
+
+    public enum ImageButtonTemplateStrategies
+    {
+        Default,
+        Absolute
+    }
+
+    public enum ImageButtonActionStrategies
+    {
+        RotateOn180
     }
 }

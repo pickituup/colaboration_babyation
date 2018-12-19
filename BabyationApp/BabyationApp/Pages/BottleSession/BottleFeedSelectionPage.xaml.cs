@@ -46,7 +46,7 @@ namespace BabyationApp.Pages.BottleSession
                 };
 
                 Titlebar.IsVisible = true;
-                LeftPageType = typeof(DashboardTabPage);
+                LeftPageType = CurrentDashboard();
                 Titlebar.LeftButton.IsVisible = true;
                 Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
 

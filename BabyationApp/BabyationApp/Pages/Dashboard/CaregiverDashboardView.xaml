@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localViews:RootViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+    x:Class="BabyationApp.Pages.Dashboard.CaregiverDashboardView"
+    BackgroundColor="{StaticResource Peach}">
+    
+    <Grid x:Name="RootLayout" Style="{StaticResource Grid_NavigationOnTop}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Greetings -->
+        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+            <Label Text="{helpers:Translate Hello}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+        </Grid>
+        
+        <!-- Logged -->
+        <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+            <StackLayout Orientation="Vertical" Spacing="4" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                <Label Text="{helpers:Translate LoggedAsUpper}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Gold}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                <Label Text="{helpers:Translate Caregiver}" Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+        
+        <!-- Button swap -->
+        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+            <localButtons:ImageButton Command="{Binding SwapAccountCommand}"
+                                      HeightRequest="28"
+                                      Text="{helpers:Translate SwapAccountsUpper}"
+                                      Style="{StaticResource LeftPillButton}"
+                                      ImageTextHorizontalOptions="Center"
+                                      ImageTextPadding="7,0,7,2.5"
+                                      ImageTextVerticalOptions="Center"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Center"/>
+        </Grid>
+        
+        <!-- Button Bottle -->
+        <Grid Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                <localButtons:CircleButton Command="{Binding FeedCommand}"
+                                           Style="{StaticResource NursingCircleButton}"
+                                           TextBottom="{helpers:Translate FeedUpper}"
+                                           TextTop="{helpers:Translate Bottle}"
+                                           ImageNormal="inventory_med_blue2.png"
+                                           ImagePressed="nurse_med_blue2.png"
+                                           HeightRequest="90"
+                                           WidthRequest="90"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</localViews:RootViewBase>

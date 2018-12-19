@@ -175,8 +175,14 @@ namespace BabyationApp.Controls.Buttons
         public bool IsPressed
         {
             get { return BackgroundView != null ? this.BackgroundView.IsPressed : false; }
-            set { if (BackgroundView != null) this.BackgroundView.IsPressed = value;  }
+            set {
+                if (BackgroundView != null) this.BackgroundView.IsPressed = value;
+
+                OnIsPressed();
+            }
         }
+
+        protected virtual void OnIsPressed() { }
 
         public static readonly BindableProperty CornerRadiusProperty =
             BindableProperty.Create("CornerRadius", typeof(double), typeof(ButtonBase), default(double));

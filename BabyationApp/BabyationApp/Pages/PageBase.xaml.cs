@@ -10,6 +10,8 @@ using BabyationApp.Controls.Views;
 using BabyationApp.Helpers;
 using BabyationApp.Interfaces;
 using System.Diagnostics;
+using BabyationApp.Managers;
+using BabyationApp.Models;
 
 namespace BabyationApp.Pages
 {
@@ -133,6 +135,21 @@ namespace BabyationApp.Pages
 
                 App.Instance.PlatformAPI?.UpdateStatusBar(Titlebar.TitleBackColor.ToHexString(), visible);
             }
+        }
+
+        /// <summary>
+        /// Not sure that this is the best place to this logic
+        /// </summary>
+        /// <returns>The dashboard.</returns>
+        public Type CurrentDashboard()
+        {
+            ProfileModel profileModel = ProfileManager.Instance.CurrentProfile;
+            if( null != profileModel && null != profileModel.CurrentCaregiver && profileModel.CaregiverAccountSelected )
+            {
+                return typeof(CaregiverTabbedPage);
+            }
+
+            return typeof(DashboardTabPage);
         }
     }
 }

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace BabyationApp.Pages
 {
-    public partial class SupportPage : ContentPage
+    public partial class SupportPage : PageBase
     {
         public SupportPage()
         {

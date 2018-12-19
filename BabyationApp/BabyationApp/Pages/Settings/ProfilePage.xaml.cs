@@ -31,6 +31,8 @@ namespace BabyationApp.Pages.Settings
         private readonly ButtonExGroup _btnGroupTab = new ButtonExGroup();
         private BabyModel _babyDeleteRequested;
 
+        #region Bindable properties
+
         public static readonly BindableProperty ShowBabyDeleteConfirmationProperty = BindableProperty.Create(nameof(ShowBabyDeleteConfirmation), typeof(bool), typeof(ProfilePage), false);
         public bool ShowBabyDeleteConfirmation
         {
@@ -51,6 +53,17 @@ namespace BabyationApp.Pages.Settings
             }
         }
 
+        public static readonly BindableProperty ShowCaregiverDeleteYourselfConfirmationProperty = BindableProperty.Create(nameof(ShowCaregiverDeleteYourselfConfirmation), typeof(bool), typeof(ProfilePage), false);
+        public bool ShowCaregiverDeleteYourselfConfirmation
+        {
+            get => (bool)GetValue(ShowCaregiverDeleteYourselfConfirmationProperty);
+            set
+            {
+                SetValue(ShowCaregiverDeleteYourselfConfirmationProperty, value);
+            }
+        }
+
+        #endregion
 
         public ProfilePage()
         {
@@ -62,12 +75,13 @@ namespace BabyationApp.Pages.Settings
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
             Titlebar.RightButton.IsVisible = false;
             
-            ContextMyInfo = new MyInfoViewModel(ChangePassword, AddAuthCode, RemoveFromAccount);
+            ContextMyInfo = new MyInfoViewModel(ChangePassword, AddAuthCode);
+            ContextMyInfo.PropertyChanged += ContextMyInfo_PropertyChanged;
 
             ContextMyChildren = new MyChildrenViewModel(AddBaby, RemoveBaby);
             ContextMyChildren.PropertyChanged += ContextMyChildren_PropertyChanged;
 
-            ContextMyCaregivers = new CaregiversViewModel(AddCaregiver, RemoveCaregiver);
+            ContextMyCaregivers = new CaregiversViewModel(AddCaregiver);
             ContextMyCaregivers.PropertyChanged += ContextMyCaregivers_PropertyChanged;
 
             _btnGroupTab.AddButton(BtnMyInfo);
@@ -93,6 +107,11 @@ namespace BabyationApp.Pages.Settings
             UpdateBindingContext();
 
             _babyDeleteRequested = null;
+        }
+
+        public void UpdateCaregiverStatus(bool status)
+        {
+            //????
         }
 
         #region Private - Common
@@ -137,10 +156,18 @@ namespace BabyationApp.Pages.Settings
             PageManager.Me.SetCurrentPage(typeof(AddAuthCodePage));
         }
 
-        private void RemoveFromAccount()
+        void ContextMyInfo_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //PageManager.Me.SetCurrentPage(typeof(ChangePasswordPage));
+            if( e.PropertyName == "IsPrimarySelected" )
+            {
+                LeftPageType = ContextMyInfo.IsPrimarySelected ? typeof(DashboardTabPage) : typeof(CaregiverTabbedPage);
+            }
+            else if( e.PropertyName == "IsYourselfAsCaregiverDeleteRequested")
+            {
+                ShowCaregiverDeleteYourselfConfirmation = ContextMyInfo.IsYourselfAsCaregiverDeleteRequested;
+            }
         }
+
 
         #endregion
 
@@ -230,11 +257,6 @@ namespace BabyationApp.Pages.Settings
             PageManager.Me.SetCurrentPage(typeof(InviteCaregiverPage));
         }
 
-        private void RemoveCaregiver()
-        {
-            //???
-        }
-
         void ContextMyCaregivers_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "IsCaregiverDeleteRequested")
@@ -251,13 +273,11 @@ namespace BabyationApp.Pages.Settings
     {
         private Action ChangePasswordAction { get; set; }
         private Action AddAuthCodeAction { get; set; }
-        private Action RemoveFromAccountAction { get; set; }
 
-        public MyInfoViewModel(Action changePassword, Action addAuthCode, Action removeFromAccount)
+        public MyInfoViewModel(Action changePassword, Action addAuthCode)
         {
             ChangePasswordAction = changePassword;
             AddAuthCodeAction = addAuthCode;
-            RemoveFromAccountAction = removeFromAccount;
         }
 
         public void Reset()
@@ -280,6 +300,16 @@ namespace BabyationApp.Pages.Settings
             set
             {
                 SetPropertyChanged(ref _isShowMainPage, value);
+            }
+        }
+
+        private bool _isYourselfAsCaregiverDeleteRequested;
+        public bool IsYourselfAsCaregiverDeleteRequested
+        {
+            get => _isYourselfAsCaregiverDeleteRequested;
+            set
+            {
+                SetPropertyChanged(ref _isYourselfAsCaregiverDeleteRequested, value);
             }
         }
 
@@ -313,7 +343,6 @@ namespace BabyationApp.Pages.Settings
 
         #endregion
 
-
         #region Public UI properties - Caregiver
 
         public bool IsCaregiverExist => null != ProfileManager.Instance.CurrentProfile.CurrentCaregiver;
@@ -324,7 +353,6 @@ namespace BabyationApp.Pages.Settings
         }
 
         #endregion
-
 
         #region Commands
 
@@ -391,9 +419,41 @@ namespace BabyationApp.Pages.Settings
             {
                 _removeFromAccountCommand = _removeFromAccountCommand ?? new Command(() =>
                 {
-                    RemoveFromAccountAction?.Invoke();
+                    IsYourselfAsCaregiverDeleteRequested = true;
                 });
                 return _removeFromAccountCommand;
+            }
+        }
+
+        private ICommand _keepYourselfAsCaregiverCommand;
+        public ICommand KeepYourselfAsCaregiverCommand
+        {
+            get
+            {
+                _keepYourselfAsCaregiverCommand = _keepYourselfAsCaregiverCommand ?? new Command(() =>
+                {
+                    IsYourselfAsCaregiverDeleteRequested = false;
+                });
+                return _keepYourselfAsCaregiverCommand;
+            }
+        }
+
+        private ICommand _confirmDeleteYourselfAsCaregiverCommand;
+        public ICommand ConfirmDeleteYourselfAsCaregiverCommand
+        {
+            get
+            {
+                _confirmDeleteYourselfAsCaregiverCommand = _confirmDeleteYourselfAsCaregiverCommand ?? new Command(() =>
+                {
+                    ProfileManager.Instance.CurrentProfile.CurrentCaregiver = null;
+
+                    SetPropertyChanged(nameof(CaregiverEmail));
+                    SetPropertyChanged(nameof(IsPrimarySelected));
+                    SetPropertyChanged(nameof(IsCaregiverExist));
+
+                    IsYourselfAsCaregiverDeleteRequested = false;
+                });
+                return _confirmDeleteYourselfAsCaregiverCommand;
             }
         }
 
@@ -524,14 +584,12 @@ namespace BabyationApp.Pages.Settings
     public class CaregiversViewModel : ObservableObject
     {
         private Action AddCaregiverAction { get; set; }
-        private Action RemoveCaregiverAction { get; set; }
 
         private PeopleModel _caregiverDeleteRequested = null;
 
-        public CaregiversViewModel(Action addCaregiver, Action removeCaregiver)
+        public CaregiversViewModel(Action addCaregiver)
         {
             AddCaregiverAction = addCaregiver;
-            RemoveCaregiverAction = removeCaregiver;
         }
 
         public void Reset()

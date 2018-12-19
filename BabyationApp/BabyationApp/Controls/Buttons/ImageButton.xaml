@@ -48,8 +48,25 @@
                     </Label>
                 </StackLayout>
             </ControlTemplate>
+
+            <ControlTemplate x:Key="AbsoluteTemplate">
+                <AbsoluteLayout
+                    Margin="{TemplateBinding Parent.ImageTextPadding}">
+                    <localViews:ImageEx
+                        AbsoluteLayout.LayoutBounds=".5,.5,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AnchorX=".5"
+                        AnchorY=".5"
+                        x:Name="_imgView"
+                        IsVisible="{TemplateBinding Parent.ImageCurrent,
+                                                    Converter={StaticResource ObjectNotNullCheckConverter}}"
+                        Scale="{TemplateBinding Parent.ImageScale}"
+                        Source="{TemplateBinding Parent.ImageCurrent}"
+                        TranslationY="{TemplateBinding Parent.ImageTranslationY}"/>
+                </AbsoluteLayout>
+            </ControlTemplate>
         </ResourceDictionary>
     </localButtons:ButtonEx.Resources>
 
-    <ContentView ControlTemplate="{StaticResource ImageButtonTemplate}" IsEnabled="False" />
+    <ContentView x:Name="_mainContent_ContentView" IsEnabled="False" />
 </localButtons:ButtonEx>
