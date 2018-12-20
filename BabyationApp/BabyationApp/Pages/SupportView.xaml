@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<localViews:RootViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BabyationApp.Pages"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    x:Class="BabyationApp.Pages.SupportView">
+    
+    <Grid x:Name="RootLayout" Style="{StaticResource Grid_NavigationOnTop}" >
+        <Label Text="FAQ will be here" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+    </Grid>
+    
+</localViews:RootViewBase>

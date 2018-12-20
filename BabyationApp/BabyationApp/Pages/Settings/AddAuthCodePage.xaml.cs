@@ -72,10 +72,7 @@ namespace BabyationApp.Pages.Settings
 
         private void FinishSession()
         {
-            PageManager.Me.SetCurrentPage(typeof(ProfilePage), View => 
-            {
-                (View as ProfilePage).UpdateCaregiverStatus(_updateStatus);
-            });
+            PageManager.Me.SetCurrentPage(LeftPageType);
         }
 
         #endregion

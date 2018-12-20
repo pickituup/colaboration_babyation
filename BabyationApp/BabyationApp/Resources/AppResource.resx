@@ -1298,6 +1298,9 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
   </data>
+    <data name="InventoryUpper" xml:space="preserve">
+    <value>INVENTORY</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>

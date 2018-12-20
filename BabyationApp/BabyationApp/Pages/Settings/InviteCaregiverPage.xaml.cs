@@ -80,7 +80,7 @@ namespace BabyationApp.Pages.Settings
 
         private void FinishSession()
         {
-            PageManager.Me.SetCurrentPage(typeof(ProfilePage));
+            PageManager.Me.SetCurrentPage(LeftPageType);
         }
 
         #endregion

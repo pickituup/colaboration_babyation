@@ -185,6 +185,11 @@ namespace BabyationApp.Pages.PumpSession
             }
             else if( ViewModel.IsMediaEditMode )
             {
+                ///
+                /// Uncoment if it's necessary to use busy indicator
+                /// 
+                _isBusyIndicator_BusyIndicator.IsVisible = true;
+
                 var photoResult = await PictureManager.Instance.SelectFromGalleryAsync(true);
                 if (photoResult != null)
                 {
@@ -194,6 +199,11 @@ namespace BabyationApp.Pages.PumpSession
                         await MediaManager.Instance.Add(media);
                     }
                 }
+
+                ///
+                /// Uncoment if it's necessary to use busy indicator
+                /// 
+                _isBusyIndicator_BusyIndicator.IsVisible = false;
             }
         }
 

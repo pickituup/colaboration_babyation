@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
+<localViews:RootViewBase
     x:Class="BabyationApp.Pages.BottleSession.MyInventoryView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -33,7 +33,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <StackLayout BackgroundColor="{StaticResource Navy}" Spacing="0">
+    <StackLayout x:Name="RootLayout" Style="{StaticResource StackLayout_FullScreen}" BackgroundColor="{StaticResource Navy}" Spacing="0">
 
         <StackLayout
             Margin="0,5,0,0"
@@ -224,4 +224,4 @@
             </localViews:ListViewEx.ItemTemplate>
         </localViews:ListViewEx>
     </StackLayout>
-</ContentView>
+</localViews:RootViewBase>

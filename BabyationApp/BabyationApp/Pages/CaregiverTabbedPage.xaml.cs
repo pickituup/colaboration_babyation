@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BabyationApp.Controls;
 using BabyationApp.Controls.Buttons;
 using BabyationApp.Controls.Views;
 using Xamarin.Forms;
@@ -14,7 +15,7 @@ namespace BabyationApp.Pages
         }
 
         private ButtonExGroup _btnGroup = new ButtonExGroup();
-        private List<RootViewBase> _tabViews;
+        private List<IRootView> _tabViews;
         private ButtonBase _lastSelectedButton;
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace BabyationApp.Pages
             {
                 InitializeComponent();
 
-                _tabViews = new List<RootViewBase>() { PageCaregiverDashboard };//, PageInventory, PageSettings, PageFAQ };
+                _tabViews = new List<IRootView>() { PageCaregiverDashboard, PageInventory, PageSettings, PageFAQ };
 
                 _btnGroup.Toggled += (sender, btn, index) =>
                 {
@@ -146,7 +147,7 @@ namespace BabyationApp.Pages
         public override void PageCreationDone()
         {
             base.PageCreationDone();
-            foreach (RootViewBase rvb in _tabViews)
+            foreach (IRootView rvb in _tabViews)
             {
                 rvb.PageCreationDone();
             }

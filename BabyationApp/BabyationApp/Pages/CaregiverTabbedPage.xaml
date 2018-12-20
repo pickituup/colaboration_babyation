@@ -7,7 +7,7 @@
     xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
     xmlns:localPages="clr-namespace:BabyationApp.Pages"
     xmlns:localDashboardPages="clr-namespace:BabyationApp.Pages.Dashboard"
-    xmlns:localInventoryPages="clr-namespace:BabyationApp.Pages.BottleSession"
+    xmlns:localBottleSessionPage="clr-namespace:BabyationApp.Pages.BottleSession"
     xmlns:localSettingsPages="clr-namespace:BabyationApp.Pages.Settings"
     x:Class="BabyationApp.Pages.CaregiverTabbedPage"
     BackgroundColor="{StaticResource Peach}">
@@ -19,15 +19,13 @@
         <Grid x:Name="_gridTabContents" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             
             <localDashboardPages:CaregiverDashboardView x:Name="PageCaregiverDashboard" />
-<!--            <localDashboardPages:DashboardDetailView x:Name="PageCaregiverDashboard" />-->
-<!--            <localInventoryPages:MyInventoryPage x:Name="PageInventory" />
-            <localSettingsPages:ProfilePage x:Name="PageSettings" />
-            <localPages:SupportPage x:Name="PageFAQ"/>
--->        
+            <localBottleSessionPage:MyInventoryView x:Name="PageInventory" CaregiverFlow="true" />
+            <localSettingsPages:ProfileView x:Name="PageSettings" CaregiverFlow="true" />
+            <localPages:SupportView x:Name="PageFAQ"/>
         </Grid>
         
         <!-- Tabs -->
-        <Grid x:Name="_gridTabBtns" Style="{StaticResource Grid_BottomNavigation}" BackgroundColor="{StaticResource MedPink}" >
+        <Grid x:Name="_gridTabBtns" Padding="0,0,0,5" Style="{StaticResource Grid_BottomNavigation}" BackgroundColor="{StaticResource MedPink}" >
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".25*" />

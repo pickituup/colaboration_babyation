@@ -13,7 +13,7 @@ namespace BabyationApp.Pages
         BabyationApp.Pages.SessionPage _sessionPage;
         BabyationApp.Pages.PresetsPage _presetsPage;
         BabyationApp.Pages.InventoryPage _inventoryPage;
-        BabyationApp.Pages.SupportPage _supportPage;
+        BabyationApp.Pages.SupportView _supportPage;
         ContentPage _settingsPage;
         //BabyationApp.Pages.RemindersPage _remindersPage;
 
@@ -24,7 +24,7 @@ namespace BabyationApp.Pages
             _sessionPage = new SessionPage();
             _presetsPage = new PresetsPage();
             _inventoryPage = new InventoryPage();
-            _supportPage = new SupportPage();
+            _supportPage = new SupportView();
             _settingsPage = new ContentPage();
            // _remindersPage = new RemindersPage();
             

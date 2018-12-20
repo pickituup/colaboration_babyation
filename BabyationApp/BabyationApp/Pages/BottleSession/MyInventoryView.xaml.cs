@@ -9,17 +9,34 @@ using BabyationApp.Models;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using BabyationApp.Controls.Views;
+using BabyationApp.Resources;
 
 namespace BabyationApp.Pages.BottleSession
 {
     /// <summary>
     /// Invetory View from the design to be used in BottleFeedLogPage, BottleFeedStartPage and MyInvetoryPage
     /// </summary>
-    public partial class MyInventoryView : ContentView
+    public partial class MyInventoryView : RootViewBase
     {
+        public static readonly BindableProperty CaregiverFlowProperty = BindableProperty.Create(nameof(CaregiverFlow), typeof(bool), typeof(MyInventoryView), false);
+        public bool CaregiverFlow
+        {
+            get => (bool)GetValue(CaregiverFlowProperty);
+            set
+            {
+                SetValue(CaregiverFlowProperty, value);
+            }
+        }
+
         ButtonExGroup _btnGroupMilk = new ButtonExGroup();
         IEnumerable<HistoryModel> _currentModels;
         static bool _isSortAscending = true;
+
+        /// <summary>
+        /// Fires the event to let the user of this class know that an inventory selected to use
+        /// </summary>
+        public event HistoryItemUseNowEvent ItemUseNowEvent;
 
         /// <summary>
         /// Constructor -- initilizes and binds to button actionsf (e.g. Sorting)
@@ -27,6 +44,14 @@ namespace BabyationApp.Pages.BottleSession
         public MyInventoryView()
         {
             InitializeComponent();
+
+            if (CaregiverFlow)
+            {
+                // Set style:
+                Titlebar.IsVisible = true;
+                Titlebar.Title = AppResource.InventoryUpper;
+                RootLayout.Style = (Style)Application.Current.Resources["StackLayout_NavigationOnTop"];
+            }
 
             _btnGroupMilk.AddButton(_btnMilkAll);
             _btnGroupMilk.AddButton(_btnMilkFridge);
@@ -76,28 +101,17 @@ namespace BabyationApp.Pages.BottleSession
             _btnGroupMilk.UpdateCurrentButton(_btnMilkAll);
         }
 
-        /// <summary>
-        /// Performs sorting bases on user input
-        /// </summary>
-        void Sort()
+        public override void AboutToShow()
         {
-            if (_currentModels != null)
+            base.AboutToShow();
+
+            if (CaregiverFlow)
             {
-                _currentModels = _isSortAscending ? _currentModels.OrderBy(s => s.StartTime) 
-                                                                  : _currentModels.OrderByDescending(s => s.StartTime);
+                // Restore style:
+                Titlebar.IsVisible = true;
+                Titlebar.Title = AppResource.InventoryUpper;
+                RootLayout.Style = (Style)Application.Current.Resources["StackLayout_NavigationOnTop"];
             }
-
-			var items = new ObservableCollection<HistoryModel>();
-
-			if (_currentModels != null)
-			{
-				foreach (HistoryModel item in _currentModels)
-				{
-					items.Add(item);
-				}
-			}
-
-			listView.ItemsSource = items;
         }
 
         /// <summary>
@@ -128,11 +142,35 @@ namespace BabyationApp.Pages.BottleSession
             listView.SelectedItem = null;
         }
 
-        /// <summary>
-        /// Fires the event to let the user of this class know that an inventory selected to use
-        /// </summary>
-        public event HistoryItemUseNowEvent ItemUseNowEvent;
 
-        void OnItemUseNowHandler(HistoryModel model) => ItemUseNowEvent?.Invoke(model);
+        #region Private
+
+        /// <summary>
+        /// Performs sorting bases on user input
+        /// </summary>
+        private void Sort()
+        {
+            if (_currentModels != null)
+            {
+                _currentModels = _isSortAscending ? _currentModels.OrderBy(s => s.StartTime)
+                                                                  : _currentModels.OrderByDescending(s => s.StartTime);
+            }
+
+            var items = new ObservableCollection<HistoryModel>();
+
+            if (_currentModels != null)
+            {
+                foreach (HistoryModel item in _currentModels)
+                {
+                    items.Add(item);
+                }
+            }
+
+            listView.ItemsSource = items;
+        }
+
+        private void OnItemUseNowHandler(HistoryModel model) => ItemUseNowEvent?.Invoke(model);
+
+        #endregion
     }
 }

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.Controls.BusyIndicator">
+    <AbsoluteLayout>
+        <BoxView
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            x:Name="_padCanvas_Boxview"
+            BackgroundColor="Black"
+            Opacity=".5"/>
+        <ActivityIndicator x:Name="_spinnerIndicator_ActivityIndicator"
+                           HeightRequest="60"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds=".5,.5"
+                           HorizontalOptions="Center"
+                           IsRunning="True"
+                           VerticalOptions="Center"
+                           WidthRequest="60"
+                           Color="White"/>
+    </AbsoluteLayout>
+</ContentView>

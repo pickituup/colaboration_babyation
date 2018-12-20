@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using BabyationApp.Helpers;
 using BabyationApp.Interfaces;
 using Xamarin.Forms;
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace BabyationApp.Controls.Views
 {
@@ -45,12 +48,22 @@ namespace BabyationApp.Controls.Views
         /// <summary>
         /// Left button (on titlebar) page type to show when the button is clicked
         /// </summary>
-        public Type LeftPageType { get; set; }
+        private Type _leftPageType;
+        public Type LeftPageType
+        {
+            get => _leftPageType;
+            set => SetProperty(ref _leftPageType, value);
+        }
 
         /// <summary>
         /// Right button (on titlebar) page type to show when the button is clicked
         /// </summary>
-        public Type RightPageType { get; set; }
+        private Type _rightPageType;
+        public Type RightPageType
+        {
+            get => _rightPageType;
+            set => SetProperty(ref _rightPageType, value);
+        }
 
 
         /// <summary>
@@ -67,7 +80,7 @@ namespace BabyationApp.Controls.Views
         /// </summary>
         public virtual void AboutToShow()
         {
-            if( null != Titlebar )
+            if (null != Titlebar)
             {
                 App.Instance.PlatformAPI?.UpdateStatusBar(Titlebar.TitleBackColor.ToHexString(), Titlebar.IsVisible);
 
@@ -85,5 +98,33 @@ namespace BabyationApp.Controls.Views
         {
 
         }
+
+        #region INotifyPropertyChanged
+
+        protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName]string propertyName = "", Action onChanged = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return false;
+
+            backingStore = value;
+
+            onChanged?.Invoke();
+
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        public virtual void OnPropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        {
+            var memberExp = propertyExpression.Body as MemberExpression;
+            if (memberExp == null)
+            {
+                throw new ArgumentException("Expression must be a MemberExpression.", nameof(propertyExpression));
+            }
+
+            OnPropertyChanged(memberExp.Member.Name);
+        }
+
+        #endregion
     }
 }

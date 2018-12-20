@@ -215,7 +215,7 @@
                         Text="{helpers:Translate AutoStartForSession}"
                         TextColor="{StaticResource Navy}" />
                     <Label
-                        Style="{StaticResource BodyCopy_Label}"
+                        Style="{StaticResource Label_Label}"
                         Text="{helpers:Translate AutoStartForSessionDescription}"
                         TextColor="{StaticResource Navy}" />
                 </StackLayout>

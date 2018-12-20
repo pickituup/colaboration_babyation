@@ -5,6 +5,7 @@
     xmlns:buttons="clr-namespace:BabyationApp.Controls.Buttons;assembly=BabyationApp" 
     xmlns:views="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp" 
     xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    xmlns:controls="clr-namespace:BabyationApp.Controls"
     x:Class="BabyationApp.Pages.PumpSession.MyMediaView"
     BackgroundColor="{StaticResource Peach}">
     
@@ -47,14 +48,14 @@
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid HorizontalOptions="FillAndExpand" RowSpacing="0" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <!-- Add control -->
-        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HeightRequest="60" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
         
         <!-- Single view -->
         <Grid Grid.Row="1" IsVisible="{Binding IsSingleViewMode}" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
@@ -64,6 +65,7 @@
             
             <!-- Left --> 
             <buttons:ImageButton x:Name="BtnLeft"
+                                 TranslationX="12"
                                  Style="{StaticResource LocalNavigationButton}"
                                  ImageNormal="icon_back_light_pink" ImagePressed="icon_back_light_pink"
                                  HorizontalOptions="Start">
@@ -74,6 +76,7 @@
             
             <!-- Right -->
             <buttons:ImageButton x:Name="BtnRight" 
+                                 TranslationX="-12"
                                  Style="{StaticResource LocalNavigationButton}"
                                  ImageNormal="icon_next_light_pink" ImagePressed="icon_next_light_pink" 
                                  HorizontalOptions="End">
@@ -153,5 +156,7 @@
                 </views:ListViewEx.ItemTemplate>
             </views:ListViewEx>
         </StackLayout>
+    
+        <controls:BusyIndicator x:Name="_isBusyIndicator_BusyIndicator" IsVisible="False" Grid.Row="0" Grid.RowSpan="2" PadOpacity=".5"  IndicatorColor="White" PadCanvasColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
     </Grid>
 </ContentView>

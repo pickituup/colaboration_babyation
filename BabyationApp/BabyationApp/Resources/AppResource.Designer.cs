@@ -1955,6 +1955,12 @@ namespace BabyationApp.Resources {
             }
         }
         
+        internal static string InventoryUpper {
+            get {
+                return ResourceManager.GetString("InventoryUpper", resourceCulture);
+            }
+        }
+        
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
