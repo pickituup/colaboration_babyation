@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace BabyationApp.Controls.Buttons
 {
@@ -40,11 +41,11 @@ namespace BabyationApp.Controls.Buttons
         /// <summary>
         /// Handles button state change to update the views color and image
         /// </summary>
-        protected  override  void HandlePressedChanged()
+        protected override void HandlePressedChanged()
         {
-            OuterCircleCurrentColor =  (IsPressed ? OuterCirclePressedColor : OuterCircleColor);
+            OuterCircleCurrentColor = (IsPressed ? OuterCirclePressedColor : OuterCircleColor);
             MiddleCircleCurrentColor = (IsPressed ? MiddleCirclePressedColor : MiddleCircleColor);
-            InnerCircleCurrentColor =  (IsPressed ? InnerCirclePressedColor : InnerCircleColor);
+            InnerCircleCurrentColor = (IsPressed ? InnerCirclePressedColor : InnerCircleColor);
             ImageCurrent = IsPressed ? ImagePressed : ImageNormal;
             TextTopCurrentColor = IsPressed ? TextTopPressedColor : TextTopColor;
             TextBottomCurrentColor = IsPressed ? TextBottomPressedColor : TextBottomColor;
@@ -206,25 +207,25 @@ namespace BabyationApp.Controls.Buttons
             set { SetValue(FontFamilyBottomProperty, value); }
         }
 
-		public static readonly BindableProperty FontAttributesTopProperty = BindableProperty.Create("FontAttributesTop", typeof(FontAttributes), typeof(CircleButton), FontAttributes.Bold);
+        public static readonly BindableProperty FontAttributesTopProperty = BindableProperty.Create("FontAttributesTop", typeof(FontAttributes), typeof(CircleButton), FontAttributes.Bold);
         /// <summary>
         /// Top text font-attributes
         /// </summary>
         public FontAttributes FontAttributesTop
-		{
-			get { return (FontAttributes)GetValue(FontAttributesTopProperty); }
-			set { SetValue(FontAttributesTopProperty, value); }
-		}
+        {
+            get { return (FontAttributes)GetValue(FontAttributesTopProperty); }
+            set { SetValue(FontAttributesTopProperty, value); }
+        }
 
-		public static readonly BindableProperty FontAttributesBottomProperty = BindableProperty.Create("FontAttributesBottom", typeof(FontAttributes), typeof(CircleButton), FontAttributes.None);
+        public static readonly BindableProperty FontAttributesBottomProperty = BindableProperty.Create("FontAttributesBottom", typeof(FontAttributes), typeof(CircleButton), FontAttributes.None);
         /// <summary>
         /// Botton text font-attributes
         /// </summary>
         public FontAttributes FontAttributesBottom
-		{
-			get { return (FontAttributes)GetValue(FontAttributesBottomProperty); }
-			set { SetValue(FontAttributesBottomProperty, value); }
-		}
+        {
+            get { return (FontAttributes)GetValue(FontAttributesBottomProperty); }
+            set { SetValue(FontAttributesBottomProperty, value); }
+        }
 
 
         public static readonly BindableProperty OuterCircleColorProperty = BindableProperty.Create("OuterCircleColor", typeof(Color), typeof(CircleButton), Color.FromHex("#11719C"), propertyChanged: OnOuterCircleColorChanged);
@@ -272,7 +273,7 @@ namespace BabyationApp.Controls.Buttons
         public Color InnerCircleColor
         {
             get { return (Color)GetValue(InnerCircleColorProperty); }
-            set { SetValue(InnerCircleColorProperty, value);}
+            set { SetValue(InnerCircleColorProperty, value); }
         }
 
         static void OnInnerCircleColorChanged(BindableObject bindable, object oldValue, object newValue)
@@ -368,15 +369,15 @@ namespace BabyationApp.Controls.Buttons
             set { SetValue(InnerCirclePaddingProperty, value); }
         }
 
-		public static readonly BindableProperty ContentPaddingProperty = BindableProperty.Create("ContentPadding", typeof(Thickness), typeof(CircleButton), new Thickness(0));
+        public static readonly BindableProperty ContentPaddingProperty = BindableProperty.Create("ContentPadding", typeof(Thickness), typeof(CircleButton), new Thickness(0));
         /// <summary>
         /// Button's content padding
         /// </summary>
         public Thickness ContentPadding
-		{
-			get { return (Thickness)GetValue(ContentPaddingProperty); }
-			set { SetValue(ContentPaddingProperty, value); }
-		}
+        {
+            get { return (Thickness)GetValue(ContentPaddingProperty); }
+            set { SetValue(ContentPaddingProperty, value); }
+        }
 
         public static readonly BindableProperty ImageNormalProperty = BindableProperty.Create("ImageNormal", typeof(ImageSource), typeof(CircleButton), propertyChanged: OnImageNormalChanged);
         /// <summary>
@@ -415,6 +416,28 @@ namespace BabyationApp.Controls.Buttons
         {
             get { return (ImageSource)GetValue(ImageCurrentProperty); }
             set { SetValue(ImageCurrentProperty, value); }
+        }
+
+        //"{OnPlatform iOS=0.8, Android=0.95}" 
+        public static readonly BindableProperty ImageScaleProperty = BindableProperty.Create(propertyName: "ImageScale", returnType: typeof(double), declaringType: typeof(CircleButton), defaultValue: DefaultValuePerPlatform());
+
+        public double ImageScale
+        {
+            get { return (double)GetValue(ImageScaleProperty); }
+            set { SetValue(ImageScaleProperty, value); }
+        }
+
+        private static double DefaultValuePerPlatform()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return 0.8;
+                case Device.Android:
+                    return 0.95;
+                default:
+                    return 1.0;
+            }
         }
     }
 }

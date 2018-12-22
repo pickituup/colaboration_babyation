@@ -49,9 +49,7 @@ namespace BabyationApp.Pages.Modes
 
         public void Initialize(bool isEditMode = false)
         {
-            String modeName = ExperienceManager.Instance.EditingExperience?.Name ?? null;
-
-            Title = (isEditMode && !String.IsNullOrEmpty(modeName) ? String.Format("{0} {1}", AppResource.EditUpper, modeName) : AppResource.CreateNewModeUpper);
+            _isEditMode = isEditMode;
         }
 
         /// <summary>
@@ -61,8 +59,11 @@ namespace BabyationApp.Pages.Modes
         {
             base.AboutToShow();
 
+            String modeName = ExperienceManager.Instance.EditingExperience?.Name ?? null;
+
             // Restore style:
             Titlebar.IsVisible = true;
+            Titlebar.Title = (_isEditMode && !String.IsNullOrEmpty(modeName) ? String.Format("{0} {1}", AppResource.EditUpper, modeName) : AppResource.CreateNewModeUpper);
             RootLayout.Style = (Style)Application.Current.Resources["AbsoluteLayout_NavigationOnTop"];
 
             ViewModel.Reset();

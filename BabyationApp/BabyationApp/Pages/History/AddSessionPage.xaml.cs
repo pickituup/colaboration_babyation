@@ -28,7 +28,7 @@ namespace BabyationApp.Pages.History
 
             BtnPumpSession.Clicked += (s, e) =>
             {
-                SelectChildToFeedAction(typeof(LogAPastPumpPage));
+                PageManager.Me.SetCurrentPage(typeof(LogAPastPumpPage));
             };
             BtnNurseSession.Clicked += (s, e) =>
             {

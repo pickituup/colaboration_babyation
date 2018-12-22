@@ -10,7 +10,7 @@
     xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
     x:Class="BabyationApp.Pages.Settings.AddAuthCodePage" 
     x:Name="this"
-    BackgroundColor="{StaticResource Navy}"
+    BackgroundColor="{StaticResource Peach}"
     Title="{helpers:Translate MyProfileUpper}">
     
     <ContentPage.Content>
@@ -18,7 +18,7 @@
             <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding ShowSendPopupPage, Converter={StaticResource BooleanInverseConverter}}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
                 
                 <!-- Message section -->
-                <StackLayout Orientation="Vertical" Padding="20, 40, 20, 10" Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" Padding="20, 40, 20, 10" Spacing="10" BackgroundColor="{StaticResource Navy}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Label Text="{helpers:Translate AddAuthCodeTitle}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightBlue}" HorizontalOptions="Start" VerticalOptions="Start"/>
                     <Label Text="{helpers:Translate AddAuthCodeDetails}" Style="{StaticResource H2_Label}" TextColor="{StaticResource LightBlue}" HorizontalOptions="Start" VerticalOptions="Start"/>
                 </StackLayout>

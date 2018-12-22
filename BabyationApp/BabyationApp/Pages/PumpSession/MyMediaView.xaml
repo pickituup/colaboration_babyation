@@ -32,12 +32,13 @@
                 <Setter Property="InputTransparent" Value="true" />
                 <Setter Property="InnerCircleColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="InnerCirclePressedColor" Value="{StaticResource MedBlue}" />
-                <Setter Property="WidthRequest" Value="30" />
-                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="WidthRequest" Value="24" />
+                <Setter Property="HeightRequest" Value="24" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="ImageNormal" Value="icon_close" />
                 <Setter Property="ImagePressed" Value="icon_close" />
+                <Setter Property="ImageScale" Value="0.7" />
                 <Setter Property="Padding">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness" iOS="1,1,0,0" Android="0,0,0,0" />
@@ -157,6 +158,12 @@
             </views:ListViewEx>
         </StackLayout>
     
-        <controls:BusyIndicator x:Name="_isBusyIndicator_BusyIndicator" IsVisible="False" Grid.Row="0" Grid.RowSpan="2" PadOpacity=".5"  IndicatorColor="White" PadCanvasColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+        <controls:BusyIndicator Grid.Row="0" Grid.RowSpan="2"
+                                x:Name="_isBusyIndicator_BusyIndicator" 
+                                IsVisible="False" 
+                                IndicatorColor="White"
+                                PadOpacity=".5" 
+                                PadCanvasColor="Black" 
+                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
     </Grid>
 </ContentView>

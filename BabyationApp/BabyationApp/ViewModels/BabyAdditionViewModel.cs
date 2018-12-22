@@ -36,13 +36,13 @@ namespace BabyationApp.ViewModels
             // Cleanup
             if (!_babyInProgress)
             {
-                Name = null;
-                BirthdayDate = DateTime.MinValue;
-
                 if (CurrentBaby == null)
                 {
                     CurrentBaby = _currentManager.CreateBaby();
                 }
+
+                Name = null;
+                BirthdayDate = DateTime.MinValue;
 
                 _babyInProgress = true;
             }
@@ -63,10 +63,13 @@ namespace BabyationApp.ViewModels
 
         public string Name
         {
-            get => CurrentBaby.Name;
+            get => CurrentBaby?.Name ?? String.Empty;
             set
             {
-                CurrentBaby.Name = value;
+                if (null != CurrentBaby)
+                {
+                    CurrentBaby.Name = value;
+                }
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(IsSaveReady));
             }
@@ -79,7 +82,10 @@ namespace BabyationApp.ViewModels
             set
             {
                 _birthdayDate = value;
-                CurrentBaby.Birthday = value;
+                if (null != CurrentBaby)
+                {
+                    CurrentBaby.Birthday = value;
+                }
 
                 OnPropertyChanged(nameof(BirthdayDate));
                 OnPropertyChanged(nameof(BirthdayText));

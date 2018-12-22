@@ -23,6 +23,7 @@
             <Setter Property="TextColor" Value="{StaticResource Gold}" />
             <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
             <Setter Property="FontSize" Value="12" />
+            <Setter Property="LineBreakMode" Value="NoWrap" />
         </Style>
     </ContentPage.Resources>
 
@@ -73,15 +74,15 @@
                 </StackLayout>
 
                 <!--  Content section  -->
-                <ScrollView Grid.Row="1">
+                <ScrollView Orientation="Vertical" Grid.Row="1">
                     <Grid
                         Margin="0,20,0,0"
                         RowSpacing="4"
                         VerticalOptions="Start">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -95,9 +96,9 @@
                             Grid.ColumnSpan="2"
                             RowSpacing="14">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -186,12 +187,12 @@
                         <Grid
                             Grid.Row="1"
                             Grid.Column="0"
-                            Grid.ColumnSpan="2"
+                            Grid.ColumnSpan="2" 
                             RowSpacing="5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -207,6 +208,7 @@
                                 Text="{helpers:Translate StartTime_Upper}"
                                 TextColor="{StaticResource Gold}"
                                 VerticalOptions="Center" />
+                            
                             <Grid
                                 Grid.Row="1"
                                 Grid.Column="0"

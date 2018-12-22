@@ -459,9 +459,9 @@ namespace BabyationApp
                 Application.Current.MainPage = _pageMain;
                 if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
                 {
-                    _pageMain.BackgroundColor = Color.FromHex("#F8EBE3");
-                    _splashPage = new SplashPage();
-                    _pageMain.Children.Add(_splashPage);
+                    //_pageMain.BackgroundColor = Color.FromHex("#F8EBE3");
+                    //_splashPage = new SplashPage();
+                    //_pageMain.Children.Add(_splashPage);
                 }
 
                 //_cachePages.Enqueue(typeof(PumpSessionPage));

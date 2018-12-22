@@ -60,35 +60,17 @@ namespace BabyationApp.Pages.History
 
             BindingContext = _logPastPumpModel = new LogPastPumpModel();
 
-            //_tt.UpdateMilkType = StorageType.Fridge;
-
             var updateTime = new Action(() =>
             {
-                try
+                if (HistorySession != null)
                 {
-                    if (HistorySession != null)
+                    if (_selectedDate + _selectedStartTime >= DateTime.Now)
                     {
-                        if (_selectedDate + _selectedStartTime >= DateTime.Now)
-                        {
-                            ModalAlertPage.ShowAlertWithClose("You are picking a future date");
-                            return;
-                        }
-                        HistorySession.StartTime = _selectedDate + _selectedStartTime;
-
-                        if (_logPastPumpModel.ValidateForm())
-                        {
-                            string[] parts = _logPastPumpModel.TotalDuration.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
-                            if (parts.Length >= 2)
-                            {
-                                HistorySession.EndTime = HistorySession.StartTime.AddHours(Convert.ToInt32(parts[0]));
-                                HistorySession.EndTime = HistorySession.EndTime.AddMinutes(Convert.ToInt32(parts[1]));
-                            }
-                        }
+                        ModalAlertPage.ShowAlertWithClose("You are picking a future date");
+                        return;
                     }
-                }
-                catch
-                {
 
+                    HistorySession.StartTime = _selectedDate + _selectedStartTime;
                 }
             });
 
@@ -139,22 +121,17 @@ namespace BabyationApp.Pages.History
             {
                 if (HistorySession != null)
                 {
-                    try
-                    {
-                        HistorySession.RightBreastMilkVolume = Convert.ToDouble(_logPastPumpModel.AmountRight);
-                        HistorySession.LeftBreastMilkVolume = Convert.ToDouble(_logPastPumpModel.AmountLeft);
-                        HistorySession.TotalMilkVolume = Convert.ToDouble(_logPastPumpModel.TotalAmount);
-                        HistorySession.Storage = _logPastPumpModel.MilkType;
+                    HistorySession.EndTime = GetEndTime();
+                    HistorySession.RightBreastMilkVolume = Convert.ToDouble(_logPastPumpModel.AmountRight);
+                    HistorySession.LeftBreastMilkVolume = Convert.ToDouble(_logPastPumpModel.AmountLeft);
+                    HistorySession.TotalMilkVolume = Convert.ToDouble(_logPastPumpModel.TotalAmount);
+                    HistorySession.Storage = _logPastPumpModel.MilkType;
 
-                        HistoryManager.Instance.AddSession(HistorySession);
-                    }
-                    catch (Exception)
-                    {
-
-                    }
+                    HistoryManager.Instance.AddSession(HistorySession);
                 }
 
                 _logPastPumpModel.ShowSavedPopupPage = true;
+
                 UpdateTitlebarInfo(false, Color.FromHex("#11442B"));
 
                 _timer.Enable = true;
@@ -169,6 +146,18 @@ namespace BabyationApp.Pages.History
             LeftPageType = typeof(DashboardTabPage);
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
+        }
+
+        DateTime GetEndTime()
+        {
+            string[] parts = _logPastPumpModel.TotalDuration.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length >= 2)
+            {
+                return HistorySession.StartTime.AddMinutes(Convert.ToInt32(parts[0])).AddSeconds(Convert.ToInt32(parts[1]));
+            }
+
+            return default(DateTime);
         }
 
         /// <summary>

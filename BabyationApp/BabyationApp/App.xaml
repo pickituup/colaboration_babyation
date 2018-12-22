@@ -725,11 +725,11 @@
                                     
                                     <Label Text="{helpers:Translate New}" IsVisible="{Binding IsNew}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
                                     <Label Text="{Binding Title}" Style="{StaticResource H2_Label}" TextColor="{StaticResource LightBlue}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
-                                    <Label Text="{helpers:Translate ByBabyationLower}" IsVisible="{Binding IsPredefined}" Style="{StaticResource BodyCopy_Label}" TextColor="{StaticResource MedPink}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
+                                    <Label Text="{helpers:Translate ByBabyationLower}" IsVisible="{Binding IsPredefined}" Style="{StaticResource Label_Label}" TextColor="{StaticResource MedPink}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
                                 </StackLayout>
                                     
                                 <Label MaxLines="2"
-                                       Style="{StaticResource BodyCopy_Label}" 
+                                       Style="{StaticResource Label_Label}" 
                                        TextColor="{StaticResource LightBlue}" 
                                        VerticalTextAlignment="Start" 
                                        LineBreakMode="TailTruncation"

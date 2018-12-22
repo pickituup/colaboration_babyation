@@ -13,10 +13,10 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ModeHeaderTemplate">
-                <ViewCell Height="46">
+                <ViewCell Height="50">
                     <ViewCell.View>
                         <Grid Padding="0" BackgroundColor="{StaticResource DarkBlueColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <StackLayout Padding="22,5,22,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                            <StackLayout Padding="22,10,22,5" Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                                 <Label Text="{Binding GroupTitle}" TextColor="{StaticResource LightBlue}" Style="{StaticResource H1_Label}" HorizontalOptions="StartAndExpand"/>
                             </StackLayout>
                         </Grid>
@@ -43,7 +43,7 @@
                                        SeparatorVisibility="None" 
                                        SelectionMode="None"
                                        HasUnevenRows="true" 
-                                       RowHeight="70" 
+                                       RowHeight="80" 
                                        IsPullToRefreshEnabled="false" 
                                        IsGroupingEnabled="true"
                                        GroupHeaderTemplate="{StaticResource ModeHeaderTemplate}"

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
   <style name="SplashTheme" parent="MainTheme.Base">    
-    <item name="android:windowBackground">@drawable/splash</item>    
+    <item name="android:windowBackground">@drawable/splash_screen_layer_list_drawable</item>    
   </style>
   <style name="MainTheme" parent="MainTheme.Base">    
-    <item name="android:windowBackground">@drawable/splash</item>    
+    <item name="android:windowBackground">@drawable/splash_screen_layer_list_drawable</item>    
     <item name="android:windowDisablePreview">true</item>
   </style>
   <!-- Base theme applied no matter what API -->

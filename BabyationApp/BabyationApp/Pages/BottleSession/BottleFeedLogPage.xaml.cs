@@ -328,8 +328,7 @@ namespace BabyationApp.Pages.BottleSession
         {
             if (HistorySession != null)
             {
-                HistorySession.StartTime = ViewModel.DateValue + ViewModel.StartTimeValue;//_selectedDate + _selectedStartTime;
-
+                HistorySession.StartTime = ViewModel.DateValue + ViewModel.StartTimeValue;
 
                 string res = ParseDurationTime();
 
@@ -347,6 +346,12 @@ namespace BabyationApp.Pages.BottleSession
                 HistorySession.Description = ViewModel.NoteText;//LblNoteDesc.Text;
 
                 UpdateStorageType(false);
+
+                if (ProfileManager.Instance?.CurrentProfile?.CurrentBaby != null)
+                {
+                    HistorySession.ChildID = ProfileManager.Instance.CurrentProfile.CurrentBaby.Id;
+                    HistorySession.ChildName = ProfileManager.Instance.CurrentProfile.CurrentBaby.Name;
+                }
 
                 HistoryManager.Instance.AddSession(HistorySession);
             }

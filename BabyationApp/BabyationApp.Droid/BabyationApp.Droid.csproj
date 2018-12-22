@@ -3016,6 +3016,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\tab_more_med_blue.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_screen_layer_list_drawable.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_version.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="UpdateSplashScreenVersion" Condition=" '$(Configuration)' != 'Debug' " BeforeTargets="PrepareForBuild">
     <Message Text="Updating splash screen text" Importance="high" />

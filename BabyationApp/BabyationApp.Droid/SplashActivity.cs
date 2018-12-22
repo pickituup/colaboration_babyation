@@ -22,7 +22,7 @@ namespace BabyationApp.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.SplashScreen);   
+            //SetContentView(Resource.Layout.SplashScreen);   
 
             // Disable activity slide-in animation
             OverridePendingTransition(0, 0);

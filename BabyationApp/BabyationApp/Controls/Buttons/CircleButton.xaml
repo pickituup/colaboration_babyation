@@ -58,8 +58,8 @@
                                      HorizontalOptions="Center" VerticalOptions="Center">
                             <localViews:ImageEx x:Name="imgTop" 
                                                 Source="{TemplateBinding ImageCurrent}"
-                                                Scale="{OnPlatform iOS=0.8, Android=0.95}" 
-                                                HorizontalOptions="Center" >
+                                                Scale="{TemplateBinding ImageScale}"
+                                                HorizontalOptions="Center" VerticalOptions="Center">
                                 <localViews:ImageEx.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Reference imgTop}, Path=Source}" 
                                                  TargetType="localViews:ImageEx" 
