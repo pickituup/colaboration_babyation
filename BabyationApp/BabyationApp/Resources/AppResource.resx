@@ -241,7 +241,7 @@
     <value>Change my password</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>CHANGE PASSWORD</value>
+    <value>Change password</value>
   </data>
   <data name="CharactersLeft" xml:space="preserve">
     <value>characters left</value>
@@ -330,7 +330,7 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-    <data name="EmailUpper" xml:space="preserve">
+  <data name="EmailUpper" xml:space="preserve">
     <value>EMAIL</value>
   </data>
   <data name="EmailNewPasswordUpper" xml:space="preserve">
@@ -351,7 +351,7 @@
   <data name="EndSession" xml:space="preserve">
     <value>END SESSION</value>
   </data>
-    <data name="EnterYourName" xml:space="preserve">
+  <data name="EnterYourName" xml:space="preserve">
     <value>Enter your name</value>
   </data>
   <data name="EnterYourEmail" xml:space="preserve">
@@ -516,7 +516,7 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-    <data name="NameUpper" xml:space="preserve">
+  <data name="NameUpper" xml:space="preserve">
     <value>NAME</value>
   </data>
   <data name="New" xml:space="preserve">
@@ -576,10 +576,10 @@
   <data name="OneSymbolRule" xml:space="preserve">
     <value>At least 1 symbol</value>
   </data>
-    <data name="OnUpper" xml:space="preserve">
+  <data name="OnUpper" xml:space="preserve">
     <value>ON</value>
   </data>
-    <data name="OffUpper" xml:space="preserve">
+  <data name="OffUpper" xml:space="preserve">
     <value>OFF</value>
   </data>
   <data name="Other" xml:space="preserve">
@@ -630,7 +630,7 @@
   <data name="PumpingUpper" xml:space="preserve">
     <value>PUMPING</value>
   </data>
-    <data name="PumpingSession_Upper" xml:space="preserve">
+  <data name="PumpingSession_Upper" xml:space="preserve">
     <value>PUMPING SESSION</value>
   </data>
   <data name="PumpDetected" xml:space="preserve">
@@ -723,7 +723,7 @@
   <data name="SelectChild" xml:space="preserve">
     <value>SELECT A CHILD</value>
   </data>
-    <data name="SelectedMode_Upper" xml:space="preserve">
+  <data name="SelectedMode_Upper" xml:space="preserve">
     <value>SELECTED MODE</value>
   </data>
   <data name="SelectedChild" xml:space="preserve">
@@ -840,7 +840,7 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-    <data name="Total_Upper" xml:space="preserve">
+  <data name="Total_Upper" xml:space="preserve">
     <value>TOTAL</value>
   </data>
   <data name="TotalAmount" xml:space="preserve">
@@ -1298,7 +1298,7 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
   </data>
-    <data name="InventoryUpper" xml:space="preserve">
+  <data name="InventoryUpper" xml:space="preserve">
     <value>INVENTORY</value>
   </data>
   <data name="Settings" xml:space="preserve">
@@ -1346,7 +1346,7 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="FedBy" xml:space="preserve">
     <value>FED BY</value>
   </data>
-    <data name="NoWeeklyRecordedActivity" xml:space="preserve">
+  <data name="NoWeeklyRecordedActivity" xml:space="preserve">
     <value>There is no recorded activity for this week</value>
   </data>
   <data name="NoDailyRecordedActivity" xml:space="preserve">
@@ -1364,7 +1364,7 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="BabyationModes" xml:space="preserve">
     <value>Babyation modes</value>
   </data>
-    <data name="SelectPumpingMode" xml:space="preserve">
+  <data name="SelectPumpingMode" xml:space="preserve">
     <value>Select a pumping mode</value>
   </data>
   <data name="EditYourPumpingModes" xml:space="preserve">
@@ -1373,7 +1373,7 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="EnterYourNote" xml:space="preserve">
     <value>Enter your note</value>
   </data>
-    <data name="ChangePhase_Upper" xml:space="preserve">
+  <data name="ChangePhase_Upper" xml:space="preserve">
     <value>CHANGE PHASE</value>
   </data>
   <data name="LogPumpingSessionUpper" xml:space="preserve">
@@ -1402,101 +1402,101 @@ Almost as much as we look forward to taking a nap.</value>
   </data>
   <data name="MyMedia_Upper" xml:space="preserve">
     <value>MY MEDIA</value>
-  </data>  
-    <data name="EditMyMedia_Upper" xml:space="preserve">
+  </data>
+  <data name="EditMyMedia_Upper" xml:space="preserve">
     <value>EDIT MY MEDIA</value>
-  </data>  
-    <data name="EditMedia" xml:space="preserve">
+  </data>
+  <data name="EditMedia" xml:space="preserve">
     <value>Edit media</value>
-  </data>  
+  </data>
   <data name="CurrentPasswordIncorrect" xml:space="preserve">
     <value>Current password isn't correct. Please try again.</value>
   </data>
   <data name="NowUpper" xml:space="preserve">
     <value>NOW</value>
   </data>
-    <data name="NoCamera" xml:space="preserve">
+  <data name="NoCamera" xml:space="preserve">
     <value>No camera available.</value>
   </data>
-    <data name="CameraPermissionsDenied" xml:space="preserve">
+  <data name="CameraPermissionsDenied" xml:space="preserve">
     <value>Access to your camera has been declined. This setting can be changed in your device settings."</value>
-  </data>  
-    <data name="PhotoPermissionsDenied" xml:space="preserve">
-    <value>Access to your photo library has been declined. This setting can be changed in your device settings."</value>
-  </data>  
-    <data name="PrimaryAccount" xml:space="preserve">
-    <value>Primary account</value>
-  </data>  
-    <data name="CaregiverAccount" xml:space="preserve">
-    <value>Caregiver account</value>
-  </data>  
-    <data name="ChangePassword" xml:space="preserve">
-    <value>Change password</value>
   </data>
-    <data name="RemoveFromAccount" xml:space="preserve">
+  <data name="PhotoPermissionsDenied" xml:space="preserve">
+    <value>Access to your photo library has been declined. This setting can be changed in your device settings."</value>
+  </data>
+  <data name="PrimaryAccount" xml:space="preserve">
+    <value>Primary account</value>
+  </data>
+  <data name="CaregiverAccount" xml:space="preserve">
+    <value>Caregiver account</value>
+  </data>
+  <data name="RemoveFromAccount" xml:space="preserve">
     <value>Remove from account</value>
   </data>
-    <data name="AddAuthCode" xml:space="preserve">
+  <data name="AddAuthCode" xml:space="preserve">
     <value>Add authorization code</value>
   </data>
-    <data name="AuthorizedCaregiverUpper" xml:space="preserve">
+  <data name="AuthorizedCaregiverUpper" xml:space="preserve">
     <value>AUTHORIZED AS CAREGIVER FOR</value>
   </data>
-    <data name="AddAuthCodeTitle" xml:space="preserve">
+  <data name="AddAuthCodeTitle" xml:space="preserve">
     <value>Add caregiver authorization code</value>
   </data>
-    <data name="AddAuthCodeDetails" xml:space="preserve">
+  <data name="AddAuthCodeDetails" xml:space="preserve">
     <value>Paste the code below from your authorization email to link your account to another as a caregiver.</value>
   </data>
-    <data name="AuthCodeUpper" xml:space="preserve">
+  <data name="AuthCodeUpper" xml:space="preserve">
     <value>AUTHORIZATION CODE</value>
   </data>
-    <data name="AddCodeFromEmail" xml:space="preserve">
+  <data name="AddCodeFromEmail" xml:space="preserve">
     <value>Add code from your email</value>
   </data>
-    <data name="AuthCodeOnTheWay" xml:space="preserve">
+  <data name="AuthCodeOnTheWay" xml:space="preserve">
     <value>The auth code is on its way!</value>
   </data>
-    <data name="InviteCaregiverTitle" xml:space="preserve">
+  <data name="InviteCaregiverTitle" xml:space="preserve">
     <value>Is someone else helping you care for your little one?</value>
   </data>
-    <data name="InviteCaregiverDetails" xml:space="preserve">
+  <data name="InviteCaregiverDetails" xml:space="preserve">
     <value>Enter their email and we’ll send them a code to link their Babyation account to yours. This will authorize you both to log a bottle feed and use your milk inventory for the children on your account.</value>
   </data>
-    <data name="EnterCaregiversEmail" xml:space="preserve">
+  <data name="EnterCaregiversEmail" xml:space="preserve">
     <value>Enter caregiver's email</value>
   </data>
-    <data name="AddCaregiverUpper" xml:space="preserve">
+  <data name="AddCaregiverUpper" xml:space="preserve">
     <value>ADD CAREGIVER</value>
   </data>
-    <data name="InviteOnTheWay" xml:space="preserve">
+  <data name="InviteOnTheWay" xml:space="preserve">
     <value>An email will be sent to this caregiver!</value>
   </data>
-    <data name="AddCaregiver" xml:space="preserve">
+  <data name="AddCaregiver" xml:space="preserve">
     <value>Add caregiver</value>
   </data>
-    <data name="RemoveCaregiver" xml:space="preserve">
+  <data name="RemoveCaregiver" xml:space="preserve">
     <value>Remove caregiver</value>
   </data>
-    <data name="AreYouSureRemoveCaregiver" xml:space="preserve">
+  <data name="AreYouSureRemoveCaregiver" xml:space="preserve">
     <value>Are you sure you want to remove this caregiver?</value>
   </data>
-    <data name="YesRemoveUpper" xml:space="preserve">
+  <data name="YesRemoveUpper" xml:space="preserve">
     <value>YES, REMOVE</value>
   </data>
-    <data name="AreYouSureRemoveYourselfCaregiver" xml:space="preserve">
+  <data name="AreYouSureRemoveYourselfCaregiver" xml:space="preserve">
     <value>Are you sure you want to remove yourself as a caregiver from this account?</value>
   </data>
-    <data name="Hello" xml:space="preserve">
+  <data name="Hello" xml:space="preserve">
     <value>Hello!</value>
   </data>
-    <data name="LoggedAsUpper" xml:space="preserve">
+  <data name="LoggedAsUpper" xml:space="preserve">
     <value>LOGGED IN AS</value>
   </data>
-    <data name="Caregiver" xml:space="preserve">
+  <data name="Caregiver" xml:space="preserve">
     <value>Caregiver</value>
   </data>
-    <data name="SwapAccountsUpper" xml:space="preserve">
+  <data name="SwapAccountsUpper" xml:space="preserve">
     <value>SWAP ACCOUNTS</value>
+  </data>
+  <data name="PickingFutureTime" xml:space="preserve">
+    <value>You are picking a future time</value>
   </data>
 </root>

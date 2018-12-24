@@ -130,13 +130,13 @@ namespace BabyationApp.Pages.NurseSession
             {
                 if (dateToValidate > DateTime.Now.Date)
                 {
-                    ModalAlertPage.ShowAlertWithClose("You are picking a future date");
+                    ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                     return false;
                 }
 
                 if (dateToValidate + _selectedStartTime >= DateTime.Now)
                 {
-                    ModalAlertPage.ShowAlertWithClose("You are picking a future time");
+                    ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                     return false;
                 }
 
@@ -149,7 +149,7 @@ namespace BabyationApp.Pages.NurseSession
                         date = date.AddMinutes(NurseTotalTime.Time.Value.Minutes);
                         if (date >= DateTime.Now)
                         {
-                            ModalAlertPage.ShowAlertWithClose("You are picking a future time");
+                            ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                             return false;
                         }
                     }
@@ -172,7 +172,7 @@ namespace BabyationApp.Pages.NurseSession
             {
                 if (_selectedDate + timeValidate >= DateTime.Now)
                 {
-                    ModalAlertPage.ShowAlertWithClose("You are picking a future time");
+                    ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                     return false;
                 }
 
@@ -185,7 +185,7 @@ namespace BabyationApp.Pages.NurseSession
                         date = date.AddMinutes(NurseTotalTime.Time.Value.Minutes);
                         if (date >= DateTime.Now)
                         {
-                            ModalAlertPage.ShowAlertWithClose("You are picking a future time");
+                            ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                             return false;
                         }
                     }
@@ -213,7 +213,7 @@ namespace BabyationApp.Pages.NurseSession
                     date = date.AddMinutes(timeValidate.Minutes);
                     if (date >= DateTime.Now)
                     {
-                        ModalAlertPage.ShowAlertWithClose("You are picking a future time");
+                        ModalAlertPage.ShowAlertWithClose(AppResource.PickingFutureTime);
                         return false;
                     }
                 }

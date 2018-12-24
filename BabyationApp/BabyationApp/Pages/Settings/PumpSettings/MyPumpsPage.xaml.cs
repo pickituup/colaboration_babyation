@@ -82,6 +82,33 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             _groups.Clear();
             PumpGroupItemItem myPumps = new PumpGroupItemItem(PumpManager.Instance.PairedPumps) { GroupTitle = "MY PUMP", GroupKey = "me" };
             _groups.Add(myPumps);
+
+
+
+
+
+
+
+
+
+
+
+
+            _groups.Add(new PumpGroupItemItem(PumpManager.Instance.PairedPumps) { GroupTitle = "MY PUMP PUMP PUMP PUMP", GroupKey = "me me me me me" });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //Titlebar.TitleTextColor = Color.FromHex("#11442b");
             listView.SelectedItem = null;
         }        
