@@ -1499,4 +1499,7 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="PickingFutureTime" xml:space="preserve">
     <value>You are picking a future time</value>
   </data>
+  <data name="PairAPump" xml:space="preserve">
+    <value>Pair a pump</value>
+  </data>
 </root>

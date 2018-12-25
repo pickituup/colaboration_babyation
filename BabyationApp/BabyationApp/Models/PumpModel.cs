@@ -156,7 +156,7 @@ namespace BabyationApp.Models
 
                 if (_isConnected)
                 {
-                    level = string.Format($"{_batteryLevel}% CHARGED");
+                    level = string.Format($"{_batteryLevel}% charged");
                 }
 
                 return level;

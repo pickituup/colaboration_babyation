@@ -21,13 +21,11 @@ namespace BabyationApp.Pages.Settings.PumpSettings
         {
             InitializeComponent();
 
-            Title = "ADD A PUMP";
+            Title = "PAIR YOUR PUMP";
             Titlebar.IsVisible = true;
             Titlebar.LeftButton.IsVisible = true;
-            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
             LeftPageType = typeof(MyPumpsPage);
-            Titlebar.RightButton.IsVisible = true;
-            Titlebar.RightButton.Text = "HELP";
 
             BtnAdd.Clicked += (s, e) =>
             {

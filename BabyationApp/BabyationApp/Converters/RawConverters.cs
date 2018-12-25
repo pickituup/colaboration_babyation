@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BabyationApp.Resources;
 using Xamarin.Forms;
 using BabyationApp.Helpers;
+using System.Globalization;
 
 namespace BabyationApp.Converters
 {
@@ -151,6 +152,21 @@ namespace BabyationApp.Converters
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException("DoubleToHMValueConverter.ConvertBack");
+        }
+    }
+
+    public class BoolToGenericObjectConverter<T> : IValueConverter {
+
+        public T TrueObject { get; set; }
+
+        public T FalseObject { get; set; }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            return ((bool)value) ? TrueObject : FalseObject;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            return ((T)value).Equals(TrueObject);
         }
     }
 }

@@ -176,7 +176,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\CircleImageRenderer.cs" />
+    <Compile Include="Renderers\ContentViewExtendedRenderer.cs" />
     <Compile Include="Renderers\DatePickerExRenderer.cs" />
+    <Compile Include="Renderers\EditorExtendedRenderer.cs" />
     <Compile Include="Renderers\EntryExRenderer.cs" />
     <Compile Include="Renderers\KBPageBaseRenderer.cs" />
     <Compile Include="Renderers\LabelExRenderer.cs" />

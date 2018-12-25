@@ -2205,6 +2205,15 @@ namespace BabyationApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pair a pump.
+        /// </summary>
+        internal static string PairAPump {
+            get {
+                return ResourceManager.GetString("PairAPump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PAIR PUMP.
         /// </summary>
         internal static string PairPump {
