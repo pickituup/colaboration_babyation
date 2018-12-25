@@ -1,18 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Application
-    x:Class="BabyationApp.App"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:BabyationApp.Converters"
-    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
-    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
-    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
-    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
-    xmlns:models="clr-namespace:BabyationApp.Models">
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyationApp.App"
+             xmlns:models="clr-namespace:BabyationApp.Models"
+             xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
+             xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors" 
+             xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+             xmlns:converters="clr-namespace:BabyationApp.Converters"
+             xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp">
 
     <Application.Resources>
-
-        <!--  Application resource dictionary  -->
+       
+        <!-- Application resource dictionary -->
         <ResourceDictionary>
             <ThicknessTypeConverter x:Key="ThicknessConverter" />
             <Color x:Key="pageBackColor1">#083954</Color>
@@ -33,7 +32,7 @@
             <Color x:Key="listViewBackColor">#093F5B</Color>
             <Color x:Key="listViewSelectedColor">#11719C</Color>
 
-            <!--  Converters  -->
+            <!-- Converters -->
             <converters:TimeSpanToStringConverter x:Key="TimeSpan2StringConverter" />
             <converters:DatetimeToStringConverter x:Key="Datetime2StringConverter" />
             <converters:ObjectIsNullCheckConverter x:Key="ObjectIsNullCheckConverter" />
@@ -43,7 +42,7 @@
             <models:StorageTypeToStringConverter x:Key="StorageType2StringConverter" />
             <models:SessionTypeToStringConverter x:Key="SessionType2StringConverter" />
             <models:SessionTypeToIconConverter x:Key="SessionType2IconConverter" />
-
+            
             <converters:NotEmptyConverter x:Key="NotEmpty" />
             <converters:IntGreaterConverter x:Key="IntGreaterConverter" />
             <converters:DatetimeHasValueConverter x:Key="DatetimeHasValueConverter" />
@@ -65,8 +64,8 @@
                 x:TypeArguments="x:Boolean"
                 FalseObject="True"
                 TrueObject="False" />
-
-
+            
+            
             <OnPlatform x:Key="fontHurmeBold" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/HurmeGeometricSans3Bold.otf#HurmeGeometricSans3 Bold" />
                 <On Platform="iOS" Value="HurmeGeometricSans3-Bold" />
@@ -91,8 +90,8 @@
                 <On Platform="Android" Value="fonts/LarsseitMedium.otf#Larsseit Medium" />
                 <On Platform="iOS" Value="Larsseit-Medium" />
             </OnPlatform>
-
-            <!--  Colors  -->
+            
+            <!-- Colors -->
             <Color x:Key="Clear">#00FFFFFF</Color>
             <Color x:Key="White">#FFFFFF</Color>
             <Color x:Key="Peach">#F8EBE3</Color>
@@ -107,22 +106,22 @@
             <Color x:Key="LightBlue20">#33EEF8FD</Color>
             <Color x:Key="Peach70">#B3F8EBE3</Color>
             <Color x:Key="MedPink50">#80F8DCD9</Color>
-            <!--  Temporary measure while we investigate Xamarin.Forms issues respecting hex transparency values.  -->
+            <!-- Temporary measure while we investigate Xamarin.Forms issues respecting hex transparency values. -->
             <Color x:Key="MedPink50_2">#FBEDEC</Color>
             <Color x:Key="LightPink40">#66F8DCD9</Color>
             <Color x:Key="DarkBlueColor">#0E3249</Color>
             <Color x:Key="SeaBlueColor">#4887A6</Color>
-            <!--  END Colors  -->
-
-            <!--  Status bar and navigation constants. See more in UpdateGlobalUIStyle in the .cs file  -->
+            <!-- END Colors -->
+                        
+            <!-- Status bar and navigation constants. See more in UpdateGlobalUIStyle in the .cs file -->
             <x:Double x:Key="StatusBarHeight">20</x:Double>
             <x:Double x:Key="NavBarHeight">35</x:Double>
             <x:Double x:Key="BottomBarHeight">50</x:Double>
             <Thickness x:Key="StatusBarInsets">0,20,0,0</Thickness>
             <Thickness x:Key="NavBarInsets">0,35,0,0</Thickness>
-            <!--  END: Status bar and navigation constants  -->
-
-            <!--  Page / View  -->
+            <!-- END: Status bar and navigation constants -->
+            
+            <!-- Page / View -->
             <Style x:Key="Default_Page" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="Padding" Value="{DynamicResource StatusBarInsets}" />
@@ -131,9 +130,9 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />
                 <Setter Property="Padding" Value="{DynamicResource StatusBarInsets}" />
             </Style>
-            <!--  END: Page / View  -->
-
-            <!--  StackLayout  -->
+            <!-- END: Page / View -->
+            
+            <!-- StackLayout -->
             <Style x:Key="StackLayout_FullScreen" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="Padding" Value="0" />
@@ -159,9 +158,9 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="End" />
             </Style>
-            <!--  END: StackLayout  -->
-
-            <!--  Grid  -->
+            <!-- END: StackLayout -->
+            
+            <!-- Grid -->
             <Style x:Key="Grid_FullScreen" TargetType="Grid">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="Padding" Value="0" />
@@ -189,9 +188,9 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="End" />
             </Style>
-            <!--  END Grid  -->
-
-            <!--  AbsoluteLayout  -->
+            <!-- END Grid -->
+            
+            <!-- AbsoluteLayout -->
             <Style x:Key="AbsoluteLayout_FullScreen" TargetType="AbsoluteLayout">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="Padding" Value="0" />
@@ -206,132 +205,96 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
-            <!--  END: AbsoluteLayout  -->
-
-            <!--  Typography: BASE Labels  -->
-            <Style
-                x:Key="PageTitle_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <!-- END: AbsoluteLayout -->
+            
+            <!-- Typography: BASE Labels-->
+            <Style x:Key="PageTitle_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <Style
-                x:Key="Timer_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="Timer_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="62" />
             </Style>
-            <Style
-                x:Key="Instructions_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="Instructions_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="32" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            <Style
-                x:Key="H1_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="H1_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="21" />
             </Style>
-            <Style
-                x:Key="H2_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="H2_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            <Style
-                x:Key="H3_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="H3_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            <Style
-                x:Key="BodyCopy_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="BodyCopy_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
                 <Setter Property="FontSize" Value="16" />
-                <!--  LineHeight = 16  -->
+                <!-- LineHeight = 16 -->
             </Style>
-            <Style
-                x:Key="Label_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="Label_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
                 <Setter Property="FontSize" Value="12" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <Style
-                x:Key="SmallLabel_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="SmallLabel_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
                 <Setter Property="FontSize" Value="10" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <Style
-                x:Key="TrackingEntry_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="TrackingEntry_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="26" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <Style
-                x:Key="SecondaryAction_Label"
-                ApplyToDerivedTypes="true"
-                TargetType="Label">
+            <Style x:Key="SecondaryAction_Label" TargetType="Label" ApplyToDerivedTypes="true">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="10" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <!--  END Typography: Labels  -->
-
-            <!--  Typography: EXTENDED Labels  -->
-            <Style
-                x:Key="BodyCopy_Label_Ex"
-                BasedOn="{StaticResource BodyCopy_Label}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+            <!-- END Typography: Labels-->
+            
+            <!-- Typography: EXTENDED Labels-->
+            <Style x:Key="BodyCopy_Label_Ex" TargetType="Label" BasedOn="{StaticResource BodyCopy_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}"/>
             </Style>
-            <!--  END Typography: Labels  -->
-
-            <!--  Typography: BASE Buttons  -->
+            <!-- END Typography: Labels-->
+            
+            <!-- Typography: BASE Buttons-->
             <Style x:Key="ActionText_Button" TargetType="Button">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
             <Style x:Key="SecondaryActionText_Button" TargetType="Button">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <!--  ALL CAPS  -->
+                <!-- ALL CAPS -->
             </Style>
-            <!--  END Typography: Buttons  -->
-
-            <!--  Typography: BASE Entry  -->
+            <!-- END Typography: Buttons -->
+            
+            <!-- Typography: BASE Entry -->
             <Style x:Key="Entry_Entry" TargetType="Entry">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="26" />
             </Style>
-            <!--  END Typography: Entry  -->
-
-            <!--  Primary action button styles  -->
-            <!--    -->
+            <!-- END Typography: Entry -->
+            
+            <!-- Primary action button styles -->
+            <!--  -->
             <Style x:Key="PositiveActionButton" TargetType="localButtons:ImageButton">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource Green}" />
@@ -344,10 +307,7 @@
                 <Setter Property="ImageTextSpacing" Value="4" />
                 <Setter Property="ImageTranslationY">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="1.4"
-                            iOS="0" />
+                        <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="1.4" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -362,10 +322,7 @@
                 <Setter Property="ImageTextSpacing" Value="4" />
                 <Setter Property="ImageTranslationY">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="1.4"
-                            iOS="0" />
+                        <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="1.4" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -381,10 +338,7 @@
                 <Setter Property="ImageTextSpacing" Value="4" />
                 <Setter Property="ImageTranslationY">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="1.4"
-                            iOS="0" />
+                        <OnPlatform x:TypeArguments="x:Double" iOS="0" Android="1.4" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -396,29 +350,24 @@
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="TextPressedColor" Value="{StaticResource Navy}" />
                 <Setter Property="TextFontFamily" Value="{StaticResource fontHurmeBold}" />
-                <Setter Property="ImageTextOrientation" Value="Vertical" />
+                <Setter Property="ImageTextOrientation" Value="Vertical">
+                </Setter>
                 <Setter Property="TextFontSize" Value="11" />
                 <Setter Property="ImageTextSpacing" Value="5" />
                 <!--                <Setter Property="TextFontAttributes" Value="Bold" />-->
             </Style>
-            <!--  END Primary action button styles  -->
+            <!-- END Primary action button styles -->
 
-            <!--  Secondary action button styles  -->
-            <!--    -->
-            <Style
-                x:Key="ButtonEx"
-                ApplyToDerivedTypes="true"
-                TargetType="localButtons:ButtonEx">
+            <!-- Secondary action button styles -->
+            <!--  -->
+            <Style x:Key="ButtonEx" ApplyToDerivedTypes="true" TargetType="localButtons:ButtonEx">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource Clear}" />
                 <Setter Property="BackgroundColorPressed" Value="{StaticResource Clear}" />
                 <Setter Property="BackgroundColorDisabled" Value="{StaticResource Clear}" />
             </Style>
-            <!--  Pill button  -->
-            <Style
-                x:Key="PillButton"
-                BasedOn="{StaticResource ButtonEx}"
-                TargetType="localButtons:ImageButton">
+            <!-- Pill button -->
+            <Style x:Key="PillButton" BasedOn="{StaticResource ButtonEx}" TargetType="localButtons:ImageButton">
                 <Setter Property="RadiusBasedOnSize" Value="true" />
                 <Setter Property="RadiusSizeRatio" Value="1" />
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource MedBlue}" />
@@ -434,10 +383,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="ContentPadding">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="Thickness"
-                            Android="0"
-                            iOS="0,2,0,0" />
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0,2,0,0" Android="0" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -459,10 +405,7 @@
                 <Setter Property="FontFamilyTop" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="TextFontSizeTop" Value="10" />
             </Style>
-            <Style
-                x:Key="PillReversedButton"
-                BasedOn="{StaticResource ButtonEx}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="PillReversedButton" BasedOn="{StaticResource ButtonEx}" TargetType="localButtons:ImageButton">
                 <Setter Property="RadiusBasedOnSize" Value="true" />
                 <Setter Property="RadiusSizeRatio" Value="1" />
                 <Setter Property="BackgroundColorNormal" Value="Transparent" />
@@ -478,18 +421,11 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="ContentPadding">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="Thickness"
-                            Android="0"
-                            WinPhone="0"
-                            iOS="0,2,0,0" />
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0,2,0,0" Android="0" WinPhone="0" />
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style
-                x:Key="PillSelectorButton"
-                BasedOn="{StaticResource PillButton}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="PillSelectorButton" TargetType="localButtons:ImageButton" BasedOn="{StaticResource PillButton}">
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource Clear}" />
                 <Setter Property="BackgroundColorPressed" Value="{StaticResource MedBlue}" />
                 <Setter Property="BackgroundColorDisabled" Value="{StaticResource LightPink40}" />
@@ -497,62 +433,41 @@
                 <Setter Property="TextPressedColor" Value="{StaticResource LightPink}" />
                 <Setter Property="ImageTextSpacing" Value="5" />
             </Style>
-            <!--  END Pill button  -->
-
-            <!--  Pill Navigation  -->
-            <Style
-                x:Key="LeftPillButton"
-                BasedOn="{StaticResource PillButton}"
-                TargetType="localButtons:ImageButton">
+            <!-- END Pill button -->
+            
+            <!-- Pill Navigation -->
+            <Style x:Key="LeftPillButton" BasedOn="{StaticResource PillButton}" TargetType="localButtons:ImageButton">
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource MedBlue}" />
                 <Setter Property="BackgroundColorPressed" Value="{StaticResource Clear}" />
                 <Setter Property="TextColor" Value="{StaticResource LightPink}" />
                 <Setter Property="TextPressedColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="HorizontalOptions" Value="Start" />
             </Style>
-            <Style
-                x:Key="RightPillButton"
-                BasedOn="{StaticResource PillButton}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="RightPillButton" BasedOn="{StaticResource PillButton}" TargetType="localButtons:ImageButton">
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource White}" />
                 <Setter Property="BackgroundColorPressed" Value="{StaticResource Gold}" />
                 <Setter Property="TextColor" Value="{StaticResource Red}" />
                 <Setter Property="TextPressedColor" Value="{StaticResource Navy}" />
                 <Setter Property="HorizontalOptions" Value="End" />
             </Style>
-            <Style
-                x:Key="BackButton"
-                BasedOn="{StaticResource LeftPillButton}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="BackButton" BasedOn="{StaticResource LeftPillButton}" TargetType="localButtons:ImageButton">
                 <Setter Property="Text" Value="{helpers:Translate Back}" />
                 <Setter Property="ContentPadding">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="Thickness"
-                            Android="4,1"
-                            iOS="4,2,4,1" />
+                        <OnPlatform x:TypeArguments="Thickness" iOS="4,2,4,1" Android="4,1" />
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style
-                x:Key="CancelButton"
-                BasedOn="{StaticResource LeftPillButton}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="CancelButton" BasedOn="{StaticResource LeftPillButton}" TargetType="localButtons:ImageButton">
                 <Setter Property="Text" Value="{helpers:Translate Cancel}" />
             </Style>
-            <Style
-                x:Key="CloseButton"
-                BasedOn="{StaticResource LeftPillButton}"
-                TargetType="localButtons:ImageButton">
+            <Style x:Key="CloseButton" BasedOn="{StaticResource LeftPillButton}" TargetType="localButtons:ImageButton">
                 <Setter Property="Text" Value="{helpers:Translate Close}" />
             </Style>
-            <!--  END Pill Navigation  -->
-
-            <!--  Flat button  -->
-            <Style
-                x:Key="FlatButton"
-                BasedOn="{StaticResource ButtonEx}"
-                TargetType="localButtons:FlatButton">
+            <!-- END Pill Navigation -->
+            
+            <!-- Flat button -->
+            <Style x:Key="FlatButton" BasedOn="{StaticResource ButtonEx}" TargetType="localButtons:FlatButton">
                 <Setter Property="RadiusBasedOnSize" Value="true" />
                 <Setter Property="RadiusSizeRatio" Value="1" />
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource Clear}" />
@@ -564,9 +479,9 @@
                 <Setter Property="TextFontSize" Value="10" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <!--  END Flat button  -->
-
-            <!--  Circle button  -->
+            <!-- END Flat button -->
+           
+            <!-- Circle button -->
             <Style x:Key="NursingCircleButton" TargetType="localButtons:CircleButton">
                 <Setter Property="MiddleCirclePadding" Value="5" />
                 <Setter Property="InnerCirclePadding" Value="7" />
@@ -605,20 +520,14 @@
                 <Setter Property="FontFamilyBottom" Value="{StaticResource fontLarsseitMedium}" />
                 <Setter Property="TextBottomFontSize" Value="10" />
             </Style>
-            <Style
-                x:Key="NursingCircleButtonPeach"
-                BasedOn="{StaticResource NursingCircleButton}"
-                TargetType="localButtons:CircleButton">
+            <Style x:Key="NursingCircleButtonPeach" TargetType="localButtons:CircleButton" BasedOn="{StaticResource NursingCircleButton}">
                 <Setter Property="MiddleCircleColor" Value="{StaticResource Peach}" />
                 <Setter Property="MiddleCirclePressedColor" Value="{StaticResource Peach}" />
             </Style>
-            <!--  END Circle button  -->
-
-            <!--  Checkbox button  -->
-            <Style
-                x:Key="CheckboxButton"
-                ApplyToDerivedTypes="true"
-                TargetType="localButtons:CircleButton">
+           <!-- END Circle button -->
+            
+            <!-- Checkbox button -->
+            <Style x:Key="CheckboxButton" TargetType="localButtons:CircleButton" ApplyToDerivedTypes="true">
                 <Setter Property="TextTop" Value="" />
                 <Setter Property="TextBottom" Value="" />
                 <Setter Property="InnerCircleColor" Value="{StaticResource DarkBlueColor}" />
@@ -636,31 +545,22 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <!--  END Checkbox button  -->
-
-            <!--  Link-like label  -->
-            <Style
-                x:Key="RedLinkLabel"
-                BasedOn="{StaticResource BodyCopy_Label}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource Red}" />
+            <!-- END Checkbox button -->
+            
+            <!-- Link-like label -->
+            <Style x:Key="RedLinkLabel" TargetType="Label" BasedOn="{StaticResource BodyCopy_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Red}"/>
                 <Setter Property="TextDecorations" Value="Underline" />
             </Style>
-
-            <!--  Switch button  -->
-            <Style
-                x:Key="SwitchOnStyle"
-                BasedOn="{StaticResource SmallLabel_Label}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="LightPink" />
+            
+            <!-- Switch button -->
+            <Style x:Key="SwitchOnStyle" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}">
+                <Setter Property="TextColor" Value="LightPink"/>
             </Style>
-            <Style
-                x:Key="SwitchOffStyle"
-                BasedOn="{StaticResource SmallLabel_Label}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="LightBlue" />
+            <Style x:Key="SwitchOffStyle" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}">
+                <Setter Property="TextColor" Value="LightBlue"/>
             </Style>
-
+            
             <Style x:Key="SwitchButton" TargetType="localButtons:SwitchButton">
                 <Setter Property="TextOnStyle" Value="{StaticResource SwitchOnStyle}" />
                 <Setter Property="TextOffStyle" Value="{StaticResource SwitchOffStyle}" />
@@ -673,94 +573,67 @@
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <!--  END Scwitch button  -->
-
-            <!--  END Secondary buttons styles  -->
-
-            <!--  Form style: label  -->
-            <Style
-                x:Key="Form_BaseLabel"
-                ApplyToDerivedTypes="true"
-                BasedOn="{StaticResource SmallLabel_Label}"
-                TargetType="Label">
+            <!-- END Scwitch button -->
+            
+            <!-- END Secondary buttons styles -->
+            
+            <!-- Form style: label -->
+            <Style x:Key="Form_BaseLabel" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}" ApplyToDerivedTypes="true">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
             </Style>
-            <Style
-                x:Key="Form_ElementLabel"
-                BasedOn="{StaticResource Form_BaseLabel}"
-                TargetType="Label">
+            <Style x:Key="Form_ElementLabel" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-            <Style
-                x:Key="Form_ElementLabelPlaceholder"
-                BasedOn="{StaticResource Form_ElementLabel}"
-                TargetType="Label">
+            <Style x:Key="Form_ElementLabelPlaceholder" BasedOn="{StaticResource Form_ElementLabel}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
             </Style>
-            <Style
-                x:Key="Form_ElementTrackingLabelPlaceholder"
-                BasedOn="{StaticResource Form_ElementLabel}"
-                TargetType="Label">
+            <Style x:Key="Form_ElementTrackingLabelPlaceholder" BasedOn="{StaticResource Form_ElementLabel}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="18" />
             </Style>
-            <Style
-                x:Key="Form_ElementBottomText"
-                BasedOn="{StaticResource BodyCopy_Label}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+            <Style x:Key="Form_ElementBottomText" TargetType="Label" BasedOn="{StaticResource BodyCopy_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}">
+                </Setter>
             </Style>
-            <!--  END Form label style  -->
-
-            <!--  Form style: entry  -->
+            <!-- END Form label style -->
+            
+            <!-- Form style: entry -->
             <Style x:Key="Form_BaseEntry" TargetType="localEditors:EntryEx">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
             </Style>
-            <Style
-                x:Key="Form_ElementHeader"
-                BasedOn="{StaticResource Form_BaseLabel}"
-                TargetType="Label">
+            <Style x:Key="Form_ElementHeader" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
                 <Setter Property="LineBreakMode" Value="NoWrap" />
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-            <Style
-                x:Key="Form_ElementEntry"
-                BasedOn="{StaticResource Form_BaseEntry}"
-                TargetType="localEditors:EntryEx">
+            <Style x:Key="Form_ElementEntry" BasedOn="{StaticResource Form_BaseEntry}" TargetType="localEditors:EntryEx">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-            <Style
-                x:Key="Form_TrackingElementEntry"
-                BasedOn="{StaticResource Form_BaseEntry}"
-                TargetType="localEditors:EntryEx">
+            <Style x:Key="Form_TrackingElementEntry" BasedOn="{StaticResource Form_BaseEntry}" TargetType="localEditors:EntryEx">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="26" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-            <Style
-                x:Key="Form_ElementErrorMessage"
-                BasedOn="{StaticResource Form_BaseLabel}"
-                TargetType="Label">
+            <Style x:Key="Form_ElementErrorMessage" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
                 <Setter Property="LineBreakMode" Value="NoWrap" />
                 <Setter Property="TextColor" Value="{StaticResource Red}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            <!--  END Form entry style  -->
-
-            <!--  Navigation header style: label  -->
+            <!-- END Form entry style -->
+            
+            <!-- Navigation header style: label -->
             <Style x:Key="GlobalHeaderLabel" TargetType="localViews:LabelEx">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
@@ -770,20 +643,14 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-            <!--  END Navigation header style: label  -->
-
-            <Style
-                x:Key="TappableLabel"
-                BasedOn="{StaticResource BodyCopy_Label}"
-                TargetType="localViews:LabelEx">
+            <!-- END Navigation header style: label -->
+            
+            <Style x:Key="TappableLabel" BasedOn="{StaticResource BodyCopy_Label}" TargetType="localViews:LabelEx">
                 <Setter Property="IsUnderlined" Value="true" />
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="FontSize">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="x:Double"
-                            Android="14"
-                            iOS="12" />
+                        <OnPlatform x:TypeArguments="x:Double" iOS="12" Android="14" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -791,17 +658,11 @@
                 <Setter Property="BackgroundColorNormal" Value="{StaticResource Green}" />
                 <Setter Property="BackgroundColorPressed" Value="{StaticResource Red}" />
             </Style>
-            <Style
-                x:Key="Form_ElementEntry_Bold"
-                BasedOn="{StaticResource Form_ElementEntry}"
-                TargetType="localEditors:EntryEx">
+            <Style x:Key="Form_ElementEntry_Bold" BasedOn="{StaticResource Form_ElementEntry}" TargetType="localEditors:EntryEx">
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeBold}" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
-            <Style
-                x:Key="ButtonExMainLabel"
-                BasedOn="{StaticResource H2_Label}"
-                TargetType="Label">
+            <Style x:Key="ButtonExMainLabel" BasedOn="{StaticResource H2_Label}" TargetType="Label">
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="SessionSaveConfirmationLabel" TargetType="Label">
@@ -810,10 +671,7 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="28" />
             </Style>
-            <Style
-                x:Key="List_ColumnHeader"
-                BasedOn="{StaticResource Form_ElementHeader}"
-                TargetType="Label">
+            <Style x:Key="List_ColumnHeader" BasedOn="{StaticResource Form_ElementHeader}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="14" />
@@ -823,120 +681,67 @@
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />
                 <Setter Property="FontSize" Value="10" />
             </Style>
-
-            <Style
-                x:Key="TimerLabelModified"
-                BasedOn="{StaticResource Timer_Label}"
-                TargetType="Label">
+            
+            <Style x:Key="TimerLabelModified" BasedOn="{StaticResource Timer_Label}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="Margin">
                     <Setter.Value>
-                        <OnPlatform
-                            x:TypeArguments="Thickness"
-                            Android="0,-2,0,0"
-                            iOS="0,0,0,0" />
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0,0,0,0" Android="0,-2,0,0" />
                     </Setter.Value>
                 </Setter>
             </Style>
-
-            <!--  Listview and Cell styles and templates  -->
-            <!--  Experience  -->
-            <!--  Datamodel: ModeItem  -->
-            <!--  Note: SelectModeCommand should be set  -->
-            <!--    -->
-            <!--  Selectable mode cell  -->
+            
+            <!-- Listview and Cell styles and templates -->
+            <!-- Experience -->
+            <!-- Datamodel: ModeItem -->
+            <!-- Note: SelectModeCommand should be set -->
+            <!--  -->
+            <!-- Selectable mode cell -->
             <DataTemplate x:Key="ModeSelectableCellTemplate">
                 <ViewCell>
-                    <Grid
-                        Padding="2,3"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
-                        <Grid
-                            ColumnSpacing="0"
-                            HorizontalOptions="FillAndExpand"
-                            RowSpacing="0"
-                            VerticalOptions="FillAndExpand">
+                    <Grid Padding="2,3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".17*" />
-                                <ColumnDefinition Width=".83*" />
+                                <ColumnDefinition Width=".17*"/>
+                                <ColumnDefinition Width=".83*"/>
                             </Grid.ColumnDefinitions>
-
-                            <Grid
-                                Grid.Column="0"
-                                Padding="0,2"
-                                HeightRequest="40"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Start">
+                    
+                            <Grid Grid.Column="0" Padding="0,2" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Start" >
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectModeCommand}" CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
-
-                                <localButtons:CircleButton
-                                    x:Name="checkbox"
-                                    ImageNormal="icon_edit"
-                                    ImagePressed="icon_edit"
-                                    InputTransparent="true"
-                                    IsCircle="True"
-                                    IsTogglable="false"
-                                    Style="{StaticResource CheckboxButton}"
-                                    VerticalOptions="Start" />
+                                
+                                <localButtons:CircleButton x:Name="checkbox"
+                                                           InputTransparent="true"
+                                                           IsCircle="True" IsTogglable="false"
+                                                           Style="{StaticResource CheckboxButton}"
+                                                           ImageNormal="icon_edit" ImagePressed="icon_edit"
+                                                           VerticalOptions="Start" />
                             </Grid>
-
-                            <StackLayout
-                                Grid.Column="1"
-                                HorizontalOptions="StartAndExpand"
-                                Orientation="Vertical"
-                                Spacing="6"
-                                VerticalOptions="StartAndExpand">
-                                <StackLayout
-                                    HorizontalOptions="StartAndExpand"
-                                    IsVisible="{Binding Title, Converter={StaticResource ObjectNotNullCheckConverter}}"
-                                    Orientation="Horizontal"
-                                    Spacing="4"
-                                    VerticalOptions="Center">
+                            
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="6" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                                <StackLayout Orientation="Horizontal" Spacing="4" IsVisible="{Binding Title, Converter={StaticResource ObjectNotNullCheckConverter}}" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                     <StackLayout.Padding>
-                                        <OnPlatform
-                                            x:TypeArguments="Thickness"
-                                            Android="0"
-                                            iOS="0,4,0,0" />
+                                        <OnPlatform x:TypeArguments="Thickness" iOS="0,4,0,0" Android="0"/>
                                     </StackLayout.Padding>
-
-                                    <Label
-                                        IsVisible="{Binding IsNew}"
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource Label_Label}"
-                                        Text="{helpers:Translate New}"
-                                        TextColor="{StaticResource Gold}"
-                                        VerticalTextAlignment="End" />
-                                    <Label
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource H2_Label}"
-                                        Text="{Binding Title}"
-                                        TextColor="{StaticResource LightBlue}"
-                                        VerticalTextAlignment="End" />
-                                    <Label
-                                        IsVisible="{Binding IsPredefined}"
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource Label_Label}"
-                                        Text="{helpers:Translate ByBabyationLower}"
-                                        TextColor="{StaticResource MedPink}"
-                                        VerticalTextAlignment="End" />
+                                    
+                                    <Label Text="{helpers:Translate New}" IsVisible="{Binding IsNew}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
+                                    <Label Text="{Binding Title}" Style="{StaticResource H2_Label}" TextColor="{StaticResource LightBlue}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
+                                    <Label Text="{helpers:Translate ByBabyationLower}" IsVisible="{Binding IsPredefined}" Style="{StaticResource Label_Label}" TextColor="{StaticResource MedPink}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
                                 </StackLayout>
-
-                                <Label
-                                    HorizontalOptions="Fill"
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="2"
-                                    Style="{StaticResource Label_Label}"
-                                    TextColor="{StaticResource LightBlue}"
-                                    VerticalOptions="Start"
-                                    VerticalTextAlignment="Start">
+                                    
+                                <Label MaxLines="2"
+                                       Style="{StaticResource Label_Label}" 
+                                       TextColor="{StaticResource LightBlue}" 
+                                       VerticalTextAlignment="Start" 
+                                       LineBreakMode="TailTruncation"
+                                       HorizontalOptions="Fill" VerticalOptions="Start">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span LineHeight="1.2" Text="{Binding Description}" />
+                                            <Span Text="{Binding Description}" LineHeight="1.2" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -945,103 +750,55 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-
-            <!--  Checkable Mode Cell  -->
+            
+            <!-- Checkable Mode Cell -->
             <DataTemplate x:Key="ModeCellTemplate">
                 <ViewCell>
-                    <Grid
-                        Margin="0,10,0,10"
-                        Padding="2,3"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand">
-                        <Grid
-                            ColumnSpacing="0"
-                            HorizontalOptions="FillAndExpand"
-                            RowSpacing="0"
-                            VerticalOptions="FillAndExpand">
+                    <Grid Padding="2,3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,10">
+                        <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".17*" />
-                                <ColumnDefinition Width=".83*" />
+                                <ColumnDefinition Width=".17*"/>
+                                <ColumnDefinition Width=".83*"/>
                             </Grid.ColumnDefinitions>
-
-                            <Grid
-                                Grid.Column="0"
-                                Padding="0,2"
-                                HeightRequest="40"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Start">
+                    
+                            <Grid Grid.Column="0" Padding="0,2" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Start" >
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectModeCommand}" CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
-
-                                <localButtons:CircleButton
-                                    x:Name="checkbox"
-                                    ImageNormal="icon_checked_dummy"
-                                    ImagePressed="icon_checked"
-                                    InputTransparent="true"
-                                    IsCircle="True"
-                                    IsPressed="{Binding IsSelected}"
-                                    IsTogglable="true"
-                                    Style="{StaticResource CheckboxButton}"
-                                    TranslationY="4"
-                                    VerticalOptions="Start" />
+                                
+                                <localButtons:CircleButton x:Name="checkbox"
+                                                           TranslationY="4"
+                                                           InputTransparent="true"
+                                                           ImageNormal="icon_checked_dummy"
+                                                           ImagePressed="icon_checked"
+                                                           IsCircle="True" IsTogglable="true" IsPressed="{Binding IsSelected}"
+                                                           Style="{StaticResource CheckboxButton}"
+                                                           VerticalOptions="Start" />
                             </Grid>
-
-                            <StackLayout
-                                Grid.Column="1"
-                                HorizontalOptions="StartAndExpand"
-                                Orientation="Vertical"
-                                Spacing="6"
-                                VerticalOptions="StartAndExpand">
-                                <StackLayout
-                                    HorizontalOptions="StartAndExpand"
-                                    IsVisible="{Binding Title, Converter={StaticResource ObjectNotNullCheckConverter}}"
-                                    Orientation="Horizontal"
-                                    Spacing="4"
-                                    VerticalOptions="Center">
+                            
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="6" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" >
+                                <StackLayout Orientation="Horizontal" Spacing="4" IsVisible="{Binding Title, Converter={StaticResource ObjectNotNullCheckConverter}}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
                                     <StackLayout.Padding>
-                                        <OnPlatform
-                                            x:TypeArguments="Thickness"
-                                            Android="0"
-                                            iOS="0,4,0,0" />
+                                        <OnPlatform x:TypeArguments="Thickness" iOS="0,4,0,0" Android="0"/>
                                     </StackLayout.Padding>
-
-                                    <Label
-                                        IsVisible="{Binding IsNew}"
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource Label_Label}"
-                                        Text="{helpers:Translate New}"
-                                        TextColor="{StaticResource Gold}"
-                                        VerticalTextAlignment="End" />
-                                    <Label
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource H2_Label}"
-                                        Text="{Binding Title}"
-                                        TextColor="{StaticResource LightBlue}"
-                                        VerticalTextAlignment="End" />
-                                    <Label
-                                        IsVisible="{Binding IsPredefined}"
-                                        LineBreakMode="TailTruncation"
-                                        Style="{StaticResource Label_Label}"
-                                        Text="{helpers:Translate ByBabyationLower}"
-                                        TextColor="{StaticResource MedPink}"
-                                        VerticalTextAlignment="End" />
+                                    
+                                    <Label Text="{helpers:Translate New}" IsVisible="{Binding IsNew}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
+                                    <Label Text="{Binding Title}" Style="{StaticResource H2_Label}" TextColor="{StaticResource LightBlue}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
+                                    <Label Text="{helpers:Translate ByBabyationLower}" IsVisible="{Binding IsPredefined}" Style="{StaticResource Label_Label}" TextColor="{StaticResource MedPink}" LineBreakMode="TailTruncation" VerticalTextAlignment="End"/>
                                 </StackLayout>
-
-                                <Label
-                                    HorizontalOptions="Fill"
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="2"
-                                    Style="{StaticResource Label_Label}"
-                                    TextColor="{StaticResource LightBlue}"
-                                    VerticalOptions="Start"
-                                    VerticalTextAlignment="Start">
+                                    
+                                <Label MaxLines="2"
+                                       Style="{StaticResource Label_Label}" 
+                                       TextColor="{StaticResource LightBlue}" 
+                                       VerticalTextAlignment="Start" 
+                                       LineBreakMode="TailTruncation"
+                                       HorizontalOptions="Fill" VerticalOptions="Start">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span LineHeight="1.2" Text="{Binding Description}" />
+                                            <Span Text="{Binding Description}" LineHeight="1.2" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -1050,8 +807,8 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            <!--  ENDL Cell templates  -->
-
+            <!-- ENDL Cell templates -->
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,7 +1,9 @@
 ﻿using Xamarin.Forms;
 
-namespace BabyationApp.Controls {
-    public class ContentViewExtended : ContentView {
+namespace BabyationApp.Controls
+{
+    public class ContentViewExtended : ContentView
+    {
 
         public static readonly BindableProperty BorderThicknessProperty = BindableProperty.Create(
             propertyName: nameof(BorderThickness),
@@ -21,17 +23,20 @@ namespace BabyationApp.Controls {
             declaringType: typeof(ContentViewExtended),
             defaultValue: default(int));
 
-        public int CornerRadius {
+        public int CornerRadius
+        {
             get { return (int)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public float BorderThickness {
+        public float BorderThickness
+        {
             get { return (float)GetValue(BorderThicknessProperty); }
             set { SetValue(BorderThicknessProperty, value); }
         }
 
-        public Color BorderColor {
+        public Color BorderColor
+        {
             get { return (Color)GetValue(BorderColorProperty); }
             set { SetValue(BorderColorProperty, value); }
         }

@@ -13,26 +13,31 @@ using BabyationApp.Models;
 
 
 
-namespace BabyationApp.Controls.Views {
+namespace BabyationApp.Controls.Views
+{
     /// <summary>
     /// ListView extented with recyle of items set to true
     /// </summary>
-    public class ListViewEx : ListViewBase {
+    public class ListViewEx : ListViewBase
+    {
         /// <summary>
         /// constructor
         /// </summary>
-        public ListViewEx() : base(true) {
+        public ListViewEx() : base(true)
+        {
         }
     }
 
     /// <summary>
     /// ListView extented with recyle of items to set to false
     /// </summary>
-    public class ListViewExNoRecycle : ListViewBase {
+    public class ListViewExNoRecycle : ListViewBase
+    {
         /// <summary>
         /// constructor
         /// </summary>
-        public ListViewExNoRecycle() : base(false) {
+        public ListViewExNoRecycle() : base(false)
+        {
         }
     }
 
@@ -46,8 +51,8 @@ namespace BabyationApp.Controls.Views {
     /// <summary>
     /// ListView to customize through platform dependent renderers
     /// </summary>
-    public class ListViewBase : ListView {
-
+    public class ListViewBase : ListView
+    {
         public static readonly BindableProperty OddItemBackgroundProperty =
             BindableProperty.Create(
                 nameof(OddItemBackground),
@@ -55,7 +60,8 @@ namespace BabyationApp.Controls.Views {
                 typeof(ListViewBase),
                 defaultValue: Color.LightBlue);
 
-        public Color OddItemBackground {
+        public Color OddItemBackground
+        {
             get => (Color)GetValue(OddItemBackgroundProperty);
             set => SetValue(OddItemBackgroundProperty, value);
         }
@@ -67,7 +73,8 @@ namespace BabyationApp.Controls.Views {
                 typeof(ListViewBase),
                 defaultValue: Color.LightCoral);
 
-        public Color EvenItemBackground {
+        public Color EvenItemBackground
+        {
             get => (Color)GetValue(EvenItemBackgroundProperty);
             set => SetValue(EvenItemBackgroundProperty, value);
         }
@@ -78,11 +85,11 @@ namespace BabyationApp.Controls.Views {
         /// Event fires when a cell setup is made. User can bind to this to get a new cell created event
         /// </summary>
         public event ListCellSetup SetupCell;
-        public ListViewBase(bool recyle = true) : base(recyle ? ListViewCachingStrategy.RecycleElement : ListViewCachingStrategy.RetainElement) {
+        public ListViewBase(bool recyle = true) : base(recyle ? ListViewCachingStrategy.RecycleElement : ListViewCachingStrategy.RetainElement)
+        {
             SeparatorVisibility = SeparatorVisibility.None;
             IsPullToRefreshEnabled = false;
-            ItemSelected += (s, e) =>
-            {
+            ItemSelected += (s,e) => {
                 UpdateSelection(this.ItemsSource, e.SelectedItem as ModelItemBase);
             };
             SeparatorColor = Color.Transparent;
@@ -93,7 +100,8 @@ namespace BabyationApp.Controls.Views {
         /// </summary>
         /// <param name="items">row items</param>
         /// <param name="selectedItem">selected item</param>
-        void UpdateSelection(System.Collections.IEnumerable items, ModelItemBase selectedItem) {
+        void UpdateSelection(System.Collections.IEnumerable items, ModelItemBase selectedItem)
+        {
             foreach (Object o in items)
             {
                 var item = o as ModelItemBase;
@@ -118,7 +126,8 @@ namespace BabyationApp.Controls.Views {
         /// </summary>
         /// <param name="content"></param>
         /// <param name="index"></param>
-        protected override void SetupContent(Cell content, int index) {
+        protected override void SetupContent(Cell content, int index)
+        {            
             var viewCell = content as ViewCell;
             if (viewCell != null && viewCell.View != null && viewCell.View.BindingContext != null)
             {
@@ -141,14 +150,15 @@ namespace BabyationApp.Controls.Views {
         }
     }
 
-
+    
 
     /// <summary>
     /// Generic model ListView.  
     /// </summary>
     /// <remarks>This model mainly runs on main thread and sync to another collection that may runs on other thread</remarks>
     /// <typeparam name="T"></typeparam>
-    public class ListViewList<T> : ObservableCollection<T> {
+    public class ListViewList<T> : ObservableCollection<T>
+    {
         /// <summary>
         /// Notification delegate this collection usually when the internal collection changes.
         /// </summary>
@@ -172,7 +182,8 @@ namespace BabyationApp.Controls.Views {
         /// Constructors
         /// </summary>
         /// <param name="source">Another colleciton that this collection sync to</param>
-        public ListViewList(ObservableCollection<T> source) {
+        public ListViewList(ObservableCollection<T> source)
+        {
             foreach (T t in source)
             {
                 Add(t);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <pages:PageBase
     x:Class="BabyationApp.Pages.FirstTimeUser.PumpAdditionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -78,23 +78,10 @@
                                                               Constant=6}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <localButtons:ImageButton
-                x:Name="BtnNext"
-                Grid.Column="0"
-                HorizontalOptions="FillAndExpand"
-                ImageNormal="icon_next2.png"
-                ImagePressed="icon_next2.png"
-                ImageScale="{OnPlatform Android=1,
-                                        iOS=0.9}"
-                ImageTranslationY="{OnPlatform Android=1,
-                                               iOS=0.3}"
-                Style="{StaticResource NavigationalActionButton}"
-                Text="{helpers:Translate Skip}" />
-            <localButtons:ImageButton
                 x:Name="BtnPair"
-                Grid.Column="1"
+                Grid.Column="0"
                 HorizontalOptions="FillAndExpand"
                 ImageNormal="icon_pair_light_pink.png"
                 ImagePressed="icon_pair_light_pink.png"

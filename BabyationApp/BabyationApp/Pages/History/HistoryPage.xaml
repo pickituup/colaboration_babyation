@@ -78,6 +78,7 @@
                 BasedOn="{StaticResource GridLabelValue}"
                 TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
             </Style>
 
             <DataTemplate x:Key="bottleSessionTemplate">

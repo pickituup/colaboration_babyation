@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 using BabyationApp.Models;
 using Xamarin.Forms;
 using BabyationApp.Managers;
-using BabyationApp.Resources;
 
-namespace BabyationApp.Pages.Settings.PumpSettings {
+namespace BabyationApp.Pages.Settings.PumpSettings
+{
     /// <summary>
     /// This class represents the My Pumps page from the design
     /// </summary>
-    public partial class MyPumpsPage : PageBase {
+    public partial class MyPumpsPage : PageBase
+    {
         private ObservableCollection<PumpModel> _groups;
 
         /// <summary>
         /// Constructor -- Initialize the model and binds buttons events and other ui actions
         /// </summary>
-        public MyPumpsPage() {
+        public MyPumpsPage()
+        {
             InitializeComponent();
 
             Title = "MY PUMPS";
@@ -29,20 +31,6 @@ namespace BabyationApp.Pages.Settings.PumpSettings {
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
             LeftPageType = typeof(DashboardTabPage);
-
-            //BtnAddPump.Clicked += (s, e) =>
-            //{
-            //    if (PumpManager.Instance.NewPumps.Count == 1)
-            //    {
-            //        PumpManager.Instance.SelectedPump = PumpManager.Instance.NewPumps[0];
-            //        PageManager.Me.SetCurrentPage(typeof(BluetoothPumpSetupPage));
-            //    }
-            //    else
-            //    {
-            //        // If no pumps or multiple pumps go to Pump Detected Page
-            //        PageManager.Me.SetCurrentPage(typeof(BluetoothPumpDetectedPage));
-            //    }
-            //};
 
             BtnAddPump.CommandEx = new Command(() =>
             {
@@ -130,30 +118,21 @@ namespace BabyationApp.Pages.Settings.PumpSettings {
         /// <summary>
         /// Gets called when this page is about to show and performs the initialization
         /// </summary>
-        public override void AboutToShow() {
+        public override void AboutToShow()
+        {
             base.AboutToShow();
             _groups.Clear();
             PumpGroupItemItem myPumps = new PumpGroupItemItem(PumpManager.Instance.PairedPumps) { GroupTitle = "MY PUMP", GroupKey = "me" };
             //_groups.Add(myPumps);
-
-
-
-
+            //Titlebar.TitleTextColor = Color.FromHex("#11442b");
 
             foreach (PumpModel pumpModel in TODO_HARDCODED_BUIDLER())
             {
                 _groups.Add(pumpModel);
             }
 
-
-
-
-
-
-            //Titlebar.TitleTextColor = Color.FromHex("#11442b");
             listView.SelectedItem = null;
         }
-
 
         private ObservableCollection<PumpModel> TODO_HARDCODED_BUIDLER() {
             ObservableCollection<PumpModel> pumps = new ObservableCollection<PumpModel>();
@@ -346,12 +325,14 @@ namespace BabyationApp.Pages.Settings.PumpSettings {
     /// <summary>
     /// This class is the model of a group of pumps to the MyPumpsPage listview
     /// </summary>
-    class PumpGroupItemItem : ListViewList<PumpModel> {
+    class PumpGroupItemItem : ListViewList<PumpModel>
+    {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="source">The list of pumps to show on a group on the my pumps page listview</param>
-        public PumpGroupItemItem(ObservableCollection<PumpModel> source) : base(source) {
+        public PumpGroupItemItem(ObservableCollection<PumpModel> source) : base(source)
+        {
         }
 
         /// <summary>

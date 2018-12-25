@@ -489,7 +489,23 @@ namespace BabyationApp.Managers
 
                     historyManager.AddSession(historyModel);
                 }
+                else if (_sessionModel.SessionType == SessionType.Pump)
+                {
+                    historyModel = historyManager.CreateSession(SessionType.Pump);
 
+                    historyModel.StartTime = _sessionModel.StartTime;
+                    historyModel.EndTime = _sessionModel.EndTime;
+                    historyModel.LeftBreastStartTime = _sessionModel.LeftBreastStartTime;
+                    historyModel.LeftBreastEndTime = _sessionModel.LeftBreastEndTime;
+                    historyModel.RightBreastStartTime = _sessionModel.RightBreastStartTime;
+                    historyModel.RightBreastEndTime = _sessionModel.RightBreastEndTime;
+                    historyModel.TotalMilkVolume = _sessionModel.TotalMilkVolume;
+                    historyModel.Description = _sessionModel.Note;
+                    historyModel.Milk = _sessionModel.Milk;
+                    historyModel.Storage = _sessionModel.Storage;
+
+                    historyManager.AddSession(historyModel);
+                }
                 _sessionModel = null;
                 _sessionActive = false;
             }

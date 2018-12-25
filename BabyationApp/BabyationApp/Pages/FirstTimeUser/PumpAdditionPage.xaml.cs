@@ -25,10 +25,6 @@ namespace BabyationApp.Pages.FirstTimeUser
             try {
                 InitializeComponent();
 
-                BtnNext.Clicked += (s, e) => {
-                    PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
-                };
-
                 BtnPair.Clicked += (s, e) => {
                     PageManager.Me.SetCurrentPage(typeof(PumpNamePage));
                 };
@@ -44,12 +40,11 @@ namespace BabyationApp.Pages.FirstTimeUser
         public override void AboutToShow()
         {
             base.AboutToShow();
-            Title = IsFirstTimeFlow ? AppResource.PairYouPumpOptional : AppResource.PairYouPump;
-            BtnNext.Text = IsFirstTimeFlow ? AppResource.Skip : AppResource.Back;
-            BtnNext.ImageNormal = IsFirstTimeFlow ? "icon_next2.png" : "icon_next2.png";
-            BtnNext.ImagePressed = IsFirstTimeFlow ? "icon_next2.png" : "icon_next2.png";
 
+            Titlebar.Title = AppResource.PairYouPump;
+            Titlebar.LeftButton.IsVisible = true;
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
+            LeftPageType = LeftPageType ?? typeof(DashboardTabPage);
         }
-
     }
 }

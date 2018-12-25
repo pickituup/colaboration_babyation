@@ -60,7 +60,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid
-                            x:Name="TODO_GRID"
+                            x:Name="_itemRoot_Grid"
                             Padding="18,0"
                             ColumnSpacing="9"
                             HeightRequest="80">
@@ -74,8 +74,8 @@
                                 HorizontalOptions="EndAndExpand"
                                 ImageNormal="icon_edit.png"
                                 ImagePressed="icon_edit.png"
-                                InnerCircleColor="{Binding BackgroundColor, Source={Reference Name=TODO_GRID}}"
-                                InnerCircleCurrentColor="{Binding BackgroundColor, Source={Reference Name=TODO_GRID}}"
+                                InnerCircleColor="{Binding BackgroundColor, Source={Reference Name=_itemRoot_Grid}}"
+                                InnerCircleCurrentColor="{Binding BackgroundColor, Source={Reference Name=_itemRoot_Grid}}"
                                 IsEnabled="False"
                                 IsInteractable="False"
                                 OuterCircleColor="{StaticResource Key=listViewSelectedColor}"

@@ -7,12 +7,15 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(ContentViewExtended), typeof(ContentViewExtendedRenderer))]
-namespace BabyationApp.iOS.Renderers {
-    public class ContentViewExtendedRenderer : VisualElementRenderer<ContentViewExtended> {
+namespace BabyationApp.iOS.Renderers
+{
+    public class ContentViewExtendedRenderer : VisualElementRenderer<ContentViewExtended>
+    {
 
         private ContentViewExtended _element;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<ContentViewExtended> e) {
+        protected override void OnElementChanged(ElementChangedEventArgs<ContentViewExtended> e)
+        {
             base.OnElementChanged(e);
 
             if (e.NewElement != null)
@@ -23,7 +26,8 @@ namespace BabyationApp.iOS.Renderers {
             }
         }
 
-        private void SetupLayer(float borderWidth, nfloat borderRadius) {
+        private void SetupLayer(float borderWidth, nfloat borderRadius)
+        {
 
             Layer.CornerRadius = borderRadius;
 
@@ -46,7 +50,8 @@ namespace BabyationApp.iOS.Renderers {
             Layer.ShouldRasterize = true;
         }
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
             base.OnElementPropertyChanged(sender, e);
 
             if (ContentViewExtended.BorderColorProperty.PropertyName == e.PropertyName)

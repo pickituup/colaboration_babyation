@@ -9,8 +9,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ContentViewExtended), typeof(ContentViewExtendedRenderer))]
-namespace BabyationApp.Droid.Renderers {
-    public sealed class ContentViewExtendedRenderer : ViewRenderer {
+namespace BabyationApp.Droid.Renderers
+{
+    public class ContentViewExtendedRenderer : ViewRenderer
+    {
 
         private static readonly PorterDuff.Mode _MASK_DSTIN_PORTER_DUFF = PorterDuff.Mode.DstIn;
         private static readonly float _DEFAULT_BORDER_WIDTH = 4;
@@ -26,7 +28,8 @@ namespace BabyationApp.Droid.Renderers {
         /// Public ctor
         /// </summary>
         /// <param name="context"></param>
-        public ContentViewExtendedRenderer(Context context) : base(context) {
+        public ContentViewExtendedRenderer(Context context) : base(context)
+        {
             ///
             /// Allows to draw itself (in other case Draw(Canvas canvas) will not be occured).
             /// 
@@ -44,7 +47,8 @@ namespace BabyationApp.Droid.Renderers {
         }
 
         private float _resolvedCornerRadius;
-        public float ResolvedCornerRadius {
+        public float ResolvedCornerRadius
+        {
             get => _resolvedCornerRadius;
             private set
             {
@@ -53,7 +57,8 @@ namespace BabyationApp.Droid.Renderers {
         }
 
         private float _resolvedBorderThickness;
-        public float ResolvedBorderThickness {
+        public float ResolvedBorderThickness
+        {
             get => _resolvedBorderThickness;
             private set
             {
@@ -65,7 +70,8 @@ namespace BabyationApp.Droid.Renderers {
         }
 
         private Android.Graphics.Color _resolvedBorderColor;
-        public Android.Graphics.Color ResolvedBorderColor {
+        public Android.Graphics.Color ResolvedBorderColor
+        {
             get => _resolvedBorderColor;
             private set
             {
@@ -75,7 +81,8 @@ namespace BabyationApp.Droid.Renderers {
             }
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.View> e) {
+        protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.View> e)
+        {
             base.OnElementChanged(e);
 
             if (Element != null)
@@ -87,7 +94,8 @@ namespace BabyationApp.Droid.Renderers {
             }
         }
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
             base.OnElementPropertyChanged(sender, e);
 
             if (e.PropertyName == ContentViewExtended.BorderColorProperty.PropertyName)
@@ -119,14 +127,16 @@ namespace BabyationApp.Droid.Renderers {
             }
         }
 
-        protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec)
+        {
             base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
 
             _maskPath = BuildRoundedPath(MeasuredWidth, MeasuredHeight, ResolvedCornerRadius, ResolvedBorderThickness);
             _borderPath = BuildRoundedPath(MeasuredWidth, MeasuredHeight, ResolvedCornerRadius, ResolvedBorderThickness);
         }
 
-        public override void Draw(Canvas canvas) {
+        public override void Draw(Canvas canvas)
+        {
             try
             {
                 canvas.Save();
@@ -143,7 +153,8 @@ namespace BabyationApp.Droid.Renderers {
             }
         }
 
-        private void Init() {
+        private void Init()
+        {
             _borderPaint = new Paint(PaintFlags.AntiAlias)
             {
                 StrokeWidth = _DEFAULT_BORDER_WIDTH,
@@ -156,7 +167,8 @@ namespace BabyationApp.Droid.Renderers {
             _maskPaint.SetXfermode(new PorterDuffXfermode(_MASK_DSTIN_PORTER_DUFF));
         }
 
-        private Path BuildRoundedPath(float width, float height, float radius, float offset = 0) {
+        private Path BuildRoundedPath(float width, float height, float radius, float offset = 0)
+        {
             Path path = new Path();
 
             try
@@ -168,7 +180,8 @@ namespace BabyationApp.Droid.Renderers {
             return path;
         }
 
-        private Android.Graphics.Color ResolveNativeColor(Xamarin.Forms.Color color) {
+        private Android.Graphics.Color ResolveNativeColor(Xamarin.Forms.Color color)
+        {
             byte red = (byte)(color.R * 255);
             byte green = (byte)(color.G * 255);
             byte blue = (byte)(color.B * 255);

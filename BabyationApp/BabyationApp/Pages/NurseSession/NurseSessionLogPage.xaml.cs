@@ -78,6 +78,24 @@ namespace BabyationApp.Pages.NurseSession
                         {
                             TotalCount();
                         }
+
+                        if( NurseTotalTime.Time.HasValue)
+                        {
+                            if( !String.IsNullOrEmpty(ParseTime(ViewModel.FirstTime)))
+                            {
+                                if(TimeSpan.TryParseExact(ViewModel.FirstTime, @"mm\:ss", null, out TimeSpan resultTime))
+                                {
+                                    HistorySession.LeftBreastEndTime = HistorySession.LeftBreastStartTime + resultTime;
+                                }
+                            }
+                            if (!String.IsNullOrEmpty(ParseTime(ViewModel.LastTime)))
+                            {
+                                if (TimeSpan.TryParseExact(ViewModel.LastTime, @"mm\:ss", null, out TimeSpan resultTime))
+                                {
+                                    HistorySession.RightBreastEndTime = HistorySession.RightBreastStartTime + resultTime;
+                                }
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -230,7 +248,18 @@ namespace BabyationApp.Pages.NurseSession
             {
                 if (_historyModel != null)
                 {
-                    HistoryManager.Instance.AddSession(_historyModel);
+                    if (null != ProfileManager.Instance?.CurrentProfile?.CurrentBaby)
+                    {
+
+                        _historyModel.ChildID = ProfileManager.Instance.CurrentProfile.CurrentBaby.Id;
+                        _historyModel.ChildName = ProfileManager.Instance.CurrentProfile.CurrentBaby.Name;
+
+                        HistoryManager.Instance.AddSession(_historyModel);
+                    }
+                    else
+                    {
+                        ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
+                    }
                 }
                 ViewModel.ShowSavedPopupPage = true;
                 //UpdateTitlebarInfo(false, Color.FromHex("#11442B"));
@@ -245,7 +274,6 @@ namespace BabyationApp.Pages.NurseSession
 
             Titlebar.IsVisible = true;
             LeftPageType = typeof(DashboardTabPage);
-            Titlebar.LeftButton.Clicked += LeftButton_Clicked;
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
 
@@ -404,16 +432,6 @@ namespace BabyationApp.Pages.NurseSession
             {
                 System.Diagnostics.Debug.WriteLine("Exception: " + exc.Message);
             }
-        }
-
-        /// <summary>
-        /// Handles titlebar left button click event
-        /// </summary>
-        /// <param name="sender">event sender</param>
-        /// <param name="e">event arguments</param>
-        private void LeftButton_Clicked(object sender, EventArgs e)
-        {
-            HistoryManager.Instance.AddSession(_historyModel);
         }
 
         /// <summary>
