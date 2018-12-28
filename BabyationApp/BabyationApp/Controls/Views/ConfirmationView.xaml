@@ -23,20 +23,24 @@
         </StackLayout>
             
         <!-- Navigation section -->
-        <StackLayout Grid.Row="1" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
-            <localButtons:ImageButton x:Name="BtnDestructive"
+        <Grid Grid.Row="1" x:Name="StackBottomBar" Style="{StaticResource Grid_BottomNavigation}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <localButtons:ImageButton Grid.Column="0" x:Name="BtnDestructive"
                                       Text="{Binding Source={x:Reference this}, Path=DestructiveText}"
                                       Style="{StaticResource DestructiveActionButton}"
                                       ImageNormal="{Binding Source={x:Reference this}, Path=DestructiveImage}" ImagePressed="{Binding Source={x:Reference this}, Path=DestructiveImagePressed}"
                                       HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
                                       HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
-            <localButtons:ImageButton x:Name="BtnPositive"
+            <localButtons:ImageButton Grid.Column="1" x:Name="BtnPositive"
                                       Text="{Binding Source={x:Reference this}, Path=PositiveText}"
                                       Style="{StaticResource PositiveActionButton}"
                                       ImageNormal="{Binding Source={x:Reference this}, Path=PositiveImage}" ImagePressed="{Binding Source={x:Reference this}, Path=PositiveImagePressed}"
                                       HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
                                       HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />                    
-        </StackLayout>
+        </Grid>
     
     </Grid>
 </ContentView>

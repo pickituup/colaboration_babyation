@@ -64,7 +64,7 @@
                 x:TypeArguments="x:Boolean"
                 FalseObject="True"
                 TrueObject="False" />
-            
+            <converters:PumpAmountConverter x:Key="PumpAmountConverter" />
             
             <OnPlatform x:Key="fontHurmeBold" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/HurmeGeometricSans3Bold.otf#HurmeGeometricSans3 Bold" />
@@ -104,7 +104,7 @@
             <Color x:Key="Green">#11442B</Color>
             <Color x:Key="MedPink">#F8DCD9</Color>
             <Color x:Key="LightBlue20">#33EEF8FD</Color>
-            <Color x:Key="Peach70">#B3F8EBE3</Color>
+            <Color x:Key="Peach30">#4DF8EBE3</Color>
             <Color x:Key="MedPink50">#80F8DCD9</Color>
             <!-- Temporary measure while we investigate Xamarin.Forms issues respecting hex transparency values. -->
             <Color x:Key="MedPink50_2">#FBEDEC</Color>

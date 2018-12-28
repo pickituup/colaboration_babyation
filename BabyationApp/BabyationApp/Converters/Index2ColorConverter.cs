@@ -9,7 +9,7 @@ namespace BabyationApp.Converters
         {
             if( null == value ) return Application.Current.Resources["Peach"];
 
-            return (0 == (int)value % 2 ? Application.Current.Resources["Peach"]: Application.Current.Resources["Peach70"]);
+            return (0 == (int)value % 2 ? Application.Current.Resources["Peach"]: Application.Current.Resources[" Peach30"]);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -213,8 +213,11 @@ namespace BabyationApp.Managers
             }
         }
 
-        // This is just a sample for using HttpManager
-        public object AddCaregiver(string email) => HttpManager.Instance.PostAsync<object,string>("caregivers", email);
+        public Task<CaregiverRequest> AddCaregiver(string email) 
+            => HttpManager.Instance.PostAsync<CaregiverRequest>($"Caregiver/CreateCaregiverRequest?email={email}");
+
+        public Task<CaregiverRelation> VerifyCaregiverCode(string verificationCode) 
+            => HttpManager.Instance.PostAsync<CaregiverRelation>($"Caregiver/ValidateCaregiver?verificationCode={verificationCode}");
 
         private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

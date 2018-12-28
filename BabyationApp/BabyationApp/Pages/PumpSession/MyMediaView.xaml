@@ -51,12 +51,12 @@
     
     <Grid HorizontalOptions="FillAndExpand" RowSpacing="0" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <!-- Add control -->
-        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HeightRequest="60" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
         
         <!-- Single view -->
         <Grid Grid.Row="1" IsVisible="{Binding IsSingleViewMode}" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >

@@ -125,7 +125,7 @@
                                                 FontFamily="{StaticResource fontLarsseitMedium}"
                                                 FontSize="10"
                                                 HorizontalOptions="Center"
-                                                Text="USE THIS PUMP"
+                                                Text="{helpers:Translate Text=UseThisPumpUppercase}"
                                                 TextColor="{StaticResource Key=listViewSelectedColor}"
                                                 VerticalOptions="Center" />
                                         </controls:ContentViewExtended>
@@ -157,7 +157,7 @@
                                                     FontFamily="{StaticResource fontLarsseitMedium}"
                                                     FontSize="10"
                                                     HorizontalOptions="Center"
-                                                    Text="SELECTED"
+                                                    Text="{helpers:Translate Text=SelectedUppercase}"
                                                     TextColor="{StaticResource Key=LightPink}"
                                                     VerticalOptions="Center" />
                                             </Grid>
@@ -170,7 +170,7 @@
                                         FontSize="10"
                                         HorizontalOptions="Center"
                                         IsVisible="False"
-                                        Text="Not in range"
+                                        Text="{helpers:Translate Text=NotInRange}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>

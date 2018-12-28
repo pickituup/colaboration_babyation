@@ -30,7 +30,7 @@
         <Grid x:Name="RootLayout" Style="{StaticResource Grid_NavigationOnTop}">
             <Grid IsVisible="{Binding ShowMainPage}" Padding="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 

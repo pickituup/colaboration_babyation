@@ -51,9 +51,25 @@
                     </StackLayout>
                 </StackLayout>
             </Grid>
-            <StackLayout Margin="0" Padding="0" BackgroundColor="{StaticResource LightBlue}" HeightRequest="50" HorizontalOptions="Fill" Orientation="Horizontal" Spacing="0" VerticalOptions="Fill">
-                <localButtons:ImageButton x:Name="BtnSkip" Command="{Binding SkipCommand}" HorizontalOptions="FillAndExpand" ImageNormal="icon_next2" ImagePressed="icon_next" IsVisible="{Binding IsSkipVisible}" Style="{StaticResource NavigationalActionButton}" Text="{helpers:Translate Skip}" VerticalOptions="Fill" />
-                <localButtons:ImageButton x:Name="BtnSave" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" ImageNormal="icon_save" ImagePressed="icon_save2" IsInteractable="{Binding IsSaveReady}" Style="{StaticResource PositiveActionButton}" Text="{helpers:Translate Save}" VerticalOptions="Fill" />
+            <StackLayout x:Name="StackBottomBar" 
+                         Style="{StaticResource StackLayout_BottomNavigation}" 
+                         BackgroundColor="{StaticResource LightBlue}" >
+                <localButtons:ImageButton x:Name="BtnSkip" 
+                                          IsVisible="{Binding IsSkipVisible}" 
+                                          Text="{helpers:Translate Skip}" 
+                                          Command="{Binding SkipCommand}" 
+                                          ImageNormal="icon_next2" ImagePressed="icon_next" 
+                                          Style="{StaticResource NavigationalActionButton}" 
+                                          HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                <localButtons:ImageButton x:Name="BtnSave" 
+                                          Text="{helpers:Translate Save}" 
+                                          Command="{Binding SaveCommand}" 
+                                          ImageNormal="icon_save" ImagePressed="icon_save2" 
+                                          IsInteractable="{Binding IsSaveReady}" 
+                                          Style="{StaticResource PositiveActionButton}" 
+                                          HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

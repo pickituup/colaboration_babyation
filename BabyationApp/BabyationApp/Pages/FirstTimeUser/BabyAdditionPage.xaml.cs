@@ -3,6 +3,8 @@ using Xamarin.Forms.Xaml;
 using BabyationApp.Managers;
 using BabyationApp.ViewModels;
 using System.Diagnostics;
+using System;
+using BabyationApp.Pages.Settings;
 
 namespace BabyationApp.Pages.FirstTimeUser
 {
@@ -37,8 +39,16 @@ namespace BabyationApp.Pages.FirstTimeUser
 
             Titlebar.IsVisible = true;
             Titlebar.LeftButton.IsVisible = ViewModel.IsProfileSession;
-            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
-            LeftPageType = typeof(DashboardTabPage);
+            if( ViewModel.IsProfileSession )
+            {
+                Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
+                LeftPageType = typeof(ProfilePage);
+            }
+            else
+            {
+                Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
+                LeftPageType = typeof(DashboardTabPage);
+            }
 
             ViewModel.OnAppearing();
         }

@@ -1,61 +1,47 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<pages:PageBase
-    x:Class="BabyationApp.Pages.Settings.AddAnotherChildPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
-    xmlns:localBehavior="clr-namespace:BabyationApp.Behaviors"
-    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons"
-    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
-    xmlns:pages="clr-namespace:BabyationApp.Pages"
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PageBase 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    xmlns:localBehavior="clr-namespace:BabyationApp.Behaviors" 
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    xmlns:pages="clr-namespace:BabyationApp.Pages" 
+    x:Class="BabyationApp.Pages.Settings.AddAnotherChildPage" 
     Title="{helpers:Translate AddYourChild}">
-
+    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Style="{StaticResource StackLayout_NavigationOnTop}">
-            <StackLayout
-                Margin="0"
-                Padding="0"
-                BackgroundColor="{StaticResource Navy}"
-                HeightRequest="50"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Vertical"
-                Spacing="0"
-                VerticalOptions="FillAndExpand">
-                <Label
-                    Margin="30"
-                    HorizontalOptions="StartAndExpand"
-                    Style="{StaticResource Instructions_Label}"
-                    Text="{helpers:Translate AddAnotherChild}"
-                    TextColor="{StaticResource LightBlue}"
-                    VerticalOptions="Start" />
+            <StackLayout Margin="0" Padding="0" BackgroundColor="{StaticResource Navy}" HeightRequest="50" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
+                <Label Margin="30" 
+                       Text="{helpers:Translate AddAnotherChild}"
+                       Style="{StaticResource Instructions_Label}" 
+                       TextColor="{StaticResource LightBlue}" 
+                       HorizontalOptions="StartAndExpand"  VerticalOptions="Start" />
             </StackLayout>
-            <StackLayout
-                Margin="0"
-                Padding="0"
-                HeightRequest="50"
-                HorizontalOptions="Fill"
-                Orientation="Horizontal"
-                Spacing="0"
-                VerticalOptions="Fill">
-                <localButtons:ImageButton
-                    x:Name="BtnNO"
-                    Command="{Binding NOCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    ImageNormal="icon_close"
-                    ImagePressed="icon_close4"
-                    Style="{StaticResource DestructiveActionButton}"
-                    Text="{helpers:Translate NO}"
-                    VerticalOptions="Fill" />
-                <localButtons:ImageButton
-                    x:Name="BtnSave"
-                    Command="{Binding YESCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    ImageNormal="icon_checked2"
-                    ImagePressed="icon_checked3"
-                    Style="{StaticResource PositiveActionButton}"
-                    Text="{helpers:Translate YES}"
-                    VerticalOptions="Fill" />
-            </StackLayout>
+            
+            <Grid x:Name="GridBottomBar" Style="{StaticResource Grid_BottomNavigation}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                
+                <localButtons:ImageButton x:Name="BtnNO" Grid.Row="0" 
+                                          Text="{helpers:Translate NO}" 
+                                          Command="{Binding NOCommand}" 
+                                          ImageNormal="icon_close" ImagePressed="icon_close4" 
+                                          Style="{StaticResource DestructiveActionButton}" 
+                                          HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
+                                          HorizontalOptions="FillAndExpand"  VerticalOptions="Fill" />
+                <localButtons:ImageButton x:Name="BtnSave" Grid.Row="1" 
+                                          Command="{Binding YESCommand}" 
+                                          Text="{helpers:Translate YES}"
+                                          ImageNormal="icon_checked2" ImagePressed="icon_checked3" 
+                                          Style="{StaticResource PositiveActionButton}" 
+                                          HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
+                                          HorizontalOptions="FillAndExpand"  VerticalOptions="Fill" />
+            </Grid>
+            
         </StackLayout>
     </ContentPage.Content>
 </pages:PageBase>

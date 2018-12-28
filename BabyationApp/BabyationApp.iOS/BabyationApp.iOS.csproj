@@ -172,6 +172,7 @@
     <BundleResource Include="Resources\tab_reminder_pressed%403x.png" />
     <BundleResource Include="Resources\tab_reminder_pressed.png" />
     <Compile Include="Dependencies\PlatformAPI.cs" />
+    <Compile Include="Effects\UnderlineEffect.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<pages:PageBase
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PageBase 
     x:Class="BabyationApp.Pages.BottleSession.BottleFeedAmountPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -13,171 +13,59 @@
     xmlns:textEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp"
     Title="{helpers:Translate BottleSession}"
     BackgroundColor="{StaticResource Peach}">
-
+    
     <ContentPage.Content>
-        <AbsoluteLayout
-            x:Name="RootLayout"
-            HorizontalOptions="FillAndExpand"
-            Style="{StaticResource AbsoluteLayout_NavigationOnTop}"
-            VerticalOptions="FillAndExpand">
-
-            <Grid
-                AbsoluteLayout.LayoutBounds="1,1,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                RowSpacing="0">
+        <AbsoluteLayout x:Name="RootLayout" HorizontalOptions="FillAndExpand" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" VerticalOptions="FillAndExpand">
+            <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="0.11*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ScrollView Grid.Row="0">
-                    <StackLayout
-                        IsVisible="{Binding ShowBottleFeedAmountPage}"
-                        Orientation="Vertical"
-                        Spacing="0">
-
+                    <StackLayout IsVisible="{Binding ShowBottleFeedAmountPage}" Orientation="Vertical" Spacing="0">
                         <!--  Selected child section  -->
-                        <StackLayout
-                            Margin="0"
-                            Padding="0,10"
-                            BackgroundColor="{StaticResource Navy}"
-                            HeightRequest="50"
-                            HorizontalOptions="Fill"
-                            Orientation="Vertical"
-                            Spacing="6"
-                            VerticalOptions="Fill">
-                            <Label
-                                HorizontalOptions="Center"
-                                Style="{StaticResource SmallLabel_Label}"
-                                Text="{helpers:Translate SelectedChild}"
-                                TextColor="{StaticResource Gold}"
-                                VerticalOptions="CenterAndExpand" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Style="{StaticResource H1_Label}"
-                                Text="{Binding ChildName}"
-                                TextColor="{StaticResource LightBlue}"
-                                VerticalOptions="CenterAndExpand" />
+                        <StackLayout Margin="0" Padding="0,10" BackgroundColor="{StaticResource Navy}" HeightRequest="50" HorizontalOptions="Fill" Orientation="Vertical" Spacing="6" VerticalOptions="Fill">
+                            <Label HorizontalOptions="Center" Style="{StaticResource SmallLabel_Label}" Text="{helpers:Translate SelectedChild}" TextColor="{StaticResource Gold}" VerticalOptions="CenterAndExpand" />
+                            <Label HorizontalOptions="Center" Style="{StaticResource H1_Label}" Text="{Binding ChildName}" TextColor="{StaticResource LightBlue}" VerticalOptions="CenterAndExpand" />
                         </StackLayout>
-
                         <!--  Content section  -->
-                        <Grid
-                            Margin="0"
-                            HorizontalOptions="Fill"
-                            RowSpacing="0"
-                            VerticalOptions="StartAndExpand">
+                        <Grid Margin="0" HorizontalOptions="Fill" RowSpacing="0" VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-
                             <!--  Title section  -->
-                            <StackLayout
-                                Grid.Row="0"
-                                Padding="30,15"
-                                HorizontalOptions="FillAndExpand"
-                                Spacing="15"
-                                VerticalOptions="FillAndExpand">
-                                <Label
-                                    HorizontalOptions="Center"
-                                    Style="{StaticResource Instructions_Label}"
-                                    Text="{helpers:Translate HowMuchEat}"
-                                    TextColor="{StaticResource Navy}" />
+                            <StackLayout Grid.Row="0" Padding="30,15" HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand">
+                                <Label HorizontalOptions="Center" Style="{StaticResource Instructions_Label}" Text="{helpers:Translate HowMuchEat}" TextColor="{StaticResource Navy}" />
                                 <localViews:ImageEx HorizontalOptions="Center" Source="icon_bottle" />
-                                <Label
-                                    HorizontalOptions="CenterAndExpand"
-                                    Style="{StaticResource Label_Label}"
-                                    Text="{helpers:Translate TotalAmount}"
-                                    TextColor="{StaticResource Gold}" />
+                                <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource Label_Label}" Text="{helpers:Translate TotalAmount}" TextColor="{StaticResource Gold}" />
                             </StackLayout>
-
-                            <StackLayout
-                                Grid.Row="1"
-                                Padding="20,5"
-                                HorizontalOptions="FillAndExpand"
-                                Spacing="15"
-                                VerticalOptions="FillAndExpand">
-                                <localEditors:EntryEx
-                                    FontSize="32"
-                                    HorizontalOptions="Center"
-                                    HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric"
-                                    Placeholder="__._"
-                                    Style="{StaticResource Form_ElementEntry}"
-                                    Text="{Binding AmountValue}"
-                                    WidthRequest="{OnPlatform Android=110,
-                                                              iOS=100}">
+                            <StackLayout Grid.Row="1" Padding="20,5" HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand">
+                                <localEditors:EntryEx FontSize="32" HorizontalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" Style="{StaticResource Form_ElementEntry}" Text="{Binding AmountValue}" WidthRequest="{OnPlatform Android=110, iOS=100}">
                                     <Entry.Behaviors>
                                         <!--<bv:NumericValidatorBehavior AllowDecimal="true" MaxLength="3" />-->
                                         <bv:MaskedBehavior Mask="XX.X" />
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
-                                <Label
-                                    HorizontalOptions="CenterAndExpand"
-                                    Style="{StaticResource BodyCopy_Label}"
-                                    Text="{helpers:Translate OuncesLower}"
-                                    TextColor="{StaticResource Navy}" />
+                                <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate OuncesLower}" TextColor="{StaticResource Navy}" />
                             </StackLayout>
                         </Grid>
-
                         <!--  Bottle content selector  -->
-                        <StackLayout
-                            BackgroundColor="{StaticResource Clear}"
-                            HorizontalOptions="Fill"
-                            Orientation="Horizontal"
-                            Spacing="0"
-                            VerticalOptions="EndAndExpand">
+                        <StackLayout BackgroundColor="{StaticResource Clear}" HorizontalOptions="Fill" Orientation="Horizontal" Spacing="0" VerticalOptions="EndAndExpand">
                             <!--  Bottle selector section  -->
-                            <Grid
-                                x:Name="GridMilkContainers"
-                                Padding="30,10"
-                                BackgroundColor="White"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="End">
-                                <StackLayout
-                                    HorizontalOptions="Center"
-                                    Spacing="5"
-                                    VerticalOptions="End">
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        LineBreakMode="NoWrap"
-                                        Style="{StaticResource H3_Label}"
-                                        Text="{helpers:Translate WhatTypeOfMilk}"
-                                        TextColor="{StaticResource Navy}" />
+                            <Grid x:Name="GridMilkContainers" Padding="30,10" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                                <StackLayout HorizontalOptions="Center" Spacing="5" VerticalOptions="End">
+                                    <Label HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource H3_Label}" Text="{helpers:Translate WhatTypeOfMilk}" TextColor="{StaticResource Navy}" />
                                     <Grid HorizontalOptions="FillAndExpand" RowSpacing="10">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <localButtons:ImageButton
-                                            x:Name="_btnMilkFormula"
-                                            Grid.Column="0"
-                                            HorizontalOptions="End"
-                                            ImageNormal="btn_formula_bold_blue.png"
-                                            ImagePressed="btn_formula_bold_red.png"
-                                            ImageScale="{OnPlatform Default=1,Android=.8}"
-                                            ImageTextPadding="7,0,7,3"
-                                            ImageTranslationY="1"
-                                            Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate Formula}" />
-                                        <localButtons:ImageButton
-                                            x:Name="_btnBreastMilk"
-                                            Grid.Column="1"
-                                            ImageScale="0.8"
-                                            HorizontalOptions="Start"
-                                            ImageNormal="breast_milk_bold_blue.png"
-                                            ImagePressed="breast_milk_bold_red.png"
-                                            ImageTextPadding="7,0,7,3"
-                                            ImageTranslationY="1"
-                                            Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate BreastMilk}" />
-
+                                        <localButtons:ImageButton x:Name="_btnMilkFormula" Grid.Column="0" HorizontalOptions="End" ImageNormal="btn_formula_bold_blue.png" ImagePressed="btn_formula_bold_red.png" ImageScale="{OnPlatform Default=1,Android=.8}" ImageTextPadding="7,0,7,3" ImageTranslationY="1" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Formula}" />
+                                        <localButtons:ImageButton x:Name="_btnBreastMilk" Grid.Column="1" ImageScale="0.8" HorizontalOptions="Start" ImageNormal="breast_milk_bold_blue.png" ImagePressed="breast_milk_bold_red.png" ImageTextPadding="7,0,7,3" ImageTranslationY="1" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate BreastMilk}" />
                                     </Grid>
-                                    <Grid
-                                        x:Name="_gridMilkOptions"
-                                        HorizontalOptions="FillAndExpand"
-                                        IsVisible="False"
-                                        RowSpacing="10">
+                                    <Grid x:Name="_gridMilkOptions" HorizontalOptions="FillAndExpand" IsVisible="False" RowSpacing="10">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
@@ -187,101 +75,43 @@
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Grid.ColumnSpan="3"
-                                            HorizontalOptions="Center"
-                                            LineBreakMode="NoWrap"
-                                            Style="{StaticResource H3_Label}"
-                                            Text="{helpers:Translate FromTheOptional}"
-                                            TextColor="{StaticResource Navy}" />
-                                        <localButtons:ImageButton
-                                            x:Name="_btnMilkFridge"
-                                            Grid.Row="1"
-                                            Grid.Column="0"
-                                            HorizontalOptions="End"
-                                            ImageNormal="fridge_med_blue.png"
-                                            ImagePressed="fridge_red.png"
-                                            ImageTextPadding="7,0,7,3"
-                                            ImageTranslationY="1"
-                                            Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate Fridge}" />
-                                        <localButtons:ImageButton
-                                            x:Name="_btnMilkFreezer"
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            HorizontalOptions="Center"
-                                            ImageNormal="freezer_blue_bold.png"
-                                            ImagePressed="freezer_red_bold.png"
-                                            ImageTextPadding="7,0,7,3"
-                                            ImageTranslationY="1"
-                                            Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate Freezer}" />
-                                        <localButtons:ImageButton
-                                            x:Name="_btnMilkOther"
-                                            Grid.Row="1"
-                                            Grid.Column="2"
-                                            HorizontalOptions="Start"
-                                            ImageNormal="other_med_blue.png"
-                                            ImagePressed="other_red.png"
-                                            ImageTextPadding="7,0,7,3"
-                                            ImageTranslationY="{OnPlatform Android=1,
-                                                                           iOS=0.3}"
-                                            Style="{StaticResource PillReversedButton}"
-                                            Text="{helpers:Translate Other}" />
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource H3_Label}" Text="{helpers:Translate FromTheOptional}" TextColor="{StaticResource Navy}" />
+                                        <localButtons:ImageButton x:Name="_btnMilkFridge" Grid.Row="1" Grid.Column="0" HorizontalOptions="End" ImageNormal="fridge_med_blue.png" ImagePressed="fridge_red.png" ImageTextPadding="7,0,7,3" ImageTranslationY="1" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Fridge}" />
+                                        <localButtons:ImageButton x:Name="_btnMilkFreezer" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" ImageNormal="freezer_blue_bold.png" ImagePressed="freezer_red_bold.png" ImageTextPadding="7,0,7,3" ImageTranslationY="1" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Freezer}" />
+                                        <localButtons:ImageButton x:Name="_btnMilkOther" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" ImageNormal="other_med_blue.png" ImagePressed="other_red.png" ImageTextPadding="7,0,7,3" ImageTranslationY="{OnPlatform Android=1, iOS=0.3}" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Other}" />
                                     </Grid>
                                 </StackLayout>
                             </Grid>
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
-
+                
                 <Grid Grid.Row="1" RowSpacing="0">
+                    
                     <!--  Action button section  -->
-                    <StackLayout
-                        BackgroundColor="{StaticResource Clear}"
-                        HorizontalOptions="Fill"
-                        Orientation="Horizontal"
-                        Spacing="0"
-                        VerticalOptions="End">
-                        <localButtons:ImageButton
-                            x:Name="BtnStop"
-                            Command="{Binding SaveCommand}"
-                            HorizontalOptions="FillAndExpand"
-                            ImageNormal="icon_save"
-                            ImagePressed="icon_save"
-                            ImageTranslationY="{OnPlatform Android=1,
-                                                           iOS=0.3}"
-                            IsEnabled="{Binding IsDataValid}"
-                            Style="{StaticResource PositiveActionButton}"
-                            Text="{helpers:Translate Save}"
-                            VerticalOptions="Fill" />
+                    <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                        <localButtons:ImageButton x:Name="BtnStop" 
+                                                  IsEnabled="{Binding IsDataValid}" 
+                                                  Text="{helpers:Translate Save}" 
+                                                  Command="{Binding SaveCommand}" 
+                                                  ImageNormal="icon_save" ImagePressed="icon_save" 
+                                                  ImageTranslationY="{OnPlatform Android=1, iOS=0.3}" 
+                                                  Style="{StaticResource PositiveActionButton}" 
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
                     </StackLayout>
                 </Grid>
+                
             </Grid>
-
+            
             <!--  Inventory section: Full screen  -->
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="{Binding ShowInventory}"
-                Orientation="Vertical"
-                VerticalOptions="FillAndExpand">
-                <bottleSession:MyInventoryView
-                    x:Name="InventoryView"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" />
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowInventory}" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <bottleSession:MyInventoryView x:Name="InventoryView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
             </StackLayout>
-
+            
             <!--  Saved popup: Full screen  -->
-            <localViews:SaveView
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                IsVisible="{Binding ShowSavedPopupPage}"
-                TappedCommand="{Binding CloseSaveViewCommand}"
-                Text="{helpers:Translate SavedBottleSession}" />
+            <localViews:SaveView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsVisible="{Binding ShowSavedPopupPage}" TappedCommand="{Binding CloseSaveViewCommand}" Text="{helpers:Translate SavedBottleSession}" />
+        
         </AbsoluteLayout>
     </ContentPage.Content>
 </pages:PageBase>

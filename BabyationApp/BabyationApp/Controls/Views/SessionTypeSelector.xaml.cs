@@ -114,7 +114,7 @@ namespace BabyationApp.Controls.Views
 
         public void ResetControl()
         {
-            SelectSessionButton(SessionType.Pump);
+            SelectSessionButton(SessionType.Max);
             SelectChildButton(-1);
             SelectBottleTypeButton(SessionType.Max);
 
@@ -201,9 +201,17 @@ namespace BabyationApp.Controls.Views
                         _currentSession = BtnBottle;
                     }
                     break;
+                case SessionType.Max:
+                    {
+                        _currentSession = null;
+                    }
+                    break;
             }
 
-            _currentSession.IsToggled = true;
+            if (null != _currentSession)
+            {
+                _currentSession.IsToggled = true;
+            }
 
             ToggleSessionCommand?.Execute(type);
 

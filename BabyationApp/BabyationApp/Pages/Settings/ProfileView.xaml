@@ -81,150 +81,152 @@
         
             <!-- My Info View -->
             <Grid x:Name="RLMyInfo" Grid.Row="1" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" Spacing="0" >
-                    <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
+                <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40*" />
+                        <RowDefinition Height="60*" />
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Primary account -->
+                    <Grid Grid.Row="0" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource  Peach}" HorizontalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50*" />
-                            <RowDefinition Height="40*" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*" />
+                            <ColumnDefinition Width="85*" />
+                        </Grid.ColumnDefinitions>
                         
-                        <!-- Primary account -->
-                        <Grid Grid.Row="0" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource Peach}" HorizontalOptions="FillAndExpand">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="40" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15*" />
-                                <ColumnDefinition Width="85*" />
-                            </Grid.ColumnDefinitions>
+                        <!-- Title -->
+                        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                     Orientation="Horizontal" 
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                            <Label Text="{helpers:Translate PrimaryAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        </StackLayout>
+                        
+                        <!-- Checkbox -->
+                        <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" >
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectPrimaryAccountCommand}" />
+                            </Grid.GestureRecognizers>
                             
-                            <!-- Title -->
-                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
-                                         Orientation="Horizontal" 
-                                         HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
-                                <Label Text="{helpers:Translate PrimaryAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
-                            </StackLayout>
-                            
-                            <!-- Checkbox -->
-                            <Grid Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" >
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectPrimaryAccountCommand}" />
-                                </Grid.GestureRecognizers>
-                                
-                                <localButtons:CircleButton x:Name="_primaryAccount"
-                                                           InputTransparent="true"
-                                                           IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected}"
-                                                           Style="{StaticResource LocalCheckboxButton}"/>
-                            </Grid>
-                            
-                            <!-- Name -->
-                            <StackLayout Grid.Row="1" Grid.Column="1" 
-                                         Orientation="Vertical" 
-                                         Spacing="2" Padding="0,0,0,8" 
-                                         HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
-                                <Label Text="{helpers:Translate NameUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
-                                <localEditors:EntryEx Text="{Binding UserName}" Placeholder="{helpers:Translate EnterYourName}" Style="{StaticResource Form_ElementEntry}" Keyboard="Text" />
-                            </StackLayout>
-                            
-                            <!-- Email-->
-                            <StackLayout Grid.Row="2" Grid.Column="1" 
-                                         Orientation="Vertical" 
-                                         Spacing="2" Padding="0,8" 
-                                         HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
-                                <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
-                                <Label Text="{Binding UserEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
-                            </StackLayout>
-                            
-                            <!-- Change password -->
-                            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" 
-                                  HorizontalOptions="Fill" VerticalOptions="Fill" >
-                                <Label Text="{helpers:Translate ChangePassword}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
+                            <localButtons:CircleButton x:Name="_primaryAccount"
+                                                       InputTransparent="true"
+                                                       IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected}"
+                                                       Style="{StaticResource LocalCheckboxButton}"/>
                         </Grid>
                         
-                        <!-- Caregiver -->
-                        <Grid Grid.Row="1" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource Peach70}" HorizontalOptions="FillAndExpand">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="40" />
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="24" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15*" />
-                                <ColumnDefinition Width="85*" />
-                            </Grid.ColumnDefinitions>
-                            
-                            <!-- Title -->
-                            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
-                                         Orientation="Horizontal" 
-                                         HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                                <Label Text="{helpers:Translate CaregiverAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
-                            </StackLayout>
-                            
-                            <!-- Add auth code -->
-                            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
-                                  IsVisible="{Binding IsCaregiverExist, Converter={StaticResource BooleanInverseConverter}}" 
-                                  Padding="-15,0,0,0"
-                                  HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
-                                <localViews:AddControlView Text="{helpers:Translate AddAuthCode}" CommandEx="{Binding AddCodeCommand}" HeightRequest="50" BackgroundColor="{StaticResource Clear}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
-                            </Grid>
-                            
-                            <!-- Checkbox -->
-                            <Grid Grid.Row="1" Grid.Column="0" 
-                                  IsVisible="{Binding IsCaregiverExist}" 
-                                  HorizontalOptions="Center" VerticalOptions="Start">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectCaregiversAccountCommand}" />
-                                </Grid.GestureRecognizers>
-                                
-                                <localButtons:CircleButton x:Name="_caregiverAccount"
-                                                           InputTransparent="true"
-                                                           IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected, Converter={StaticResource BooleanInverseConverter}}"
-                                                           Style="{StaticResource LocalCheckboxButton}"/>
-                            </Grid>
-                            
-                            <!-- Email-->
-                            <StackLayout Grid.Row="1" Grid.Column="1" 
-                                         Orientation="Vertical" 
-                                         IsVisible="{Binding IsCaregiverExist}" 
-                                         Spacing="2" Padding="0,0,0,8"
-                                         HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                                <Label Text="{helpers:Translate AuthorizedCaregiverUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
-                                <Label Text="{Binding CaregiverEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
-                            </StackLayout>
-                                                            
-                            <!-- Remove -->
-                            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
-                                  IsVisible="{Binding IsCaregiverExist}" 
-                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                                <Label Text="{helpers:Translate RemoveFromAccount}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding RemoveFromAccountCommand}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-                            
+                        <!-- Name -->
+                        <StackLayout Grid.Row="1" Grid.Column="1" 
+                                     Orientation="Vertical" 
+                                     Spacing="2" Padding="0,0,0,8" 
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                            <Label Text="{helpers:Translate NameUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                            <localEditors:EntryEx Text="{Binding UserName}" Placeholder="{helpers:Translate EnterYourName}" Style="{StaticResource Form_ElementEntry}" Keyboard="Text" />
+                        </StackLayout>
+                        
+                        <!-- Email-->
+                        <StackLayout Grid.Row="2" Grid.Column="1" 
+                                     Orientation="Vertical" 
+                                     Spacing="2" Padding="0,8" 
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
+                            <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                            <Label Text="{Binding UserEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
+                        </StackLayout>
+                        
+                        <!-- Change password -->
+                        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" 
+                              HorizontalOptions="Fill" VerticalOptions="Fill" >
+                            <Label Text="{helpers:Translate ChangePassword}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
                     </Grid>
-                </StackLayout>
+                    
+                    <!-- Caregiver -->
+                    <Grid Grid.Row="1" RowSpacing="10" Padding="15,5,5,5" BackgroundColor="{StaticResource Peach30}" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*" />
+                            <ColumnDefinition Width="85*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Title -->
+                        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                     Orientation="Horizontal" 
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                            <Label Text="{helpers:Translate CaregiverAccount}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        </StackLayout>
+                        
+                        <!-- Add auth code -->
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                              IsVisible="{Binding IsCaregiverExist, Converter={StaticResource BooleanInverseConverter}}" 
+                              Padding="-15,0,0,0"
+                              HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+                            <localViews:AddControlView Text="{helpers:Translate AddAuthCode}" CommandEx="{Binding AddCodeCommand}" BackgroundColor="{StaticResource Clear}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                        </Grid>
+                        
+                        <!-- Checkbox -->
+                        <Grid Grid.Row="1" Grid.Column="0" 
+                              IsVisible="{Binding IsCaregiverExist}" 
+                              HorizontalOptions="Center" VerticalOptions="Start">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectCaregiversAccountCommand}" />
+                            </Grid.GestureRecognizers>
+                            
+                            <localButtons:CircleButton x:Name="_caregiverAccount"
+                                                       InputTransparent="true"
+                                                       IsCircle="True" IsTogglable="true" IsPressed="{Binding IsPrimarySelected, Converter={StaticResource BooleanInverseConverter}}"
+                                                       Style="{StaticResource LocalCheckboxButton}"/>
+                        </Grid>
+                        
+                        <!-- Email-->
+                        <StackLayout Grid.Row="1" Grid.Column="1" 
+                                     Orientation="Vertical" 
+                                     IsVisible="{Binding IsCaregiverExist}" 
+                                     Spacing="2" Padding="0,0,0,8"
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                            <Label Text="{helpers:Translate AuthorizedCaregiverUpper}" Style="{StaticResource Form_ElementHeader}" HorizontalOptions="Start"/>
+                            <Label Text="{Binding CaregiverEmail}" Style="{StaticResource Form_ElementLabel}" LineBreakMode="TailTruncation" />
+                        </StackLayout>
+                                                        
+                        <!-- Remove -->
+                        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+                              IsVisible="{Binding IsCaregiverExist}" 
+                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                            <Label Text="{helpers:Translate RemoveFromAccount}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RemoveFromAccountCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        
+                    </Grid>
+                </Grid>
             </Grid>
     
             <!-- My Babies View -->
             <Grid x:Name="RLMyBabies" Grid.Row="1" IsVisible="False" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsBabyDeleteRequested, Converter={StaticResource BooleanInverseConverter}}">
+                <Grid RowSpacing="0" IsVisible="{Binding IsBabyDeleteRequested, Converter={StaticResource BooleanInverseConverter}}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                 
                     <!-- Add child control -->
-                    <localViews:AddControlView x:Name="BtnAddAnotherChild" CommandEx="{Binding AddBabyCommand}" Text="{helpers:Translate AddAnotherBaby}" HeightRequest="70" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                    <localViews:AddControlView Grid.Row="0" CommandEx="{Binding AddBabyCommand}" Text="{helpers:Translate AddAnotherBaby}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                 
                     <!-- Babies list -->
-                    <ListView x:Name="ListBabies" 
+                    <ListView x:Name="ListBabies" Grid.Row="1"
                               ItemsSource="{Binding BabiesList, Mode=OneWay}"
                               SeparatorVisibility="None" 
                               HasUnevenRows="True" 
@@ -234,19 +236,19 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
-                                        <Grid Margin="5" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
-                                            <Grid.Triggers>
-                                                <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
-                                                    <Setter Property="BackgroundColor" Value="{StaticResource Peach}" />
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                                    <Setter Property="BackgroundColor" Value="{StaticResource Peach70}" />
-                                                </DataTrigger>
-                                            </Grid.Triggers>
-                                            
+                                        <Grid.Triggers>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource  Peach}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Peach30}" />
+                                            </DataTrigger>
+                                        </Grid.Triggers>
+                                        
+                                        <Grid Margin="5" BackgroundColor="{StaticResource Clear}" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="15*"/>
-                                                <ColumnDefinition Width="65*"/>
+                                                <ColumnDefinition Width="18*"/>
+                                                <ColumnDefinition Width="52*"/>
                                                 <ColumnDefinition Width="30*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
@@ -276,7 +278,7 @@
                                                 <DatePicker x:Name="BirthdayDatePicker" Date="{Binding Birthday}" MinimumDate="{Binding Source={x:Reference this}, Path=ContextMyChildren.MinimumDate}" MaximumDate="{Binding Source={x:Reference this}, Path=ContextMyChildren.MaximumDate}" Format="MM/dd/yyyy" IsVisible="false" HorizontalOptions="Start" VerticalOptions="Start" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Margin="0,0,0,0"/>
                                                 <Label Text="{Binding Birthday, Converter={StaticResource Datetime2StringConverter}}" Style="{StaticResource Form_ElementLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Margin="0,0,0,0">
                                                     <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=PickerFocusCommand}" CommandParameter="{x:Reference BirthdayDatePicker}" />
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.PickerFocusCommand}" CommandParameter="{x:Reference BirthdayDatePicker}" />
                                                     </Label.GestureRecognizers>
                                                 </Label>
                                             </StackLayout>
@@ -337,25 +339,27 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
+                </Grid>
             </Grid>
     
             <!-- My Caregivers View -->
             <Grid x:Name="RLMyCaregivers" Grid.Row="1" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsCaregiverDeleteRequested, Converter={StaticResource BooleanInverseConverter}}">
+                <Grid RowSpacing="0" IsVisible="{Binding IsCaregiverDeleteRequested, Converter={StaticResource BooleanInverseConverter}}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     
                     <!-- Add caregiver control -->
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                        <localViews:AddControlView Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HeightRequest="60" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
-                    </Grid>
+                    <localViews:AddControlView Grid.Row="0" Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                     
-                    <ListView x:Name="ListCaregivers" 
+                    <localViews:ListViewEx x:Name="ListCaregivers" Grid.Row="1"
                               ItemsSource="{Binding CaregiversList, Mode=OneWay}"
                               SeparatorVisibility="None" 
                               HasUnevenRows="True" 
                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                               BackgroundColor="Transparent">
-                        <ListView.ItemTemplate>
+                        <localViews:ListViewEx.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Grid Padding="15, 15, 10, 15">
@@ -366,10 +370,10 @@
                                         
                                         <Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
-                                                <Setter Property="BackgroundColor" Value="#FEFAF7" />
+                                                <Setter Property="BackgroundColor" Value="{StaticResource  Peach}" />
                                             </DataTrigger>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                                <Setter Property="BackgroundColor" Value="#FDF7F2" />
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Peach30}" />
                                             </DataTrigger>
                                         </Grid.Triggers>
                                             
@@ -378,11 +382,11 @@
                                             <Label Text="{Binding Email}" Style="{StaticResource Form_ElementLabel}"/>
                                         </StackLayout>                                                
                                         
-                                        <!-- Change password -->
+                                        <!-- Remove caregiver -->
                                         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
-                                            <Label Text="{helpers:Translate RemoveCaregiver}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center">
+                                            <Label Text="{helpers:Translate RemoveCaregiver}" Style="{StaticResource RedLinkLabel}" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Center" >
                                                 <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.RemoveCaregiverCommand}" CommandParameter="{Binding .}" />
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference RLMyCaregivers}, Path=BindingContext.RemoveCaregiverCommand}" CommandParameter="{Binding .}" />
                                                 </Label.GestureRecognizers>
                                             </Label>
                                         </Grid>
@@ -390,16 +394,16 @@
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                        </localViews:ListViewEx.ItemTemplate>
+                    </localViews:ListViewEx>
+                </Grid>
             </Grid>
             
         </Grid>
 
         <!-- Remove yourself as caregiver confirmation dialog -->
-        <localViews:ConfirmationView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
-                                     IsVisible="{Binding Source={x:Reference this}, Path=ShowCaregiverDeleteYourselfConfirmation}"
+        <localViews:ConfirmationView x:Name="RemoveYourselfFromCaregiversContainer" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+                                     IsVisible="{Binding IsYourselfAsCaregiverDeleteRequested}"
                                      BodyText="{helpers:Translate AreYouSureRemoveYourselfCaregiver}" 
                                      BodyTextStyle="{StaticResource Instructions_Label}" 
                                      BodyTextColor="{StaticResource LightBlue}"
@@ -409,8 +413,8 @@
                                      PositiveText="{helpers:Translate YesRemoveUpper}" PositiveImage="icon_checkmark_light_pink" PositiveImagePressed="icon_checkmark_light_pink"/>
         
         <!-- Remove caregiver confirmation dialog -->
-        <localViews:ConfirmationView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
-                                     IsVisible="{Binding Source={x:Reference this}, Path=ShowCaregiverDeleteConfirmation}"
+        <localViews:ConfirmationView x:Name="RemoveCaregiverContainer" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+                                     IsVisible="{Binding IsCaregiverDeleteRequested}"
                                      BodyText="{helpers:Translate AreYouSureRemoveCaregiver}" 
                                      BodyTextStyle="{StaticResource Instructions_Label}" 
                                      BodyTextColor="{StaticResource LightBlue}"
@@ -421,29 +425,35 @@
         
         
         <!-- Remove child confirmation popup -->
-        <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
+        <StackLayout x:Name="RemoveChildContainer" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"
                      Orientation="Vertical"
-                     IsVisible="{Binding Source={x:Reference this}, Path=ShowBabyDeleteConfirmation}" 
-                     Padding="0,30,0,0" 
+                     IsVisible="{Binding IsBabyDeleteRequested}" 
+                     Padding="0,20,0,0" 
                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                      BackgroundColor="{StaticResource Navy}" > 
-            <StackLayout Orientation="Vertical" Padding="0" Margin="30,10,10,10" Spacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="0" Margin="30,10,10,10" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Label Text="{helpers:Translate IfYouRemoveBabyYoullLoseAllData}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                 <Label Text="{helpers:Translate ThisCanNotBeUndone}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
                 <Label Text="{helpers:Translate AreYouSureWantToDelete}" Style="{StaticResource Instructions_Label}" TextColor="{StaticResource LightPink}" LineBreakMode="WordWrap" VerticalOptions="FillAndExpand" />
             </StackLayout>
    
             <!-- Navigation section -->
-            <StackLayout x:Name="StackBabyBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
-                <localButtons:ImageButton Command="{Binding KeepBabyCommand}"
+            <Grid x:Name="GridBabyBottomBar" Style="{StaticResource Grid_BottomNavigation}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <localButtons:ImageButton Grid.Column="0" 
+                                          Command="{Binding KeepBabyCommand}"
                                           Text="{helpers:Translate NoKeepMyBaby}"
                                           Style="{StaticResource LocalKeepMyBabyButton}" 
-                                          HeightRequest="{Binding Source={x:Reference StackBabyBottomBar}, Path=Height}"/>
-                <localButtons:ImageButton Command="{Binding RemoveBabyCommand}"
+                                          HeightRequest="{Binding Source={x:Reference GridBabyBottomBar}, Path=Height}"/>
+                <localButtons:ImageButton Grid.Column="1" 
+                                          Command="{Binding RemoveBabyCommand}"
                                           Text="{helpers:Translate YesDeleteMyBaby}"
                                           Style="{StaticResource LocalDeleteMyBabyButton}" 
-                                          HeightRequest="{Binding Source={x:Reference StackBabyBottomBar}, Path=Height}"/> 
-            </StackLayout>                
+                                          HeightRequest="{Binding Source={x:Reference GridBabyBottomBar}, Path=Height}"/> 
+            </Grid>                
         </StackLayout>
         
     </AbsoluteLayout>

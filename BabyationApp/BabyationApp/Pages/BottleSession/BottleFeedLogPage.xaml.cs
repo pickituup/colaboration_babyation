@@ -56,7 +56,8 @@ namespace BabyationApp.Pages.BottleSession
             _btnGroupMilk.Toggled += _btnGroupMilk_Toggled;
 
             Titlebar.IsVisible = true;
-            LeftPageType = CurrentDashboard();
+            Titlebar.LeftButton.Clicked += LeftButton_Clicked;
+
             //TODO: Update this approach
             BtnAddNote.IsPressed = true;
         }
@@ -216,22 +217,25 @@ namespace BabyationApp.Pages.BottleSession
         {
             if (state)
             {
-                Titlebar.LeftButton.IsVisible = true;
-                Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
-                Titlebar.LeftButton.Clicked += LeftButton_Clicked;
                 InventoryView.ItemUseNowEvent += InventoryView_ItemUseNowEvent;
             }
             else
             {
-                Titlebar.LeftButton.IsVisible = false;
-                Titlebar.LeftButton.Clicked -= LeftButton_Clicked;
                 InventoryView.ItemUseNowEvent -= InventoryView_ItemUseNowEvent;
             }
         }
 
         void LeftButton_Clicked(object sender, EventArgs e)
         {
-            ViewModel.ShowInventoryCommand?.Execute(false);
+            if (ViewModel.ShowInventory)
+            {
+                ViewModel.ShowInventoryCommand?.Execute(false);
+            }
+            else
+            {
+                LeftPageType = CurrentDashboard();
+                PageManager.Me.SetCurrentPage(LeftPageType);
+            }
         }
 
         void InventoryView_ItemUseNowEvent(HistoryModel model)

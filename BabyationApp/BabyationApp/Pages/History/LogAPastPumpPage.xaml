@@ -151,7 +151,7 @@
                                     Placeholder="__._"
                                     PlaceholderColor="{StaticResource MedBlue}"
                                     Style="{StaticResource LocalValueLabel}"
-                                    Text="{Binding AmountLeft, Mode=TwoWay}"
+                                    Text="{Binding AmountLeft, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
                                         <bv:MaskedBehavior Mask="XX.X" />
@@ -180,7 +180,7 @@
                                     Placeholder="__._"
                                     PlaceholderColor="{StaticResource MedBlue}"
                                     Style="{StaticResource LocalValueLabel}"
-                                    Text="{Binding AmountRight, Mode=TwoWay}"
+                                    Text="{Binding AmountRight, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
                                         <bv:MaskedBehavior Mask="XX.X" />

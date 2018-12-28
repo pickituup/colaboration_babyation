@@ -10,6 +10,7 @@ using BabyationApp.Common;
 using BabyationApp.Managers;
 
 using Xamarin.Forms;
+using BabyationApp.Resources;
 
 namespace BabyationApp.Pages.Settings.PumpSettings
 {
@@ -19,68 +20,114 @@ namespace BabyationApp.Pages.Settings.PumpSettings
     public partial class PumpDetailPage : PageBase
     {
         private DeviceTimer _timer = new DeviceTimer();
+        private string _pumpName;
+        private PumpModel _pumpModel = null;
 
         /// <summary>
         /// Constructor -- Initialize the model and binds buttons events and other ui actions
         /// </summary>    
         public PumpDetailPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             this.SizeChanged += (s, e) =>
             {
                 UpdateTagSize();
             };
 
-            BtnForgetPump.Clicked += (s, e) =>
-            {
-                PumpManager pumpManager = PumpManager.Instance;
-                pumpManager.Remove(_pumpModel);
-                PageManager.Me.SetCurrentPage(typeof(MyPumpsPage));
-            };
+            _keepPumpButton_ImageButton.Command = new Command(() => IsForgetPumbDialogActive = false);
 
-            BtnUpdateFW.Clicked += (sender, args) =>
+            _removePumpButton_ImageButton.Command = new Command(() =>
             {
                 if (_pumpModel != null)
                 {
-                    _pumpModel.UpdateFirmware();
-                }
-            };
+                    PumpManager pumpManager = PumpManager.Instance;
+                    pumpManager.Remove(_pumpModel);
+                    PageManager.Me.SetCurrentPage(typeof(MyPumpsPage));
 
-            int pumpNameTapListCounter = 0;
-            bool isBtnNameReleased = true;
-            BtnPumpName.BackgroundView.TapStarted += (sender, args) =>
+                    IsForgetPumbDialogActive = false;
+                }
+            });
+
+            _nixFactoryResetButton_ImageButton.Command = new Command(() => IsFactoryResetDialogActive = false);
+
+            _applyFactoryResetButton_ImageButton.Command = new Command(() =>
             {
-                pumpNameTapListCounter++;
-                isBtnNameReleased = false;
-                _timer.Enable = true;
-                _timer.Start(10, () =>
+                if (_pumpModel != null)
                 {
-                    pumpNameTapListCounter--;
-                    if (!isBtnNameReleased && pumpNameTapListCounter == 0)
-                    {
-                        PageManager.Me.SetCurrentPage(typeof(PumpTestPage));
-                    }
-                    return false;
-                });
-            };
-            BtnPumpName.BackgroundView.TapUp += (sender, press) =>
-            {
-                if (press.Cancelled) {
-                    isBtnNameReleased = true;
+                    ///
+                    /// TODO: factory reset logic. Current behavior simply navigates back to the `my pumps page`
+                    /// 
+                    PageManager.Me.SetCurrentPage(typeof(MyPumpsPage));
+                    IsFactoryResetDialogActive = false;
                 }
-            };
+            });
 
-            Title = "MY PUMPS";
+            //BtnUpdateFW.Clicked += (sender, args) =>
+            //{
+            //    if (_pumpModel != null)
+            //    {
+            //        _pumpModel.UpdateFirmware();
+            //    }
+            //};
+
+            //int pumpNameTapListCounter = 0;
+            //bool isBtnNameReleased = true;
+
+            //BtnPumpName.BackgroundView.TapStarted += (sender, args) =>
+            //{
+            //    pumpNameTapListCounter++;
+            //    isBtnNameReleased = false;
+            //    _timer.Enable = true;
+            //    _timer.Start(10, () =>
+            //    {
+            //        pumpNameTapListCounter--;
+            //        if (!isBtnNameReleased && pumpNameTapListCounter == 0)
+            //        {
+            //            PageManager.Me.SetCurrentPage(typeof(PumpTestPage));
+            //        }
+            //        return false;
+            //    });
+            //};
+            //BtnPumpName.BackgroundView.TapUp += (sender, press) =>
+            //{
+            //    if (press.Cancelled) {
+            //        isBtnNameReleased = true;
+            //    }
+            //};
+
+            Title = AppResource.EditMyPumpUppercase;
             Titlebar.IsVisible = true;
             Titlebar.LeftButton.IsVisible = true;
-            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
             LeftPageType = typeof(MyPumpsPage);
-            Titlebar.RightButton.IsVisible = true;
-            Titlebar.RightButton.Text = "HELP";
         }
 
-        private PumpModel _pumpModel = null;
+        private bool _isForgetPumbDialogActive;
+        public bool IsForgetPumbDialogActive
+        {
+            get => _isForgetPumbDialogActive;
+            private set
+            {
+                _isForgetPumbDialogActive = value;
+
+                OnIsForgetPumbDialogActive();
+            }
+        }
+
+        private bool _isFactoryResetDialogActive;
+        public bool IsFactoryResetDialogActive
+        {
+            get => _isFactoryResetDialogActive;
+            private set
+            {
+                _isFactoryResetDialogActive = value;
+
+                OnIsFactoryResetDialogActive();
+            }
+        }
+
+
         /// <summary>
         /// Sets the current pumpt to show details about on this page
         /// </summary>
@@ -94,7 +141,7 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             }
 
             _pumpModel = model;
-            BindingContext = _pumpModel;            
+            BindingContext = _pumpModel;
 
             if (_pumpModel != null)
             {
@@ -128,9 +175,11 @@ namespace BabyationApp.Pages.Settings.PumpSettings
         {
             if (_pumpModel != null)
             {
-                LblNoUpdate.IsVisible = !_pumpModel.IsUpdateAvailable;
-                BtnUpdateFW.IsVisible = _pumpModel.IsUpdateAvailable && !_pumpModel.IsUpdating;
-                LblUpdatePercent.IsVisible = _pumpModel.IsUpdating;
+                _pumpNameInput_EntryEx.Text = _pumpModel.Name;
+                _modelNumber_Label.Text = _pumpModel.ModelNumber;
+                _serialNumber_Label.Text = _pumpModel.SerialNumber;
+                _hardwareRevision_Label.Text = _pumpModel.HardwareRevision;
+                _firmwareRevision_Label.Text = string.Format("{0} / {1}", _pumpModel.SoftwareRevision, _pumpModel.FirmwareRevision);
             }
         }
 
@@ -146,14 +195,9 @@ namespace BabyationApp.Pages.Settings.PumpSettings
         {
             try
             {
-				if (_pumpModel != null && _pumpModel.AlertMessages != null)
+                if (_pumpModel != null && _pumpModel.AlertMessages != null)
                 {
-                    LblProblemCounter.Text = String.Format("{0} Problem{1} Identified", new Object[]
-                    {
-                        _pumpModel.AlertMessages.Count,
-                        _pumpModel.AlertMessages.Count > 1 ? "s" : ""
-                    });
-					/*
+                    /*
                     String msg = "";
                     for (int i = 1; i <= _pumpModel.AlertMessages.Count; i++)
                     {
@@ -170,7 +214,7 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             {
                 Debug.WriteLine("Exeption: " + e.Message);
             }
-        } 
+        }
 
         private void UpdateTagSize()
         {
@@ -188,7 +232,70 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             SetPump(PumpManager.Instance.SelectedPump);
             HandleAlerts();
             UpdateTagSize();
+            OnIsForgetPumbDialogActive();
+            OnIsFactoryResetDialogActive();
+
             base.AboutToShow();
+        }
+
+        private void OnPumpNameTextChanged(object sender, TextChangedEventArgs e) => _pumpName = e.NewTextValue;
+
+        private void OnForgetDeviceTapped(object sender, EventArgs e) => IsForgetPumbDialogActive = true;
+
+        private void OnFactoryResetTapped(object sender, EventArgs e) => IsFactoryResetDialogActive = true;
+
+        private void OnSaveTapped(object sender, EventArgs e)
+        {
+            ///
+            /// TODO: pump save logic
+            /// 
+            if (!string.IsNullOrEmpty(_pumpName))
+            {
+                if (_pumpModel != null)
+                {
+                    _pumpModel.Name = _pumpName;
+                }
+            }
+        }
+
+        private void OnIsForgetPumbDialogActive()
+        {
+            if (IsForgetPumbDialogActive)
+            {
+                Title = AppResource.ForgetDeviceUppercase;
+                Titlebar.LeftButton.IsVisible = false;
+
+                _forgetPumpDialog_Grid.TranslationX = 0;
+                _forgetPumpDialog_Grid.InputTransparent = false;
+            }
+            else
+            {
+                Title = AppResource.EditMyPumpUppercase;
+                Titlebar.LeftButton.IsVisible = true;
+
+                _forgetPumpDialog_Grid.TranslationX = long.MaxValue;
+                _forgetPumpDialog_Grid.InputTransparent = true;
+            }
+        }
+
+        private void OnIsFactoryResetDialogActive()
+        {
+            if (IsFactoryResetDialogActive)
+            {
+                Title = AppResource.FactoryReset.ToUpper();
+                Titlebar.LeftButton.IsVisible = false;
+
+                _factoryResetDialog_Grid.TranslationX = 0;
+                _factoryResetDialog_Grid.InputTransparent = false;
+            }
+            else
+            {
+                Title = AppResource.EditMyPumpUppercase;
+                Titlebar.LeftButton.IsVisible = true;
+
+                _factoryResetDialog_Grid.TranslationX = long.MaxValue;
+                _factoryResetDialog_Grid.InputTransparent = true;
+            }
         }
     }
 }

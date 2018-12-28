@@ -74,22 +74,23 @@ namespace BabyationApp.Pages.Dashboard
                 if (null == ProfileManager.Instance.CurrentProfile)
                     return;
 
-                if (ProfileManager.Instance.CurrentProfile.Babies != null &&
-                    ProfileManager.Instance.CurrentProfile.Babies.Count == 1)
+                if( 0 < (ProfileManager.Instance.CurrentProfile.Babies?.Count ?? 0) )
                 {
-                    PageManager.Me.SetCurrentPage(typeof(BottleFeedSelectionPage));
-                }
-                else
-                {
-                    if (ProfileManager.Instance.CurrentProfile.Babies != null)
+                    if (1 == ProfileManager.Instance.CurrentProfile.Babies.Count)
                     {
-                        PageManager.Me.SetCurrentPage(typeof(SelectChildPage),
-                            view => { (view as SelectChildPage).NextPageType = typeof(BottleFeedSelectionPage); });
+                        PageManager.Me.SetCurrentPage(typeof(BottleFeedSelectionPage));
                     }
                     else
                     {
-                        ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
+                        PageManager.Me.SetCurrentPage(typeof(SelectChildPage), view => 
+                        { 
+                            (view as SelectChildPage).NextPageType = typeof(BottleFeedSelectionPage); 
+                        });
                     }
+                }
+                else
+                {
+                    ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
                 }
             };
 
@@ -98,22 +99,23 @@ namespace BabyationApp.Pages.Dashboard
                 if (null == ProfileManager.Instance.CurrentProfile)
                     return;
 
-                if (ProfileManager.Instance.CurrentProfile.Babies != null &&
-                    ProfileManager.Instance.CurrentProfile.Babies.Count == 1)
+                if (0 < (ProfileManager.Instance.CurrentProfile.Babies?.Count ?? 0))
                 {
-                    PageManager.Me.SetCurrentPage(typeof(NurseSessionSelectionPage));
-                }
-                else
-                {
-                    if (ProfileManager.Instance.CurrentProfile.Babies != null)
+                    if (1 == ProfileManager.Instance.CurrentProfile.Babies.Count)
                     {
-                        PageManager.Me.SetCurrentPage(typeof(SelectChildPage),
-                            view => { (view as SelectChildPage).NextPageType = typeof(NurseSessionSelectionPage); });
+                        PageManager.Me.SetCurrentPage(typeof(NurseSessionSelectionPage));
                     }
                     else
                     {
-                        ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
+                        PageManager.Me.SetCurrentPage(typeof(SelectChildPage), view =>
+                        {
+                            (view as SelectChildPage).NextPageType = typeof(NurseSessionSelectionPage);
+                        });
                     }
+                }
+                else
+                {
+                    ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
                 }
             };
 

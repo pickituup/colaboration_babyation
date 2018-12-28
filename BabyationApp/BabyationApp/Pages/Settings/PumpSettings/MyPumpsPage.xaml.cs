@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using BabyationApp.Models;
 using Xamarin.Forms;
 using BabyationApp.Managers;
+using BabyationApp.Resources;
 
 namespace BabyationApp.Pages.Settings.PumpSettings
 {
@@ -26,7 +27,7 @@ namespace BabyationApp.Pages.Settings.PumpSettings
         {
             InitializeComponent();
 
-            Title = "MY PUMPS";
+            Title = AppResource.MyPumps.ToUpper();
             Titlebar.IsVisible = true;
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
@@ -34,50 +35,6 @@ namespace BabyationApp.Pages.Settings.PumpSettings
 
             BtnAddPump.CommandEx = new Command(() =>
             {
-                PumpManager.Instance.NewPumps.Add(new PumpModel()
-                {
-                    ActualPumpingMode = PumpMode.Expression,
-                    ActualSpeed = 9,
-                    ActualState = PumpState.Start,
-                    ActualSuction = 9,
-                    AdvertisedName = "Pump A",
-                    AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
-                    BatteryLevel = 9,
-                    ChargeState = true,
-                    CurrentDuration = TimeSpan.FromSeconds(9),
-                    DesiredExperience = 8,
-                    DesiredPumpingMode = PumpMode.Expression,
-                    DesiredSpeed = 8,
-                    DesiredState = PumpState.Pause,
-                    DesiredSuction = 8,
-                    Device = null,
-                    FirmwareRevision = "Hello world version",
-                    HardwareRevision = "Hello world hardware version",
-                    HasAlerts = false,
-                    Id = Guid.NewGuid(),
-                    Index = 0,
-                    InUse = true,
-                    IsConnected = true,
-                    IsFocused = true,
-                    IsSelected = false,
-                    IsUpdateAvailable = true,
-                    IsUpdating = true,
-                    LeftBreastMilkLevel = 90,
-                    Logs = new List<LogEntryModel>(),
-                    ModelNumber = "Duck model number",
-                    Name = "Cat dog",
-                    PresetExperiences = new ObservableCollection<ExperienceModel>(),
-                    PumpingSessions = new List<HistoryModel>(),
-                    RightBreastMilkLevel = 80,
-                    SerialNumber = "Cat dog duck serial number",
-                    SoftwareRevision = "Duck software version",
-                    Storage = StorageType.Fridge,
-                    TagBool1 = true,
-                    TagDouble1 = 32,
-                    UpdatePercent = 4,
-                    UserExperiences = new ObservableCollection<ExperienceModel>()
-                });
-
                 if (PumpManager.Instance.NewPumps.Count == 1)
                 {
                     PumpManager.Instance.SelectedPump = PumpManager.Instance.NewPumps[0];
@@ -125,201 +82,8 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             PumpGroupItemItem myPumps = new PumpGroupItemItem(PumpManager.Instance.PairedPumps) { GroupTitle = "MY PUMP", GroupKey = "me" };
             //_groups.Add(myPumps);
             //Titlebar.TitleTextColor = Color.FromHex("#11442b");
-
-            foreach (PumpModel pumpModel in TODO_HARDCODED_BUIDLER())
-            {
-                _groups.Add(pumpModel);
-            }
-
             listView.SelectedItem = null;
-        }
-
-        private ObservableCollection<PumpModel> TODO_HARDCODED_BUIDLER() {
-            ObservableCollection<PumpModel> pumps = new ObservableCollection<PumpModel>();
-
-            PumpModel pumpA = new PumpModel()
-            {
-                ActualPumpingMode = PumpMode.Expression,
-                ActualSpeed = 9,
-                ActualState = PumpState.Start,
-                ActualSuction = 9,
-                AdvertisedName = "Pump A",
-                AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
-                BatteryLevel = 9,
-                ChargeState = true,
-                CurrentDuration = TimeSpan.FromSeconds(9),
-                DesiredExperience = 8,
-                DesiredPumpingMode = PumpMode.Expression,
-                DesiredSpeed = 8,
-                DesiredState = PumpState.Pause,
-                DesiredSuction = 8,
-                Device = null,
-                FirmwareRevision = "Hello world version",
-                HardwareRevision = "Hello world hardware version",
-                HasAlerts = false,
-                Id = Guid.NewGuid(),
-                Index = 0,
-                InUse = true,
-                IsConnected = true,
-                IsFocused = true,
-                IsSelected = false,
-                IsUpdateAvailable = true,
-                IsUpdating = true,
-                LeftBreastMilkLevel = 90,
-                Logs = new List<LogEntryModel>(),
-                ModelNumber = "Duck model number",
-                Name = "Cat dog",
-                PresetExperiences = new ObservableCollection<ExperienceModel>(),
-                PumpingSessions = new List<HistoryModel>(),
-                RightBreastMilkLevel = 80,
-                SerialNumber = "Cat dog duck serial number",
-                SoftwareRevision = "Duck software version",
-                Storage = StorageType.Fridge,
-                TagBool1 = true,
-                TagDouble1 = 32,
-                UpdatePercent = 4,
-                UserExperiences = new ObservableCollection<ExperienceModel>()
-            };
-
-            PumpModel pumpB = new PumpModel()
-            {
-                ActualPumpingMode = PumpMode.Expression,
-                ActualSpeed = 9,
-                ActualState = PumpState.Start,
-                ActualSuction = 9,
-                AdvertisedName = "Pump A",
-                AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
-                BatteryLevel = 9,
-                ChargeState = false,
-                CurrentDuration = TimeSpan.FromSeconds(9),
-                DesiredExperience = 8,
-                DesiredPumpingMode = PumpMode.Expression,
-                DesiredSpeed = 8,
-                DesiredState = PumpState.Pause,
-                DesiredSuction = 8,
-                Device = null,
-                FirmwareRevision = "Hello world version",
-                HardwareRevision = "Hello world hardware version",
-                HasAlerts = false,
-                Id = Guid.NewGuid(),
-                Index = 1,
-                InUse = false,
-                IsConnected = true,
-                IsFocused = false,
-                IsSelected = false,
-                IsUpdateAvailable = false,
-                IsUpdating = false,
-                LeftBreastMilkLevel = 90,
-                Logs = new List<LogEntryModel>(),
-                ModelNumber = "Duck model number",
-                Name = "Cat dog",
-                PresetExperiences = new ObservableCollection<ExperienceModel>(),
-                PumpingSessions = new List<HistoryModel>(),
-                RightBreastMilkLevel = 80,
-                SerialNumber = "Cat dog duck serial number",
-                SoftwareRevision = "Duck software version",
-                Storage = StorageType.Fridge,
-                TagBool1 = false,
-                TagDouble1 = 32,
-                UpdatePercent = 4,
-                UserExperiences = new ObservableCollection<ExperienceModel>()
-            };
-
-            PumpModel pumpC = new PumpModel()
-            {
-                ActualPumpingMode = PumpMode.Expression,
-                ActualSpeed = 9,
-                ActualState = PumpState.Start,
-                ActualSuction = 9,
-                AdvertisedName = "Pump A",
-                AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
-                BatteryLevel = 9,
-                ChargeState = false,
-                CurrentDuration = TimeSpan.FromSeconds(9),
-                DesiredExperience = 8,
-                DesiredPumpingMode = PumpMode.Expression,
-                DesiredSpeed = 8,
-                DesiredState = PumpState.Pause,
-                DesiredSuction = 8,
-                Device = null,
-                FirmwareRevision = "Hello world version",
-                HardwareRevision = "Hello world hardware version",
-                HasAlerts = false,
-                Id = Guid.NewGuid(),
-                Index = 2,
-                InUse = false,
-                IsConnected = false,
-                IsFocused = true,
-                IsSelected = false,
-                IsUpdateAvailable = false,
-                IsUpdating = false,
-                LeftBreastMilkLevel = 90,
-                Logs = new List<LogEntryModel>(),
-                ModelNumber = "Duck model number",
-                Name = "Cat dog",
-                PresetExperiences = new ObservableCollection<ExperienceModel>(),
-                PumpingSessions = new List<HistoryModel>(),
-                RightBreastMilkLevel = 80,
-                SerialNumber = "Cat dog duck serial number",
-                SoftwareRevision = "Duck software version",
-                Storage = StorageType.Fridge,
-                TagBool1 = false,
-                TagDouble1 = 32,
-                UpdatePercent = 4,
-                UserExperiences = new ObservableCollection<ExperienceModel>()
-            };
-
-            PumpModel pumpD = new PumpModel()
-            {
-                ActualPumpingMode = PumpMode.Expression,
-                ActualSpeed = 9,
-                ActualState = PumpState.Start,
-                ActualSuction = 9,
-                AdvertisedName = "Pump A",
-                AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
-                BatteryLevel = 9,
-                ChargeState = false,
-                CurrentDuration = TimeSpan.FromSeconds(9),
-                DesiredExperience = 8,
-                DesiredPumpingMode = PumpMode.Expression,
-                DesiredSpeed = 8,
-                DesiredState = PumpState.Pause,
-                DesiredSuction = 8,
-                Device = null,
-                FirmwareRevision = "Hello world version",
-                HardwareRevision = "Hello world hardware version",
-                HasAlerts = false,
-                Id = Guid.NewGuid(),
-                Index = 3,
-                InUse = false,
-                IsConnected = false,
-                IsFocused = false,
-                IsSelected = false,
-                IsUpdateAvailable = false,
-                IsUpdating = false,
-                LeftBreastMilkLevel = 90,
-                Logs = new List<LogEntryModel>(),
-                ModelNumber = "Duck model number",
-                Name = "Cat dog",
-                PresetExperiences = new ObservableCollection<ExperienceModel>(),
-                PumpingSessions = new List<HistoryModel>(),
-                RightBreastMilkLevel = 80,
-                SerialNumber = "Cat dog duck serial number",
-                SoftwareRevision = "Duck software version",
-                Storage = StorageType.Fridge,
-                TagBool1 = false,
-                TagDouble1 = 32,
-                UpdatePercent = 4,
-                UserExperiences = new ObservableCollection<ExperienceModel>()
-            };
-
-            pumps.Add(pumpA);
-            pumps.Add(pumpB);
-            pumps.Add(pumpC);
-            pumps.Add(pumpD);
-
-            return pumps;
-        }
+        }        
     }
 
     /// <summary>

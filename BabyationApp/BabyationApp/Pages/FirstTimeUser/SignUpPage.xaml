@@ -123,7 +123,7 @@
                 <StackLayout Spacing="0">
                     <Label
                         Style="{StaticResource Form_ElementHeader}"
-                        Text="{helper:Translate Email}"
+                        Text="{helper:Translate EmailUpper}"
                         VerticalTextAlignment="End" />
                     <Grid >
                         <Grid.ColumnDefinitions>
@@ -153,7 +153,7 @@
                 <StackLayout Spacing="0">
                     <Label
                         Style="{StaticResource Form_ElementHeader}"
-                        Text="{helper:Translate Password}"
+                        Text="{helper:Translate PasswordUpper}"
                         VerticalTextAlignment="End" />
                     <Grid >
 

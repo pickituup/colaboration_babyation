@@ -150,6 +150,18 @@ namespace BabyationApp.Controls.Buttons
             set { SetValue(ImageTranslationYProperty, value); }
         }
 
+        public static readonly BindableProperty ImageTranslationXProperty =
+            BindableProperty.Create(propertyName: nameof(ImageTranslationX),
+                                    returnType: typeof(double),
+                                    declaringType: typeof(ImageButton),
+                                    defaultValue: default(double));
+
+        public double ImageTranslationX
+        {
+            get { return (double)GetValue(ImageTranslationXProperty); }
+            set { SetValue(ImageTranslationXProperty, value); }
+        }
+
         public static readonly BindableProperty ImageScaleProperty =
             BindableProperty.Create(propertyName: "ImageScale",
                                     returnType: typeof(double),

@@ -51,7 +51,7 @@
               </Grid>
             </StackLayout>
             <StackLayout Spacing="0">
-              <Label Text="{helpers:Translate Password}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
+              <Label Text="{helpers:Translate PasswordUpper}" VerticalTextAlignment="End" Style="{StaticResource Form_ElementHeader}" />
               <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="9*"/>

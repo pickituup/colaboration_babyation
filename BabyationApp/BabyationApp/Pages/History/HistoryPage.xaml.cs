@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -105,9 +103,10 @@ namespace BabyationApp.Pages.History
             ViewModel.Reset();
 
             ViewModel.CurrentWeekDate = DateTime.Today;
-            UpdateWeekModel();
 
+            UpdateWeekModel();
             UpdateDayModel();
+            UpdateRangeInfoText();
 
             ListDay.SelectedItem = null;
             ListWeek.SelectedItem = null;
@@ -121,6 +120,7 @@ namespace BabyationApp.Pages.History
 
             UpdateWeekModel();
             UpdateDayModel();
+            UpdateRangeInfoText();
 
             ListDay.SelectedItem = null;
             ListWeek.SelectedItem = null;
@@ -272,23 +272,36 @@ namespace BabyationApp.Pages.History
                 }
             }
 
-            double maxValue = model.MaxRangeValue[(int)type];
-
-            for (int i = 0; i < binCount; i++)
+            if (null != model)
             {
-                row.BinsInfo.Add(model.RangeNames[i]);
-                double amount = model.RangeValues[(int)type, i];
+                double maxValue = model.MaxRangeValue[(int)type];
+                maxValue = Math.Max(1.0, maxValue);
 
-                row.BinsAmountValue.Add(String.Format(amountFormat, new object[] { amount }));
-                row.BinsAmountText.Add(String.IsNullOrEmpty(amountText) ? String.Empty : amountText);
-                row.BarHeights.Add(Math.Max(0.0, row.MaxBarHeight * amount / Math.Max(1.0, maxValue)));
+                for (int i = 0; i < binCount; i++)
+                {
+                    row.BinsInfo.Add(model.RangeNames[i]);
+                    double amount = model.RangeValues[(int)type, i];
+
+                    row.BinsAmountValue.Add(String.Format(amountFormat, amount));
+                    row.BinsAmountText.Add(String.IsNullOrEmpty(amountText) ? String.Empty : amountText);
+                    row.BarHeights.Add(Math.Max(0.0, (row.MaxBarHeight * amount) / maxValue));
+                }
+            }
+            else
+            {
+                // Fill with default empty values
+                for (int i = 0; i < binCount; i++)
+                {
+                    row.BinsInfo.Add(String.Empty);
+                    row.BinsAmountValue.Add(String.Empty);
+                    row.BinsAmountText.Add(String.Empty);
+                    row.BarHeights.Add(0.0);
+                }
             }
 
             return row;
         }
-
-        ObservableCollection<HistoryRangeModelItem> _historyListWeek = new ObservableCollection<HistoryRangeModelItem>();
-
+        
         /// <summary>
         /// Updates the week Model for the Week tab
         /// </summary>
@@ -301,35 +314,45 @@ namespace BabyationApp.Pages.History
                 ListWeek.Header = ViewModel;
             }
 
-            ViewModel.ListWeeklySource.Clear();
+            HistoryRangeModelItem rangeItem = ViewModel.ListWeeklySource.FirstOrDefault();
+            rangeItem.Clear();
 
             if (null != model)
             {
                 switch (ViewModel.SelectedSession)
                 {
                     case SessionType.Pump:
-                        ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Pump, "", String.Format("{0} {1}", AppResource.AverageOuncesPerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                        //ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Pump, "", String.Format("{0} {1}", AppResource.AverageOuncesPerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                        FillRow(7, model, rangeItem, SessionType.Pump, "", String.Format("{0} {1}", AppResource.AverageOuncesPerDay, "{0:F1}\noz"), "{0:F1}\noz");
                         break;
                     case SessionType.Nurse:
-                        ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Nurse, "", String.Format("{0} {1} {2}", AppResource.AverageNursedPerDay, "{0:F1}", AppResource.MinutesLower), "{0:F2}", AppResource.MinutesLower));
+                        //ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Nurse, "", String.Format("{0} {1} {2}", AppResource.AverageNursedPerDay, "{0:F1}", AppResource.MinutesLower), "{0:F2}", AppResource.MinutesLower));
+                        FillRow(7, model, rangeItem, SessionType.Nurse, "", String.Format("{0} {1} {2}", AppResource.AverageNursedPerDay, "{0:F1}", AppResource.MinutesLower), "{0:F2}", AppResource.MinutesLower);
                         break;
                     case SessionType.BottleFeed:
                         {
                             if (SessionType.Breastmilk == ViewModel.SelectedBottleType)
                             {
-                                ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Breastmilk, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                //ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Breastmilk, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                FillRow(7, model, rangeItem, SessionType.Breastmilk, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz");
                             }
                             else if (SessionType.Formula == ViewModel.SelectedBottleType)
                             {
-                                ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Formula, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                //ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.Formula, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                FillRow(7, model, rangeItem, SessionType.Formula, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz");
                             }
                             else
                             {
-                                ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.BottleFeed, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                //ViewModel.ListWeeklySource.Add(FillRow(7, model, new HistoryRangeModelItem(), SessionType.BottleFeed, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz"));
+                                FillRow(7, model, rangeItem, SessionType.BottleFeed, "", String.Format("{0} {1}", AppResource.AverageBottlePerDay, "{0:F1}\noz"), "{0:F1}\noz");
                             }
                         }
                         break;
-
+                    default:
+                        {
+                            FillRow(7, null, rangeItem, SessionType.Max, null, null, null, null);
+                        }
+                        break;
                         // default: TODO: Add No data cell
                 }
                 LblNoWeeklyRecords.IsVisible = false;
@@ -339,6 +362,9 @@ namespace BabyationApp.Pages.History
                 {
                     ListWeek.ItemsSource = ViewModel.ListWeeklySource;
                 }
+
+                rangeItem.ToggleRangeModelItem = true;
+                ViewModel.ToggleListViewSource = true;
             }
             else
             {
@@ -550,7 +576,7 @@ namespace BabyationApp.Pages.History
 
         public void Reset()
         {
-            _selectedSession = SessionType.Pump;
+            _selectedSession = SessionType.Max;
             _selectedChildIndex = -1;
             _selectedBottleType = SessionType.Max;
 
@@ -583,9 +609,16 @@ namespace BabyationApp.Pages.History
                 if (null == _listWeeklySource)
                 {
                     _listWeeklySource = new ObservableCollection<HistoryRangeModelItem>();
+                    _listWeeklySource.Add(new HistoryRangeModelItem());
                 }
                 return _listWeeklySource;
             }
+
+        }
+
+        public bool ToggleListViewSource
+        {
+            set => SetPropertyChanged(nameof(ListWeeklySource));
         }
 
         DateTime _currentWeekDate = DateTime.Now;
@@ -680,6 +713,11 @@ namespace BabyationApp.Pages.History
                                     {
                                         //???
                                     }
+                                }
+                                break;
+                            default:
+                                {
+                                    _weeklyHistoryRangeModel = Histories.ElementAt(0);
                                 }
                                 break;
                         }
@@ -870,45 +908,95 @@ namespace BabyationApp.Pages.History
         {
             MaxBarHeight = 100;
             IsHeaderVisible = true;
-            BinsInfo = new List<String>();
-            BinsAmountValue = new List<String>();
-            BinsAmountText = new List<String>();
-            BarHeights = new List<double>();
+
+            BinsInfo = new ObservableCollection<string>();
+            BinsAmountValue = new ObservableCollection<string>();
+            BinsAmountText = new ObservableCollection<string>();
+            BarHeights = new ObservableCollection<double>();
+        }
+
+        /// <summary>
+        /// Max bar height for the row
+        /// </summary>
+        private double _maxBarHeight;
+        public double MaxBarHeight 
+        { 
+            get => _maxBarHeight; 
+            set => SetPropertyChanged(ref _maxBarHeight, value); 
         }
 
         /// <summary>
         /// Gets/Sets whether the header is visible in the row
         /// </summary>
-        public bool IsHeaderVisible { get; set; }
+        private bool _isHeaderVisible;
+        public bool IsHeaderVisible 
+        { 
+            get => _isHeaderVisible;
+            set => SetPropertyChanged(ref _isHeaderVisible, value);
+        }
 
         /// <summary>
         /// Icon to show for the row
         /// </summary>
-        public ImageSource Icon { get; set; }
+        private ImageSource _icon;
+        public ImageSource Icon 
+        { 
+            get => _icon; 
+            set => SetPropertyChanged(ref _icon, value); 
+        }
 
         /// <summary>
         /// Title of the row
         /// </summary>
-        public String Title { get; set; }
+        private String _title;
+        public String Title 
+        { 
+            get => _title; 
+            set => SetPropertyChanged(ref _title, value); 
+        }
 
         /// <summary>
         /// Bins information for the row
         /// </summary>
-        public List<String> BinsInfo { get; private set; }
+        public ObservableCollection<String> BinsInfo { get; private set; }
 
         /// <summary>
         /// Bins amount for the row
         /// </summary>
-        public List<String> BinsAmountValue { get; private set; }
-        public List<String> BinsAmountText { get; private set; }
+        public ObservableCollection<String> BinsAmountValue { get; private set; }
+
         /// <summary>
-        /// Max bar height for the row
+        /// Bins amount text for the row.
         /// </summary>
-        public double MaxBarHeight { get; set; }
+        /// <value>The bins amount text.</value>
+        public ObservableCollection<String> BinsAmountText { get; private set; }
 
         /// <summary>
         /// Height for each fo the bars in the row
         /// </summary>
-        public List<double> BarHeights { get; set; }
+        public ObservableCollection<double> BarHeights { get; set; }
+
+        public void Clear()
+        {
+            IsHeaderVisible = true;
+            MaxBarHeight = 100;
+
+            BinsInfo.Clear();
+            BinsAmountValue.Clear();
+            BinsAmountText.Clear();
+            BarHeights.Clear();
+        }
+
+        public bool ToggleRangeModelItem
+        {
+            set
+            {
+                value = false;
+                SetPropertyChanged(nameof(BinsInfo));
+                SetPropertyChanged(nameof(BinsAmountValue));
+                SetPropertyChanged(nameof(BinsAmountText));
+                SetPropertyChanged(nameof(BarHeights));
+            }
+        }
     }
 }

@@ -33,10 +33,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
     
-    <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid Padding="0" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <localButtons:ButtonEx x:Name="RootButton" Padding="20, 0" 
                                Style="{StaticResource ButtonEx}" 
-                               HeightRequest="50" 
                                Command="{Binding Source={x:Reference this}, Path=CommandEx}"
                                HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
             <StackLayout Orientation="Horizontal" Padding="0" Spacing="15" 

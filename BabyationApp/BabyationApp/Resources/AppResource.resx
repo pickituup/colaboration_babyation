@@ -496,10 +496,10 @@
     <value>More</value>
   </data>
   <data name="MyBabies" xml:space="preserve">
-    <value>My Children</value>
+    <value>My children</value>
   </data>
   <data name="MyInfo" xml:space="preserve">
-    <value>My Info</value>
+    <value>My info</value>
   </data>
   <data name="MyInventory" xml:space="preserve">
     <value>MY INVENTORY</value>
@@ -598,6 +598,9 @@
     <value>PAIR PUMP</value>
   </data>
   <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordUpper" xml:space="preserve">
     <value>PASSWORD</value>
   </data>
   <data name="PasswordChanged" xml:space="preserve">
@@ -1501,5 +1504,47 @@ Almost as much as we look forward to taking a nap.</value>
   </data>
   <data name="PairAPump" xml:space="preserve">
     <value>Pair a pump</value>
+  </data>
+  <data name="AppVersionUppercase" xml:space="preserve">
+    <value>APP VERSION</value>
+  </data>
+  <data name="AreYouSureApplyFactoryReset" xml:space="preserve">
+    <value>Are you sure you want to reset factory settings</value>
+  </data>
+  <data name="AreYouSureRemovePump" xml:space="preserve">
+    <value>Are you sure you want to remove this pump?</value>
+  </data>
+  <data name="EditMyPumpUppercase" xml:space="preserve">
+    <value>EDIT MY PUMP</value>
+  </data>
+  <data name="FirmwareRevisionUppercase" xml:space="preserve">
+    <value>FIRMWARE REVISION</value>
+  </data>
+  <data name="ForgetDeviceUppercase" xml:space="preserve">
+    <value>FORGET DEVICE</value>
+  </data>
+  <data name="HardwareRevisionUppercase" xml:space="preserve">
+    <value>HARDWARE REVISION</value>
+  </data>
+  <data name="ModelNumberUppercase" xml:space="preserve">
+    <value>MODEL NUMBER</value>
+  </data>
+  <data name="NoCancelUppercase" xml:space="preserve">
+    <value>NO, CANCEL</value>
+  </data>
+  <data name="NotInRange" xml:space="preserve">
+    <value>Not in range</value>
+  </data>
+  <data name="SelectedUppercase" xml:space="preserve">
+    <value>SELECTED</value>
+  </data>
+  <data name="SerialNumberUppercase" xml:space="preserve">
+    <value>SERIAL NUMBER</value>
+  </data>
+  <data name="UseThisPumpUppercase" xml:space="preserve">
+    <value>USE THIS PUMP</value>
+  </data>
+  <data name="YesResetUppercase" xml:space="preserve">
+    <value>YES, RESET</value>
   </data>
 </root>

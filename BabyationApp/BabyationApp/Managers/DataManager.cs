@@ -47,6 +47,8 @@ namespace BabyationApp.Managers
         private IMobileServiceSyncTable<DataObjects.AccessGroup> accessGroupTable;
         private IMobileServiceSyncTable<DataObjects.AccessType> accessTypeTable;
         private IMobileServiceSyncTable<DataObjects.Children> childrenTable;
+        private IMobileServiceSyncTable<DataObjects.CaregiverRequest> caregiverRequestTable;
+        private IMobileServiceSyncTable<DataObjects.CaregiverRelation> caregiverRelationTable;
         private IMobileServiceSyncTable<DataObjects.Experience> experienceTable;
         private IMobileServiceSyncTable<DataObjects.HistoricalSession> historicalSessionTable;
         private IMobileServiceSyncTable<DataObjects.Media> mediaTable;
@@ -99,6 +101,14 @@ namespace BabyationApp.Managers
         /// Child Table
         /// </summary>
         public IMobileServiceSyncTable<DataObjects.Children> Child { get { return childrenTable; } }
+        /// <summary>
+        /// CaregiverRequest Table
+        /// </summary>
+        public IMobileServiceSyncTable<DataObjects.CaregiverRequest> CaregiverRequest { get { return caregiverRequestTable; } }
+        /// <summary>
+        /// CaregiverRelation Table
+        /// </summary>
+        public IMobileServiceSyncTable<DataObjects.CaregiverRelation> CaregiverRelation { get { return caregiverRelationTable; } }
         /// <summary>
         /// Experience Table
         /// </summary>
@@ -185,6 +195,8 @@ namespace BabyationApp.Managers
                     store.DefineTable<DataObjects.AccessGroup>();
                     store.DefineTable<DataObjects.AccessType>();
                     store.DefineTable<DataObjects.Children>();
+                    store.DefineTable<DataObjects.CaregiverRequest>();
+                    store.DefineTable<DataObjects.CaregiverRelation>();
                     store.DefineTable<DataObjects.Experience>();
                     store.DefineTable<DataObjects.HistoricalSession>();
                     store.DefineTable<DataObjects.Media>();
@@ -201,6 +213,8 @@ namespace BabyationApp.Managers
                     accessGroupTable = this.client.GetSyncTable<DataObjects.AccessGroup>();
                     accessTypeTable = this.client.GetSyncTable<DataObjects.AccessType>();
                     childrenTable = this.client.GetSyncTable<DataObjects.Children>();
+                    caregiverRequestTable = this.client.GetSyncTable<DataObjects.CaregiverRequest>();
+                    caregiverRelationTable = this.client.GetSyncTable<DataObjects.CaregiverRelation>();
                     experienceTable = this.client.GetSyncTable<DataObjects.Experience>();
                     historicalSessionTable = this.client.GetSyncTable<DataObjects.HistoricalSession>();
                     mediaTable = this.client.GetSyncTable<DataObjects.Media>();
@@ -274,6 +288,7 @@ namespace BabyationApp.Managers
                         await SyncProfile(defaultProfile.Id);
                     }
                 }
+
                 //Make Sure user has a profile.
                 _currentUserId = Id;
                 _currentProfileId = defaultProfile.Id;
@@ -281,7 +296,11 @@ namespace BabyationApp.Managers
                 await SyncPump();
                 await SyncChild();
                 await SyncMedia();
-                await Task.WhenAll(new Task[] { SyncPresetExperiences(), SyncUserExperiences(), SyncHistoricalSessions() });
+                await Task.WhenAll(new Task[] { SyncPresetExperiences(), 
+                                                SyncUserExperiences(), 
+                                                SyncHistoricalSessions(), 
+                                                SyncCaregiverRequest(), 
+                                                SyncCaregiverRelation() });
             }
             catch (Exception ex)
             {
@@ -968,6 +987,66 @@ namespace BabyationApp.Managers
         }
 
         /// <summary>
+        /// Syncs CaregiverRequest Table with mobile api
+        /// </summary>
+        /// <returns>System.Theading.Tasks.Task</returns>
+        public async Task<SyncState> SyncCaregiverRequest()
+        {
+            SyncState state = SyncState.Offline;
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                try
+                {
+                    await caregiverRequestTable.PullAsync(Guid.NewGuid().ToString(), caregiverRequestTable.Where(w => w.ProfileId == _currentProfileId));
+                    state = SyncState.Complete;
+                }
+                catch (MobileServicePushFailedException exc)
+                {
+                    await SimpleConflictResolution(exc);
+                    state = SyncState.CompleteWithConflicts;
+                }
+                catch
+                {
+                    state = SyncState.Error;
+                }
+            }
+
+            return state;
+        }
+
+        /// <summary>
+        /// Syncs CaregiverRelation Table with mobile api
+        /// </summary>
+        /// <returns>System.Theading.Tasks.Task</returns>
+        public async Task<SyncState> SyncCaregiverRelation()
+        {
+            SyncState state = SyncState.Offline;
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                try
+                {
+                    await caregiverRelationTable.PullAsync(Guid.NewGuid().ToString(), caregiverRelationTable.Where(w => w.ProfileId == _currentProfileId));
+                    state = SyncState.Complete;
+                }
+                catch (MobileServicePushFailedException exc)
+                {
+                    await SimpleConflictResolution(exc);
+                    state = SyncState.CompleteWithConflicts;
+                }
+                catch
+                {
+                    state = SyncState.Error;
+                }
+            }
+
+            return state;
+        }
+
+
+
+        /// <summary>
         /// Gets A Profile
         /// </summary>
         /// <param name="profileId">id of proile to get</param>
@@ -983,6 +1062,16 @@ namespace BabyationApp.Managers
                 break;
             }
             return profile;
+        }
+
+        /// <summary>
+        /// Get CaregiverRequests associated with a profile
+        /// </summary>
+        /// <param name="profileId">string profile id</param>
+        /// <returns>System.Threading.Tasks.Task</returns>
+        public async Task<IEnumerable<CaregiverRequest>> GetCaregivers(string profileId)
+        {
+            return await caregiverRequestTable.Where(c => c.ProfileId == profileId).ToEnumerableAsync();
         }
 
         /// <summary>

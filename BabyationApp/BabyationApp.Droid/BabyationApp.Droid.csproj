@@ -315,6 +315,7 @@
   <ItemGroup>
     <Compile Include="Dependencies\PictureCache.cs" />
     <Compile Include="Dependencies\PlatformAPI.cs" />
+    <Compile Include="Effects\UnderlineEffect.cs" />
     <Compile Include="Gestures\GeneralGestureListener.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\FileHelper.cs" />

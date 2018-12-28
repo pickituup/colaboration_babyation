@@ -5,12 +5,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using BabyationApp.Helpers;
 
 namespace BabyationApp.Managers
 {
     public class HttpManager
     {
-        const string _baseApiUri = "https://<url_goes_here>";
+        const string _baseApiUri = "https://babyation.azurewebsites.net/api/";
 
         /// <summary>
         /// Gets the base API URL of the service.
@@ -29,9 +30,7 @@ namespace BabyationApp.Managers
         {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-            // TODO: Add the token header
-            //_client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", "token_goes_here");
+            _client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", Settings.Token);
         }
 
         /// <summary>
