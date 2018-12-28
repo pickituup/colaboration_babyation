@@ -10,28 +10,45 @@ using BabyationApp.Models;
 using Xamarin.Forms;
 using BabyationApp.Common;
 using System.Windows.Input;
+using BabyationApp.Resources;
+using System.Diagnostics;
 
-namespace BabyationApp.Pages.Reminders
-{
+namespace BabyationApp.Pages.Reminders {
     /// <summary>
     /// This class represents the Reminders page from the design
     /// </summary>
-    public partial class RemindersPage : RootViewBase
-    {
+    public partial class RemindersPage : RootViewBase {
+        private ConfirmationView _confirmationView;
+
         public RemindersViewModel ViewModel { get; set; }
 
-        public RemindersPage()
-        {
+        public RemindersPage() {
             InitializeComponent();
 
             ViewModel = new RemindersViewModel(CreateReminder, RequestDeleteReminder, ConfirmDeleteReminder);
             BindingContext = ViewModel;
 
             Titlebar.IsVisible = true;
+
+            _confirmationView = new ConfirmationView()
+            {
+                BodyText = AppResource.AreYouSureWantToDeleteReminder,
+                BodyTextStyle = (Style)App.Current.Resources["Instructions_Label"],
+                BodyTextColor = (Color)App.Current.Resources["LightBlue"],
+                DestructiveText = AppResource.NoKeepUpper,
+                DestructiveImage = ImageSource.FromFile("icon_close"),
+                DestructiveImagePressed = ImageSource.FromFile("icon_close"),
+                PositiveText = AppResource.YesDeleteUpper,
+                PositiveImage = ImageSource.FromFile("icon_checkmark_light_pink"),
+                PositiveImagePressed = ImageSource.FromFile("icon_checkmark_light_pink")
+            };
+            _confirmationView.BindingContext = ViewModel;
+            _confirmationView.SetBinding(VisualElement.IsVisibleProperty, new Binding("ShowDeletePopup"));
+            _confirmationView.SetBinding(ConfirmationView.DestructiveCommandProperty, new Binding("RejectDeletionCommand"));
+            _confirmationView.SetBinding(ConfirmationView.PositiveCommandProperty, new Binding("ConfirmDeletionCommand"));
         }
 
-        public override void AboutToShow()
-        {
+        public override void AboutToShow() {
             base.AboutToShow();
 
             // Restore style:
@@ -43,21 +60,45 @@ namespace BabyationApp.Pages.Reminders
 
         #region Private
 
-        private void CreateReminder()
-        {
+        private void CreateReminder() {
             PageManager.Me.SetCurrentPage(typeof(CreateReminderPage));
         }
 
-        private void RequestDeleteReminder()
-        {
-            ViewModel.ShowDeletePopupCommand?.Execute(this);
-            RootLayout.RaiseChild(ConfirmationView);
+        private void RequestDeleteReminder() {
+            ///
+            /// TODO:
+            /// 
+            try
+            {
+                Element parent = Parent;
+
+                while (true)
+                {
+                    if (parent == null || parent is DashboardTabPage)
+                    {
+                        break;
+                    }
+
+                    parent = parent.Parent;
+                }
+
+                if (parent is DashboardTabPage relativeDashboardTabPage)
+                {
+                    relativeDashboardTabPage.ShowDialog(_confirmationView);
+
+                    ViewModel.ShowDeletePopupCommand?.Execute(this);
+                    //RootLayout.RaiseChild(ConfirmationView);
+                }
+            }
+            catch (Exception exc)
+            {
+                Debugger.Break();
+            }
         }
 
-        private void ConfirmDeleteReminder(bool isDelete)
-        {
+        private void ConfirmDeleteReminder(bool isDelete) {
             RootLayout.RaiseChild(MainPage);
-            if(isDelete )
+            if (isDelete)
             {
                 //TODO:
             }
@@ -71,21 +112,18 @@ namespace BabyationApp.Pages.Reminders
     }
 
 
-    public class RemindersViewModel : ObservableObject
-    {
+    public class RemindersViewModel : ObservableObject {
         private Action CreateReminderAction { get; set; }
         private Action RequestDeleteReminderAction { get; set; }
         private Action<bool> ConfirmDeleteReminderAction { get; set; }
 
-        public RemindersViewModel(Action createReminder, Action requestDeleteReminder, Action<bool> confirmDeleteReminder)
-        {
+        public RemindersViewModel(Action createReminder, Action requestDeleteReminder, Action<bool> confirmDeleteReminder) {
             CreateReminderAction = createReminder;
             RequestDeleteReminderAction = requestDeleteReminder;
             ConfirmDeleteReminderAction = confirmDeleteReminder;
         }
 
-        public void Reset()
-        {
+        public void Reset() {
             ShowDeletePopup = false;
 
             Refresh();
@@ -94,8 +132,7 @@ namespace BabyationApp.Pages.Reminders
         #region Public UI properties
 
         private bool _showDeletePopup;
-        public bool ShowDeletePopup
-        {
+        public bool ShowDeletePopup {
             get => _showDeletePopup;
             set => SetPropertyChanged(ref _showDeletePopup, value);
         }
@@ -107,8 +144,7 @@ namespace BabyationApp.Pages.Reminders
         public List<AlarmItem> Datasource { get; private set; }
 
         private bool _refreshing;
-        public bool Refreshing
-        {
+        public bool Refreshing {
             get => _refreshing;
             set => SetPropertyChanged(ref _refreshing, value);
         }
@@ -118,8 +154,7 @@ namespace BabyationApp.Pages.Reminders
         #region Commands
 
         private ICommand _refreshCommand;
-        public ICommand RefreshCommand
-        {
+        public ICommand RefreshCommand {
             get
             {
                 _refreshCommand = _refreshCommand ?? new Command(Refresh);
@@ -128,8 +163,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _addReminderCommand;
-        public ICommand AddReminderCommand
-        {
+        public ICommand AddReminderCommand {
             get
             {
                 _addReminderCommand = _addReminderCommand ?? new Command(CreateReminderAction);
@@ -138,8 +172,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _toggleReminderCommand;
-        public ICommand ToggleReminderCommand
-        {
+        public ICommand ToggleReminderCommand {
             get
             {
                 _toggleReminderCommand = _toggleReminderCommand ?? new Command((obj) =>
@@ -158,8 +191,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _toggleAutostartCommand;
-        public ICommand ToggleAutostartCommand
-        {
+        public ICommand ToggleAutostartCommand {
             get
             {
                 _toggleAutostartCommand = _toggleAutostartCommand ?? new Command((obj) =>
@@ -177,8 +209,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _deleteReminderCommand;
-        public ICommand DeleteReminderCommand
-        {
+        public ICommand DeleteReminderCommand {
             get
             {
                 _deleteReminderCommand = _deleteReminderCommand ?? new Command((obj) =>
@@ -190,8 +221,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _showDeletePopupCommand;
-        public ICommand ShowDeletePopupCommand
-        {
+        public ICommand ShowDeletePopupCommand {
             get
             {
                 _showDeletePopupCommand = _showDeletePopupCommand ?? new Command(() =>
@@ -203,8 +233,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _rejectDeletionCommand;
-        public ICommand RejectDeletionCommand
-        {
+        public ICommand RejectDeletionCommand {
             get
             {
                 _rejectDeletionCommand = _rejectDeletionCommand ?? new Command(() =>
@@ -218,8 +247,7 @@ namespace BabyationApp.Pages.Reminders
         }
 
         ICommand _confirmDeletionCommand;
-        public ICommand ConfirmDeletionCommand
-        {
+        public ICommand ConfirmDeletionCommand {
             get
             {
                 _confirmDeletionCommand = _confirmDeletionCommand ?? new Command(() =>
@@ -236,8 +264,7 @@ namespace BabyationApp.Pages.Reminders
 
         #region Private
 
-        private void Refresh()
-        {
+        private void Refresh() {
             Refreshing = true;
 
             Datasource = this.TempList();
@@ -246,8 +273,7 @@ namespace BabyationApp.Pages.Reminders
             Refreshing = false;
         }
 
-        private List<AlarmItem> TempList()
-        {
+        private List<AlarmItem> TempList() {
             List<AlarmItem> alarms = new List<AlarmItem>();
             alarms.Add(new AlarmItem()
             {
@@ -278,10 +304,8 @@ namespace BabyationApp.Pages.Reminders
     /// <summary>
     /// This class is the UI model for an alarm to be used in the clas RemindersPage
     /// </summary>
-    public class AlarmItem : ModelItemBase
-    {
-        public AlarmItem()
-        {
+    public class AlarmItem : ModelItemBase {
+        public AlarmItem() {
 #if DEBUG
             Id = Guid.NewGuid().ToString();
 #endif
@@ -295,18 +319,16 @@ namespace BabyationApp.Pages.Reminders
         /// Gets/Sets whether the alarm is active or not
         /// </summary>
         private bool _isOn;
-        public bool IsOn
-        { 
-            get => _isOn; 
-            set => SetPropertyChanged(ref _isOn, value); 
+        public bool IsOn {
+            get => _isOn;
+            set => SetPropertyChanged(ref _isOn, value);
         }
 
         /// <summary>
         /// Time of the alarm
         /// </summary>
         private DateTime _date;
-        public DateTime Date
-        {
+        public DateTime Date {
             get => _date;
             set
             {
@@ -329,10 +351,9 @@ namespace BabyationApp.Pages.Reminders
         /// Description of the alarm
         /// </summary>
         private String _description;
-        public String Description 
-        { 
-            get => _description; 
-            set => SetPropertyChanged(ref _description, value); 
+        public String Description {
+            get => _description;
+            set => SetPropertyChanged(ref _description, value);
         }
 
         /// <summary>
@@ -340,16 +361,14 @@ namespace BabyationApp.Pages.Reminders
         /// </summary>
         /// <value>The name of the mode.</value>
         private String _modeName;
-        public String ModeName 
-        { 
-            get => _modeName; 
+        public String ModeName {
+            get => _modeName;
             set => SetPropertyChanged(ref _modeName, value);
         }
 
         private String _modeId;
-        public String ModeId 
-        { 
-            get => _modeId; 
+        public String ModeId {
+            get => _modeId;
             set => SetPropertyChanged(ref _modeId, value);
         }
 
@@ -357,8 +376,7 @@ namespace BabyationApp.Pages.Reminders
         /// Gets/Sets whether the alarm is a auto-start type or manual
         /// </summary>
         private bool _isAutoStart;
-        public bool IsAutoStart 
-        { 
+        public bool IsAutoStart {
             get => _isAutoStart;
             set => SetPropertyChanged(ref _isAutoStart, value);
         }

@@ -14,11 +14,14 @@
     xmlns:pages="clr-namespace:BabyationApp.Pages"
     BackgroundColor="{StaticResource Navy}">
 
-    <RelativeLayout
+    <AbsoluteLayout x:Name="_rootContentSpot_AbsoluteLayout">
+        <RelativeLayout
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
         Padding="0"
         HorizontalOptions="FillAndExpand"
         VerticalOptions="FillAndExpand">
-        <Grid
+            <Grid
             x:Name="_gridTabContents"
             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
                                                                    Property=Height,
@@ -28,20 +31,20 @@
                                                                   Property=Width,
                                                                   Factor=1,
                                                                   Constant=0}">
-            <localDashboardPages:DashboardDetailView x:Name="PageDashboardDetail" />
-            <localHistoryPages:HistoryPage x:Name="PageHistory" />
-            <localModesPages:ModesDashboardView x:Name="PageModesDashboard" />
-            <localAlarmPages:RemindersPage x:Name="PageReminder" />
-<!--            <localViews:RootViewBase x:Name="PageReminder" />-->
-            <localViews:RootViewBase x:Name="PageSettings" BackgroundColor="#E6F2F8">
-                <Grid
+                <localDashboardPages:DashboardDetailView x:Name="PageDashboardDetail" />
+                <localHistoryPages:HistoryPage x:Name="PageHistory" />
+                <localModesPages:ModesDashboardView x:Name="PageModesDashboard" />
+                <localAlarmPages:RemindersPage x:Name="PageReminder" />
+                <!--            <localViews:RootViewBase x:Name="PageReminder" />-->
+                <localViews:RootViewBase x:Name="PageSettings" BackgroundColor="#E6F2F8">
+                    <Grid
                     BackgroundColor="#E6F2F8"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand" />
-            </localViews:RootViewBase>
-        </Grid>
+                </localViews:RootViewBase>
+            </Grid>
 
-        <Grid
+            <Grid
             x:Name="_gridTabBtns"
             Padding="0,0,0,5"
             BackgroundColor="{StaticResource MedPink}"
@@ -58,15 +61,15 @@
                                                               Property=Height,
                                                               Factor=.9,
                                                               Constant=0}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".25*" />
-                <ColumnDefinition Width=".19*" />
-                <ColumnDefinition Width=".17*" />
-                <ColumnDefinition Width=".25*" />
-                <ColumnDefinition Width=".15*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".25*" />
+                    <ColumnDefinition Width=".19*" />
+                    <ColumnDefinition Width=".17*" />
+                    <ColumnDefinition Width=".25*" />
+                    <ColumnDefinition Width=".15*" />
+                </Grid.ColumnDefinitions>
 
-            <localButtons:ImageButton
+                <localButtons:ImageButton
                 x:Name="BtnDash"
                 Grid.Column="0"
                 HorizontalOptions="CenterAndExpand"
@@ -75,7 +78,7 @@
                 Text="{helpers:Translate Dash}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />
-            <localButtons:ImageButton
+                <localButtons:ImageButton
                 x:Name="BtnHistory"
                 Grid.Column="1"
                 HorizontalOptions="CenterAndExpand"
@@ -84,7 +87,7 @@
                 Text="{helpers:Translate History}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />
-            <localButtons:ImageButton
+                <localButtons:ImageButton
                 x:Name="BtnModes"
                 Grid.Column="2"
                 HorizontalOptions="CenterAndExpand"
@@ -93,7 +96,7 @@
                 Text="{helpers:Translate Modes}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />
-            <localButtons:ImageButton
+                <localButtons:ImageButton
                 x:Name="BtnAlarms"
                 Grid.Column="3"
                 HorizontalOptions="CenterAndExpand"
@@ -102,7 +105,7 @@
                 Text="{helpers:Translate Reminders}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />
-            <localButtons:ImageButton
+                <localButtons:ImageButton
                 x:Name="BtnSettings"
                 Grid.Column="4"
                 HorizontalOptions="CenterAndExpand"
@@ -111,6 +114,9 @@
                 Text="{helpers:Translate More}"
                 Style="{StaticResource BottomMenuButton}"
                 VerticalOptions="End" />
-        </Grid>
-    </RelativeLayout>
+            </Grid>
+        </RelativeLayout>
+
+        <AbsoluteLayout IsVisible="False" InputTransparent="True" x:Name="_dialogSpot_AbsoluteLayout" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Padding="{StaticResource NavBarInsets}"/>
+    </AbsoluteLayout>
 </pages:PageBase>

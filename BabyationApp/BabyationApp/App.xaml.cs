@@ -457,11 +457,11 @@ namespace BabyationApp
 
                 _pageMain = new StackPagesContainerPage();
                 Application.Current.MainPage = _pageMain;
-                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
+                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS || Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
                 {
-                    //_pageMain.BackgroundColor = Color.FromHex("#F8EBE3");
-                    //_splashPage = new SplashPage();
-                    //_pageMain.Children.Add(_splashPage);
+                    _pageMain.BackgroundColor = Color.FromHex("#F8EBE3");
+                    _splashPage = new SplashPage();
+                    _pageMain.Children.Add(_splashPage);
                 }
 
                 //_cachePages.Enqueue(typeof(PumpSessionPage));

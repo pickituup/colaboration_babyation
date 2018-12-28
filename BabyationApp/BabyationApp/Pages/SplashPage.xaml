@@ -4,7 +4,8 @@
 	xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
 	x:Class="BabyationApp.Pages.SplashPage">
 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-	<Image Source="splash.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill">
-	</Image>
-</Grid>
+        <Image Source="splash.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+
+        <Label FontFamily="{StaticResource Key=fontHurmeBold}" TextColor="Black" FontSize="18" VerticalOptions="End" HorizontalOptions="Center" TranslationY="-18" Text="Version 1.0.1.2"/>
+    </Grid>
 </ContentPage>

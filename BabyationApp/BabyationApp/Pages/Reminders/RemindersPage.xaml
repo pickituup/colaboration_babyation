@@ -12,10 +12,10 @@
     x:Name="this"
     BackgroundColor="{StaticResource Peach}"
     Title="{helpers:Translate MyScheduleUpper}">
-    
+
     <ContentView.Resources>
         <ResourceDictionary>
-            
+
             <!-- Common Labels -->
             <Style x:Key="LocalDateTimeLabel" TargetType="Label" BasedOn="{StaticResource H1_Label}">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
@@ -26,7 +26,7 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>
-            
+
             <Style x:Key="LocalHeader" TargetType="Label" BasedOn="{StaticResource Label_Label}">
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="MaxLines" Value="2"/>
@@ -35,7 +35,7 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            
+
             <Style x:Key="LocalNameValue" TargetType="Label" BasedOn="{StaticResource H2_Label}">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -45,11 +45,11 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            
+
             <Style x:Key="LocalCheckboxButton" TargetType="localButtons:CircleButton" BasedOn="{StaticResource CheckboxButton}">
                 <Setter Property="InnerCircleColor" Value="{StaticResource Peach}" />
             </Style>
-            
+
             <!-- Cell template-->
             <DataTemplate x:Key="cellTemplate">
                 <ViewCell>
@@ -59,7 +59,7 @@
                                 <Setter Property="BackgroundColor" Value="{StaticResource LightPink}" />
                             </DataTrigger>
                         </Grid.Triggers>
-                        
+
                         <Grid VerticalOptions="Center" ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -72,7 +72,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <!-- Switch -->
                             <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" >
                                 <Grid.GestureRecognizers>
@@ -83,7 +83,7 @@
                                                            IsPressed="{Binding IsOn}" 
                                                            Style="{StaticResource SwitchButton}" />
                             </Grid>
-                            
+
                             <!-- Date/time -->
                             <StackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
                                          Orientation="Horizontal" Padding="4,0,0,0" Spacing="5" 
@@ -97,19 +97,19 @@
                                            HorizontalOptions="Start" VerticalOptions="End"/>
                                 </StackLayout>
                             </StackLayout>
-                            
+
                             <!-- Session name -->
                             <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Padding="0,2" Spacing="3" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                                 <Label Text="{helpers:Translate NickNameUpper}" Style="{StaticResource LocalHeader}"/>
                                 <Label Text="{Binding Description}" Style="{StaticResource LocalNameValue}"/>
                             </StackLayout>
-                            
+
                             <!-- Mode name-->
                             <StackLayout Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Vertical" Padding="0,2" Spacing="3" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
                                 <Label Text="{helpers:Translate ModeUpper}" Style="{StaticResource LocalHeader}"/>
                                 <Label Text="{Binding ModeName}" Style="{StaticResource LocalNameValue}"/>
                             </StackLayout>
-                            
+
                             <!-- Actions -->
                             <StackLayout Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Orientation="Vertical" Padding="0" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
                                 <Label Text="{helpers:Translate AutoStartUpper}" Style="{StaticResource LocalHeader}" VerticalTextAlignment="Start" VerticalOptions="Start"/>
@@ -117,7 +117,7 @@
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=BindingContext.ToggleAutostartCommand}" CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
-                                    
+
                                     <localButtons:CircleButton x:Name="checkbox"
                                                                InputTransparent="true"
                                                                IsCircle="True" 
@@ -141,10 +141,10 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentView.Resources>
-    
+
     <ContentView.Content>
         <AbsoluteLayout x:Name="RootLayout" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            
+
             <!-- Main page-->
             <Grid x:Name="MainPage" IsVisible="{Binding ShowDeletePopup, Converter={StaticResource BooleanInverseConverter}}" 
                   RowSpacing="0"
@@ -154,10 +154,10 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
+
                 <!-- Add session control -->
                 <localViews:AddControlView Grid.Row="0" Text="{helpers:Translate ScheduleSession}" CommandEx="{Binding AddReminderCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
-                
+
                 <!-- List -->
                 <localViews:ListViewEx Grid.Row="1"
                                                 x:Name="listView" 
@@ -174,16 +174,21 @@
                                                 BackgroundColor="{StaticResource Peach}"
                                                 HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Grid>
-            
+
             <!-- Confirmation dialog -->
-            <localViews:ConfirmationView x:Name="ConfirmationView" 
+            <!--<localViews:ConfirmationView x:Name="ConfirmationView" 
                                          AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
                                          IsVisible="{Binding ShowDeletePopup}"
                                          BodyText="{helpers:Translate AreYouSureWantToDeleteReminder}" 
                                          BodyTextStyle="{StaticResource Instructions_Label}" 
                                          BodyTextColor="{StaticResource LightBlue}"
-                                         DestructiveCommand="{Binding RejectDeletionCommand}" DestructiveText="{helpers:Translate NoKeepUpper}" DestructiveImage="icon_close" DestructiveImagePressed="icon_close"
-                                         PositiveCommand="{Binding ConfirmDeletionCommand}" PositiveText="{helpers:Translate YesDeleteUpper}" PositiveImage="icon_checkmark_light_pink" PositiveImagePressed="icon_checkmark_light_pink"/>
+                                         DestructiveCommand="{Binding RejectDeletionCommand}"
+                                         DestructiveText="{helpers:Translate NoKeepUpper}"
+                                         DestructiveImage="icon_close" DestructiveImagePressed="icon_close"
+                                         PositiveCommand="{Binding ConfirmDeletionCommand}" 
+                                         PositiveText="{helpers:Translate YesDeleteUpper}" 
+                                         PositiveImage="icon_checkmark_light_pink"
+                                         PositiveImagePressed="icon_checkmark_light_pink"/>-->
         </AbsoluteLayout>
     </ContentView.Content>
 </localViews:RootViewBase>
