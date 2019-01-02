@@ -44,23 +44,30 @@
                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                 
                 <!-- Navigation section -->
-                <StackLayout Grid.Row="1" x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                <Grid Grid.Row="1" x:Name="GridBottomBar" Style="{StaticResource Grid_BottomNavigation}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <localButtons:ImageButton x:Name="BtnBack"
+                                              Grid.Column="0"
                                               Text="{helpers:Translate Back}"
                                               Command="{Binding BackCommand}"
                                               Style="{StaticResource NavigationalActionButton}"
                                               ImageNormal="icon_reverse2" ImagePressed="icon_reverse"
-                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
                                               HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
                     <localButtons:ImageButton x:Name="BtnSave"
+                                              Grid.Column="1"
                                               Text="{helpers:Translate Save}"
                                               Command="{Binding SaveCommand}"
                                               IsEnabled="{Binding IsReadyToGo}"
                                               Style="{StaticResource PositiveActionButton}"
                                               ImageNormal="icon_save" ImagePressed="icon_save2"
-                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
                                               HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />                    
-                </StackLayout>
+                </Grid>
             </Grid>
       
             <!--  Saved popup: Full screen  -->

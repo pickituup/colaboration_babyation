@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using BabyationApp.Helpers;
+using System.Diagnostics;
+using System.Net;
 
 namespace BabyationApp.Managers
 {
@@ -169,25 +171,47 @@ namespace BabyationApp.Managers
         private async Task<T> SendAndDeserialize<T>(HttpMethod requestType, string requestUri, CancellationToken cancellationToken = default(CancellationToken), Action<HttpRequestMessage> modifyRequest = null, string jsonRequest = null)
         {
             T result = default(T);
-
-            var response = await SendAsync(requestType, requestUri, cancellationToken, modifyRequest, jsonRequest).ConfigureAwait(false);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                if (response != null)
+                var response = await SendAsync(requestType, requestUri, cancellationToken, modifyRequest, jsonRequest).ConfigureAwait(false);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    if (response != null)
+                    {
+                        var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                    if (!string.IsNullOrWhiteSpace(json))
-                        result = JsonConvert.DeserializeObject<T>(json);
+                        if (!string.IsNullOrWhiteSpace(json))
+                            result = JsonConvert.DeserializeObject<T>(json);
+                    }
                 }
-            }
-            else
-            {
-                response.EnsureSuccessStatusCode();
-            }
+                else
+                {
+                    try
+                    {
+                        response.EnsureSuccessStatusCode();
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        if (response.StatusCode == HttpStatusCode.NotFound) // 404
+                        {
+                            Debug.WriteLine($"SendAndDeserialize status code: {ex}");
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                }
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"SendAndDeserialize: {ex}");
+
+                throw;
+            }
         }
 
         /// <summary>

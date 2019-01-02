@@ -367,10 +367,13 @@ namespace BabyationApp.Pages.BottleSession
             string res = string.Empty;
             if (splitedString.Length > 1)
             {
-                if (int.TryParse(splitedString[0], out int minutes) && int.TryParse(splitedString[1], out int seconds))
-                {
-                    res = string.Format($"{minutes:D2}:{seconds:D2}");
-                }
+                bool hasMinutes = int.TryParse(splitedString[0], out int minutes);
+                res += hasMinutes ? string.Format($"{minutes:D2}") : "00";
+
+                res += ":";
+
+                bool hasSeconds = int.TryParse(splitedString[1], out int seconds);
+                res += hasSeconds ? string.Format($"{seconds:D2}") : "00";
             }
             else
             {
@@ -387,47 +390,6 @@ namespace BabyationApp.Pages.BottleSession
         {
             ViewModel.DurationValue = ParseDurationTime();
         }
-
-        /// <summary>
-        /// Gets called when this page is about to show and performs the initialization
-        /// </summary>
-        //public override void AboutToShow()
-        //{
-        //   var model = (BottleFeedLogModel)BindingContext;
-        //   if (model != null)
-        //   {
-        //       model.ShowBottleFeedSessionPage = true;
-        //       model.ShowAddNotePage = false;
-        //       model.ShowSavedPopupPage = false;
-        //   }
-
-        //   Titlebar.IsVisible = true;
-        //   base.AboutToShow();
-
-        //   DtPicker.Date = DateTime.Now;
-        //   LblDtPicker.Text = "-- /--";
-        //   LblTmPickerStart.Text = "--:--";
-        //   LblTmPickerEnd.Text = "--:--";
-        //   LblDuration.Text = "--:--";
-        //   EntryTotalOunces.Text = String.Empty;
-        //   LblBtnAddNote.Text = "Add a Note";
-        //   LblNoteTitle.Text = "";
-        //   LblNoteDesc.Text = "";
-        //   EditorNote.Text = "";
-
-        //   if (SessionManager.Instance.CurrentSession != null)
-        //   {
-        //       SessionManager.Instance.CurrentSession.PropertyChanged += (sender, args) =>
-        //       {
-        //           if (args.PropertyName == "TotalBreastMilkLevelText")
-        //           {
-        //               EntryTotalOunces.Text = SessionManager.Instance.CurrentSession.TotalBreastMilkLevelText;
-        //           }
-        //       };
-        //   }
-
-        //}
-
     }
 
 
@@ -450,17 +412,6 @@ namespace BabyationApp.Pages.BottleSession
             FinishSessionAction = finishSessionAction;
 
             Reset();
-        }
-
-        bool _isBottleTypeSelected;
-        public bool IsBottleTypeSelected
-        {
-            get { return _isBottleTypeSelected; }
-            set
-            {
-                SetPropertyChanged(ref _isBottleTypeSelected, value);
-                SetPropertyChanged(nameof(IsDataValid));
-            }
         }
 
         public void Reset()
@@ -632,6 +583,17 @@ namespace BabyationApp.Pages.BottleSession
                     //SetPropertyChanged(nameof(DurationText));
                     SetPropertyChanged(nameof(IsDataValid));
                 }
+            }
+        }
+
+        bool _isBottleTypeSelected;
+        public bool IsBottleTypeSelected
+        {
+            get { return _isBottleTypeSelected; }
+            set
+            {
+                SetPropertyChanged(ref _isBottleTypeSelected, value);
+                SetPropertyChanged(nameof(IsDataValid));
             }
         }
 

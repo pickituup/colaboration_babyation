@@ -82,6 +82,8 @@ namespace BabyationApp.Pages.Reminders
         #endregion
     }
 
+
+
     public class CreateReminderModel : ObservableObject
     {
         private Action<AlarmItem> FinishSessionAction { get; set; }
@@ -104,7 +106,7 @@ namespace BabyationApp.Pages.Reminders
             SetPropertyChanged(nameof(MaxChars));
         }
 
-#region Data properties
+        #region Data properties
 
         private AlarmItem _alarmItem;
         public AlarmItem AlarmItem
@@ -220,9 +222,9 @@ namespace BabyationApp.Pages.Reminders
             get => !String.IsNullOrEmpty(Nickname) && Date != DateTime.MinValue && Time != TimeSpan.Zero;
         }
 
-#endregion
+        #endregion
 
-#region Commands
+        #region Commands
 
         ICommand _toggleAutostartCommand;
         public ICommand ToggleAutostartCommand
@@ -258,6 +260,6 @@ namespace BabyationApp.Pages.Reminders
             }
         }
 
-#endregion
+        #endregion
     }
 }

@@ -10,6 +10,8 @@ using BabyationApp.DataObjects;
 using Xamarin.Forms;
 using System.IO;
 using FFImageLoading;
+using System.Diagnostics;
+using System.Net.Http;
 
 namespace BabyationApp.Managers
 {
@@ -213,11 +215,31 @@ namespace BabyationApp.Managers
             }
         }
 
-        public Task<CaregiverRequest> AddCaregiver(string email) 
-            => HttpManager.Instance.PostAsync<CaregiverRequest>($"Caregiver/CreateCaregiverRequest?email={email}");
+        public Task<CaregiverRequest> AddCaregiver(string email)
+        {
+            try
+            {
+                return HttpManager.Instance.PostAsync<CaregiverRequest>($"Caregiver/CreateCaregiverRequest?email={email}");
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine($"AddCaregiver: {ex}");
+            }
+            return null;
+        }
 
-        public Task<CaregiverRelation> VerifyCaregiverCode(string verificationCode) 
-            => HttpManager.Instance.PostAsync<CaregiverRelation>($"Caregiver/ValidateCaregiver?verificationCode={verificationCode}");
+        public Task<CaregiverRelation> VerifyCaregiverCode(string verificationCode)
+        {
+            try
+            {
+                return HttpManager.Instance.PostAsync<CaregiverRelation>($"Caregiver/ValidateCaregiver?verificationCode={verificationCode}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"VerifyCaregiverCode: {ex}");
+            }
+            return null;
+        }
 
         private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

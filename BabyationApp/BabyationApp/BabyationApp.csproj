@@ -52,11 +52,11 @@
     <PackageReference Include="Xamarin.Forms" version="2.3.5.256-pre6" Version="3.3.0.967583" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
   </ItemGroup>
-
   <ItemGroup>
-    <Compile Remove="Pages\PumpSession\SetTimerView.xaml.cs" />
+    <Compile Remove="Pages\PumpSession\ModesDropdrown.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\Pickers\MaskedTimePicker.xaml.cs">
@@ -76,10 +76,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Pages\PumpSession\SetTimerView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\BusyIndicator.xaml">

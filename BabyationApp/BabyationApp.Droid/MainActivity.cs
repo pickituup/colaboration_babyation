@@ -41,6 +41,7 @@ namespace BabyationApp.Droid
 
             DependencyService.Register<BabyationApp.Interfaces.IPictureCache, BabyationApp.Droid.Dependencies.PictureCache>();
             DependencyService.Register<BabyationApp.Interfaces.IPlatformAPI, BabyationApp.Droid.Dependencies.PlatformAPI>();
+            DependencyService.Register<BabyationApp.Interfaces.ILocalNotificationService, BabyationApp.Droid.Dependencies.LocalNotificationService>();
 
             ThreadHelper.Initialize(System.Environment.CurrentManagedThreadId);
 
@@ -71,23 +72,19 @@ namespace BabyationApp.Droid
             App myapp = new App();
             LoadApplication(myapp);
 
-            //this.RequestPermissions(new[]
-            //{
-            //    Manifest.Permission.AccessCoarseLocation,
-            //    Manifest.Permission.BluetoothPrivileged,
-            //    Manifest.Permission.ReadExternalStorage
-            //}, 0);
+            RequestPermissions(new[]
+            {
+                Manifest.Permission.AccessCoarseLocation,
+                Manifest.Permission.BluetoothPrivileged
+            }, 0);
 
+            ScheduleManager.Instance.Initialize();
 
             LoginManager loginInstance = LoginManager.Instance;
             loginInstance.Init((IAuthenticate)this);
+
             await DataManager.Instance.Initialize(LoginManager.Instance.CurrentClient);
             myapp.AfterStart();
-            /*}
-            catch (Exception ex) {
-
-                throw;
-            }*/
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -95,23 +92,8 @@ namespace BabyationApp.Droid
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-    
 
         #region Exceptions
-
-        /*
-        private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs unobservedTaskExceptionEventArgs) {
-            throw new Exception("TaskSchedulerOnUnobservedTaskException", unobservedTaskExceptionEventArgs.Exception);
-
-        }
-
-        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs) {
-            throw new Exception("CurrentDomainOnUnhandledException", unhandledExceptionEventArgs.ExceptionObject as Exception);
-        }
-        void MyApp_UnhandledExceptionHandler(object sender, RaiseThrowableEventArgs e) {
-            throw e.Exception;
-        }*/
-
 
         #endregion
 

@@ -243,7 +243,7 @@ namespace BabyationApp.Pages.Dashboard
             var c1 = BoundsConstraint.FromExpression((Expression<Func<Rectangle>>)(() => new Rectangle(x1, y1, W, H)));
             RelativeLayout.SetBoundsConstraint(BtnPumpSession, c1);
 
-            var w = _rl1.Width * 2.21 / 10;
+            var w = _rl1.Width * 2.56 / 10;
             var h = w;
             
             var x2 = x1 -  w - 14;

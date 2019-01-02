@@ -10,8 +10,7 @@
     xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
     xmlns:pages="clr-namespace:BabyationApp.Pages"
     x:Class="BabyationApp.Pages.FirstTimeUser.BabyAdditionPage" 
-    x:Name="BabyAddition" 
-    Title="{helpers:Translate AddYourChild}">
+    x:Name="BabyAddition" >
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Style="{StaticResource StackLayout_NavigationOnTop}">

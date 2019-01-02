@@ -44,6 +44,8 @@ namespace BabyationApp.Models
 
         public String Email { get; set; }
 
+        public bool HasBabies => 0 < (Babies?.Count ?? 0);
+
         public ObservableCollection<BabyModel> Babies
         {
             get { return _babies; }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="BabyationApp.Pages.PumpSession.SetTimerView"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+    xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp" 
+    xmlns:bv="clr-namespace:BabyationApp.Behaviors"
+    xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
+    xmlns:localButtons="clr-namespace:BabyationApp.Controls.Buttons" 
+    BackgroundColor="{StaticResource Peach}">
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Local_Instructions_Label" TargetType="Label" BasedOn="{StaticResource Instructions_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+            </Style>
+            <Style x:Key="Local_H1_Label" TargetType="Label" BasedOn="{StaticResource H1_Label}">
+                <Setter Property="TextColor" Value="{StaticResource Navy}" />
+            </Style>
+            <Style x:Key="Local_Form_ElementHeader" TargetType="Label" BasedOn="{StaticResource Form_ElementHeader}">
+                <Setter Property="TextColor" Value="{StaticResource Gold}" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    
+    <ContentView.Content>
+        <ScrollView Orientation="Vertical">
+             <Grid Margin="40,40,40,0" RowSpacing="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <ff:CachedImage Grid.Column="0" Grid.Row="0" Source="icon_timer2" />
+                
+                <Label Grid.Column="1" Grid.Row="0" 
+                       Style="{StaticResource Local_Instructions_Label}"
+                       Text="{helpers:Translate SetAutoShutOff}" VerticalOptions="Center" />
+                
+                <Label Grid.ColumnSpan="2" Grid.Row="1" 
+                       Style="{StaticResource Local_H1_Label}"
+                       Text="{helpers:Translate AutoShutOffDescription}" />
+                
+                <Label Grid.ColumnSpan="2" Grid.Row="2"
+                       HorizontalOptions="Center"
+                       Margin="0,30,0,0"
+                       Style="{StaticResource Local_Form_ElementHeader}"
+                       Text="{helpers:Translate EnterTotalSessionDuration}" />
+                
+                <localEditors:EntryEx Grid.ColumnSpan="2" Grid.Row="3" 
+                                      x:Name="autoShutOffTimeEntry"
+                                      HorizontalTextAlignment="Center" Keyboard="Numeric"                                      
+                                      Placeholder="__:__" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" 
+                                      FontSize="50" 
+                                      Text="{Binding DurationValue, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <bv:DurationTimeValidatorBehavior />
+                    </Entry.Behaviors>
+                </localEditors:EntryEx>
+                
+                <Label Grid.ColumnSpan="2" Grid.Row="4" HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" 
+                       Text="{helpers:Translate MinutesLower}" TextColor="{StaticResource Navy}" />
+                
+                <localButtons:BorderedButton Grid.Row="5" Grid.ColumnSpan="2" 
+                                             Margin="0,20,0,0"
+                                             HeightRequest="28" 
+                                             HorizontalOptions="Center" 
+                                             InnerCircleColor="{StaticResource MedBlue}" 
+                                             IsInteractable="true" 
+                                             MiddleCircleColor="{StaticResource MedBlue}"
+                                             Style="{StaticResource ReversedPillButton}" 
+                                             TextTopColor="White"
+                                             TextTop="{helpers:Translate SetAutoShutOffUpper}"
+                                             ContentPadding="5"
+                                             Clicked="Handle_Clicked"/>
+
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

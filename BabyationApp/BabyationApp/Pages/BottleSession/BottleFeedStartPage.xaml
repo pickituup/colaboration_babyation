@@ -47,7 +47,7 @@
                                     <localViews:TimePickerEx x:Name="DuraPicker" Format="m:ss" HorizontalOptions="Center" Is24HourView="true" IsVisible="False" />
                                     <Label x:Name="LblDuraPicker" HorizontalOptions="CenterAndExpand" LineBreakMode="NoWrap" Style="{StaticResource Timer_Label}" Text="{Binding DurationText}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
                                 </Grid>
-                                <Label HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate Minutes}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
+                                <Label HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate MinutesLower}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
                             </StackLayout>
                         </StackLayout>
                         <!--  Note button  -->
@@ -88,18 +88,19 @@
                         <ColumnDefinition Width="50*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <localButtons:ImageButton x:Name="BtnResume" Grid.Column="0" 
+                    <localButtons:ImageButton x:Name="BtnResume" 
+                                              Grid.Column="0" 
                                               Text="{helpers:Translate Resume}" 
                                               Command="{Binding ResumeCommand}" 
                                               ImageNormal="icon_play1" ImagePressed="icon_play1" 
                                               ImageTranslationY="{OnPlatform iOS=0, Android=1.4}" 
                                               Style="{StaticResource PositiveActionButton}" 
                                               HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
-                                              HorizontalOptions="FillAndExpand"  VerticalOptions="Fill" />
-                    <localButtons:ImageButton x:Name="BtnFinish" Grid.Column="1" 
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    <localButtons:ImageButton x:Name="BtnFinish" 
+                                              Grid.Column="1" 
                                               Text="{helpers:Translate EndSession}" 
                                               Command="{Binding FinishCommand}" 
-                                              
                                               ImageNormal="icon_stop" ImagePressed="icon_stop" 
                                               ImageScale="{OnPlatform Android=1.4, iOS=1}" 
                                               ImageTranslationY="{OnPlatform iOS=1, Android=1.4}" 

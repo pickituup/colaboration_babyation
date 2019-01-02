@@ -21,7 +21,7 @@
     <Label x:Name="SaveTextLabel" 
            Grid.Row="1"
            Text="{helpers:Translate Saved}" 
-           Margin="35,50,0,0"
+           Margin="35,50,25,10"
            Style="{StaticResource SessionSaveConfirmationLabel}" />
     
 </Grid>

@@ -17,6 +17,7 @@ using BabyationApp.Pages.Modes;
 using System.Diagnostics;
 using System.Windows.Input;
 using BabyationApp.Resources;
+using System.Timers;
 
 namespace BabyationApp.Pages.PumpSession
 {
@@ -29,113 +30,11 @@ namespace BabyationApp.Pages.PumpSession
         {
             InitializeComponent();
 
-            ViewModel = new PumpSessionModel(FinishSession);
-            BindingContext = ViewModel;
+            BindingContext = ViewModel = new PumpSessionModel(FinishSession);
 
             RestorePageDefaults();
+
             SetupModeControls();
-
-            /*
-            ViewModel.PropertyChanged += (sender, args) =>
-            {
-                if (args.PropertyName == "Picture" && ViewModel.IsPictureChangedByUser) {
-                    if (ProfileManager.Instance.CurrentProfile != null && ProfileManager.Instance.CurrentProfile.CurrentBaby != null) {
-                        ProfileManager.Instance.CurrentProfile.CurrentBaby.Picture = ViewModel.Picture;
-                    }
-                }
-            };
-
-                BtnLetdown.Toggled += (sender, args) =>
-                {
-                    ViewModel.Data.PumpPhase = BtnLetdown.IsToggled ? PumpPhase.Expression : PumpPhase.Stimulation;
-                    ViewModel.PumpPhasePic = null;
-                    ViewModel.PumpPhaseText = "";
-                };
-
-                BtnPicture.Clicked += (sender, args) =>
-                {
-                    myMediaView.AboutToShow();
-                    ViewModel.IsMyMediaMode = true;
-                };
-
-                BtnSetTimer.Clicked += (sender, args) =>
-                {
-                    UpdateTitlebarInfo(false, Color.FromHex("#F8EBE3"));
-                    ViewModel.IsSetTimerMode = true;
-                };
-
-                EntrySetTimeMinute.TextChanged += (sender, args) =>
-                {
-                    BtnTimerSet.IsEnabled = InputValidator.IsValidInput(EntrySetTimeMinute.Text);
-                };
-
-                BtnTimerSet.Clicked += (sender, args) =>
-                {
-                    UpdateTitlebarInfo(true, Color.FromHex("#F9DCD9"));
-                    ViewModel.IsSetTimerMode = false;
-                    SessionManager.Instance.CurrentSession.TimerDuration = TimeSpan.FromMinutes(Convert.ToDouble(EntrySetTimeMinute.Text));
-                    SessionManager.Instance.StartTimer();
-                };
-
-                BtnCloseTimer.Clicked += (s, e) =>
-                {
-                    UpdateTitlebarInfo(true, Color.FromHex("#F9DCD9"));
-                    ViewModel.IsSetTimerMode = false;
-                };
-
-
-                BtnNoThanks.Clicked += (sender, args) =>
-                {
-                    SessionManager.Instance.Finished();
-                    ViewModel.IsSaveMode = false;
-                    PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
-                };
-                BtnYesSave.Clicked += (sender, args) =>
-                {
-                    SessionManager.Instance.Save();
-                    ViewModel.IsSaveMode = false;
-                    PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
-                };
-
-                BtnClosePopup.Clicked += (s, e) =>
-                {
-                    UpdateTitlebarInfo(true, Color.FromHex("#F9DCD9"));
-                    ViewModel.IsSaveMode = false;
-                };
-
-                SessionManager.Instance.TimerFired += (sender, args) => Finished();
-
-                listView.ItemsSource = ExperienceManager.Instance.AllExperiences;
-                listView.ItemSelected += (s, e) =>
-                {
-                    if (e.SelectedItem != null) {
-                        var selectedItem = (ExperienceModel)e.SelectedItem;
-                        if (selectedItem != null) {
-                            SessionManager.Instance.CurrentSession.CurrentExperience = selectedItem;
-                            ExperienceManager.Instance.CurrentExperience = selectedItem;
-                        }
-                    }
-                };
-
-                BtnTimerSet.MiddleCirclePadding = 7;
-                BtnTimerSet.InnerCirclePadding = 10;
-                BtnTimerSet.FontFamilyTop = "fonts/HurmeGeometricSans3Bold.otf#HurmeGeometricSans3 Bold";
-                BtnTimerSet.FontFamilyBottom = "fonts/HurmeGeometricSans3Bold.otf#HurmeGeometricSans3 Bold";
-                BtnTimerSet.FontAttributesTop = FontAttributes.Bold;
-                BtnTimerSet.FontAttributesBottom = FontAttributes.Bold;
-
-                BtnSuction.UpdateToBigUpDown();
-                BtnSpeed.UpdateToBigUpDown();
-
-                ExperienceManager.Instance.CurrentExperienceChanged += (sender, args) =>
-                {
-                    ViewModel.CurrentModeName = ExperienceManager.Instance.CurrentExperience.Name;
-                    UpdateStorageType();
-                };
-
-                MediaManager.Instance.CurrentPumpPictureChanged += (media) => UpdateBabyInfo();
-
-*/
         }
 
         public override void AboutToShow()
@@ -156,6 +55,7 @@ namespace BabyationApp.Pages.PumpSession
             }
 
             ExperienceManager.Instance.CurrentExperienceChanged -= Instance_CurrentExperienceChanged;
+
             ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
 
             if (SessionManager.Instance.CurrentSession == null)
@@ -205,6 +105,43 @@ namespace BabyationApp.Pages.PumpSession
             RestorePageDefaults();
             UpdateBabyInfo();
             ViewModel.Refresh();
+        }
+
+        void ShowSetTimerView()
+        {
+            LeftPageType = typeof(PumpSessionPage);
+
+            setTimerView.Reset();
+
+            SetNagivationOptionsForLayoverView(HideSetTimerView);
+
+            setTimerView.OnAutoShutOffTimerSet += ViewModel.SetAutoShutOffTimer;
+        }
+
+        void HideSetTimerView(object sender, EventArgs e)
+        {
+            if (ViewModel.IsSetTimerMode)
+            {
+                if (setTimerView.IsVisible)
+                {
+                    Titlebar.LeftButton.Clicked -= HideSetTimerView;
+                }
+
+                setTimerView.OnAutoShutOffTimerSet -= ViewModel.SetAutoShutOffTimer;
+
+                ViewModel.IsSetTimerMode = false;
+            }
+
+            RestorePageDefaults();
+            UpdateBabyInfo();
+            ViewModel.Refresh();
+        }
+
+        void SetNagivationOptionsForLayoverView(EventHandler onBackButtonClicked)
+        {
+            Titlebar.LeftButton.IsVisible = true;
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
+            Titlebar.LeftButton.Clicked += onBackButtonClicked;
         }
 
         #region Property changes
@@ -280,6 +217,13 @@ namespace BabyationApp.Pages.PumpSession
                 else
                 {
                     //NOP
+                }
+            }
+            else if (e.PropertyName == "IsSetTimerMode" && ViewModel.IsSetTimerMode)
+            {
+                if (ViewModel.IsSetTimerMode)
+                {
+                    ShowSetTimerView();
                 }
             }
         }
@@ -394,9 +338,13 @@ namespace BabyationApp.Pages.PumpSession
     {
         private Action FinishSessionAction { get; set; }
 
+        private Timer _autoShutOffTimer = new Timer();
+        private TimeSpan _autoShutOffTimeSpan;
+
         public PumpSessionModel(Action finishAction)
         {
             FinishSessionAction = finishAction;
+            _autoShutOffTimer.Elapsed += OnTimeElapsedEvent;
         }
 
         #region Public methods
@@ -447,6 +395,43 @@ namespace BabyationApp.Pages.PumpSession
         public void UpdatePumpData()
         {
             SetPropertyChanged(nameof(CurrentPumpPhase));
+        }
+       
+        private void OnTimeElapsedEvent(object source, ElapsedEventArgs e)
+        {
+            _autoShutOffTimeSpan = _autoShutOffTimeSpan.Subtract(TimeSpan.FromSeconds(1));
+
+            UpdateAutoShutOffTimerDisplay();
+
+            if (_autoShutOffTimeSpan.Ticks == 0)
+            {
+                CancelAutoShutOff();
+
+                IsPausedMode = true;
+            }
+        }
+
+        public void SetAutoShutOffTimer(TimeSpan time)
+        {
+            _autoShutOffTimeSpan = time;
+            _autoShutOffTimer.Interval = 1000;
+
+            if (!IsPausedMode)
+            {
+                _autoShutOffTimer.Start();
+            }
+
+            UpdateAutoShutOffTimerDisplay();
+
+            IsSetTimerMode = false;
+            ShowAutoShutOffTimer = true;
+        }
+
+        public void CancelAutoShutOff()
+        {
+            _autoShutOffTimer.Stop();
+
+            ShowAutoShutOffTimer = false;
         }
 
         #endregion
@@ -499,13 +484,24 @@ namespace BabyationApp.Pages.PumpSession
                     {
                         if (_isPausedMode)
                         {
+                            if (ShowAutoShutOffTimer)
+                            {
+                                _autoShutOffTimer.Stop();
+                            }
+
                             SessionManager.Instance.Pause();
                         }
                         else
                         {
+                            if (ShowAutoShutOffTimer)
+                            {
+                                _autoShutOffTimer.Start();
+                            }
+
                             SessionManager.Instance.Resume();
                         }
                     }
+
                     SetPropertyChanged(nameof(IsPausedMode));
                 }
             }
@@ -550,6 +546,37 @@ namespace BabyationApp.Pages.PumpSession
                     //Show/hide pumping view 
                     IsPumpingMode = !value;
                 }
+            }
+        }
+
+        private string _autoShutOffTime;
+        public string AutoShutOffTime
+        {
+            get => _autoShutOffTime;
+            set => SetPropertyChanged(ref _autoShutOffTime, value);
+        }
+
+        private bool _showAutoShutOffTimer;
+        public bool ShowAutoShutOffTimer
+        {
+            get => _showAutoShutOffTimer;
+            set
+            {
+                SetPropertyChanged(ref _showAutoShutOffTimer, value);
+                SetPropertyChanged(nameof(AutoShutOffActionText));
+            }
+        }
+
+        public string AutoShutOffActionText
+        {
+            get
+            {
+                if (ShowAutoShutOffTimer)
+                {
+                    return AppResource.CancelShutOff;
+                }
+
+                return AppResource.SetAutoShutOffUpper;
             }
         }
 
@@ -654,6 +681,7 @@ namespace BabyationApp.Pages.PumpSession
                 return Data?.Duration ?? TimeSpan.Zero;
             }
         }
+
         #endregion
 
         #region Commands
@@ -718,6 +746,27 @@ namespace BabyationApp.Pages.PumpSession
             }
         }
 
+        private ICommand _toggleSetTimer;
+        public ICommand ToggleSetTimer
+        {
+            get
+            {
+                _toggleSetTimer = _toggleSetTimer ?? new Command((obj) =>
+                {
+                    if (ShowAutoShutOffTimer)
+                    {
+                        ShowAutoShutOffTimer = false;
+                    }
+                    else
+                    {
+                        IsSetTimerMode = !IsSetTimerMode;
+                    }
+                });
+
+                return _toggleSetTimer;
+            }
+        }
+
         private ICommand _togglePhaseCommand;
         public ICommand TogglePhaseCommand
         {
@@ -740,6 +789,7 @@ namespace BabyationApp.Pages.PumpSession
                 {
                     IsPausedMode = true;
                 });
+
                 return _stopCommand;
             }
         }
@@ -753,6 +803,7 @@ namespace BabyationApp.Pages.PumpSession
                 {
                     IsPausedMode = false;
                 });
+
                 return _resumeCommand;
             }
         }
@@ -764,8 +815,12 @@ namespace BabyationApp.Pages.PumpSession
             {
                 _finishCommand = _finishCommand ?? new Command(() =>
                 {
+
+                    _autoShutOffTimer.Close();
+
                     FinishSessionAction?.Invoke();  // Ask codebehind to switch to next page
                 });
+
                 return _finishCommand;
             }
         }
@@ -783,6 +838,8 @@ namespace BabyationApp.Pages.PumpSession
         #endregion
 
         #region Private
+
+        void UpdateAutoShutOffTimerDisplay() => AutoShutOffTime = _autoShutOffTimeSpan.ToString(@"mm\:ss");
 
         private void UpdateModes()
         {

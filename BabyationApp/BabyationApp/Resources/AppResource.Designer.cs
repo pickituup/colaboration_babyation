@@ -107,6 +107,12 @@ namespace BabyationApp.Resources {
             }
         }
         
+        internal static string AddYourChildOpt {
+            get {
+                return ResourceManager.GetString("AddYourChildOpt", resourceCulture);
+            }
+        }
+        
         internal static string AddAnotherChild {
             get {
                 return ResourceManager.GetString("AddAnotherChild", resourceCulture);
@@ -2450,6 +2456,48 @@ namespace BabyationApp.Resources {
         internal static string YesResetUppercase {
             get {
                 return ResourceManager.GetString("YesResetUppercase", resourceCulture);
+            }
+        }
+        
+        internal static string SetAutoShutOff {
+            get {
+                return ResourceManager.GetString("SetAutoShutOff", resourceCulture);
+            }
+        }
+        
+        internal static string SetAutoShutOffUpper {
+            get {
+                return ResourceManager.GetString("SetAutoShutOffUpper", resourceCulture);
+            }
+        }
+        
+        internal static string CancelShutOff {
+            get {
+                return ResourceManager.GetString("CancelShutOff", resourceCulture);
+            }
+        }
+        
+        internal static string AutoShutOffDescription {
+            get {
+                return ResourceManager.GetString("AutoShutOffDescription", resourceCulture);
+            }
+        }
+        
+        internal static string EnterTotalSessionDuration {
+            get {
+                return ResourceManager.GetString("EnterTotalSessionDuration", resourceCulture);
+            }
+        }
+        
+        internal static string TimeRemaining {
+            get {
+                return ResourceManager.GetString("TimeRemaining", resourceCulture);
+            }
+        }
+        
+        internal static string MinLower {
+            get {
+                return ResourceManager.GetString("MinLower", resourceCulture);
             }
         }
     }

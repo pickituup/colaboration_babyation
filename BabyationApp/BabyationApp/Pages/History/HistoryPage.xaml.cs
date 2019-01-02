@@ -14,6 +14,7 @@ using BabyationApp.Resources;
 using System.Globalization;
 using BabyationApp.Interfaces;
 using BabyationApp.DataObjects;
+using BabyationApp.Pages.BottleSession;
 
 namespace BabyationApp.Pages.History
 {
@@ -421,7 +422,21 @@ namespace BabyationApp.Pages.History
             }
         }
 
-        void AddSession() => PageManager.Me.SetCurrentPage(typeof(AddSessionPage));
+
+        void AddSession()
+        {
+            if (null == ProfileManager.Instance.CurrentProfile)
+                return;
+
+            if (ProfileManager.Instance.CurrentProfile.HasBabies)
+            {
+                PageManager.Me.SetCurrentPage(typeof(AddSessionPage));
+            }
+            else
+            {
+                ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
+            }
+        }
 
         // TODO: Move all toggles into ViewModel
         void ToggleSessionControl(SessionType type)

@@ -280,6 +280,23 @@ namespace BabyationApp.Pages.NurseSession
             NurseTotalTime.Time = TimeSpan.FromMinutes(0);
         }
 
+        public override void AboutToShow()
+        {
+            base.AboutToShow();
+
+            Titlebar.IsVisible = true;
+
+            ViewModel.Reset();
+
+            NurseDate.CalendarDate = DateTime.Now;
+            NurseDate.Date = null;
+            NurseStartTime.Time = null;
+            NurseTotalTime.Time = TimeSpan.FromMinutes(0);
+
+            _btnGroup.UpdateCurrentButton(null);
+            BtnAddNote.IsPressed = false;
+        }
+
         private void TotalCount()
         {
             if (!string.IsNullOrEmpty(ViewModel.FirstTime))
@@ -309,10 +326,13 @@ namespace BabyationApp.Pages.NurseSession
             string res = string.Empty;
             if (splitedString.Length > 1)
             {
-                if (int.TryParse(splitedString[0], out int minutes) && int.TryParse(splitedString[1], out int seconds))
-                {
-                    res = string.Format($"{minutes:D2}:{seconds:D2}");
-                }
+                bool hasMinutes = int.TryParse(splitedString[0], out int minutes);
+                res += hasMinutes ? string.Format($"{minutes:D2}") : "00";
+
+                res += ":";
+
+                bool hasSeconds = int.TryParse(splitedString[1], out int seconds);
+                res += hasSeconds ? string.Format($"{seconds:D2}") : "00";
             }
             else
             {
@@ -434,31 +454,6 @@ namespace BabyationApp.Pages.NurseSession
             }
         }
 
-        /// <summary>
-        /// Gets called when this page is about to show and performs the initialization
-        /// </summary>
-        public override void AboutToShow()
-        {
-            var model = BindingContext as NurseSessionLogModel;
-            if (model != null)
-            {
-                model.ShowSavedPopupPage = false;
-                model.NotReadyToSave = true;
-                model.FirstTime = string.Empty;
-                model.LastTime = string.Empty;
-                model.ChildName = ProfileManager.Instance.CurrentProfile?.CurrentBaby?.Name;
-                NurseDate.CalendarDate = DateTime.Now;
-                NurseDate.Date = null;
-                NurseStartTime.Time = null;
-                NurseTotalTime.Time = TimeSpan.FromMinutes(0);
-            };
-            Titlebar.IsVisible = true;
-
-            base.AboutToShow();
-            _btnGroup.UpdateCurrentButton(null);
-            BtnAddNote.IsPressed = false;
-        }
-
         // Short circuiting the timer
         void Handle_SaveView_Tapped(object sender, System.EventArgs e)
         {
@@ -483,6 +478,24 @@ namespace BabyationApp.Pages.NurseSession
     public class NurseSessionLogModel : ObservableObject
     {
         private Action<bool> ShowNotepadAction { get; set; }
+
+        public NurseSessionLogModel(Action<bool> showNotepadAction)
+        {
+            ShowNotepadAction = showNotepadAction;
+        }
+
+        public void Reset()
+        {
+            ShowSavedPopupPage = false;
+            NotReadyToSave = true;
+
+            FirstTime = string.Empty;
+            LastTime = string.Empty;
+            ChildName = ProfileManager.Instance.CurrentProfile?.CurrentBaby?.Name;
+            NoteText = null;
+        }
+
+        #region Data properties
 
         string _firstTime;
         public string FirstTime
@@ -512,20 +525,46 @@ namespace BabyationApp.Pages.NurseSession
             set => SetPropertyChanged(ref _showAddNotePage, value);
         }
 
-        public string NoteText { get; set; }
+        private string _noteText;
+        public string NoteText 
+        { 
+            get => _noteText; 
+            set
+            {
+                SetPropertyChanged(ref _noteText, value);
+                SetPropertyChanged(nameof(ButtonNoteText));
+            }
+        }
 
         public string ButtonNoteText
         {
             get => (String.IsNullOrEmpty(NoteText) ? AppResource.AddANote : AppResource.EditNote);
         }
 
-        /// <summary>
-        ///     ctor().
-        /// </summary>
-        public NurseSessionLogModel(Action<bool> showNotepadAction)
+        private bool _notReadyToSave;
+        public bool NotReadyToSave
         {
-            ShowNotepadAction = showNotepadAction;
+            get { return _notReadyToSave; }
+            set => SetPropertyChanged(ref _notReadyToSave, value);
         }
+
+        private bool _showSavedPopupPage;
+        public bool ShowSavedPopupPage
+        {
+            get { return _showSavedPopupPage; }
+            set => SetPropertyChanged(ref _showSavedPopupPage, value);
+        }
+
+        string _childName = ProfileManager.Instance.CurrentProfile?.CurrentBaby?.Name;
+        public string ChildName
+        {
+            get { return _childName; }
+            set { SetPropertyChanged(ref _childName, value); }
+        }
+
+        #endregion
+
+        #region Commands
 
         private ICommand _addNoteCommand;
         public ICommand AddNoteCommand
@@ -562,31 +601,6 @@ namespace BabyationApp.Pages.NurseSession
             }
         }
 
-        private bool _notReadyToSave;
-        /// <summary>
-        /// Gets/Sets whether all input is done and ready to save
-        /// </summary>
-        public bool NotReadyToSave
-        {
-            get { return _notReadyToSave; }
-            set => SetPropertyChanged(ref _notReadyToSave, value);
-        }
-
-        private bool _showSavedPopupPage;
-        /// <summary>
-        /// Show/Hide the saved popup on this page
-        /// </summary>
-        public bool ShowSavedPopupPage
-        {
-            get { return _showSavedPopupPage; }
-            set => SetPropertyChanged(ref _showSavedPopupPage, value);
-        }
-
-        string _childName = ProfileManager.Instance.CurrentProfile?.CurrentBaby?.Name;
-        public string ChildName
-        {
-            get { return _childName; }
-            set { SetPropertyChanged(ref _childName, value); }
-        }
+        #endregion
     }
 }

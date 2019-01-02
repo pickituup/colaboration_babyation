@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<pages:PageBase
-    x:Class="BabyationApp.Pages.BottleSession.BottleFeedLogPage"
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PageBase 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bottleSession="clr-namespace:BabyationApp.Pages.BottleSession;assembly=BabyationApp"
@@ -12,73 +11,40 @@
     xmlns:localViews="clr-namespace:BabyationApp.Controls.Views"
     xmlns:pages="clr-namespace:BabyationApp.Pages;assembly=BabyationApp"
     xmlns:textEditors="clr-namespace:BabyationApp.Controls.TextEditors;assembly=BabyationApp"
+    x:Class="BabyationApp.Pages.BottleSession.BottleFeedLogPage"
     Title="{helpers:Translate LogBottleSession}"
     BackgroundColor="{StaticResource Peach}">
-
+    
     <ContentPage.Resources>
-        <Style
-            x:Key="Form_ElementHeaderEX"
-            BasedOn="{StaticResource Form_BaseLabel}"
-            TargetType="Label">
+        <Style x:Key="Form_ElementHeaderEX" BasedOn="{StaticResource Form_BaseLabel}" TargetType="Label">
             <Setter Property="TextColor" Value="{StaticResource Gold}" />
             <Setter Property="FontFamily" Value="{StaticResource fontLarsseitMedium}" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="LineBreakMode" Value="NoWrap" />
         </Style>
     </ContentPage.Resources>
-
-    <AbsoluteLayout
-        x:Name="RootLayout"
-        HorizontalOptions="FillAndExpand"
-        Style="{StaticResource AbsoluteLayout_NavigationOnTop}"
-        VerticalOptions="FillAndExpand">
-
-        <Grid
-            AbsoluteLayout.LayoutBounds="1,1,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            RowSpacing="0">
+    <AbsoluteLayout x:Name="RootLayout" HorizontalOptions="FillAndExpand" Style="{StaticResource AbsoluteLayout_NavigationOnTop}" VerticalOptions="FillAndExpand">
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="0.11*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <Grid
-                Grid.Row="0"
-                IsVisible="{Binding ShowBottleFeedSessionPage}"
-                RowSpacing="0">
+            <Grid Grid.Row="0" IsVisible="{Binding ShowBottleFeedSessionPage}" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-
+                
                 <!--  Selected child section  -->
-                <StackLayout
-                    Grid.Row="0"
-                    Margin="0"
-                    Padding="0,10"
-                    BackgroundColor="{StaticResource Navy}"
-                    HeightRequest="50">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource SmallLabel_Label}"
-                        Text="{helpers:Translate SelectedChild}"
-                        TextColor="{StaticResource Gold}"
-                        VerticalOptions="CenterAndExpand" />
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource H1_Label}"
-                        Text="{Binding ChildName}"
-                        TextColor="{StaticResource LightBlue}"
-                        VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Row="0" Margin="0" Padding="0,10" BackgroundColor="{StaticResource Navy}" HeightRequest="50">
+                    <Label HorizontalOptions="Center" Style="{StaticResource SmallLabel_Label}" Text="{helpers:Translate SelectedChild}" TextColor="{StaticResource Gold}" VerticalOptions="CenterAndExpand" />
+                    <Label HorizontalOptions="Center" Style="{StaticResource H1_Label}" Text="{Binding ChildName}" TextColor="{StaticResource LightBlue}" VerticalOptions="CenterAndExpand" />
                 </StackLayout>
-
+                
                 <!--  Content section  -->
                 <ScrollView Orientation="Vertical" Grid.Row="1">
-                    <Grid
-                        Margin="0,20,0,0"
-                        RowSpacing="4"
-                        VerticalOptions="Start">
+                    <Grid Margin="0,20,0,0" RowSpacing="4" VerticalOptions="Start">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -89,12 +55,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-
-                        <Grid
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            RowSpacing="14">
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" RowSpacing="14">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -104,40 +65,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
+                            
                             <!--  Date  -->
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource Form_ElementHeader}"
-                                Text="{helpers:Translate Date}"
-                                TextColor="{StaticResource Gold}" />
-                            <Grid
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                RowSpacing="0">
-                                <localViews:DatePickerEx
-                                    x:Name="DtPicker"
-                                    Date="{Binding DateValue}"
-                                    Format="MM/dd"
-                                    HorizontalOptions="Center"
-                                    IsVisible="False"
-                                    MaximumDate="{Binding MaximumDate}"
-                                    MinimumDate="{Binding MinimumDate}"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    x:Name="LblDtPicker"
-                                    HorizontalOptions="Center"
-                                    LineBreakMode="NoWrap"
-                                    Style="{StaticResource Form_ElementTrackingLabelPlaceholder}"
-                                    Text="{Binding DateText}"
-                                    VerticalOptions="Center">
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Date}" TextColor="{StaticResource Gold}" />
+                            <Grid Grid.Row="1" Grid.Column="0" RowSpacing="0">
+                                <localViews:DatePickerEx x:Name="DtPicker" Date="{Binding DateValue}" Format="MM/dd" HorizontalOptions="Center" IsVisible="False" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" VerticalOptions="Center" />
+                                <Label x:Name="LblDtPicker" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding DateText}" VerticalOptions="Center">
                                     <Label.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding DateText, Converter={StaticResource IsNotPlaceholderValidator}}"
-                                            TargetType="Label"
-                                            Value="true">
+                                        <DataTrigger Binding="{Binding DateText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">
                                             <Setter Property="Style" Value="{StaticResource TrackingEntry_Label}" />
                                         </DataTrigger>
                                     </Label.Triggers>
@@ -146,49 +81,19 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
-
+                            
                             <!--  Total fed  -->
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource Form_ElementHeader}"
-                                Text="{helpers:Translate TotalFed}"
-                                TextColor="{StaticResource Gold}" />
-                            <StackLayout
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Spacing="0"
-                                VerticalOptions="Start">
-                                <localEditors:EntryEx
-                                    x:Name="EntryFed"
-                                    HorizontalTextAlignment="Center"
-                                    Keyboard="Numeric"
-                                    Placeholder="__._"
-                                    PlaceholderColor="{StaticResource MedBlue}"
-                                    Style="{StaticResource Form_ElementLabel}"
-                                    Text="{Binding TotalFedValue, Mode=TwoWay}">
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate TotalFed}" TextColor="{StaticResource Gold}" />
+                            <StackLayout Grid.Row="1" Grid.Column="1" Spacing="0" VerticalOptions="Start">
+                                <localEditors:EntryEx x:Name="EntryFed" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding TotalFedValue, Mode=TwoWay}">
                                     <Entry.Behaviors>
-                                        <!--<bv:NumericValidatorBehavior AllowDecimal="true" MaxLength="3" />-->
-                                        <bv:MaskedBehavior Mask="XX.X" />
+                                        <bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1" />
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
                             </StackLayout>
-                            <Label
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource BodyCopy_Label}"
-                                Text="{helpers:Translate OuncesLower}"
-                                TextColor="{StaticResource Navy}"
-                                TranslationY="-10" />
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate OuncesLower}" TextColor="{StaticResource Navy}" TranslationY="-10" />
                         </Grid>
-
-                        <Grid
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2" 
-                            RowSpacing="5">
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" RowSpacing="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -198,40 +103,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
-                            <!--  Start time  -->
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource Form_ElementHeaderEX}"
-                                Text="{helpers:Translate StartTime_Upper}"
-                                TextColor="{StaticResource Gold}"
-                                VerticalOptions="Center" />
                             
-                            <Grid
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                RowSpacing="0">
-                                <localViews:TimePickerEx
-                                    x:Name="TmPickerStart"
-                                    Format="hh:mm"
-                                    HorizontalOptions="Center"
-                                    IsVisible="False"
-                                    Time="{Binding StartTimeValue}"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    x:Name="LblTmPickerStart"
-                                    HorizontalOptions="Center"
-                                    LineBreakMode="NoWrap"
-                                    Style="{StaticResource Form_ElementTrackingLabelPlaceholder}"
-                                    Text="{Binding StartTimeText}"
-                                    VerticalOptions="Center">
+                            <!--  Start time  -->
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeaderEX}" Text="{helpers:Translate StartTime_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
+                            <Grid Grid.Row="1" Grid.Column="0" RowSpacing="0">
+                                <localViews:TimePickerEx x:Name="TmPickerStart" Format="hh:mm" HorizontalOptions="Center" IsVisible="False" Time="{Binding StartTimeValue}" VerticalOptions="Center" />
+                                <Label x:Name="LblTmPickerStart" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding StartTimeText}" VerticalOptions="Center">
                                     <Label.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding StartTimeText, Converter={StaticResource IsNotPlaceholderValidator}}"
-                                            TargetType="Label"
-                                            Value="true">
+                                        <DataTrigger Binding="{Binding StartTimeText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">
                                             <Setter Property="Style" Value="{StaticResource TrackingEntry_Label}" />
                                         </DataTrigger>
                                     </Label.Triggers>
@@ -240,133 +119,32 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
-
-
+                            
                             <!--  Duration  -->
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource Form_ElementHeader}"
-                                Text="{helpers:Translate Duration_Upper}"
-                                TextColor="{StaticResource Gold}"
-                                VerticalOptions="Center" />
-
-                            <localEditors:EntryEx
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                HorizontalTextAlignment="Center"
-                                Keyboard="Numeric"
-                                Placeholder="__:__"
-                                PlaceholderColor="{StaticResource MedBlue}"
-                                Style="{StaticResource Form_ElementLabel}"
-                                Text="{Binding DurationValue, Mode=TwoWay}"
-                                Unfocused="EntryEx_Unfocused">
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Duration_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
+                            <localEditors:EntryEx Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__:__" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding DurationValue, Mode=TwoWay}" Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:MaskedBehavior Mask="XX:XX" />
+                                    <bv:DurationTimeValidatorBehavior />
                                 </Entry.Behaviors>
                             </localEditors:EntryEx>
-
-                            <!--<localViews:TimePickerEx
-                                    x:Name="TmPickerDuration"
-                                    Format="hh:mm"
-                                    HorizontalOptions="Center"
-                                    IsVisible="False"
-                                    Time="{Binding DurationValue, Mode=TwoWay}"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    x:Name="LblTmPickerDuration"
-                                    HorizontalOptions="Center"
-                                    LineBreakMode="NoWrap"
-                                    Style="{StaticResource Form_ElementTrackingLabelPlaceholder}"
-                                    Text="{Binding DurationText}"
-                                    VerticalOptions="Center">
-                                    <Label.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding DurationText, Converter={StaticResource IsNotPlaceholderValidator}}"
-                                            TargetType="Label"
-                                            Value="true">
-                                            <Setter Property="Style" Value="{StaticResource TrackingEntry_Label}" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding PickerFocusCommand}" CommandParameter="{x:Reference TmPickerDuration}" />
-                                    </Label.GestureRecognizers>
-                                </Label>-->
-                            <Label
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource BodyCopy_Label}"
-                                Text="{helpers:Translate MinutesLower}"
-                                TextColor="{StaticResource Navy}"
-                                TranslationY="0" />
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate MinutesLower}" TextColor="{StaticResource Navy}" TranslationY="0" />
                         </Grid>
-
+                        
                         <!--  Note button  -->
-                        <localButtons:BorderedButton
-                            x:Name="BtnAddNote"
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Command="{Binding AddNoteCommand}"
-                            HeightRequest="28"
-                            HorizontalOptions="Center"
-                            InnerCircleColor="{StaticResource Peach}"
-                            IsInteractable="true"
-                            MiddleCircleColor="{StaticResource Peach}"
-                            Style="{StaticResource ReversedPillButton}"
-                            TextTop="{Binding ButtonNoteText}"
-                            WidthRequest="{OnPlatform Android=100,
-                                                      iOS=90}" />
-
+                        <localButtons:BorderedButton x:Name="BtnAddNote" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddNoteCommand}" HeightRequest="28" HorizontalOptions="Center" InnerCircleColor="{StaticResource Peach}" IsInteractable="true" MiddleCircleColor="{StaticResource Peach}"
+                            Style="{StaticResource ReversedPillButton}" TextTop="{Binding ButtonNoteText}" WidthRequest="{OnPlatform Android=100, iOS=90}" />
+                        
                         <!--  Note text  -->
-                        <StackLayout
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Padding="15,0"
-                            IsVisible="{Binding NoteText, Converter={StaticResource ObjectNotNullCheckConverter}}"
-                            Spacing="3">
-                            <Label
-                                x:Name="LblNoteTitle"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource Label_Label}"
-                                Text="{helpers:Translate Note}"
-                                TextColor="{StaticResource Gold}" />
-                            <localViews:LabelEx
-                                x:Name="LblNoteDesc"
-                                HorizontalOptions="FillAndExpand"
-                                HorizontalTextAlignment="Center"
-                                LineBreakMode="CharacterWrap"
-                                Style="{StaticResource SmallLabel_Label}"
-                                Text="{Binding NoteText}"
-                                TextColor="{StaticResource Green}"
-                                VerticalOptions="Start" />
+                        <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="15,0" IsVisible="{Binding NoteText, Converter={StaticResource ObjectNotNullCheckConverter}}" Spacing="3">
+                            <Label x:Name="LblNoteTitle" HorizontalOptions="Center" Style="{StaticResource Label_Label}" Text="{helpers:Translate Note}" TextColor="{StaticResource Gold}" />
+                            <localViews:LabelEx x:Name="LblNoteDesc" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" LineBreakMode="CharacterWrap" Style="{StaticResource SmallLabel_Label}" Text="{Binding NoteText}" TextColor="{StaticResource Green}" VerticalOptions="Start" />
                         </StackLayout>
                     </Grid>
                 </ScrollView>
-
+                
                 <!--  Bottle content selector  -->
-                <StackLayout
-                    x:Name="GridMilkContainers"
-                    Grid.Row="2"
-                    Margin="0"
-                    Padding="0"
-                    BackgroundColor="{StaticResource White}"
-                    HorizontalOptions="Fill"
-                    Orientation="Vertical"
-                    Spacing="0"
-                    VerticalOptions="EndAndExpand">
-
-                    <Label
-                        HorizontalOptions="Center"
-                        LineBreakMode="NoWrap"
-                        Style="{StaticResource H3_Label}"
-                        Text="{helpers:Translate WhatTypeOfMilk}"
-                        TextColor="{StaticResource Navy}"
-                        VerticalOptions="Start" />
-
+                <StackLayout x:Name="GridMilkContainers" Grid.Row="2" Margin="0" Padding="0" BackgroundColor="{StaticResource White}" HorizontalOptions="Fill" Orientation="Vertical" Spacing="0" VerticalOptions="EndAndExpand">
+                    <Label HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource H3_Label}" Text="{helpers:Translate WhatTypeOfMilk}" TextColor="{StaticResource Navy}" VerticalOptions="Start" />
                     <Grid Padding="4" RowSpacing="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -375,41 +153,10 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-
-                        <localButtons:ImageButton
-                            x:Name="_btnMilkFormula"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            HorizontalOptions="End"
-                            ImageNormal="btn_formula_bold_blue.png"
-                            ImagePressed="btn_formula_bold_red.png"
-                            ImageTextPadding="7,0,7,3"
-                            ImageScale="{OnPlatform Default=1,Android=.8}"
-                            ImageTranslationY="-0.5"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate Formula}" />
-                        <localButtons:ImageButton
-                            x:Name="_btnBreastMilk"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            HorizontalOptions="Start"
-                            ImageNormal="breast_milk_bold_blue.png"
-                            ImagePressed="breast_milk_bold_red.png"
-                            ImageScale="0.8"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="-0.5"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate BreastMilk}" />
-
+                        <localButtons:ImageButton x:Name="_btnMilkFormula" Grid.Row="0" Grid.Column="0" HorizontalOptions="End" ImageNormal="btn_formula_bold_blue.png" ImagePressed="btn_formula_bold_red.png" ImageTextPadding="7,0,7,3" ImageScale="{OnPlatform Default=1,Android=.8}" ImageTranslationY="-0.5" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Formula}" />
+                        <localButtons:ImageButton x:Name="_btnBreastMilk" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" ImageNormal="breast_milk_bold_blue.png" ImagePressed="breast_milk_bold_red.png" ImageScale="0.8" ImageTextPadding="7,0,7,3" ImageTranslationY="-0.5" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate BreastMilk}" />
                     </Grid>
-                    <Grid
-                        x:Name="_gridMilkOptions"
-                        Margin="0"
-                        Padding="4"
-                        HorizontalOptions="FillAndExpand"
-                        IsVisible="False"
-                        RowSpacing="10"
-                        VerticalOptions="FillAndExpand">
+                    <Grid x:Name="_gridMilkOptions" Margin="0" Padding="4" HorizontalOptions="FillAndExpand" IsVisible="False" RowSpacing="10" VerticalOptions="FillAndExpand">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -419,115 +166,41 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            HorizontalOptions="Center"
-                            LineBreakMode="NoWrap"
-                            Style="{StaticResource H3_Label}"
-                            Text="{helpers:Translate FromTheOptional}"
-                            TextColor="{StaticResource Navy}"
-                            VerticalOptions="Center" />
-                        <localButtons:ImageButton
-                            x:Name="_btnMilkFridge"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            HorizontalOptions="End"
-                            ImageNormal="fridge_med_blue.png"
-                            ImagePressed="fridge_red.png"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="{OnPlatform Android=1,
-                                                           iOS=0.5}"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate Fridge}" />
-                        <localButtons:ImageButton
-                            x:Name="_btnMilkFreezer"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            ImageNormal="freezer_blue_bold.png"
-                            ImagePressed="freezer_red_bold.png"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="{OnPlatform Android=1,
-                                                           iOS=0.5}"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate Freezer}" />
-                        <localButtons:ImageButton
-                            x:Name="_btnMilkOther"
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            HorizontalOptions="Start"
-                            ImageNormal="other_med_blue.png"
-                            ImagePressed="other_red.png"
-                            ImageTextPadding="7,0,7,3"
-                            ImageTranslationY="{OnPlatform Android=1,
-                                                           iOS=0.5}"
-                            Style="{StaticResource PillReversedButton}"
-                            Text="{helpers:Translate Other}" />
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource H3_Label}" Text="{helpers:Translate FromTheOptional}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
+                        <localButtons:ImageButton x:Name="_btnMilkFridge" Grid.Row="1" Grid.Column="0" HorizontalOptions="End" ImageNormal="fridge_med_blue.png" ImagePressed="fridge_red.png" ImageTextPadding="7,0,7,3" ImageTranslationY="{OnPlatform Android=1, iOS=0.5}" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Fridge}" />
+                        <localButtons:ImageButton x:Name="_btnMilkFreezer" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" ImageNormal="freezer_blue_bold.png" ImagePressed="freezer_red_bold.png" ImageTextPadding="7,0,7,3" ImageTranslationY="{OnPlatform Android=1, iOS=0.5}" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Freezer}" />
+                        <localButtons:ImageButton x:Name="_btnMilkOther" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" ImageNormal="other_med_blue.png" ImagePressed="other_red.png" ImageTextPadding="7,0,7,3" ImageTranslationY="{OnPlatform Android=1, iOS=0.5}" Style="{StaticResource PillReversedButton}" Text="{helpers:Translate Other}" />
                     </Grid>
                 </StackLayout>
             </Grid>
-
             <Grid Grid.Row="1" RowSpacing="0">
+                
                 <!--  Action button section  -->
-                <StackLayout
-                    BackgroundColor="{StaticResource Clear}"
-                    HorizontalOptions="Fill"
-                    Orientation="Horizontal"
-                    Spacing="0"
-                    VerticalOptions="EndAndExpand">
-                    <localButtons:ImageButton
-                        x:Name="BtnStop"
-                        Command="{Binding SaveCommand}"
-                        HorizontalOptions="FillAndExpand"
-                        ImageNormal="icon_save"
-                        ImagePressed="icon_save"
-                        ImageTranslationY="{OnPlatform Android=1,
-                                                       iOS=0.3}"
-                        IsEnabled="{Binding IsDataValid}"
-                        Style="{StaticResource PositiveActionButton}"
-                        Text="{helpers:Translate Save}"
-                        VerticalOptions="FillAndExpand" />
+                <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}" >
+                    <localButtons:ImageButton x:Name="BtnStop" 
+                                              Text="{helpers:Translate Save}" 
+                                              Command="{Binding SaveCommand}" 
+                                              IsEnabled="{Binding IsDataValid}" 
+                                              ImageNormal="icon_save" ImagePressed="icon_save" 
+                                              ImageTranslationY="{OnPlatform Android=1, iOS=0.3}" 
+                                              Style="{StaticResource PositiveActionButton}" 
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                 </StackLayout>
             </Grid>
         </Grid>
-
+        
         <!--  Notepad section: full screen  -->
-        <StackLayout
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding ShowAddNotePage}"
-            Orientation="Vertical"
-            VerticalOptions="FillAndExpand">
-            <localViews:NotepadView
-                x:Name="Notepad"
-                HorizontalOptions="FillAndExpand"
-                MaxLength="140"
-                VerticalOptions="FillAndExpand" />
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowAddNotePage}" Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <localViews:NotepadView x:Name="Notepad" HorizontalOptions="FillAndExpand" MaxLength="140" VerticalOptions="FillAndExpand" />
         </StackLayout>
-
+        
         <!--  Inventory section: Full screen  -->
-        <StackLayout
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding ShowInventory}"
-            Orientation="Vertical"
-            VerticalOptions="FillAndExpand">
-            <bottleSession:MyInventoryView
-                x:Name="InventoryView"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" IsVisible="{Binding ShowInventory}" Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <bottleSession:MyInventoryView x:Name="InventoryView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
         </StackLayout>
-
+        
         <!--  Saved popup: Full screen  -->
-        <localViews:SaveView
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            IsVisible="{Binding ShowSavedPopupPage}"
-            TappedCommand="{Binding CloseSaveViewCommand}"
-            Text="{helpers:Translate SavedBottleSession}" />
+        <localViews:SaveView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsVisible="{Binding ShowSavedPopupPage}" TappedCommand="{Binding CloseSaveViewCommand}" Text="{helpers:Translate SavedBottleSession}" />
     </AbsoluteLayout>
 </pages:PageBase>

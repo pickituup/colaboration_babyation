@@ -5,6 +5,7 @@ using BabyationApp.ViewModels;
 using System.Diagnostics;
 using System;
 using BabyationApp.Pages.Settings;
+using BabyationApp.Resources;
 
 namespace BabyationApp.Pages.FirstTimeUser
 {
@@ -41,11 +42,13 @@ namespace BabyationApp.Pages.FirstTimeUser
             Titlebar.LeftButton.IsVisible = ViewModel.IsProfileSession;
             if( ViewModel.IsProfileSession )
             {
-                Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
+                Titlebar.Title = AppResource.AddYourChild;
+                Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
                 LeftPageType = typeof(ProfilePage);
             }
             else
             {
+                Titlebar.Title = AppResource.AddYourChildOpt;
                 Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CloseButton");
                 LeftPageType = typeof(DashboardTabPage);
             }

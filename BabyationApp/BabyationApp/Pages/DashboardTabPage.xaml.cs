@@ -5,16 +5,20 @@ using BabyationApp.Controls.Buttons;
 using BabyationApp.Controls.Views;
 using BabyationApp.Pages.Settings;
 
-namespace BabyationApp.Pages {
-    public interface IDialog {
+namespace BabyationApp.Pages
+{
+    public interface IDialog
+    {
         DashboardTabPage RelativeDashboardTabPage { get; set; }
     }
 
     /// <summary>
     /// This class is the container of the 5 tab pages (see enum TabType)
     /// </summary>
-    public partial class DashboardTabPage : PageBase {
-        public enum TabType {
+    public partial class DashboardTabPage : PageBase
+    {
+        public enum TabType
+        {
             Dashboard, History, Modes, Alarms, Settings
         }
 
@@ -24,7 +28,8 @@ namespace BabyationApp.Pages {
 
         private IDialog _lastAddedDialog;
 
-        public void ShowDialog(IDialog dialog) {
+        public void ShowDialog(IDialog dialog)
+        {
             if (dialog != null && dialog is View viewDialog)
             {
                 if (_lastAddedDialog != null)
@@ -41,10 +46,18 @@ namespace BabyationApp.Pages {
                 _dialogSpot_AbsoluteLayout.Children.Add(viewDialog);
                 _dialogSpot_AbsoluteLayout.IsVisible = true;
                 _dialogSpot_AbsoluteLayout.InputTransparent = false;
+
+                _dialogSpot_AbsoluteLayout.Margin = 0;
+                _dialogSpot_AbsoluteLayout.Padding = (Device.iOS == Device.RuntimePlatform && App.Instance.PlatformAPI.HasTopNotch() ? (Thickness)Application.Current.Resources["NavBarInsets"] : 0);
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    _dialogSpot_AbsoluteLayout.Padding = (Thickness)Application.Current.Resources["NavBarInsets"];
+                }
             }
         }
 
-        public void HideDialog() {
+        public void HideDialog()
+        {
             _dialogSpot_AbsoluteLayout.Children.Remove((View)_lastAddedDialog);
             _dialogSpot_AbsoluteLayout.IsVisible = false;
             _dialogSpot_AbsoluteLayout.InputTransparent = true;
@@ -56,33 +69,29 @@ namespace BabyationApp.Pages {
         /// <summary>
         /// Constructor -- Initialize the model and binds buttons events and other ui actions
         /// </summary> 
-        public DashboardTabPage() {
-            try
-            {
+        public DashboardTabPage()
+        {
+            try {
                 InitializeComponent();
 
                 _tabViews = new List<RootViewBase>() { PageDashboardDetail, PageHistory, PageModesDashboard, PageReminder, PageSettings };
 
                 _btnGroup.Toggled += (sender, btn, index) =>
                 {
-                    if (btn != BtnSettings)
-                    {
+                    if (btn != BtnSettings) {
                         _lastSelectedButton = btn;
                     }
                     SetCurrentIndex(index);
                 };
 
-                foreach (View v in _gridTabBtns.Children)
-                {
+                foreach (View v in _gridTabBtns.Children) {
                     var btn = v as ButtonEx;
-                    if (btn != null)
-                    {
+                    if (btn != null) {
                         _btnGroup.AddButton(btn);
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
 
                 throw;
             }
@@ -92,7 +101,8 @@ namespace BabyationApp.Pages {
         /// Selects a current tab and shows it
         /// </summary>
         /// <param name="type"></param>
-        public void SetCurrentTab(TabType type) {
+        public void SetCurrentTab(TabType type)
+        {
             switch (type)
             {
                 case TabType.Dashboard:
@@ -113,7 +123,8 @@ namespace BabyationApp.Pages {
         /// <summary>
         /// Gets the currently selected tab type
         /// </summary> 
-        public TabType GetCurrentTabType() {
+        public TabType GetCurrentTabType()
+        {
             if (_lastSelectedButton == BtnDash)
             {
                 return TabType.Dashboard;
@@ -135,12 +146,13 @@ namespace BabyationApp.Pages {
                 return TabType.Settings;
             }
         }
-
+        
         /// <summary>
         /// Sets the current tab based on index
         /// </summary>
         /// <param name="index"></param>
-        private void SetCurrentIndex(int index) {
+        private void SetCurrentIndex(int index)
+        {
             for (int i = 0; i < _gridTabContents.Children.Count; i++)
             {
                 if (i == index)
@@ -160,7 +172,8 @@ namespace BabyationApp.Pages {
         /// <summary>
         /// Gets called when this page is about to show and performs the initialization
         /// </summary>
-        public override void AboutToShow() {
+        public override void AboutToShow()
+        {
             base.AboutToShow();
 
             IsFirstTime = "no";
@@ -181,24 +194,27 @@ namespace BabyationApp.Pages {
         /// <summary>
         /// Gets called when a page is instantiated
         /// </summary>
-        public override void PageCreationDone() {
+        public override void PageCreationDone()
+        {
             base.PageCreationDone();
-            foreach (RootViewBase rvb in _tabViews)
+            foreach(RootViewBase rvb in _tabViews)
             {
                 rvb.PageCreationDone();
             }
         }
 
 
-        protected override void OnAppearing() {
+        protected override void OnAppearing()
+        {
             base.OnAppearing();
-            AboutToShow();
+            AboutToShow();      
         }
 
         /// <summary>
         /// Gets sets whether this is the first time showing of this page
         /// </summary>
-        protected string IsFirstTime {
+        protected string IsFirstTime
+        {
             get
             {
                 return Helpers.Settings.IsFirstTimeUser;

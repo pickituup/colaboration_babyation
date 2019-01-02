@@ -181,6 +181,7 @@
                         <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -189,8 +190,8 @@
                             </Grid.ColumnDefinitions>
                         
                         <!-- Suction/Speed controls -->
-                        <localButtons:SpinNumberButton2 Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="_circleSuctionStimulation" DescriptionText="{helpers:Translate Suction}" ValueText="{Binding Data.ActualSuction, StringFormat='{0:D}'}" />
-                        <localButtons:SpinNumberButton2 Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" x:Name="_circleSpeedStimulation" DescriptionText="{helpers:Translate Speed}" ValueText="{Binding Data.ActualSpeed, StringFormat='{0:D}'}" />
+                        <localButtons:SpinNumberButton2 Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" x:Name="_circleSuctionStimulation" DescriptionText="{helpers:Translate Suction}" ValueText="{Binding Data.ActualSuction, StringFormat='{0:D}'}" />
+                        <localButtons:SpinNumberButton2 Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" x:Name="_circleSpeedStimulation" DescriptionText="{helpers:Translate Speed}" ValueText="{Binding Data.ActualSpeed, StringFormat='{0:D}'}" />
                         
                         <!-- Media buttons -->
                         <Grid Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
@@ -209,7 +210,29 @@
                             </localButtons:ButtonEx>-->
                         </Grid>
                         
-                        <Grid Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout Grid.Column="1" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Start">
+                            <localButtons:BorderedButton Command="{Binding ToggleSetTimer}"
+                                                         HeightRequest="28" 
+                                                         HorizontalOptions="Center" 
+                                                         InnerCircleColor="{StaticResource Peach}" 
+                                                         IsInteractable="true" 
+                                                         MiddleCircleColor="{StaticResource Peach}"
+                                                         Style="{StaticResource ReversedPillButton}" 
+                                                         TextTop="{Binding AutoShutOffActionText}"
+                                                         ContentPadding="5" />
+                            
+                            <StackLayout IsVisible="{Binding ShowAutoShutOffTimer}" HorizontalOptions="Center">
+                                <Label Text="{helpers:Translate TimeRemaining}" HorizontalOptions="Center"
+                                       Style="{StaticResource H3_Label}" TextColor="{StaticResource Navy}"/>
+                                <Label Text="{Binding AutoShutOffTime}" HorizontalOptions="Center" 
+                                       Style="{StaticResource H1_Label}" TextColor="{StaticResource Navy}" />
+                                <Label Text="{helpers:Translate MinLower}" Style="{StaticResource BodyCopy_Label}" 
+                                       TextColor="{StaticResource Navy}" HorizontalOptions="Center" />
+                            </StackLayout>
+                            
+                        </StackLayout>
+                        
+                        <Grid Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center">
                             <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
                                 <Label Text="{helpers:Translate PhaseUpper}" Style="{StaticResource LocalPadHeaderLabel}" FontSize="14" />
                                 <Label Text="{Binding CurrentPumpPhase, Converter={StaticResource PumpPhaseToTextConverter}}" Style="{StaticResource H3_Label}" TextColor="{StaticResource Navy}" LineBreakMode="NoWrap" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
@@ -412,7 +435,55 @@
                 </Grid>
                 
             </Grid>
+            
+            <Grid IsVisible="{Binding IsSetTimerMode}" RowSpacing="0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
+                <pumpSession:SetTimerView x:Name="setTimerView" 
+                                          Grid.Row="0"
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+       
+                
+                <!-- Navigation section -->
+                <Grid Grid.Row="1" Style="{StaticResource Grid_BottomNavigation}" >
+                    <StackLayout IsVisible="{Binding IsRunningMode}" Style="{StaticResource StackLayout_BottomNavigation}">
+                        <localButtons:ImageButton Text="{helpers:Translate StopPumping}"
+                                                  Command="{Binding StopCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  Style="{StaticResource DestructiveActionButton}" 
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar2}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </StackLayout>
+                    <Grid IsVisible="{Binding IsPausedMode}" Style="{StaticResource Grid_BottomNavigation}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <localButtons:ImageButton Grid.Column="0" 
+                                                  Text="{helpers:Translate Resume}"
+                                                  Command="{Binding ResumeCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=0, Android=1.4}"
+                                                  ImageNormal="icon_play1" ImagePressed="icon_play1"
+                                                  Style="{StaticResource PositiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar2}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                        <localButtons:ImageButton Grid.Column="1"
+                                                  Text="{helpers:Translate EndSession}"
+                                                  Command="{Binding FinishCommand}"
+                                                  ImageTranslationY="{OnPlatform iOS=1.3, Android=1.4}"
+                                                  ImageNormal="icon_stop" ImagePressed="icon_stop"
+                                                  Style="{StaticResource DestructiveActionButton}"
+                                                  HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                                  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+            
         </AbsoluteLayout>
     </ContentPage.Content>
 </pages:PageBase>

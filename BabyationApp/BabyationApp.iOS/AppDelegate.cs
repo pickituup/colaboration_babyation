@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using UserNotifications;
+using ObjCRuntime;
 
 namespace BabyationApp.iOS
 {
@@ -96,6 +98,8 @@ namespace BabyationApp.iOS
 
             DependencyService.Register<BabyationApp.Interfaces.IPictureCache, BabyationApp.iOS.Dependencies.PictureCache>();
             DependencyService.Register<BabyationApp.Interfaces.IPlatformAPI, BabyationApp.iOS.Dependencies.PlatformAPI>();
+            DependencyService.Register<BabyationApp.Interfaces.ILocalNotificationService, BabyationApp.iOS.Dependencies.LocalNotificationService>();
+
             global::Xamarin.Forms.Forms.Init();
 
             var config = new FFImageLoading.Config.Configuration()
@@ -104,20 +108,71 @@ namespace BabyationApp.iOS
                 VerbosePerformanceLogging = true,
                 Logger = new CustomMiniLogger(),
             };
+
             ImageService.Instance.Initialize(config);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             Rg.Plugins.Popup.Popup.Init();
 
             LoginManager loginInstance = LoginManager.Instance;
             loginInstance.Init(this);
-            
+
+            ScheduleManager.Instance.Initialize();
+            RequestNotificationPermission();
 
             App myapp = new App();
             LoadApplication(myapp);
 
+            // check for a notification
+
+            /*
+            if (options != null)
+            {
+                // check for a local notification
+                if (options.ContainsKey(UIApplication.LaunchOptionsLocalNotificationKey))
+                {
+                    if (options[UIApplication.LaunchOptionsLocalNotificationKey] is UILocalNotification localNotification)
+                    {
+                        UIAlertController okayAlertController = UIAlertController.Create(localNotification.AlertAction, 
+                                                                                         localNotification.AlertBody, 
+                                                                                         UIAlertControllerStyle.Alert);
+
+                        okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+
+                        Window.RootViewController.PresentViewController(okayAlertController, true, null);
+
+                        // reset our badge
+                        UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+                    }
+                }
+            }
+            */
+
             bool result = base.FinishedLaunching(app, options);
             myapp.AfterStart();
             return result;
+        }
+
+        void RequestNotificationPermission()
+        {
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 10.0+
+                UNUserNotificationCenter.Current.RequestAuthorization(
+                    UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                    (approved, error) => { });
+
+                // Watch for notifications while app is active
+                UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
+            }
+            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 8.0+
+                var settings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
+                    new NSSet());
+
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+            }
         }
 
         private static async void InitDataManager()
@@ -127,7 +182,27 @@ namespace BabyationApp.iOS
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
-            return LoginManager.Instance.CurrentClient.ResumeWithURL(url);
+            bool result = LoginManager.Instance.CurrentClient.ResumeWithURL(url);
+
+            return (result ? result : base.OpenUrl(app, url, options));
+        }
+
+        [Export("application:didReceiveLocalNotification:")]
+        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        {
+            string test = "";
+        }
+
+    }
+
+    public class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate
+    {
+        public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification,
+                                                     Action<UNNotificationPresentationOptions> completionHandler)
+        {
+            // Tell system to display the notification anyway or use
+            // `None` to say we have handled the display locally.
+            completionHandler(UNNotificationPresentationOptions.Alert);
         }
     }
 }

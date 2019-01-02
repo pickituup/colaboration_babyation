@@ -145,6 +145,9 @@
     <value>Tell us about your little one!</value>
   </data>
   <data name="AddYourChild" xml:space="preserve">
+    <value>ADD YOUR CHILD</value>
+  </data>
+    <data name="AddYourChildOpt" xml:space="preserve">
     <value>ADD YOUR CHILD (OPTIONAL)</value>
   </data>
   <data name="AddAnotherChild" xml:space="preserve">
@@ -190,13 +193,13 @@
     <value>You’ll get an alert two minutes before your pump automatically starts.</value>
   </data>
   <data name="AverageOuncesPerDay" xml:space="preserve">
-    <value>Average ounces pumped per day:</value>
+    <value>Avg oz per day:</value>
   </data>
   <data name="AverageNursedPerDay" xml:space="preserve">
-    <value>Average minutes nursed per day:</value>
+    <value> Avg mins per day:</value>
   </data>
   <data name="AverageBottlePerDay" xml:space="preserve">
-    <value>Average amount bottle fed per day:</value>
+    <value>Avg oz per day:</value>
   </data>
   <data name="BestBy" xml:space="preserve">
     <value>BestBy</value>
@@ -697,7 +700,7 @@
     <value>SIDE</value>
   </data>
   <data name="SavedPumpMode" xml:space="preserve">
-    <value>Your new mode is saved!</value>
+    <value>Your pump session has been saved!</value>
   </data>
   <data name="SavedBottleSession" xml:space="preserve">
     <value>Your bottle session has been saved!</value>
@@ -1500,7 +1503,7 @@ Almost as much as we look forward to taking a nap.</value>
     <value>SWAP ACCOUNTS</value>
   </data>
   <data name="PickingFutureTime" xml:space="preserve">
-    <value>You are picking a future time</value>
+    <value>You can't enter a future date. Try again!</value>
   </data>
   <data name="PairAPump" xml:space="preserve">
     <value>Pair a pump</value>
@@ -1546,5 +1549,26 @@ Almost as much as we look forward to taking a nap.</value>
   </data>
   <data name="YesResetUppercase" xml:space="preserve">
     <value>YES, RESET</value>
+  </data>
+  <data name="SetAutoShutOff" xml:space="preserve">
+    <value>Set auto-shutoff</value>
+  </data>
+  <data name="SetAutoShutOffUpper" xml:space="preserve">
+    <value>SET AUTO-SHUTOFF</value>
+  </data>
+  <data name="CancelShutOff" xml:space="preserve">
+    <value>CANCEL SHUTOFF</value>
+  </data>
+  <data name="AutoShutOffDescription" xml:space="preserve">
+    <value>How long do you want this session to last before the pump shuts off automatically?</value>
+  </data>
+  <data name="EnterTotalSessionDuration" xml:space="preserve">
+    <value>ENTER TOTAL DURATION FOR SESSION</value>
+  </data>
+  <data name="TimeRemaining" xml:space="preserve">
+    <value>Time remaining</value>
+  </data>
+  <data name="MinLower" xml:space="preserve">
+    <value>min</value>
   </data>
 </root>

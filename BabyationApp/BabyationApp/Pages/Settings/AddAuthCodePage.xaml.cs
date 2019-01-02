@@ -7,6 +7,8 @@ using System.Windows.Input;
 using BabyationApp.Resources;
 using BabyationApp.Pages.Settings;
 using System.Linq;
+using System.Threading.Tasks;
+using BabyationApp.DataObjects;
 
 namespace BabyationApp.Pages.Settings
 {
@@ -38,6 +40,14 @@ namespace BabyationApp.Pages.Settings
             // Restore style:
             Titlebar.IsVisible = true;
             RootLayout.Style = (Style)Application.Current.Resources["AbsoluteLayout_NavigationOnTop"];
+
+            if( !String.IsNullOrEmpty(Helpers.Settings.CaregiverCode))
+            {
+                ViewModel.Text = Helpers.Settings.CaregiverCode;
+                Helpers.Settings.CaregiverCode = null;
+
+                SaveCodeAsync();
+            }
         }
 
         #region Private
@@ -48,8 +58,17 @@ namespace BabyationApp.Pages.Settings
                 return;
 
             ViewModel.IsCodeSending = true;
-            _updateStatus = true;//await LoginManager.Instance.ForgotPassword(ViewModel.Text);
-            ProfileManager.Instance.CurrentProfile.CurrentCaregiver = ProfileManager.Instance.CurrentProfile.Caregivers.FirstOrDefault();
+            CaregiverRelation relation = await ProfileManager.Instance.VerifyCaregiverCode(ViewModel.Text);
+            if (null != relation)
+            {
+                //ProfileManager.Instance.CurrentProfile.CurrentCaregiver = ProfileManager.Instance.CurrentProfile.Caregivers.Where(x => (x.CaregiverProfileId == relation.CaregiverProfileId)).Select(x);
+                _updateStatus = true;
+            }
+            else
+            {
+                _updateStatus = false;
+            }
+
             ViewModel.IsCodeSending = false;
 
             if (_updateStatus)
@@ -112,7 +131,7 @@ namespace BabyationApp.Pages.Settings
             {
                 if (SetPropertyChanged(ref _text, value))
                 {
-                    IsCodeValid = !String.IsNullOrEmpty(value);
+                    IsCodeValid = !String.IsNullOrEmpty(value) && !IsCodeSending;
                 }
             }
         }
@@ -128,7 +147,11 @@ namespace BabyationApp.Pages.Settings
         public bool IsCodeSending
         {
             get => _isSending;
-            set => SetPropertyChanged(ref _isSending, value);
+            set
+            {
+                SetPropertyChanged(ref _isSending, value);
+                SetPropertyChanged(nameof(IsCodeValid));
+            }
         }
 
         private bool _showSendPopup;

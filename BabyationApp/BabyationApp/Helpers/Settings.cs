@@ -161,5 +161,11 @@ namespace BabyationApp.Helpers
                 AppSettings.AddOrUpdateValue("SessionUptime", value);
             }
         }
+
+        public static string CaregiverCode
+        {
+            get => AppSettings.GetValueOrDefault("CaregiverCode", null);
+            set => AppSettings.AddOrUpdateValue("CaregiverCode", value);
+        }
     }
 }

@@ -23,11 +23,13 @@
                 </Grid.RowDefinitions>
                 <ScrollView Grid.Row="0">
                     <StackLayout IsVisible="{Binding ShowBottleFeedAmountPage}" Orientation="Vertical" Spacing="0">
+                        
                         <!--  Selected child section  -->
                         <StackLayout Margin="0" Padding="0,10" BackgroundColor="{StaticResource Navy}" HeightRequest="50" HorizontalOptions="Fill" Orientation="Vertical" Spacing="6" VerticalOptions="Fill">
                             <Label HorizontalOptions="Center" Style="{StaticResource SmallLabel_Label}" Text="{helpers:Translate SelectedChild}" TextColor="{StaticResource Gold}" VerticalOptions="CenterAndExpand" />
                             <Label HorizontalOptions="Center" Style="{StaticResource H1_Label}" Text="{Binding ChildName}" TextColor="{StaticResource LightBlue}" VerticalOptions="CenterAndExpand" />
                         </StackLayout>
+                        
                         <!--  Content section  -->
                         <Grid Margin="0" HorizontalOptions="Fill" RowSpacing="0" VerticalOptions="StartAndExpand">
                             <Grid.RowDefinitions>
@@ -35,6 +37,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+                            
                             <!--  Title section  -->
                             <StackLayout Grid.Row="0" Padding="30,15" HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand">
                                 <Label HorizontalOptions="Center" Style="{StaticResource Instructions_Label}" Text="{helpers:Translate HowMuchEat}" TextColor="{StaticResource Navy}" />
@@ -44,13 +47,13 @@
                             <StackLayout Grid.Row="1" Padding="20,5" HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand">
                                 <localEditors:EntryEx FontSize="32" HorizontalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" Style="{StaticResource Form_ElementEntry}" Text="{Binding AmountValue}" WidthRequest="{OnPlatform Android=110, iOS=100}">
                                     <Entry.Behaviors>
-                                        <!--<bv:NumericValidatorBehavior AllowDecimal="true" MaxLength="3" />-->
-                                        <bv:MaskedBehavior Mask="XX.X" />
+                                        <bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1"/>
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
                                 <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate OuncesLower}" TextColor="{StaticResource Navy}" />
                             </StackLayout>
                         </Grid>
+                        
                         <!--  Bottle content selector  -->
                         <StackLayout BackgroundColor="{StaticResource Clear}" HorizontalOptions="Fill" Orientation="Horizontal" Spacing="0" VerticalOptions="EndAndExpand">
                             <!--  Bottle selector section  -->

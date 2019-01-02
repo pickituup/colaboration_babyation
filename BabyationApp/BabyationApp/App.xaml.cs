@@ -17,6 +17,7 @@ using BabyationApp.Helpers;
 using BabyationApp.Interfaces;
 using BabyationApp.Pages.PumpSession;
 using Microsoft.AppCenter.Crashes;
+using BabyationApp.Pages.Settings;
 
 namespace BabyationApp
 {
@@ -230,7 +231,14 @@ namespace BabyationApp
                             }
                             else
                             {
-                                PageManager.Me.StartPageType = typeof(DashboardTabPage);
+                                if (!String.IsNullOrEmpty(Settings.CaregiverCode))
+                                {
+                                    PageManager.Me.StartPageType = typeof(AddAuthCodePage);
+                                }
+                                else
+                                {
+                                    PageManager.Me.StartPageType = typeof(DashboardTabPage);
+                                }
                             }
                         }
                         else
@@ -417,6 +425,32 @@ namespace BabyationApp
                 throw;
             }
         }
+
+        protected override void OnAppLinkRequestReceived(Uri uri)
+        {
+            Debug.WriteLine($"AppLink: {uri}");
+
+            const string associatedHost = "https://babyation.azurewebsites.net";
+
+            if (!uri.ToString().ToLowerInvariant().StartsWith(associatedHost, StringComparison.Ordinal))
+                return;
+
+            string pageUrl = uri.ToString().Replace(associatedHost, string.Empty).Trim();
+            var parts = pageUrl.Split('?');
+            string parameter = parts[1].Replace("code=", string.Empty);
+
+            if (!String.IsNullOrEmpty(parameter))
+            {
+                Settings.CaregiverCode = parameter;
+
+                if (null != ProfileManager.Instance.CurrentProfile)
+                {
+                    PageManager.Me.SetCurrentPage(typeof(AddAuthCodePage));
+                }
+            }
+
+            base.OnAppLinkRequestReceived(uri);
+        }
     }
 
     /// <summary>
@@ -457,7 +491,7 @@ namespace BabyationApp
 
                 _pageMain = new StackPagesContainerPage();
                 Application.Current.MainPage = _pageMain;
-                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS || Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
+                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
                 {
                     _pageMain.BackgroundColor = Color.FromHex("#F8EBE3");
                     _splashPage = new SplashPage();

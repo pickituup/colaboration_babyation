@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<pages:PageBase
-    x:Class="BabyationApp.Pages.Reminders.CreateReminderPage"
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PageBase 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bv="clr-namespace:BabyationApp.Behaviors;assembly=BabyationApp"
@@ -10,53 +9,42 @@
     xmlns:localPickers="clr-namespace:BabyationApp.Controls.Pickers"
     xmlns:localViews="clr-namespace:BabyationApp.Controls.Views;assembly=BabyationApp"
     xmlns:pages="clr-namespace:BabyationApp.Pages"
+    x:Class="BabyationApp.Pages.Reminders.CreateReminderPage"
     x:Name="this"
     Title="{helpers:Translate SchedulePumpSessionUpper}"
     BackgroundColor="{StaticResource Peach}">
-
+    
+    
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <!--  Common Header  -->
-            <Style
-                x:Key="GoldHeader"
-                BasedOn="{StaticResource Label_Label}"
-                TargetType="Label">
+            <Style x:Key="GoldHeader" BasedOn="{StaticResource Label_Label}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-
+            
             <!--  Date/Time styles  -->
-
             <!--  Value  -->
-            <Style
-                x:Key="ScheduleDateValue"
-                BasedOn="{StaticResource TimerLabelModified}"
-                TargetType="Label">
+            <Style x:Key="ScheduleDateValue" BasedOn="{StaticResource TimerLabelModified}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
-
+            
             <!--  Placeholder  -->
-            <Style
-                x:Key="ScheduleDatePlaceholder"
-                BasedOn="{StaticResource TimerLabelModified}"
-                TargetType="Label">
+            <Style x:Key="ScheduleDatePlaceholder" BasedOn="{StaticResource TimerLabelModified}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <Grid
-        x:Name="RootLayout"
-        RowSpacing="0"
-        Style="{StaticResource Grid_NavigationOnTop}">
+    
+    <Grid x:Name="RootLayout" RowSpacing="0" Style="{StaticResource Grid_NavigationOnTop}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="0.11*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        
         <Grid Grid.Row="0" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -65,177 +53,72 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+           
             <!--  Name section  -->
-            <Grid
-                Grid.Row="0"
-                BackgroundColor="{StaticResource LightPink}"
-                RowSpacing="0">
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource LightPink}" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
-                <Grid
-                    Grid.Row="0"
-                    Margin="20,8,5,0"
-                    RowSpacing="0">
-                    <Label
-                        HorizontalOptions="Start"
-                        Style="{StaticResource GoldHeader}"
-                        Text="{helpers:Translate SessionNameUpper}"
-                        VerticalOptions="Center" />
-                    <Label
-                        HorizontalOptions="End"
-                        Style="{StaticResource Label_Label}"
-                        Text="{Binding CharsLeft}"
-                        TextColor="{StaticResource Navy}"
-                        VerticalOptions="Center" />
+                <Grid Grid.Row="0" Margin="20,8,5,0" RowSpacing="0">
+                    <Label HorizontalOptions="Start" Style="{StaticResource GoldHeader}" Text="{helpers:Translate SessionNameUpper}" VerticalOptions="Center" />
+                    <Label HorizontalOptions="End" Style="{StaticResource Label_Label}" Text="{Binding CharsLeft}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
                 </Grid>
-
-                <localEditors:EntryEx
-                    Grid.Row="1"
-                    Margin="20,0,5,8"
-                    Placeholder="{helpers:Translate EnterNicknameForSession}"
-                    Style="{StaticResource Form_ElementEntry}"
-                    Text="{Binding Nickname}">
+                <localEditors:EntryEx Grid.Row="1" Margin="20,0,5,8" Placeholder="{helpers:Translate EnterNicknameForSession}" Style="{StaticResource Form_ElementEntry}" Text="{Binding Nickname}">
                     <localEditors:EntryEx.Behaviors>
                         <bv:MaxLengthValidatorBehavior MaxLength="25" />
                     </localEditors:EntryEx.Behaviors>
                 </localEditors:EntryEx>
             </Grid>
-
+            
             <!--  Clock image  -->
-            <localViews:ImageEx
-                Grid.Row="1"
-                Margin="0,0,0,0"
-                HeightRequest="50"
-                HorizontalOptions="Center"
-                Source="icon_timer2"
-                VerticalOptions="End"
-                WidthRequest="50" />
-
+            <localViews:ImageEx Grid.Row="1" Margin="0,0,0,0" HeightRequest="50" HorizontalOptions="Center" Source="icon_timer2" VerticalOptions="End" WidthRequest="50" />
+            
             <!--  Date  -->
-            <StackLayout
-                Grid.Row="2"
-                Padding="2"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="CenterAndExpand">
-                <localPickers:MaskedDatePicker
-                    x:Name="SessionDate"
-                    Date="{Binding Date}"
-                    HeaderStyle="{StaticResource GoldHeader}"
-                    HeaderText="{helpers:Translate SelectDateUpper}"
-                    HorizontalOptions="FillAndExpand"
-                    MinimumDate="{Binding MinimumDate}"
-                    ValuePlaceholderStyle="{StaticResource ScheduleDatePlaceholder}"
-                    ValueStyle="{StaticResource ScheduleDateValue}"
-                    ValueText="{Binding DateValue}" />
+            <StackLayout Grid.Row="2" Padding="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <localPickers:MaskedDatePicker x:Name="SessionDate" Date="{Binding Date}" HeaderStyle="{StaticResource GoldHeader}" HeaderText="{helpers:Translate SelectDateUpper}" HorizontalOptions="FillAndExpand" MinimumDate="{Binding MinimumDate}" ValuePlaceholderStyle="{StaticResource ScheduleDatePlaceholder}" ValueStyle="{StaticResource ScheduleDateValue}" ValueText="{Binding DateValue}" />
             </StackLayout>
-
+            
             <!--  Time  -->
-            <StackLayout
-                Grid.Row="3"
-                Padding="2"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Vertical"
-                Spacing="5"
-                VerticalOptions="CenterAndExpand">
-                <localPickers:MaskedTimePicker
-                    x:Name="SessionTime"
-                    BottomText=""
-                    HeaderStyle="{StaticResource GoldHeader}"
-                    HeaderText="{helpers:Translate SelectTimeUpper}"
-                    HorizontalOptions="FillAndExpand"
-                    Time="{Binding Time}"
-                    TimeFormat="{Binding TimeFormat}"
-                    ValuePlaceholderStyle="{StaticResource ScheduleDatePlaceholder}"
-                    ValueStyle="{StaticResource ScheduleDateValue}"
-                    ValueText="{Binding TimeValue}" />
-                <Label
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding TimeAbbr, Converter={StaticResource ObjectNotNullCheckConverter}}"
-                    Style="{StaticResource BodyCopy_Label}"
-                    Text="{Binding TimeAbbr}"
-                    TextColor="{StaticResource Navy}"
-                    VerticalOptions="Center" />
+            <StackLayout Grid.Row="3" Padding="2" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="5" VerticalOptions="CenterAndExpand">
+                <localPickers:MaskedTimePicker x:Name="SessionTime" BottomText="" HeaderStyle="{StaticResource GoldHeader}" HeaderText="{helpers:Translate SelectTimeUpper}" HorizontalOptions="FillAndExpand" Time="{Binding Time}" TimeFormat="{Binding TimeFormat}" ValuePlaceholderStyle="{StaticResource ScheduleDatePlaceholder}" ValueStyle="{StaticResource ScheduleDateValue}" ValueText="{Binding TimeValue}" />
+                <Label HorizontalOptions="Center" IsVisible="{Binding TimeAbbr, Converter={StaticResource ObjectNotNullCheckConverter}}" Style="{StaticResource BodyCopy_Label}" Text="{Binding TimeAbbr}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
             </StackLayout>
-
+           
             <!--  Checkbox  -->
-            <Grid
-                Grid.Row="4"
-                Padding="0,10"
-                VerticalOptions="End">
+            <Grid Grid.Row="4" Padding="0,10" VerticalOptions="End">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".18*" />
                     <ColumnDefinition Width=".82*" />
                 </Grid.ColumnDefinitions>
-
-                <Grid
-                    Grid.Column="0"
-                    HeightRequest="40"
-                    HorizontalOptions="Center"
-                    TranslationY="-18"
-                    VerticalOptions="Center">
+                <Grid Grid.Column="0" HeightRequest="40" HorizontalOptions="Center" TranslationY="-18" VerticalOptions="Center">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ToggleAutostartCommand}" CommandParameter="{Binding .}" />
                     </Grid.GestureRecognizers>
-
-                    <localButtons:CircleButton
-                        x:Name="checkbox"
-                        HeightRequest="36"
-                        HorizontalOptions="Center"
-                        ImageNormal="icon_checked_dummy_small.png"
-                        ImagePressed="icon_checked_small"
-                        InnerCircleColor="{StaticResource DarkBlueColor}"
-                        InnerCirclePadding="4"
-                        InnerCirclePressedColor="{StaticResource MedBlue}"
-                        InputTransparent="true"
-                        IsCircle="True"
-                        IsPressed="{Binding AutoStart}"
-                        IsTogglable="true"
-                        MiddleCircleColor="{StaticResource MedBlue}"
-                        MiddleCirclePadding="2"
-                        MiddleCirclePressedColor="{StaticResource MedBlue}"
-                        OuterCircleColor="{StaticResource MedBlue}"
-                        OuterCirclePressedColor="{StaticResource MedBlue}"
-                        TextBottom=""
-                        TextTop=""
-                        VerticalOptions="Center"
+                    <localButtons:CircleButton x:Name="checkbox" HeightRequest="36" HorizontalOptions="Center" ImageNormal="icon_checked_dummy_small.png" ImagePressed="icon_checked_small" InnerCircleColor="{StaticResource DarkBlueColor}" InnerCirclePadding="4" InnerCirclePressedColor="{StaticResource MedBlue}" InputTransparent="true" IsCircle="True"
+                        IsPressed="{Binding AutoStart}" IsTogglable="true" MiddleCircleColor="{StaticResource MedBlue}" MiddleCirclePadding="2" MiddleCirclePressedColor="{StaticResource MedBlue}" OuterCircleColor="{StaticResource MedBlue}" OuterCirclePressedColor="{StaticResource MedBlue}" TextBottom="" TextTop="" VerticalOptions="Center"
                         WidthRequest="36" />
                 </Grid>
-
-                <StackLayout
-                    Grid.Column="1"
-                    Padding="4,0,4,4"
-                    Spacing="4"
-                    VerticalOptions="Center">
-                    <Label
-                        Style="{StaticResource H2_Label}"
-                        Text="{helpers:Translate AutoStartForSession}"
-                        TextColor="{StaticResource Navy}" />
-                    <Label
-                        Style="{StaticResource Label_Label}"
-                        Text="{helpers:Translate AutoStartForSessionDescription}"
-                        TextColor="{StaticResource Navy}" />
+                <StackLayout Grid.Column="1" Padding="4,0,4,4" Spacing="4" VerticalOptions="Center">
+                    <Label Style="{StaticResource H2_Label}" Text="{helpers:Translate AutoStartForSession}" TextColor="{StaticResource Navy}" />
+                    <Label Style="{StaticResource Label_Label}" Text="{helpers:Translate AutoStartForSessionDescription}" TextColor="{StaticResource Navy}" />
                 </StackLayout>
             </Grid>
         </Grid>
-
+        
         <!--  Navigation section  -->
         <Grid Grid.Row="1" RowSpacing="0">
-            <localButtons:ImageButton
-                x:Name="BtnChoose"
-                Command="{Binding ChooseModeCommand}"
-                HorizontalOptions="FillAndExpand"
-                ImageNormal="icon_next2"
-                ImagePressed="icon_next"
-                ImageTranslationY="{OnPlatform Android=1,
-                                               iOS=0.3}"
-                IsEnabled="{Binding IsReadyToGo}"
-                Style="{StaticResource NavigationalActionButton}"
-                Text="{helpers:Translate ChooseModeUpper}"
-                VerticalOptions="Fill" />
+            <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                <localButtons:ImageButton x:Name="BtnChoose" 
+                                          IsEnabled="{Binding IsReadyToGo}" 
+                                          Text="{helpers:Translate ChooseModeUpper}"
+                                          Command="{Binding ChooseModeCommand}" 
+                                          ImageNormal="icon_next2" ImagePressed="icon_next" 
+                                          ImageTranslationY="{OnPlatform Android=1, iOS=0.3}" 
+                                          Style="{StaticResource NavigationalActionButton}"  
+                                          HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}" 
+                                          HorizontalOptions="FillAndExpand" VerticalOptions="Fill" />
+            </StackLayout>
         </Grid>
     </Grid>
 </pages:PageBase>

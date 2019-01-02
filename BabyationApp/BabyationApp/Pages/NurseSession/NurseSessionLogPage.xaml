@@ -25,7 +25,7 @@
             RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="0.11*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid
@@ -119,7 +119,7 @@
                                 Text="{Binding FirstTime, Mode=TwoWay}"
                                 Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:MaskedBehavior Mask="XX:XX" />
+                                    <bv:DurationTimeValidatorBehavior />
                                 </Entry.Behaviors>
                             </textEditors:EntryEx>
                             <Label
@@ -163,7 +163,7 @@
                                 Text="{Binding LastTime, Mode=TwoWay}"
                                 Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:MaskedBehavior Mask="XX:XX" />
+                                    <bv:DurationTimeValidatorBehavior />
                                 </Entry.Behaviors>
                             </textEditors:EntryEx>
                             <Label
@@ -219,10 +219,7 @@
                             TextTop="{helpers:Translate AddNote}"
                             VerticalOptions="Center">
                             <localButtons:BorderedButton.WidthRequest>
-                                <OnPlatform
-                                    x:TypeArguments="x:Double"
-                                    Android="100"
-                                    iOS="90" />
+                                <OnPlatform x:TypeArguments="x:Double" Android="100" iOS="90" />
                             </localButtons:BorderedButton.WidthRequest>
                         </localButtons:BorderedButton>
 
@@ -280,10 +277,7 @@
                                 <localViews:ImageEx HorizontalOptions="Center" Source="icon_timer2.png" />
                                 <StackLayout HorizontalOptions="Center">
                                     <StackLayout.Spacing>
-                                        <OnPlatform
-                                            x:TypeArguments="x:Double"
-                                            Android="-15"
-                                            iOS="0" />
+                                        <OnPlatform x:TypeArguments="x:Double" Android="-15" iOS="0" />
                                     </StackLayout.Spacing>
                                     <Label
                                         x:Name="LblDurationText"
@@ -384,16 +378,17 @@
             </Grid>
 
             <Grid Grid.Row="1" RowSpacing="0">
-                <localButtons:ImageButton
-                    x:Name="BtnSave"
-                    HorizontalOptions="FillAndExpand"
-                    ImageNormal="icon_save.png"
-                    ImageTranslationY="{OnPlatform Android=1,
-                                                   iOS=0.3}"
-                    InitViewBackground="True"
-                    IsEnabled="{Binding NotReadyToSave, Converter={StaticResource BooleanInverseConverter}}"
-                    Style="{StaticResource PositiveActionButton}"
-                    Text="{helpers:Translate Save}" />
+                <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">
+                    <localButtons:ImageButton x:Name="BtnSave"
+                                              Text="{helpers:Translate Save}"
+                                              IsEnabled="{Binding NotReadyToSave, Converter={StaticResource BooleanInverseConverter}}"
+                                              ImageNormal="icon_save.png"
+                                              ImageTranslationY="{OnPlatform Android=1, iOS=0.3}"
+                                              InitViewBackground="True"
+                                              Style="{StaticResource PositiveActionButton}"
+                                              HeightRequest="{Binding Source={x:Reference StackBottomBar}, Path=Height}"
+                                              HorizontalOptions="FillAndExpand" />
+                </StackLayout>
             </Grid>
         </Grid>
 
