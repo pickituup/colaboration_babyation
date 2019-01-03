@@ -353,17 +353,45 @@ namespace BabyationApp.Pages.History
 
         }
 
+        //private void UpdateTotalAmount()
+        //{
+        //    try
+        //    {
+        //        if (!string.IsNullOrEmpty(AmountLeft) && !string.IsNullOrEmpty(AmountRight))
+        //        {
+        //            double amountLeft = Convert.ToDouble(AmountLeft);
+        //            double amountRight = Convert.ToDouble(AmountRight);
+
+        //            TotalAmount = (amountLeft + amountRight).ToString();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"ERROR:{ex.Message}");
+        //        Debugger.Break();
+        //    }
+        //}
+
         private void UpdateTotalAmount()
         {
             try
             {
-                if (!string.IsNullOrEmpty(AmountLeft) && !string.IsNullOrEmpty(AmountRight))
-                {
-                    double amountLeft = Convert.ToDouble(AmountLeft);
-                    double amountRight = Convert.ToDouble(AmountRight);
+                double leftAmmount = 0;
+                double rightAmmount = 0;
 
-                    TotalAmount = (amountLeft + amountRight).ToString();
+                if (!double.TryParse(AmountLeft, out leftAmmount))
+                {
+                    leftAmmount = 0;
                 }
+
+                if (!double.TryParse(AmountRight, out rightAmmount))
+                {
+                    rightAmmount = 0;
+                }
+
+                double totalAmount = leftAmmount + rightAmmount;
+
+                TotalAmount = totalAmount == 0 ? "00.00" : totalAmount.ToString();
             }
             catch (Exception ex)
             {

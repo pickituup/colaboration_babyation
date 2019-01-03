@@ -86,7 +86,7 @@
                                     ValueText="{Binding TimeValue}"
                                     HeaderStyle="{StaticResource Form_ElementHeader}"
                                     HeaderText="{helpers:Translate StartTime_Upper}"
-                                    TimeFormat="HH:mm"
+                                    TimeFormat="h:mm"
                                     Time="{Binding Time}"
                                     ValuePlaceholderStyle="{StaticResource LocalPlaceholderLabel}"
                                     ValueStyle="{StaticResource LocalValueLabel}" />
@@ -120,7 +120,7 @@
                                     Unfocused="CheckValidationForm"
                                     VerticalOptions="EndAndExpand">
                                     <localEditors:EntryEx.Behaviors>
-                                        <bv:MaskedBehavior Mask="XX:XX" />
+                                        <bv:MaskedTimeNoLeadingZeroBehavior Mask="XX:XX" />
                                         <bv:EventToCommandBehavior Command="{Binding ParseTotalDurationCommand}" EventName="Unfocused" />
                                     </localEditors:EntryEx.Behaviors>
                                 </localEditors:EntryEx>
@@ -154,7 +154,7 @@
                                     Text="{Binding AmountLeft, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
-                                        <bv:MaskedBehavior Mask="XX.X" />
+                                        <bv:MaskedDoubleAmountNoLeadingZeroBehavior Mask="XX.X" />
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
                                 <Label
@@ -183,7 +183,7 @@
                                     Text="{Binding AmountRight, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
-                                        <bv:MaskedBehavior Mask="XX.X" />
+                                        <bv:MaskedDoubleAmountNoLeadingZeroBehavior Mask="XX.X" />
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
                                 <Label
@@ -210,9 +210,9 @@
                                 PlaceholderColor="{StaticResource Navy}"
                                 Style="{StaticResource LocalValueLabel}"
                                 Text="{Binding TotalAmount, Mode=TwoWay}">
-                                <Entry.Behaviors>
+                                <!--<Entry.Behaviors>
                                     <bv:MaskedBehavior Mask="XX.XX" />
-                                </Entry.Behaviors>
+                                </Entry.Behaviors>-->
                             </localEditors:EntryEx>
                             <Label
                                 HorizontalOptions="Center"
