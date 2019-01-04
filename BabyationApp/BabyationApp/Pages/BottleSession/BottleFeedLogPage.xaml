@@ -73,7 +73,7 @@
                                 <Label x:Name="LblDtPicker" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding DateText}" VerticalOptions="Center">
                                     <Label.Triggers>
                                         <DataTrigger Binding="{Binding DateText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">
-                                            <Setter Property="Style" Value="{StaticResource TrackingEntry_Label}" />
+                                            <Setter Property="Style" Value="{StaticResource Form_ElementLabel}" />
                                         </DataTrigger>
                                     </Label.Triggers>
                                     <Label.GestureRecognizers>
@@ -87,7 +87,8 @@
                             <StackLayout Grid.Row="1" Grid.Column="1" Spacing="0" VerticalOptions="Start">
                                 <localEditors:EntryEx x:Name="EntryFed" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding TotalFedValue, Mode=TwoWay}">
                                     <Entry.Behaviors>
-                                        <bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1" />
+                                        <!--<bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1" />-->
+                                        <bv:MaskedDoubleAmountNoLeadingZeroBehavior Mask="XX.X" />
                                     </Entry.Behaviors>
                                 </localEditors:EntryEx>
                             </StackLayout>
@@ -105,13 +106,13 @@
                             </Grid.ColumnDefinitions>
                             
                             <!--  Start time  -->
-                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeaderEX}" Text="{helpers:Translate StartTime_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate StartTime_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
                             <Grid Grid.Row="1" Grid.Column="0" RowSpacing="0">
-                                <localViews:TimePickerEx x:Name="TmPickerStart" Format="hh:mm" HorizontalOptions="Center" IsVisible="False" Time="{Binding StartTimeValue}" VerticalOptions="Center" />
+                                <localViews:TimePickerEx x:Name="TmPickerStart" Format="h:mm" HorizontalOptions="Center" IsVisible="False" Time="{Binding StartTimeValue}" VerticalOptions="Center" />
                                 <Label x:Name="LblTmPickerStart" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding StartTimeText}" VerticalOptions="Center">
                                     <Label.Triggers>
                                         <DataTrigger Binding="{Binding StartTimeText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">
-                                            <Setter Property="Style" Value="{StaticResource TrackingEntry_Label}" />
+                                            <Setter Property="Style" Value="{StaticResource Form_ElementLabel}" />
                                         </DataTrigger>
                                     </Label.Triggers>
                                     <Label.GestureRecognizers>
@@ -119,15 +120,25 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Grid>
-                            
+
+                            <Label
+                                            Grid.Row="2" Grid.Column="0"
+                                    x:Name="_formatForStartTime_Label"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{Binding NurseStartTimeFormat, Converter={StaticResource ObjectNotNullCheckConverter}}"
+                                            Text="{Binding NurseStartTimeFormat}"
+                                        Style="{StaticResource BodyCopy_Label}"
+                                        TextColor="{StaticResource Navy}"
+                                        VerticalOptions="Center" />
+
                             <!--  Duration  -->
                             <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Duration_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
                             <localEditors:EntryEx Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__:__" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding DurationValue, Mode=TwoWay}" Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:DurationTimeValidatorBehavior />
+                                    <bv:DurationTimeNoLeadingZerosValidatorBehavior />
                                 </Entry.Behaviors>
                             </localEditors:EntryEx>
-                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate MinutesLower}" TextColor="{StaticResource Navy}" TranslationY="0" />
+                            <Label VerticalOptions="Center" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource BodyCopy_Label}" Text="{helpers:Translate MinutesLower}" TextColor="{StaticResource Navy}" TranslationY="0" />
                         </Grid>
                         
                         <!--  Note button  -->
@@ -136,7 +147,7 @@
                         
                         <!--  Note text  -->
                         <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="15,0" IsVisible="{Binding NoteText, Converter={StaticResource ObjectNotNullCheckConverter}}" Spacing="3">
-                            <Label x:Name="LblNoteTitle" HorizontalOptions="Center" Style="{StaticResource Label_Label}" Text="{helpers:Translate Note}" TextColor="{StaticResource Gold}" />
+                            <Label x:Name="LblNoteTitle" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Note}" TextColor="{StaticResource Gold}" />
                             <localViews:LabelEx x:Name="LblNoteDesc" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" LineBreakMode="CharacterWrap" Style="{StaticResource SmallLabel_Label}" Text="{Binding NoteText}" TextColor="{StaticResource Green}" VerticalOptions="Start" />
                         </StackLayout>
                     </Grid>

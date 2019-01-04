@@ -699,7 +699,7 @@
             <!-- Selectable mode cell -->
             <DataTemplate x:Key="ModeSelectableCellTemplate">
                 <ViewCell>
-                    <Grid Padding="2,3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid Padding="2,3" MinimumHeightRequest="70" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,10">
                         <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -754,7 +754,7 @@
             <!-- Checkable Mode Cell -->
             <DataTemplate x:Key="ModeCellTemplate">
                 <ViewCell>
-                    <Grid Padding="2,3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,10">
+                    <Grid Padding="2,3" MinimumHeightRequest="70" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,10">
                         <Grid ColumnSpacing="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

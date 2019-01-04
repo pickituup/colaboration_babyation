@@ -88,16 +88,34 @@
                             ValueStyle="{StaticResource Form_ElementLabel}" />
 
                         <!--  START TIME  -->
-                        <pickers:MaskedTimePicker
-                            x:Name="NurseStartTime"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            HeaderStyle="{StaticResource Form_ElementHeader}"
-                            HeaderText="{helpers:Translate StartTime_Upper}"
-                            HorizontalOptions="FillAndExpand"
-                            TimeFormat="HH:mm"
-                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
-                            ValueStyle="{StaticResource Form_ElementLabel}" />
+                        <StackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="2"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Vertical"
+                                Spacing="5"
+                                VerticalOptions="CenterAndExpand">
+
+                            <pickers:MaskedTimePicker
+                                x:Name="NurseStartTime"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HeaderStyle="{StaticResource Form_ElementHeader}"
+                                HeaderText="{helpers:Translate StartTime_Upper}"
+                                HorizontalOptions="FillAndExpand"
+                                TimeFormat="h:mm"
+                                ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                                ValueStyle="{StaticResource Form_ElementLabel}" />
+
+                            <Label
+                                x:Name="_formatForNurseStartTime_Label"
+                                    HorizontalOptions="Center"
+                                    IsVisible="False"
+                                    Style="{StaticResource BodyCopy_Label}"
+                                    TextColor="{StaticResource Navy}"
+                                    VerticalOptions="Center" />
+                        </StackLayout>
 
                         <!--  LEFT SIDE DURATION  -->
                         <StackLayout
@@ -119,7 +137,7 @@
                                 Text="{Binding FirstTime, Mode=TwoWay}"
                                 Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:DurationTimeValidatorBehavior />
+                                    <bv:DurationTimeNoLeadingZerosValidatorBehavior />
                                 </Entry.Behaviors>
                             </textEditors:EntryEx>
                             <Label
@@ -163,7 +181,7 @@
                                 Text="{Binding LastTime, Mode=TwoWay}"
                                 Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
-                                    <bv:DurationTimeValidatorBehavior />
+                                    <bv:DurationTimeNoLeadingZerosValidatorBehavior />
                                 </Entry.Behaviors>
                             </textEditors:EntryEx>
                             <Label

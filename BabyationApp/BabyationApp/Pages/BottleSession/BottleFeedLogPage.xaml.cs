@@ -478,7 +478,19 @@ namespace BabyationApp.Pages.BottleSession
                 {
                     return AppResource.DateDelimiter2; // __/__/____
                 }
-                return DateValue.ToDateString(false);
+                string date = DateValue.ToString("MM/dd/yyyy");
+
+                return date;
+            }
+        }
+
+        private string _nurseStartTimeFormat;
+        public string NurseStartTimeFormat
+        {
+            get => _nurseStartTimeFormat;
+            private set
+            {
+                SetPropertyChanged(ref _nurseStartTimeFormat, value);
             }
         }
 
@@ -503,9 +515,15 @@ namespace BabyationApp.Pages.BottleSession
             {
                 if (TimeSpan.Zero == StartTimeValue)
                 {
+                    NurseStartTimeFormat = null;
                     return AppResource.TimeDelimiter2; // __:__
                 }
-                return StartTimeValue.ToTimeString(false);
+
+                NurseStartTimeFormat = new DateTime(StartTimeValue.Ticks).ToString("tt").ToLower(); //AM or PM
+
+                //return StartTimeValue.ToTimeString(false);
+                string time = Convert.ToDateTime(StartTimeValue.ToString()).ToString("h:mm");
+                return time;
             }
         }
 
@@ -566,9 +584,9 @@ namespace BabyationApp.Pages.BottleSession
             {
                 if (SetPropertyChanged(ref _startTimeValue, value))
                 {
-                    SetPropertyChanged(nameof(StartTimeText));
                     SetPropertyChanged(nameof(IsDataValid));
                 }
+                    SetPropertyChanged(nameof(StartTimeText));
             }
         }
 

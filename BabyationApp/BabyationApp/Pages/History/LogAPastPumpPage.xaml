@@ -60,8 +60,8 @@
                             HeaderStyle="{StaticResource Form_ElementHeader}"
                             HeaderText="{helpers:Translate Date}"
                             HorizontalOptions="Center"
-                            ValuePlaceholderStyle="{StaticResource LocalPlaceholderLabel}"
-                            ValueStyle="{StaticResource LocalValueLabel}" />
+                            ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                            ValueStyle="{StaticResource Form_ElementLabel}" />
 
                         <Grid
                             Grid.Row="1"
@@ -88,8 +88,8 @@
                                     HeaderText="{helpers:Translate StartTime_Upper}"
                                     TimeFormat="h:mm"
                                     Time="{Binding Time}"
-                                    ValuePlaceholderStyle="{StaticResource LocalPlaceholderLabel}"
-                                    ValueStyle="{StaticResource LocalValueLabel}" />
+                                    ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}"
+                                    ValueStyle="{StaticResource Form_ElementLabel}" />
 
                                 <Label
                                     HorizontalOptions="Center"
@@ -115,7 +115,7 @@
                                     Keyboard="Numeric"
                                     Placeholder="__:__"
                                     PlaceholderColor="{StaticResource MedBlue}"
-                                    Style="{StaticResource LocalValueLabel}"
+                                    Style="{StaticResource Form_ElementLabel}"
                                     Text="{Binding TotalDuration, Mode=TwoWay}"
                                     Unfocused="CheckValidationForm"
                                     VerticalOptions="EndAndExpand">
@@ -150,7 +150,7 @@
                                     Keyboard="Numeric"
                                     Placeholder="__._"
                                     PlaceholderColor="{StaticResource MedBlue}"
-                                    Style="{StaticResource LocalValueLabel}"
+                                    Style="{StaticResource Form_ElementLabel}"
                                     Text="{Binding AmountLeft, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
@@ -179,7 +179,7 @@
                                     Keyboard="Numeric"
                                     Placeholder="__._"
                                     PlaceholderColor="{StaticResource MedBlue}"
-                                    Style="{StaticResource LocalValueLabel}"
+                                    Style="{StaticResource Form_ElementLabel}"
                                     Text="{Binding AmountRight, Mode=TwoWay, Converter={StaticResource PumpAmountConverter}}"
                                     Unfocused="CheckValidationForm">
                                     <Entry.Behaviors>
@@ -208,7 +208,7 @@
                                 Keyboard="Numeric"
                                 Placeholder="00.00"
                                 PlaceholderColor="{StaticResource Navy}"
-                                Style="{StaticResource LocalValueLabel}"
+                                Style="{StaticResource Form_ElementLabel}"
                                 Text="{Binding TotalAmount, Mode=TwoWay}">
                                 <!--<Entry.Behaviors>
                                     <bv:MaskedBehavior Mask="XX.XX" />

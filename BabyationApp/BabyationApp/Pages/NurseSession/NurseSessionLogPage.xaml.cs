@@ -96,6 +96,8 @@ namespace BabyationApp.Pages.NurseSession
                                 }
                             }
                         }
+
+                        ResolveNurseStartTimeFormat();
                     }
                     catch (Exception ex)
                     {
@@ -295,6 +297,34 @@ namespace BabyationApp.Pages.NurseSession
 
             _btnGroup.UpdateCurrentButton(null);
             BtnAddNote.IsPressed = false;
+
+            ResolveNurseStartTimeFormat();
+        }
+
+        private void ResolveNurseStartTimeFormat()
+        {
+            try
+            {
+                if (NurseStartTime.Time.HasValue)
+                {
+                    //_formatForNurseStartTime_Label.Text = TimeSpan.Zero == NurseStartTime.Time ? null : new DateTime(NurseStartTime.Time.Value.Ticks).ToString("tt").ToLower(); //AM or PM
+                    _formatForNurseStartTime_Label.Text = new DateTime(NurseStartTime.Time.Value.Ticks).ToString("tt").ToLower(); //AM or PM
+                    _formatForNurseStartTime_Label.IsVisible = !string.IsNullOrEmpty(_formatForNurseStartTime_Label.Text);
+                }
+                else
+                {
+                    _formatForNurseStartTime_Label.Text = null;
+                    _formatForNurseStartTime_Label.IsVisible = false;
+
+                }
+            }
+            catch (Exception exc)
+            {
+                Debugger.Break();
+
+                _formatForNurseStartTime_Label.Text = null;
+                _formatForNurseStartTime_Label.IsVisible = false;
+            }
         }
 
         private void TotalCount()

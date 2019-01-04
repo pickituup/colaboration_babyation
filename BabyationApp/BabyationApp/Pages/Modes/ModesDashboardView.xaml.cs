@@ -45,6 +45,9 @@ namespace BabyationApp.Pages.Modes
                 PageManager.Me.SetCurrentPage(typeof(SelectSpeedPage), view => (view as SelectSpeedPage).Initialize(isEditMode: true));
             };
 
+            ExperienceManager.Instance.ExperienceChangedEvent += Instance_ExperienceChanged;
+            ExperienceManager.Instance.ExperienceAddedEvent += Instance_ExperienceChanged;
+            ExperienceManager.Instance.CurrentExperienceChanged += Instance_ExperienceChanged;
         }
 
         /// <summary>
@@ -58,6 +61,11 @@ namespace BabyationApp.Pages.Modes
         }
 
         #region Private
+
+        void Instance_ExperienceChanged(object sender, EventArgs e)
+        {
+            Refresh();
+        }
 
         private void Refresh()
         {
@@ -122,6 +130,7 @@ namespace BabyationApp.Pages.Modes
                 }
             }
 
+            listView.ItemsSource = null;
             listView.ItemsSource = groups;
             listView.SelectedItem = null;
         }
