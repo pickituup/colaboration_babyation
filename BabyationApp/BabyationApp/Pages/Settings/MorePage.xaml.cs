@@ -102,13 +102,12 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                IsEnabled = false,
                 BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
                 Text = AppResource.FAQs,
                 Image = "faqs_med_blue2.png",
                 ImageSelected = "faqs_navy2.png",
                 Command = new Command(() => {
-                    PageManager.Me.SetCurrentPage(typeof(SettingsPage));
+                    PageManager.Me.SetCurrentPage(typeof(SupportPage));
                 })
             });
 

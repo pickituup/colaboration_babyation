@@ -49,8 +49,12 @@ namespace BabyationApp.Pages.Settings.PumpSettings
 
             _groups = new ObservableCollection<PumpModel>();
             PumpGroupItemItem myPumps = new PumpGroupItemItem(PumpManager.Instance.PairedPumps) { GroupTitle = "MY PUMP", GroupKey = "me" };
+
             //_groups.Add(myPumps);
-            listView.ItemsSource = _groups;
+            //listView.ItemsSource = _groups;
+
+            listView.ItemsSource = MockedPumps();
+
             listView.ItemSelected += (s, e) =>
             {
                 if (e.SelectedItem != null)
@@ -70,6 +74,62 @@ namespace BabyationApp.Pages.Settings.PumpSettings
             //        _groups.Add(_myPumps);
             //    });
             //};
+        }
+
+        List<PumpModel> MockedPumps()
+        {
+            var pumps = new List<PumpModel>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                var pump = new PumpModel()
+                {
+                    ActualPumpingMode = PumpMode.Expression,
+                    ActualSpeed = 9,
+                    ActualState = PumpState.Start,
+                    ActualSuction = 9,
+                    AdvertisedName = "Pump A",
+                    AlertMessages = new ObservableCollection<string>() { "Hello", "world" },
+                    BatteryLevel = 9,
+                    ChargeState = true,
+                    CurrentDuration = TimeSpan.FromSeconds(9),
+                    DesiredExperience = 8,
+                    DesiredPumpingMode = PumpMode.Expression,
+                    DesiredSpeed = 8,
+                    DesiredState = PumpState.Pause,
+                    DesiredSuction = 8,
+                    Device = null,
+                    FirmwareRevision = "Hello world version",
+                    HardwareRevision = "Hello world hardware version",
+                    HasAlerts = false,
+                    Id = Guid.NewGuid(),
+                    Index = 0,
+                    InUse = true,
+                    IsConnected = true,
+                    IsFocused = true,
+                    IsSelected = false,
+                    IsUpdateAvailable = true,
+                    IsUpdating = true,
+                    LeftBreastMilkLevel = 90,
+                    Logs = new List<LogEntryModel>(),
+                    ModelNumber = "Duck model number",
+                    Name = $"Pump {i}",
+                    PresetExperiences = new ObservableCollection<ExperienceModel>(),
+                    PumpingSessions = new List<HistoryModel>(),
+                    RightBreastMilkLevel = 80,
+                    SerialNumber = "Cat dog duck serial number",
+                    SoftwareRevision = "Duck software version",
+                    Storage = StorageType.Fridge,
+                    TagBool1 = true,
+                    TagDouble1 = 32,
+                    UpdatePercent = 4,
+                    UserExperiences = new ObservableCollection<ExperienceModel>()
+                };
+
+                pumps.Add(pump);
+            }
+
+            return pumps;
         }
 
         /// <summary>

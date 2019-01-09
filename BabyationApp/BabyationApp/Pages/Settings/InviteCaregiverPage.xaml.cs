@@ -53,21 +53,19 @@ namespace BabyationApp.Pages.Settings
                 return;
 
             ViewModel.IsEmailSending = true;
-            //bool success = //await LoginManager.Instance.ForgotPassword(ViewModel.Text);
 
-            PeopleModel caregiver = new PeopleModel(null) { Email = ViewModel.Text };
-            bool success = ProfileManager.Instance.CurrentProfile.AddCaregiver(caregiver);
+            string message = await ProfileManager.Instance.AddCaregiver(ViewModel.Text);
 
             ViewModel.IsEmailSending = false;
 
-            if (success)
+            if (String.IsNullOrEmpty(message))
             {
                 ShowSavedOverlay();
             }
             else
             {
-                ViewModel.IsEmailValid = false;
-                ModalAlertPage.ShowAlertWithClose(ProfileManager.Instance.CurrentProfile.ErrorMessage ?? AppResource.InvalidEntry);
+                //ModalAlertPage.ShowAlertWithClose(AppResource.InvalidEntry);
+                ModalAlertPage.ShowAlertWithClose(message);
             }
         }
 

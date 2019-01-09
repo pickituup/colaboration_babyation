@@ -32,8 +32,8 @@
                                               Text="{Binding Text}" 
                                               IsEnabled="{Binding IsCodeSending, Converter={StaticResource BooleanInverseConverter}}"
                                               Placeholder="{helpers:Translate AddCodeFromEmail}" 
-                                              Style="{StaticResource Form_ElementEntry}" Keyboard="Default" Margin="0,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                        <localViews:ImageEx x:Name="IconEmailChecked" IsVisible="{Binding IsCodeValid}" Source="icon_checked3" Margin="0, 0, 10, 0" HorizontalOptions="End" VerticalOptions="Center"/>
+                                              Style="{StaticResource Form_ElementEntry}" Keyboard="Default" Margin="0,0,30,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                        <localViews:ImageEx x:Name="IconEmailChecked" IsVisible="{Binding IsCodeValid}" Source="icon_checked3" Margin="0" HorizontalOptions="End" VerticalOptions="Center"/>
                     </Grid>
                 </StackLayout>
                 

@@ -1571,4 +1571,10 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="MinLower" xml:space="preserve">
     <value>min</value>
   </data>
+    <data name="SwitchToSeeYourChildren" xml:space="preserve">
+    <value>To see your children, switch back to the primary account.</value>
+  </data>
+    <data name="SwitchToSeeYourCaregivers" xml:space="preserve">
+    <value>To see your caregivers, switch back to the primary account.</value>
+  </data>
 </root>

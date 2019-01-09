@@ -48,6 +48,16 @@ namespace BabyationApp.Controls.Views
             }
         }
 
+        public static readonly BindableProperty TextStyleProperty = BindableProperty.Create(nameof(TextStyle), typeof(Style), typeof(AddControlView), (Style)Application.Current.Resources["H3_Label"]);
+        public Style TextStyle
+        {
+            get => (Style)GetValue(TextStyleProperty);
+            set
+            {
+                SetValue(TextStyleProperty, value);
+            }
+        }
+
         public static readonly BindableProperty CommandExProperty = BindableProperty.Create(nameof(CommandEx), typeof(ICommand), typeof(AddControlView), null);
         public ICommand CommandEx
         {

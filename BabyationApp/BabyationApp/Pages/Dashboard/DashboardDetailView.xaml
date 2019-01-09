@@ -72,8 +72,9 @@
                                             WidthRequest="38" />
                                         <StackLayout Grid.Column="1">
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Style="{StaticResource Label_Label}" IsVisible="{Binding IsNew}" Text="{helpers:Translate New}" TranslationY="1" TextColor="{StaticResource Gold}" VerticalOptions="End" />
-                                                <Label Style="{StaticResource H2_Label}" Text="{Binding Name}" VerticalOptions="Center">
+                                                <Label Style="{StaticResource Label_Label}" IsVisible="{Binding IsNew}" Text="{helpers:Translate New}"
+                                                       TranslationY="1" TextColor="{StaticResource Gold}" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" />
+                                                <Label Style="{StaticResource H2_Label}" Text="{Binding Name}" VerticalOptions="Center" VerticalTextAlignment="Center">
                                                     <Label.Triggers>
                                                         <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                                             <Setter Property="TextColor" Value="{StaticResource Navy}" />
@@ -83,7 +84,8 @@
                                                         </DataTrigger>
                                                     </Label.Triggers>
                                                 </Label>
-                                                <StackLayout IsVisible="{Binding CreatedBy, Converter={StaticResource StringNotEqualConverter}, ConverterParameter='me'}" Orientation="Horizontal" Spacing="5" TranslationY="2" VerticalOptions="EndAndExpand">
+                                                <StackLayout IsVisible="{Binding CreatedBy, Converter={StaticResource StringNotEqualConverter}, ConverterParameter='me'}" 
+                                                             Orientation="Horizontal" Spacing="5" TranslationY="2" VerticalOptions="Center">
                                                     <Label Style="{StaticResource Label_Label}" Text="{helpers:Translate By}" VerticalOptions="EndAndExpand">
                                                         <Label.Triggers>
                                                             <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
@@ -106,12 +108,7 @@
                                                     </Label>
                                                 </StackLayout>
                                             </StackLayout>
-                                            <Label HorizontalOptions="StartAndExpand" Style="{StaticResource Label_Label}">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="{Binding Description}" LineHeight="1.2" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
+                                            <Label Text="{Binding Description}" HorizontalOptions="StartAndExpand" Style="{StaticResource Label_Label}">
                                                 <Label.Triggers>
                                                     <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                                         <Setter Property="TextColor" Value="{StaticResource Navy}" />

@@ -23,5 +23,6 @@ namespace BabyationApp.DataObjects
         public List<HistoricalSession> HistoricalSessions { get; set; }
         public string SelectedPumpId { get; set; }
         public string SelectedChildId { get; set; }
+        public string Email { get; set; }
     }
 }

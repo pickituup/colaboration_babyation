@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<localViews:RootViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localViews="clr-namespace:BabyationApp.Controls.Views" 
+    x:Class="BabyationApp.Pages.Settings.SupportView">
+    
+    <Grid x:Name="RootLayout">
+        <!-- Placeholder for now -->
+        <WebView Source="http://www.babyation.com" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+    </Grid>
+    
+</localViews:RootViewBase>

@@ -259,7 +259,7 @@ namespace BabyationApp.Managers
                 //Need to sync user table to see if user already exists.
                 if (string.IsNullOrEmpty(_currentUserId) || _currentUserId == Guid.Empty.ToString())
                 {
-                    await SyncUser(Id);
+                    await SyncUser();
                 }
                 DataObjects.User currentUser = await userTable.LookupAsync(Id);
 
@@ -271,21 +271,21 @@ namespace BabyationApp.Managers
                     defaultProfile = new DataObjects.Profile() { Id = Guid.NewGuid().ToString(), PrimaryUserId = currentUser.Id };
                     await AddUpdateProfile(defaultProfile);
                     await SetUserDefaultProfile(currentUser.Id, defaultProfile.Id);
-                    await SyncUser(currentUser.Id);
-                    await SyncProfile(defaultProfile.Id);
+                    await SyncUser();
+                    await SyncProfile();
 
                 } else
                 {
                     //User Existed In Cloud, retrieve profile
-                    await SyncProfile(currentUser.DefaultProfileId);
+                    await SyncProfile();
                     defaultProfile = await GetProfile(currentUser.DefaultProfileId);
                     if(defaultProfile == null)
                     {
                         defaultProfile = new DataObjects.Profile() { Id = Guid.NewGuid().ToString(), PrimaryUserId = currentUser.Id };
                         await AddUpdateProfile(defaultProfile);
                         await SetUserDefaultProfile(currentUser.Id, defaultProfile.Id);
-                        await SyncUser(currentUser.Id);
-                        await SyncProfile(defaultProfile.Id);
+                        await SyncUser();
+                        await SyncProfile();
                     }
                 }
 
@@ -317,14 +317,14 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="Id">Current Authorized User Id</param>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<SyncState> SyncUser(string Id)
+        public async Task<SyncState> SyncUser()
         {
             SyncState state = SyncState.Offline;
             try
             {
                 if (CrossConnectivity.Current.IsConnected)
                 {
-                    await userTable.PullAsync(Guid.NewGuid().ToString(), userTable.Where(w => w.Id == Id));
+                    await userTable.PullAsync(Guid.NewGuid().ToString(), userTable.Select(u => u));
                     state = SyncState.Complete;
                 }
             }
@@ -353,7 +353,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await pumpTable.PullAsync(Guid.NewGuid().ToString(), pumpTable.Where(p => p.ProfileId == _currentProfileId));
+                    await pumpTable.PullAsync(Guid.NewGuid().ToString(), pumpTable.Select(p => p));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -373,7 +373,7 @@ namespace BabyationApp.Managers
                 try
                 {
                     //gets the latest from the table
-                    await firmwareTable.PullAsync(Guid.NewGuid().ToString(), firmwareTable.Select(w => w));
+                    await firmwareTable.PullAsync(Guid.NewGuid().ToString(), firmwareTable.Select(f => f));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -395,14 +395,14 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="Id">Profile ID to sync</param>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<SyncState> SyncProfile(string Id)
+        public async Task<SyncState> SyncProfile()
         {
             SyncState state = SyncState.Offline;
             if (CrossConnectivity.Current.IsConnected)
             {
                 try
                 {
-                    await profileTable.PullAsync(Id, profileTable.Where(w => w.Id == Id));
+                    await profileTable.PullAsync(Guid.NewGuid().ToString(), profileTable.Select(p => p));
                 }
                 catch (MobileServicePushFailedException exc)
                 {
@@ -419,6 +419,7 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="Id">Current Authorized User Id</param>
         /// <returns>System.Threading.Tasks.Task</returns>
+        /*
         public async Task<SyncState> SyncUserData(string Id)
         {
             SyncState state = SyncState.Offline;
@@ -499,7 +500,7 @@ namespace BabyationApp.Managers
             }
             return state;
         }
-
+*/
         /// <summary>
         /// Adds or Inserts Pump Into Pump Table and Syncs with mobile API values
         /// </summary>
@@ -571,7 +572,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await experienceTable.PullAsync(Guid.NewGuid().ToString(), experienceTable.Where(w => w.ProfileId == _currentProfileId));
+                    await experienceTable.PullAsync(Guid.NewGuid().ToString(), experienceTable.Select(e => e));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -620,6 +621,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
+                    //TODO: Verify requirement of where
                     await experienceTable.PullAsync(Guid.NewGuid().ToString(), experienceTable.Where(w => w.ProfileId == emptyGuid));
                     state = SyncState.Complete;
                 }
@@ -647,7 +649,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await historicalSessionTable.PullAsync(Guid.NewGuid().ToString(), historicalSessionTable.Where(w => w.ProfileId == _currentProfileId && w.UserId == _currentUserId));
+                    await historicalSessionTable.PullAsync(Guid.NewGuid().ToString(), historicalSessionTable.Select(h => h));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -746,7 +748,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await mediaTable.PullAsync(Guid.NewGuid().ToString(), mediaTable.Where(w => w.ProfileId == _currentProfileId));
+                    await mediaTable.PullAsync(Guid.NewGuid().ToString(), mediaTable.Select(m => m));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -818,7 +820,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await childrenTable.PullAsync(Guid.NewGuid().ToString(), childrenTable.Where(w => w.ProfileId == _currentProfileId));
+                    await childrenTable.PullAsync(Guid.NewGuid().ToString(), childrenTable.Select(c => c));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -903,7 +905,7 @@ namespace BabyationApp.Managers
                 user.DefaultProfileId = defaultProfileId;
                 await userTable.UpdateAsync(user);
             }
-            return await SyncUser(userId);
+            return await SyncUser();
         }
 
         /// <summary>
@@ -911,17 +913,11 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="userId">string user id of proile to get</param>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<Profile> GetUserProfiles(string userId)
+        public async Task<Profile> GetUserProfiles(string defaultProfileId)
         {
-            IEnumerable<Profile> profiles;
-            Profile profile = null;
-            profiles = await profileTable.Where(p => p.PrimaryUserId == userId).ToEnumerableAsync();
-            foreach(Profile profileIter in profiles)
-            {
-                profile = profileIter;
-                break;
-            }
-            return profile;
+            IEnumerable<Profile> profiles = await profileTable.Where(p => p.Id == defaultProfileId).ToEnumerableAsync();
+
+            return profiles?.FirstOrDefault();
         }
 
         /// <summary>
@@ -935,6 +931,20 @@ namespace BabyationApp.Managers
             try
             {
                 user = (await userTable.Where(u => u.Id == _currentUserId).ToEnumerableAsync()).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error getting user: " + ex.Message);
+            }
+            return user;
+        }
+
+        public async Task<User> GetUserByProfileId(string defaultProfileId)
+        {
+            User user = null;
+            try
+            {
+                user = (await userTable.Where(u => u.DefaultProfileId == defaultProfileId).ToEnumerableAsync()).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -962,31 +972,6 @@ namespace BabyationApp.Managers
         }
 
         /// <summary>
-        /// Syncs User Table with mobile api
-        /// </summary>
-        /// <param name="profileId">string profileid to sync</param>
-        /// <returns>System.Theading.Tasks.Task</returns>
-        public async Task<SyncState> SyncUser()
-        {
-            SyncState state = SyncState.Offline;
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                try
-                {
-                    await userTable.PullAsync(Guid.NewGuid().ToString(), userTable.Where(w => w.Id == _currentUserId));
-                    state = SyncState.Complete;
-                }
-                catch (MobileServicePushFailedException exc)
-                {
-                    await SimpleConflictResolution(exc);
-                    state = SyncState.CompleteWithConflicts;
-                }
-                catch { state = SyncState.Error; }
-            }
-            return state;
-        }
-
-        /// <summary>
         /// Syncs CaregiverRequest Table with mobile api
         /// </summary>
         /// <returns>System.Theading.Tasks.Task</returns>
@@ -998,7 +983,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await caregiverRequestTable.PullAsync(Guid.NewGuid().ToString(), caregiverRequestTable.Where(w => w.ProfileId == _currentProfileId));
+                    await caregiverRequestTable.PullAsync(Guid.NewGuid().ToString(), caregiverRequestTable.Select(c => c));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -1027,7 +1012,7 @@ namespace BabyationApp.Managers
             {
                 try
                 {
-                    await caregiverRelationTable.PullAsync(Guid.NewGuid().ToString(), caregiverRelationTable.Where(w => w.ProfileId == _currentProfileId));
+                    await caregiverRelationTable.PullAsync(Guid.NewGuid().ToString(), caregiverRelationTable.Select(r => r));
                     state = SyncState.Complete;
                 }
                 catch (MobileServicePushFailedException exc)
@@ -1044,7 +1029,17 @@ namespace BabyationApp.Managers
             return state;
         }
 
+        public async Task RemoveCaregiverRelation(DataObjects.CaregiverRelation cRelation)
+        {
+            await caregiverRelationTable.DeleteAsync(cRelation);
+            await SyncCaregiverRelation();
+        }
 
+        public async Task RemoveCaregiverRequest(DataObjects.CaregiverRequest cRequest)
+        {
+            await caregiverRequestTable.DeleteAsync(cRequest);
+            await SyncCaregiverRequest();
+        }
 
         /// <summary>
         /// Gets A Profile
@@ -1053,13 +1048,17 @@ namespace BabyationApp.Managers
         /// <returns>System.Threading.Tasks.Task</returns>
         public async Task<Profile> GetProfile(string profileId)
         {
-            IEnumerable<Profile> profiles;
             Profile profile = null;
-            profiles = await profileTable.Where(p => p.Id == profileId).ToEnumerableAsync();
+            IEnumerable<Profile> profiles = await profileTable.Select(p => p).ToEnumerableAsync();
             foreach (Profile profileIter in profiles)
             {
-                profile = profileIter;
-                break;
+                //Debug.WriteLine($"pID: {profileIter.Id}");
+                if (profileIter.Id == profileId)
+                {
+                    //Debug.WriteLine($"pMail: {profileIter.Email}");
+                    profile = profileIter;
+                    break;
+                }
             }
             return profile;
         }
@@ -1069,9 +1068,31 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="profileId">string profile id</param>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<IEnumerable<CaregiverRequest>> GetCaregivers(string profileId)
+        public async Task<IEnumerable<CaregiverRequest>> GetCaregiversRequests(string profileId)
         {
             return await caregiverRequestTable.Where(c => c.ProfileId == profileId).ToEnumerableAsync();
+        }
+
+        public async Task<CaregiverRequest> GetCaregiverRequest(string profileId, string requestId)
+        {
+            IEnumerable<CaregiverRequest> result = await GetCaregiversRequests(profileId);
+
+            return result?.FirstOrDefault(r => r.ProfileId == requestId);
+        }
+
+        public async Task<IEnumerable<CaregiverRelation>> GetCaregiversRelations(string profileId)
+        {
+            //IEnumerable<CaregiverRelation> items = await caregiverRelationTable.Select(p => p).ToEnumerableAsync();
+            //Debug.WriteLine(items);
+
+            return await caregiverRelationTable.Select(c => c).ToEnumerableAsync();
+        }
+
+        public async Task<CaregiverRelation> GetCaregiverRelation(string profileId, string relationId)
+        {
+            IEnumerable<CaregiverRelation> result = await GetCaregiversRelations(profileId);
+
+            return result?.FirstOrDefault(r => r.ProfileId == relationId);
         }
 
         /// <summary>
@@ -1118,7 +1139,7 @@ namespace BabyationApp.Managers
             {
                 await profileTable.UpdateAsync(profile);
             }
-            return await SyncProfile(profile.Id);
+            return await SyncProfile();
         }
 
 

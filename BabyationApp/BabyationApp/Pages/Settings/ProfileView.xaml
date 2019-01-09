@@ -172,7 +172,7 @@
                               IsVisible="{Binding IsCaregiverExist, Converter={StaticResource BooleanInverseConverter}}" 
                               Padding="-15,0,0,0"
                               HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
-                            <localViews:AddControlView Text="{helpers:Translate AddAuthCode}" CommandEx="{Binding AddCodeCommand}" BackgroundColor="{StaticResource Clear}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                            <localViews:AddControlView Text="{helpers:Translate AddAuthCode}" TextStyle="{StaticResource H2_Label}" CommandEx="{Binding AddCodeCommand}" BackgroundColor="{StaticResource Clear}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                         </Grid>
                         
                         <!-- Checkbox -->
@@ -223,28 +223,29 @@
                     </Grid.RowDefinitions>
                 
                     <!-- Add child control -->
-                    <localViews:AddControlView Grid.Row="0" CommandEx="{Binding AddBabyCommand}" Text="{helpers:Translate AddAnotherBaby}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                    <localViews:AddControlView Grid.Row="0" IsVisible="{Binding IsPrimarySelected}" CommandEx="{Binding AddBabyCommand}" Text="{helpers:Translate AddAnotherBaby}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                 
                     <!-- Babies list -->
                     <localViews:ListViewEx x:Name="ListBabies" Grid.Row="1"
-                              IsAlternatingItemBackgroundEnabled="True"
+                                           IsVisible="{Binding IsPrimarySelected}"
+                                           IsAlternatingItemBackgroundEnabled="True"
                                            OddItemBackground="{StaticResource Key=MedPink50_2}"
                                            EvenItemBackground="{StaticResource Key=Peach}"
-                              ItemsSource="{Binding BabiesList, Mode=OneWay}"
-                              SeparatorVisibility="None" 
-                              HasUnevenRows="True" 
-                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                              BackgroundColor="Transparent">
+                                           ItemsSource="{Binding BabiesList, Mode=OneWay}"
+                                           SeparatorVisibility="None" 
+                                           HasUnevenRows="True" 
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                           BackgroundColor="Transparent">
                         <localViews:ListViewEx.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid  HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
+                                    <Grid HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
                                         <!--<Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
                                                 <Setter Property="BackgroundColor" Value="{StaticResource  Peach}" />
                                             </DataTrigger>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                                <Setter Property="BackgroundColor" Value="{StaticResource MedPink50_2}" />
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Peach30}" />
                                             </DataTrigger>
                                         </Grid.Triggers>-->
                                         
@@ -324,22 +325,30 @@
                                             </localButtons:ButtonEx>
                                             
                                             <!-- Remove child-->
-                                            <localViews:LabelEx Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+                                            <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
                                                                 HeightRequest="35"
                                                                 Text="{helpers:Translate RemoveBaby}"
                                                                 Style="{StaticResource RedLinkLabel}"
                                                                 HorizontalTextAlignment="Center" VerticalTextAlignment="End"
                                                                 HorizontalOptions="FillAndExpand" VerticalOptions="End">
+
                                                 <localViews:LabelEx.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding DeleteCommand}" />
                                                 </localViews:LabelEx.GestureRecognizers>
-                                            </localViews:LabelEx>
+                                            </Label>
                                         </Grid>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </localViews:ListViewEx.ItemTemplate>
                     </localViews:ListViewEx>
+                    
+                    <!-- Message -->
+                    <Label Grid.Row="1" Margin="15, 15, 10, 5"
+                           IsVisible="{Binding IsPrimarySelected, Converter={StaticResource BooleanInverseConverter}}" 
+                           Text="{helpers:Translate SwitchToSeeYourChildren}" 
+                           Style="{StaticResource H2_Label}" 
+                           TextColor="{StaticResource Navy}"/>
                 </Grid>
             </Grid>
     
@@ -352,17 +361,16 @@
                     </Grid.RowDefinitions>
                     
                     <!-- Add caregiver control -->
-                    <localViews:AddControlView Grid.Row="0" Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                    <localViews:AddControlView Grid.Row="0" IsVisible="{Binding IsPrimarySelected}" Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                     
-                    <localViews:ListViewEx x:Name="ListCaregivers" Grid.Row="1" 
-                              ItemsSource="{Binding CaregiversList, Mode=OneWay}"
-                                           IsAlternatingItemBackgroundEnabled="True"
-                                           OddItemBackground="{StaticResource Key=MedPink50_2}"
-                                           EvenItemBackground="{StaticResource Key=Peach}"
-                              SeparatorVisibility="None" 
-                              HasUnevenRows="True" 
-                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                              BackgroundColor="Transparent">
+                    <!-- Caregivers list -->
+                    <localViews:ListViewEx x:Name="ListCaregivers" Grid.Row="1"
+                                           IsVisible="{Binding IsPrimarySelected}"
+                                           ItemsSource="{Binding CaregiversList, Mode=OneWay}"
+                                           SeparatorVisibility="None" 
+                                           HasUnevenRows="True" 
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                           BackgroundColor="Transparent">
                         <localViews:ListViewEx.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -383,7 +391,7 @@
                                             
                                         <StackLayout Grid.Row="0" Spacing="2" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                             <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Form_ElementHeader}" />
-                                            <Label Text="{Binding Email}" Style="{StaticResource Form_ElementLabel}"/>
+                                            <Label Text="{Binding CaregiverEmail}" Style="{StaticResource Form_ElementLabel}"/>
                                         </StackLayout>                                                
                                         
                                         <!-- Remove caregiver -->
@@ -400,6 +408,13 @@
                             </DataTemplate>
                         </localViews:ListViewEx.ItemTemplate>
                     </localViews:ListViewEx>
+                    
+                    <!-- Message -->
+                    <Label Grid.Row="1" Margin="15, 15, 10, 5"
+                           IsVisible="{Binding IsPrimarySelected, Converter={StaticResource BooleanInverseConverter}}" 
+                           Text="{helpers:Translate SwitchToSeeYourCaregivers}" 
+                           Style="{StaticResource H2_Label}" 
+                           TextColor="{StaticResource Navy}"/>
                 </Grid>
             </Grid>
             

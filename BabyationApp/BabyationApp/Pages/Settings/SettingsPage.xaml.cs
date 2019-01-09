@@ -27,8 +27,8 @@ namespace BabyationApp.Pages.Settings
 
             Titlebar.IsVisible = true;
             LeftPageType = typeof(MorePage);
-            Titlebar.LeftButton.IsVisible = false;
-            Titlebar.RightButton.IsVisible = false;
+            Titlebar.LeftButton.IsVisible = true;
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
 
             var items = new List<SettingItemModel>();
             items.Add(new SettingItemModel()
@@ -68,6 +68,7 @@ namespace BabyationApp.Pages.Settings
                 HistoryManager.Instance.Reset();
                 ExperienceManager.Instance.Reset();
                 LoginManager.Instance.SignOut();
+                PageManager.Me.SignOut();
                 PageManager.Me.SetCurrentPage(typeof(SignUpPage));
             };
 

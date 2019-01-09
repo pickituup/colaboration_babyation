@@ -74,7 +74,7 @@ namespace BabyationApp.Pages.FirstTimeUser
 
                 if (success)
                 {
-                    DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
+                    await DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
 
                     if (IsFirstTime == "yes")
                     {
@@ -133,7 +133,7 @@ namespace BabyationApp.Pages.FirstTimeUser
                 {
                     await LoginManager.Instance.GetUserInfo();
 
-                    DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
+                    await DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
 
                     if (IsFirstTime == "yes")
                     {
@@ -166,7 +166,7 @@ namespace BabyationApp.Pages.FirstTimeUser
                 {
                     await LoginManager.Instance.GetUserInfo();
 
-                    DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
+                    await DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
 
                     if (IsFirstTime == "yes")
                     {

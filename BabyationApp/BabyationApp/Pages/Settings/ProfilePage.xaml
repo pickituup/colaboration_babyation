@@ -7,7 +7,7 @@
     x:Class="BabyationApp.Pages.Settings.ProfilePage"
     BackgroundColor="{StaticResource Peach}">
 
-    <StackLayout x:Name="RootLayout" >
+    <StackLayout x:Name="RootLayout">
         <localSettings:ProfileView x:Name="ProfileView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
     </StackLayout>
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using BabyationApp.Managers;
 
 namespace BabyationApp.Models
 {
@@ -14,16 +15,10 @@ namespace BabyationApp.Models
         private ObservableCollection<BabyModel> _babies = new ObservableCollection<BabyModel>();
         private BabyModel _currentBaby;
         private string _name = "";
-        private List<PeopleModel> _peoples = new List<PeopleModel>();
+        private ObservableCollection<CaregiverModel> _caregivers = new ObservableCollection<CaregiverModel>();
         public ProfileModel()
         {
             ShowBabyDeleteAlert = false;
-
-            // Demo:
-            _peoples.Add(new PeopleModel(this) { Email = "abc@.happy.com" });
-            _peoples.Add(new PeopleModel(this) { Email = "def@.unhappy.com" });
-            _peoples.Add(new PeopleModel(this) { Email = "ghj@.sloppy.com" });
-            _peoples.Add(new PeopleModel(this) { Email = "klm@.dry.com" });
 
             CaregiverAccountSelected = false;
         }
@@ -80,10 +75,17 @@ namespace BabyationApp.Models
 
         public bool CaregiverAccountSelected { get; set; }
 
-        private PeopleModel _currentCaregiver;
-        public PeopleModel CurrentCaregiver
+        private CaregiverModel _currentCaregiver;
+        public CaregiverModel CurrentCaregiver
         {
-            get => _currentCaregiver;
+            get
+            {
+                if( null == _currentCaregiver )
+                {
+                    _currentCaregiver = _caregivers.FirstOrDefault(c => c.CaregiverId == ProfileId);
+                }
+                return _currentCaregiver;
+            }
             set
             {
                 SetPropertyChanged(ref _currentCaregiver, value);
@@ -97,35 +99,11 @@ namespace BabyationApp.Models
         private String _errorMessage;
         public String ErrorMessage => _errorMessage;
 
-        public List<PeopleModel> Caregivers
+        public ObservableCollection<CaregiverModel> Caregivers
         {
-            get => _peoples;
+            get => _caregivers;
         }
 
-        public bool AddCaregiver(PeopleModel caregiver)
-        {
-            if( _peoples.Contains(caregiver) )
-            {
-                _errorMessage = "Caregiver already exists";
-                return false;
-            }
-
-            _peoples.Add(caregiver);
-
-            return true;
-        }
-
-        public bool DeleteCaregiver(PeopleModel caregiver)
-        {
-            bool result = false;
-            if(_peoples.Contains(caregiver))
-            {
-                result = _peoples.Remove(caregiver);
-            }
-
-            SetPropertyChanged(nameof(Caregivers));
-
-            return result;
-        }
+        public string ProfileId { get; set; }
     }
 }

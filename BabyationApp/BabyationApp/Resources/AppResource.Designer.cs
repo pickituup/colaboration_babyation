@@ -2500,5 +2500,17 @@ namespace BabyationApp.Resources {
                 return ResourceManager.GetString("MinLower", resourceCulture);
             }
         }
+        
+        internal static string SwitchToSeeYourChildren {
+            get {
+                return ResourceManager.GetString("SwitchToSeeYourChildren", resourceCulture);
+            }
+        }
+        
+        internal static string SwitchToSeeYourCaregivers {
+            get {
+                return ResourceManager.GetString("SwitchToSeeYourCaregivers", resourceCulture);
+            }
+        }
     }
 }

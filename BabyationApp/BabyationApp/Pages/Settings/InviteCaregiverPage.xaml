@@ -27,8 +27,8 @@
                 <StackLayout Orientation="Vertical" Padding="20,10,5,5" Spacing="4" HeightRequest="50" BackgroundColor="{StaticResource LightBlue}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
                     <Label Text="{helpers:Translate EmailUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" HorizontalOptions="Start" VerticalOptions="Center"/>
                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Fill" >
-                        <localEditors:EntryEx x:Name="EntryCode" Text="{Binding Text}" Placeholder="{helpers:Translate EnterCaregiversEmail}" Style="{StaticResource Form_ElementEntry}" Keyboard="Default" Margin="0,0,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                        <localViews:ImageEx x:Name="IconEmailChecked" IsVisible="{Binding IsEmailValid}" Source="icon_checked3" Margin="0, 0, 10, 0" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <localEditors:EntryEx x:Name="EntryCode" Text="{Binding Text}" Placeholder="{helpers:Translate EnterCaregiversEmail}" Style="{StaticResource Form_ElementEntry}" Keyboard="Email" Margin="0,0,30,0" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                        <localViews:ImageEx x:Name="IconEmailChecked" IsVisible="{Binding IsEmailValid}" Source="icon_checked3" Margin="0" HorizontalOptions="End" VerticalOptions="Center"/>
                     </Grid>
                 </StackLayout>
                 

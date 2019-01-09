@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿
 using BabyationApp.Resources;
-using BabyationApp.Managers;
+using Xamarin.Forms;
 
 namespace BabyationApp.Pages.Settings
 {
-    public partial class ProfilePage : PageBase
+    public partial class SupportPage : PageBase
     {
-        public ProfilePage()
+        public SupportPage()
         {
             InitializeComponent();
 
             Titlebar.IsVisible = true;
-            Titlebar.Title = AppResource.MyProfileUpper;
-            LeftPageType = typeof(SettingsPage);
+            Titlebar.Title = AppResource.FAQs;
+            LeftPageType = typeof(MorePage);
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
             Titlebar.RightButton.IsVisible = false;
             RootLayout.Style = (Style)Application.Current.Resources["StackLayout_NavigationOnTop"];
-
-            ProfileView.PropertyChanged += ProfileView_PropertyChanged;
         }
 
         public override void AboutToShow()
@@ -31,15 +26,13 @@ namespace BabyationApp.Pages.Settings
             // Restore styles
             Titlebar.IsVisible = true;
             RootLayout.Style = (Style)Application.Current.Resources["StackLayout_NavigationOnTop"];
-
-            ProfileView.AboutToShow();
         }
 
         void ProfileView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if( e.PropertyName == "LeftPageType")
+            if (e.PropertyName == "LeftPageType")
             {
-                LeftPageType = ((ProfileView)sender).LeftPageType;
+                LeftPageType = ((SupportView)sender).LeftPageType;
                 Titlebar.LeftButton.IsVisible = (null != LeftPageType);
             }
         }

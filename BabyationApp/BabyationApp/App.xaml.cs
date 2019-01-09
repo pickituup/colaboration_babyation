@@ -96,13 +96,12 @@ namespace BabyationApp
         private bool _cloudSyncComplete = false;
         private bool _pumpSyncComplete = false;
 
-        private void DataManager_InitializeCompleteEvent(object sender, object e)
+        private async void DataManager_InitializeCompleteEvent(object sender, object e)
         {
             try
             {
-                ExperienceManager.Instance.Initialize();
-                HistoryManager.Instance.Initialize();
-
+                await ExperienceManager.Instance.Initialize();
+                await HistoryManager.Instance.Initialize();
             }
             catch (Exception ex)
             {
@@ -137,13 +136,13 @@ namespace BabyationApp
                 pumpManager.FirmwareAvailableEvent += PumpManager_FirmwareAvailableEvent;
                 await pumpManager.Initialize();
                 pumpManager.Start();
-                pumpManager.Sync();
+                await pumpManager.Sync();
 
-                ExperienceManager.Instance.Sync();
+                await ExperienceManager.Instance.Sync();
                 // Make sure the media manager is synced before loading the profile
                 await MediaManager.Instance.Sync();
-                ProfileManager.Instance.Initialize();
-                HistoryManager.Instance.Sync();
+                await ProfileManager.Instance.Initialize();
+                await HistoryManager.Instance.Sync();
 
                 _cloudSyncComplete = true;
                 SyncPump();
@@ -231,14 +230,7 @@ namespace BabyationApp
                             }
                             else
                             {
-                                if (!String.IsNullOrEmpty(Settings.CaregiverCode))
-                                {
-                                    PageManager.Me.StartPageType = typeof(AddAuthCodePage);
-                                }
-                                else
-                                {
-                                    PageManager.Me.StartPageType = typeof(DashboardTabPage);
-                                }
+                                PageManager.Me.StartPageType = typeof(DashboardTabPage);
                             }
                         }
                         else
@@ -247,12 +239,12 @@ namespace BabyationApp
                         }
                     }
                     PageManager.Me.SetCurrentPage(PageManager.Me.StartPageType, view =>
-                    {
-                        var welcomePage = view as WelcomePage;
-                        if (welcomePage != null)
                         {
-                            welcomePage.Initialize(false);
-                        }
+                            var welcomePage = view as WelcomePage;
+                            if (welcomePage != null)
+                            {
+                                welcomePage.Initialize(false);
+                            }
                     });
                 }
                 catch (Exception ex)
@@ -445,11 +437,22 @@ namespace BabyationApp
 
                 if (null != ProfileManager.Instance.CurrentProfile)
                 {
-                    PageManager.Me.SetCurrentPage(typeof(AddAuthCodePage));
+                    CaregiverCodeAction();
                 }
             }
 
             base.OnAppLinkRequestReceived(uri);
+        }
+
+        public void CaregiverCodeAction()
+        {
+            if (!String.IsNullOrEmpty(Settings.CaregiverCode))
+            {
+                PageManager.Me.SetCurrentPage(typeof(AddAuthCodePage), v => 
+                {
+                    (v as AddAuthCodePage).LeftPageType = typeof(DashboardTabPage);
+                });
+            }
         }
     }
 
@@ -526,6 +529,13 @@ namespace BabyationApp
 
         Dictionary<Type, IRootView> _finishedPages = new Dictionary<Type, IRootView>();
 
+        public void SignOut()
+        {
+            _cachePages.Clear();
+            _finishedPages.Clear();
+            _pages.Clear();
+            _pageMain.Children.Clear();
+        }
 
         /// <summary>
         /// Adds a page in the to be caches pages list

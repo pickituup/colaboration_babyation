@@ -53,7 +53,7 @@
                         </DataTrigger>
                     </localButtons:CircleButton.Triggers>
                 </localButtons:CircleButton>
-                <Label x:Name="LabelText" Text="{Binding Source={x:Reference this}, Path=Text}" Style="{StaticResource H3_Label}" TextColor="{StaticResource MedBlue}" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                <Label x:Name="LabelText" Text="{Binding Source={x:Reference this}, Path=Text}" Style="{Binding Source={x:Reference this}, Path=TextStyle}" TextColor="{StaticResource MedBlue}" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
             
             </StackLayout>
         </localButtons:ButtonEx>

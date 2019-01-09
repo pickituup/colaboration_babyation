@@ -33,6 +33,7 @@ namespace BabyationApp.Managers
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Add("Accept", "application/json");
             _client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", Settings.Token);
+            _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
         }
 
         /// <summary>
@@ -197,10 +198,8 @@ namespace BabyationApp.Managers
                         {
                             Debug.WriteLine($"SendAndDeserialize status code: {ex}");
                         }
-                        else
-                        {
-                            throw;
-                        }
+
+                        throw;
                     }
                 }
 

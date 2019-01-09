@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using BabyationApp.Pages.Settings;
 using Xamarin.Forms;
 
 namespace BabyationApp.Pages.StyleGuide
@@ -12,9 +12,9 @@ namespace BabyationApp.Pages.StyleGuide
             InitializeComponent();
 
             Titlebar.IsVisible = true;
-            LeftPageType = typeof(DashboardTabPage);
+            LeftPageType = typeof(MorePage);
             Titlebar.LeftButton.IsVisible = true;
-            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
+            Titlebar.LeftButton.SetDynamicResource(StyleProperty, "BackButton");
         }
     }
 }

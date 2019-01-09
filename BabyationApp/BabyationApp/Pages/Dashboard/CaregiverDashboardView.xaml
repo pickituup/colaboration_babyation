@@ -24,7 +24,7 @@
         <!-- Logged -->
         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
             <StackLayout Orientation="Vertical" Spacing="4" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                <Label Text="{helpers:Translate LoggedAsUpper}" Style="{StaticResource H1_Label}" TextColor="{StaticResource Gold}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                <Label Text="{helpers:Translate LoggedAsUpper}" Style="{StaticResource Label_Label}" TextColor="{StaticResource Gold}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                 <Label Text="{helpers:Translate Caregiver}" Style="{StaticResource H2_Label}" TextColor="{StaticResource Navy}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
             </StackLayout>
         </Grid>

@@ -12,11 +12,14 @@ using System.IO;
 using FFImageLoading;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Collections.ObjectModel;
 
 namespace BabyationApp.Managers
 {
     public delegate void EventProfilePropertyChanged(ProfileModel profile, string propertyName);
     public delegate void EventBabyModelPropertyChanged(BabyModel baby, string propertyName);
+    public delegate void EventCaregiversPropertyChanged(ProfileModel profile, string propertyName);
+
     public class ProfileManager
     {
         public event EventHandler CurrentBabyChanged;
@@ -54,6 +57,7 @@ namespace BabyationApp.Managers
 
         public event EventProfilePropertyChanged ProfilePropertyChanged;
         public event EventBabyModelPropertyChanged BabyModelPropertyChanged;
+        public event EventCaregiversPropertyChanged CaregiversPropertyChanged;
 
         public void Reset()
         {
@@ -68,7 +72,8 @@ namespace BabyationApp.Managers
         public async Task Sync()
         {
             User user = await DataManager.Instance.GetUser();
-            Profile profile = await DataManager.Instance.GetUserProfiles(LoginManager.Instance.UserId);
+            //Profile profile = await DataManager.Instance.GetUserProfiles(LoginManager.Instance.UserId);
+            Profile profile = await DataManager.Instance.GetUserProfiles(user.DefaultProfileId);
             MediaManager mediaManager = MediaManager.Instance;
 
             if ((user != null) && (profile != null))
@@ -83,7 +88,8 @@ namespace BabyationApp.Managers
                     _currentProfile = new ProfileModel()
                     {
                         Name = userName,
-                        Email = UserEmail
+                        Email = UserEmail,
+                        ProfileId = profile.Id
                     };
                     _currentProfile.PropertyChanged += _currentProfile_PropertyChanged;
 
@@ -93,6 +99,7 @@ namespace BabyationApp.Managers
                 {
                     _currentProfile.Name = userName;
                     _currentProfile.Email = UserEmail;
+                    _currentProfile.ProfileId = profile.Id;
                     _currentProfile.PropertyChanged += _currentProfile_PropertyChanged;
 
                     ProfilePropertyChanged?.Invoke(_currentProfile, nameof(CurrentProfile));
@@ -129,6 +136,8 @@ namespace BabyationApp.Managers
                         }
                     }
                 }
+
+                await UpdateCaregivers();
             }
         }
 
@@ -215,31 +224,158 @@ namespace BabyationApp.Managers
             }
         }
 
-        public Task<CaregiverRequest> AddCaregiver(string email)
+        #region Caregivers
+
+        public async Task<string> AddCaregiver(string email)
         {
             try
             {
-                return HttpManager.Instance.PostAsync<CaregiverRequest>($"Caregiver/CreateCaregiverRequest?email={email}");
+                await HttpManager.Instance.PostAsync<CaregiverRequest>($"Caregiver/CreateCaregiverRequest?email={email}");
+
+                await Task.WhenAll(new Task[]
+                {
+                    DataManager.Instance.SyncCaregiverRequest(),
+                    DataManager.Instance.SyncCaregiverRelation()
+                });
+
+                await UpdateCaregivers();
+
+                return null;
             }
             catch (HttpRequestException ex)
             {
                 Debug.WriteLine($"AddCaregiver: {ex}");
+
+                return ex.Message;
             }
-            return null;
         }
 
-        public Task<CaregiverRelation> VerifyCaregiverCode(string verificationCode)
+        public async Task<string> VerifyCaregiverCode(string verificationCode)
         {
             try
             {
-                return HttpManager.Instance.PostAsync<CaregiverRelation>($"Caregiver/ValidateCaregiver?verificationCode={verificationCode}");
+                CaregiverRelation relation = await HttpManager.Instance.PostAsync<CaregiverRelation>($"Caregiver/ValidateCaregiver?verificationCode={verificationCode}");
+
+                await Task.WhenAll(new Task[]
+                {
+                    DataManager.Instance.SyncUser(),
+                    DataManager.Instance.SyncProfile(),
+                    DataManager.Instance.SyncPump(),
+                    DataManager.Instance.SyncChild(),
+                    DataManager.Instance.SyncMedia(),
+                    DataManager.Instance.SyncHistoricalSessions(),
+                    DataManager.Instance.SyncCaregiverRequest(),
+                    DataManager.Instance.SyncCaregiverRelation()
+                });
+
+                await UpdateCaregivers();
+
+                return null;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"VerifyCaregiverCode: {ex}");
+
+                return ex.Message;
             }
-            return null;
         }
+
+        public async Task RemoveCaregiver(CaregiverModel model, bool fromAccount = false)
+        {
+            if (_currentProfile != null)
+            {
+                if (model.IsRequest)
+                {
+                    CaregiverRequest cRequest = await DataManager.Instance.GetCaregiverRequest(_currentProfile.ProfileId, model.ProfileId);
+
+                    if (null != cRequest)
+                    {
+                        cRequest.IsDeleteRequested = true;
+                        await DataManager.Instance.RemoveCaregiverRequest(cRequest);
+                    }
+                }
+                else
+                {
+                    CaregiverRelation cRelation = await DataManager.Instance.GetCaregiverRelation(_currentProfile.ProfileId, model.ProfileId);
+
+                    if (null != cRelation)
+                    {
+                        cRelation.IsDeleteRequested = true;
+                        await DataManager.Instance.RemoveCaregiverRelation(cRelation);
+                    }
+                }
+
+                if( fromAccount )
+                {
+                    await Task.WhenAll(new Task[]
+                    {
+                        DataManager.Instance.SyncUser(),
+                        DataManager.Instance.SyncProfile(),
+                        DataManager.Instance.SyncPump(),
+                        DataManager.Instance.SyncChild(),
+                        DataManager.Instance.SyncMedia(),
+                        DataManager.Instance.SyncHistoricalSessions()
+                    });
+                }
+
+                await UpdateCaregivers();
+            }
+        }
+
+        private async Task UpdateCaregivers()
+        {
+            if (null != _currentProfile)
+            {
+                _currentProfile.Caregivers.Clear();
+
+                IEnumerable<CaregiverRelation> cRelations = await DataManager.Instance.GetCaregiversRelations(_currentProfile.ProfileId);
+                foreach (var item in cRelations)
+                {
+                    if(item.IsDeleteRequested)
+                        continue;
+
+                    CaregiverModel model = new CaregiverModel()
+                    {
+                        ProfileId = item?.ProfileId,
+                        CaregiverId = item?.CaregiverProfileId,
+                        CaregiverEmail = item?.CaregiverEmail,
+                        IsRequest = false
+                    };
+
+                    string probeId = (_currentProfile.ProfileId == item.CaregiverProfileId ? item.ProfileId : item.CaregiverProfileId);
+
+                    Profile profile = await DataManager.Instance.GetProfile(probeId);
+                    if( null != profile )
+                    {
+                        model.CaregiverEmail = profile.Email;
+                    }
+                    _currentProfile.Caregivers.Add(model);
+                }
+
+                IEnumerable<CaregiverRequest> cRequests = await DataManager.Instance.GetCaregiversRequests(_currentProfile.ProfileId);
+                foreach (var item in cRequests)
+                {
+                    if(item.IsDeleteRequested)
+                        continue;
+
+                    CaregiverModel model = new CaregiverModel()
+                    {
+                        ProfileId = item?.ProfileId,
+                        CaregiverId = null,
+                        CaregiverEmail = item?.Email,
+                        IsRequest = true
+                    };
+                    _currentProfile.Caregivers.Add(model);
+                }
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    ProfilePropertyChanged?.Invoke(_currentProfile, nameof(_currentProfile.Caregivers));
+                });
+            }
+        }
+
+        #endregion
 
         private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

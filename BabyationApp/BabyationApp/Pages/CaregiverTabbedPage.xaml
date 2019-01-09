@@ -21,7 +21,7 @@
             <localDashboardPages:CaregiverDashboardView x:Name="PageCaregiverDashboard" />
             <localBottleSessionPage:MyInventoryView x:Name="PageInventory" CaregiverFlow="true" />
             <localSettingsPages:ProfileView x:Name="PageSettings" CaregiverFlow="true" />
-            <localPages:SupportView x:Name="PageFAQ"/>
+            <localSettingsPages:SupportView x:Name="PageFAQ" CaregiverFlow="true" />
         </Grid>
         
         <!-- Tabs -->

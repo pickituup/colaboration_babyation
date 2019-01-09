@@ -11,7 +11,7 @@
     x:Class="BabyationApp.Pages.Reminders.RemindersPage"
     x:Name="this"
     BackgroundColor="{StaticResource Peach}"
-    Title="{helpers:Translate Text=MyScheduleUpper}">
+    Title="{helpers:Translate MyScheduleUpper}">
     
     <ContentView.Resources>
         <ResourceDictionary>

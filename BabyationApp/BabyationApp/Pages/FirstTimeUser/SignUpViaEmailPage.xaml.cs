@@ -102,7 +102,7 @@ namespace BabyationApp.Pages.FirstTimeUser
 
                         if (!string.IsNullOrEmpty(LoginManager.Instance.UserId))
                         {
-                            DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
+                            await DataManager.Instance.SetNewUser(LoginManager.Instance.UserId);
 
                             PageManager.Me.SetCurrentPage(typeof(TermsAndConditionsPage));
                         }

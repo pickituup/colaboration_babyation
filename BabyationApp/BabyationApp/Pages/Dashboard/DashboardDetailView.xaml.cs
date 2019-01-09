@@ -224,6 +224,11 @@ namespace BabyationApp.Pages.Dashboard
             LblGreetings.Text = AppResource.HiMama;
             listView.SelectedItem = null;
             RefreshTitlebar();
+
+            Task.Delay(200).ContinueWith((obj) =>
+            {
+                Device.BeginInvokeOnMainThread(App.Instance.CaregiverCodeAction);
+            });
         }
 
         /// <summary>

@@ -552,7 +552,7 @@
                 <Setter Property="TextColor" Value="{StaticResource Red}"/>
                 <Setter Property="TextDecorations" Value="Underline" />
             </Style>
-
+            
             <!-- Switch button -->
             <Style x:Key="SwitchOnStyle" TargetType="Label" BasedOn="{StaticResource SmallLabel_Label}">
                 <Setter Property="TextColor" Value="LightPink"/>
@@ -696,9 +696,6 @@
             <!-- Datamodel: ModeItem -->
             <!-- Note: SelectModeCommand should be set -->
             <!--  -->
-            
-            
-            
             <!-- Selectable mode cell -->
             <DataTemplate x:Key="ModeSelectableCellTemplate">
                 <ViewCell>
@@ -753,20 +750,6 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             <!-- Checkable Mode Cell -->
             <DataTemplate x:Key="ModeCellTemplate">
@@ -824,17 +807,6 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <!-- ENDL Cell templates -->
             
         </ResourceDictionary>

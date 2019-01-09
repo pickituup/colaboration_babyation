@@ -14,8 +14,6 @@ namespace BabyationApp.Pages.Settings
 {
     public partial class AddAuthCodePage : PageBase
     {
-        private bool _updateStatus = false;
-
         private AddAuthCodeModel ViewModel { get; set; }
 
         public AddAuthCodePage()
@@ -58,27 +56,19 @@ namespace BabyationApp.Pages.Settings
                 return;
 
             ViewModel.IsCodeSending = true;
-            CaregiverRelation relation = await ProfileManager.Instance.VerifyCaregiverCode(ViewModel.Text);
-            if (null != relation)
-            {
-                //ProfileManager.Instance.CurrentProfile.CurrentCaregiver = ProfileManager.Instance.CurrentProfile.Caregivers.Where(x => (x.CaregiverProfileId == relation.CaregiverProfileId)).Select(x);
-                _updateStatus = true;
-            }
-            else
-            {
-                _updateStatus = false;
-            }
+
+            string message = await ProfileManager.Instance.VerifyCaregiverCode(ViewModel.Text);
 
             ViewModel.IsCodeSending = false;
 
-            if (_updateStatus)
+            if (String.IsNullOrEmpty(message))
             {
                 ShowSavedOverlay();
             }
             else
             {
-                ViewModel.IsCodeValid = false;
-                ModalAlertPage.ShowAlertWithClose(AppResource.InvalidEntry);
+                //ModalAlertPage.ShowAlertWithClose(AppResource.InvalidEntry);
+                ModalAlertPage.ShowAlertWithClose(message);
             }
         }
 

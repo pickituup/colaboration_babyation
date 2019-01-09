@@ -32,6 +32,7 @@ namespace BabyationApp.Pages.Settings
 
         private readonly ButtonExGroup _btnGroupTab = new ButtonExGroup();
         private BabyModel _babyDeleteRequested;
+        private Type oldLeftPageType = null;
 
         #region Bindable properties
 
@@ -44,36 +45,6 @@ namespace BabyationApp.Pages.Settings
                 SetValue(CaregiverFlowProperty, value);
             }
         }
-
-        //public static readonly BindableProperty ShowBabyDeleteConfirmationProperty = BindableProperty.Create(nameof(ShowBabyDeleteConfirmation), typeof(bool), typeof(ProfileView), false);
-        //public bool ShowBabyDeleteConfirmation
-        //{
-        //    get => (bool)GetValue(ShowBabyDeleteConfirmationProperty);
-        //    set
-        //    {
-        //        SetValue(ShowBabyDeleteConfirmationProperty, value);
-        //    }
-        //}
-
-        //public static readonly BindableProperty ShowCaregiverDeleteConfirmationProperty = BindableProperty.Create(nameof(ShowCaregiverDeleteConfirmation), typeof(bool), typeof(ProfileView), false);
-        //public bool ShowCaregiverDeleteConfirmation
-        //{
-        //    get => (bool)GetValue(ShowCaregiverDeleteConfirmationProperty);
-        //    set
-        //    {
-        //        SetValue(ShowCaregiverDeleteConfirmationProperty, value);
-        //    }
-        //}
-
-        //public static readonly BindableProperty ShowCaregiverDeleteYourselfConfirmationProperty = BindableProperty.Create(nameof(ShowCaregiverDeleteYourselfConfirmation), typeof(bool), typeof(ProfileView), false);
-        //public bool ShowCaregiverDeleteYourselfConfirmation
-        //{
-        //    get => (bool)GetValue(ShowCaregiverDeleteYourselfConfirmationProperty);
-        //    set
-        //    {
-        //        SetValue(ShowCaregiverDeleteYourselfConfirmationProperty, value);
-        //    }
-        //}
 
         #endregion
 
@@ -110,6 +81,7 @@ namespace BabyationApp.Pages.Settings
 
             // Caregivers
             ContextMyCaregivers = new CaregiversViewModel(AddCaregiver);
+            ContextMyCaregivers.PropertyChanged += ContextMyCaregivers_PropertyChanged;
             RLMyCaregivers.BindingContext = ContextMyCaregivers;
             RemoveCaregiverContainer.BindingContext = ContextMyCaregivers;
             ContextMyCaregivers.Reset();
@@ -140,11 +112,13 @@ namespace BabyationApp.Pages.Settings
                 Titlebar.IsVisible = true;
                 Titlebar.Title = AppResource.MyProfile;
                 RootLayout.Style = (Style)Application.Current.Resources["AbsoluteLayout_NavigationOnTop"];
+                LeftPageType = null;
             }
             else
             {
                 Titlebar.IsVisible = false;
                 this.Padding = new Thickness(0);
+                LeftPageType = typeof(SettingsPage);
             }
 
             UpdateVisibleContext();
@@ -154,13 +128,15 @@ namespace BabyationApp.Pages.Settings
 
         #region Private - Common
 
-        private void UpdateVisibleContext()
+        void UpdateVisibleContext()
         {
             ProfileManager.Instance.CurrentBabyChanged -= Instance_CurrentBabyChanged;
             ProfileManager.Instance.BabyModelPropertyChanged -= Instance_BabyModelPropertyChanged;
+            ProfileManager.Instance.ProfilePropertyChanged -= Instance_ProfilePropertyChanged;
 
             if (RLMyInfo.IsVisible)
             {
+                ProfileManager.Instance.ProfilePropertyChanged += Instance_ProfilePropertyChanged;
                 ContextMyInfo.Reset();
             }
             else if (RLMyBabies.IsVisible)
@@ -172,7 +148,23 @@ namespace BabyationApp.Pages.Settings
             }
             else if (RLMyCaregivers.IsVisible)
             {
+                ProfileManager.Instance.ProfilePropertyChanged += Instance_ProfilePropertyChanged;
                 ContextMyCaregivers.Reset();
+            }
+        }
+
+        void Instance_ProfilePropertyChanged(ProfileModel profile, string propertyName)
+        {
+            if (propertyName == "Caregivers")
+            {
+                if (RLMyInfo.IsVisible)
+                {
+                    ContextMyInfo.Reset();
+                }
+                else if (RLMyCaregivers.IsVisible)
+                {
+                    ContextMyCaregivers.Refresh(true);
+                }
             }
         }
 
@@ -180,12 +172,12 @@ namespace BabyationApp.Pages.Settings
 
         #region Private - My Info
 
-        private void ChangePassword()
+        void ChangePassword()
         {
             PageManager.Me.SetCurrentPage(typeof(ChangePasswordPage));
         }
 
-        private void AddAuthCode()
+        void AddAuthCode()
         {
             PageManager.Me.SetCurrentPage(typeof(AddAuthCodePage));
         }
@@ -194,7 +186,7 @@ namespace BabyationApp.Pages.Settings
         {
             if( e.PropertyName == "IsPrimarySelected" )
             {
-                LeftPageType = ContextMyInfo.IsPrimarySelected ? typeof(DashboardTabPage) : typeof(CaregiverTabbedPage);
+                LeftPageType = ContextMyInfo.IsPrimarySelected ? typeof(SettingsPage) : typeof(CaregiverTabbedPage);
 
                 if( CaregiverFlow )
                 {
@@ -278,9 +270,26 @@ namespace BabyationApp.Pages.Settings
 
         #region Private - Caregivers
 
-        private void AddCaregiver()
+        void AddCaregiver()
         {
             PageManager.Me.SetCurrentPage(typeof(InviteCaregiverPage));
+        }
+
+        void ContextMyCaregivers_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsCaregiverDeleteRequested")
+            {
+                if (ContextMyCaregivers.IsCaregiverDeleteRequested)
+                {
+                    oldLeftPageType = LeftPageType;
+                    LeftPageType = null;
+                }
+                else
+                {
+                    LeftPageType = oldLeftPageType;
+                    oldLeftPageType = null;
+                }
+            }
         }
 
         #endregion
@@ -367,7 +376,7 @@ namespace BabyationApp.Pages.Settings
 
         public string CaregiverEmail
         {
-            get => ProfileManager.Instance.CurrentProfile?.CurrentCaregiver?.Email ?? String.Empty;
+            get => ProfileManager.Instance.CurrentProfile?.CurrentCaregiver?.CaregiverEmail ?? String.Empty;
         }
 
         #endregion
@@ -461,8 +470,10 @@ namespace BabyationApp.Pages.Settings
         {
             get
             {
-                _confirmDeleteYourselfAsCaregiverCommand = _confirmDeleteYourselfAsCaregiverCommand ?? new Command(() =>
+                _confirmDeleteYourselfAsCaregiverCommand = _confirmDeleteYourselfAsCaregiverCommand ?? new Command(async () =>
                 {
+                    await ProfileManager.Instance.RemoveCaregiver(ProfileManager.Instance.CurrentProfile.CurrentCaregiver, true);
+
                     ProfileManager.Instance.CurrentProfile.CurrentCaregiver = null;
 
                     SetPropertyChanged(nameof(CaregiverEmail));
@@ -471,6 +482,7 @@ namespace BabyationApp.Pages.Settings
 
                     IsYourselfAsCaregiverDeleteRequested = false;
                 });
+
                 return _confirmDeleteYourselfAsCaregiverCommand;
             }
         }
@@ -508,6 +520,11 @@ namespace BabyationApp.Pages.Settings
         }
 
         #region Public UI properties
+
+        public bool IsPrimarySelected
+        {
+            get => !(ProfileManager.Instance.CurrentProfile?.CaregiverAccountSelected ?? false);
+        }
 
         private bool _isShowMainPage;
         public bool IsShowMainPage
@@ -607,7 +624,7 @@ namespace BabyationApp.Pages.Settings
     {
         private Action AddCaregiverAction { get; set; }
 
-        private PeopleModel _caregiverDeleteRequested = null;
+        private CaregiverModel _caregiverDeleteRequested = null;
 
         public CaregiversViewModel(Action addCaregiver)
         {
@@ -620,7 +637,12 @@ namespace BabyationApp.Pages.Settings
 
             _caregivers = null;
 
-            Refresh();
+            UpdateCaregivers();
+        }
+
+        public void Refresh(bool force = false)
+        {
+            UpdateCaregivers(force);
         }
 
         private bool _isShowMainPage;
@@ -635,6 +657,11 @@ namespace BabyationApp.Pages.Settings
 
         #region Public UI properties - User
 
+        public bool IsPrimarySelected
+        {
+            get => !(ProfileManager.Instance.CurrentProfile?.CaregiverAccountSelected ?? false);
+        }
+
         private bool _isCaregiverDeleteRequested;
         public bool IsCaregiverDeleteRequested
         { 
@@ -646,8 +673,8 @@ namespace BabyationApp.Pages.Settings
             }
         }
 
-        private ObservableCollection<PeopleModel> _caregivers;
-        public ObservableCollection<PeopleModel> CaregiversList
+        private ObservableCollection<CaregiverModel> _caregivers;
+        public ObservableCollection<CaregiverModel> CaregiversList
         {
             get => _caregivers ?? null;
         }
@@ -677,14 +704,14 @@ namespace BabyationApp.Pages.Settings
             {
                 _removeCaregiverCommand = _removeCaregiverCommand ?? new Command((obj) =>
                 {
-                    if (!obj.GetType().Equals(typeof(PeopleModel)))
+                    if (!obj.GetType().Equals(typeof(CaregiverModel)))
                     {
                         return;
                     }
 
                     IsCaregiverDeleteRequested = true;
 
-                    _caregiverDeleteRequested = (PeopleModel)obj;
+                    _caregiverDeleteRequested = (CaregiverModel)obj;
                 });
                 return _removeCaregiverCommand;
             }
@@ -709,17 +736,15 @@ namespace BabyationApp.Pages.Settings
         {
             get
             {
-                _confirmDeleteCaregiverCommand = _confirmDeleteCaregiverCommand ?? new Command(() =>
+                _confirmDeleteCaregiverCommand = _confirmDeleteCaregiverCommand ?? new Command( async () =>
                 {
-                    if (ProfileManager.Instance.CurrentProfile.DeleteCaregiver(_caregiverDeleteRequested))
-                    {
-                        _caregivers.Remove(_caregiverDeleteRequested);
-                        _caregiverDeleteRequested = null;
+                    await ProfileManager.Instance.RemoveCaregiver(_caregiverDeleteRequested);
 
-                        SetPropertyChanged(nameof(CaregiversList));
+                    _caregiverDeleteRequested = null;
 
-                        IsCaregiverDeleteRequested = false;
-                    }
+                    SetPropertyChanged(nameof(CaregiversList));
+
+                    IsCaregiverDeleteRequested = false;
                 });
                 return _confirmDeleteCaregiverCommand;
             }
@@ -730,17 +755,35 @@ namespace BabyationApp.Pages.Settings
 
         #region Private
 
-        private void Refresh()
+        private void UpdateCaregivers(bool force = false)
         {
-            if( null == CaregiversList )
+            ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+            if( null != profile )
             {
-                if (0 < (ProfileManager.Instance.CurrentProfile?.Caregivers?.Count ?? 0))
+                if (null == CaregiversList && 0 < profile.Caregivers.Count)
                 {
-                    _caregivers = new ObservableCollection<PeopleModel>(ProfileManager.Instance.CurrentProfile.Caregivers);
+                    _caregivers = new ObservableCollection<CaregiverModel>(profile.Caregivers);
+                    CaregiverModel caregiver = _caregivers.FirstOrDefault(c => c.CaregiverId == profile.ProfileId);
+                    if (null != caregiver)
+                    {
+                        _caregivers.Remove(caregiver);
+                    }
                 }
-            }
 
-            SetPropertyChanged(nameof(CaregiversList));
+                if (force)
+                {
+                    CaregiversList.Clear();
+
+                    foreach (var item in profile.Caregivers)
+                    {
+                        if (profile.ProfileId == item.CaregiverId)
+                            continue;
+
+                        CaregiversList.Add(item);
+                    }
+                }
+                SetPropertyChanged(nameof(CaregiversList));
+            }
         }
 
         #endregion
