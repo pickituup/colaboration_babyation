@@ -11,7 +11,9 @@ namespace BabyationApp.Converters
         {
             if (value is string)
             {
-                return InputValidator.IsValidInput(value as string);
+                bool result = InputValidator.IsValidInput(value as string);
+
+                return result;
             }
             return false;
         }

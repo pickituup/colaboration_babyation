@@ -158,7 +158,7 @@ namespace BabyationApp.Pages.Reminders
             {
                 if (DateTime.MinValue == Date)
                 {
-                    return AppResource.DateDelimiter2; // __/__/____
+                    return AppResource.CommonPlaceholderDelimiter; // __/__
                 }
                 return Date.ToString(DateFormat);
             }
@@ -172,6 +172,7 @@ namespace BabyationApp.Pages.Reminders
                 if (SetPropertyChanged(ref _date, value))
                 {
                     SetPropertyChanged(nameof(IsReadyToGo));
+                    SetPropertyChanged(nameof(DateValue));
                 }
             }
         }
@@ -183,7 +184,7 @@ namespace BabyationApp.Pages.Reminders
             {
                 if (TimeSpan.Zero == Time)
                 {
-                    return AppResource.TimeDelimiter2; //__:__
+                    return AppResource.CommonPlaceholderDelimiter; //__/__
                 }
                 return new DateTime(Time.Ticks).ToString(TimeFormat);
             }
@@ -197,6 +198,7 @@ namespace BabyationApp.Pages.Reminders
                 if (SetPropertyChanged(ref _time, value))
                 {
                     SetPropertyChanged(nameof(TimeAbbr));
+                    SetPropertyChanged(nameof(TimeValue));
                     SetPropertyChanged(nameof(IsReadyToGo));
                 }
             }

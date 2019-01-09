@@ -600,7 +600,13 @@
                 </Setter>
             </Style>
             <!-- END Form label style -->
-            
+
+            <!--Date picker form styles-->
+            <Style x:Key="Form_ElementDatePickerLabelPlaceholder" BasedOn="{StaticResource Timer_Label}" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
+            </Style>
+            <!--END Date picker form styles-->
+
             <!-- Form style: entry -->
             <Style x:Key="Form_BaseEntry" TargetType="localEditors:EntryEx">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />

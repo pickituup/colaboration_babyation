@@ -69,7 +69,7 @@
                             <!--  Date  -->
                             <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Date}" TextColor="{StaticResource Gold}" />
                             <Grid Grid.Row="1" Grid.Column="0" RowSpacing="0">
-                                <localViews:DatePickerEx x:Name="DtPicker" Date="{Binding DateValue}" Format="MM/dd" HorizontalOptions="Center" IsVisible="False" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" VerticalOptions="Center" />
+                                <localViews:DatePickerEx x:Name="DtPicker" Date="{Binding DateValue}"  Format="MM/dd" HorizontalOptions="Center" IsVisible="False" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" VerticalOptions="Center" />
                                 <Label x:Name="LblDtPicker" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding DateText}" VerticalOptions="Center">
                                     <Label.Triggers>
                                         <DataTrigger Binding="{Binding DateText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">
@@ -85,7 +85,7 @@
                             <!--  Total fed  -->
                             <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate TotalFed}" TextColor="{StaticResource Gold}" />
                             <StackLayout Grid.Row="1" Grid.Column="1" Spacing="0" VerticalOptions="Start">
-                                <localEditors:EntryEx x:Name="EntryFed" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding TotalFedValue, Mode=TwoWay}">
+                                <localEditors:EntryEx x:Name="EntryFed" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="{helpers:Translate Text=CommonPlaceholderDelimiter}" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding TotalFedValue, Mode=TwoWay}">
                                     <Entry.Behaviors>
                                         <!--<bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1" />-->
                                         <bv:MaskedDoubleAmountNoLeadingZeroBehavior Mask="XX.X" />
@@ -133,7 +133,7 @@
 
                             <!--  Duration  -->
                             <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Duration_Upper}" TextColor="{StaticResource Gold}" VerticalOptions="Center" />
-                            <localEditors:EntryEx Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__:__" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding DurationValue, Mode=TwoWay}" Unfocused="EntryEx_Unfocused">
+                            <localEditors:EntryEx Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="{helpers:Translate Text=CommonPlaceholderDelimiter}" PlaceholderColor="{StaticResource MedBlue}" Style="{StaticResource Form_ElementLabel}" Text="{Binding DurationValue, Mode=TwoWay}" Unfocused="EntryEx_Unfocused">
                                 <Entry.Behaviors>
                                     <bv:DurationTimeNoLeadingZerosValidatorBehavior />
                                 </Entry.Behaviors>

@@ -476,7 +476,7 @@ namespace BabyationApp.Pages.BottleSession
             {
                 if (DateTime.MinValue == DateValue)
                 {
-                    return AppResource.DateDelimiter2; // __/__/____
+                    return AppResource.CommonPlaceholderDelimiter; // __/__
                 }
                 string date = DateValue.ToString("MM/dd/yyyy");
 
@@ -516,7 +516,7 @@ namespace BabyationApp.Pages.BottleSession
                 if (TimeSpan.Zero == StartTimeValue)
                 {
                     NurseStartTimeFormat = null;
-                    return AppResource.TimeDelimiter2; // __:__
+                    return AppResource.CommonPlaceholderDelimiter; // __/__
                 }
 
                 NurseStartTimeFormat = new DateTime(StartTimeValue.Ticks).ToString("tt").ToLower(); //AM or PM

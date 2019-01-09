@@ -147,7 +147,7 @@
   <data name="AddYourChild" xml:space="preserve">
     <value>ADD YOUR CHILD</value>
   </data>
-    <data name="AddYourChildOpt" xml:space="preserve">
+  <data name="AddYourChildOpt" xml:space="preserve">
     <value>ADD YOUR CHILD (OPTIONAL)</value>
   </data>
   <data name="AddAnotherChild" xml:space="preserve">
@@ -1571,10 +1571,13 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="MinLower" xml:space="preserve">
     <value>min</value>
   </data>
-    <data name="SwitchToSeeYourChildren" xml:space="preserve">
+  <data name="SwitchToSeeYourChildren" xml:space="preserve">
     <value>To see your children, switch back to the primary account.</value>
   </data>
-    <data name="SwitchToSeeYourCaregivers" xml:space="preserve">
+  <data name="SwitchToSeeYourCaregivers" xml:space="preserve">
     <value>To see your caregivers, switch back to the primary account.</value>
+  </data>
+  <data name="CommonPlaceholderDelimiter" xml:space="preserve">
+    <value>__/__</value>
   </data>
 </root>

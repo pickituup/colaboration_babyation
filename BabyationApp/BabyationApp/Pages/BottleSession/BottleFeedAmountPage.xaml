@@ -45,7 +45,7 @@
                                 <Label HorizontalOptions="CenterAndExpand" Style="{StaticResource Label_Label}" Text="{helpers:Translate TotalAmount}" TextColor="{StaticResource Gold}" />
                             </StackLayout>
                             <StackLayout Grid.Row="1" Padding="20,5" HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand">
-                                <localEditors:EntryEx FontSize="32" HorizontalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="__._" Style="{StaticResource Form_ElementEntry}" Text="{Binding AmountValue}" WidthRequest="{OnPlatform Android=110, iOS=100}">
+                                <localEditors:EntryEx FontSize="32" HorizontalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric" Placeholder="{helpers:Translate Text=CommonPlaceholderDelimiter}" Style="{StaticResource Form_ElementEntry}" Text="{Binding AmountValue}" WidthRequest="{OnPlatform Android=110, iOS=100}">
                                     <Entry.Behaviors>
                                         <bv:FedNumericValidatorBehavior AllowDecimal="true" MaxLength="2" MaxDecimalLength="1"/>
                                     </Entry.Behaviors>
