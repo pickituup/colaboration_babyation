@@ -11,7 +11,7 @@
     x:Class="BabyationApp.Pages.Reminders.RemindersPage"
     x:Name="this"
     BackgroundColor="{StaticResource Peach}"
-    Title="{helpers:Translate MyScheduleUpper}">
+    Title="{helpers:Translate Text=MyScheduleUpper}">
     
     <ContentView.Resources>
         <ResourceDictionary>
@@ -56,7 +56,7 @@
                     <Grid Padding="10,10,5,10" BackgroundColor="{StaticResource Peach}">
                         <Grid.Triggers>
                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                <Setter Property="BackgroundColor" Value="{StaticResource LightPink}" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource MedPink50_2}" />
                             </DataTrigger>
                         </Grid.Triggers>
                         
@@ -125,9 +125,9 @@
                                                                IsPressed="{Binding IsAutoStart}"
                                                                Style="{StaticResource LocalCheckboxButton}"/>
                                 </Grid>
-                                <localViews:LabelEx IsUnderlined="true"
+                                <localViews:LabelEx 
                                                     Text="{helpers:Translate Delete}" 
-                                                    Style="{StaticResource SmallLabel_Label}" TextColor="{StaticResource Red}" 
+                                                    Style="{StaticResource RedLinkLabel}" 
                                                     HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                                     HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
                                     <localViews:LabelEx.GestureRecognizers>

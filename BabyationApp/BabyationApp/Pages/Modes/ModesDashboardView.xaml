@@ -47,7 +47,7 @@
                                        IsPullToRefreshEnabled="false" 
                                        IsGroupingEnabled="true"
                                        GroupHeaderTemplate="{StaticResource ModeHeaderTemplate}"
-                                       ItemTemplate="{StaticResource ModeSelectableCellTemplate}"
+                                       ItemTemplate="{StaticResource ModeCellTemplate}"
                                        BackgroundColor="{StaticResource DarkBlueColor}"
                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Grid>

@@ -226,24 +226,27 @@
                     <localViews:AddControlView Grid.Row="0" CommandEx="{Binding AddBabyCommand}" Text="{helpers:Translate AddAnotherBaby}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                 
                     <!-- Babies list -->
-                    <ListView x:Name="ListBabies" Grid.Row="1"
+                    <localViews:ListViewEx x:Name="ListBabies" Grid.Row="1"
+                              IsAlternatingItemBackgroundEnabled="True"
+                                           OddItemBackground="{StaticResource Key=MedPink50_2}"
+                                           EvenItemBackground="{StaticResource Key=Peach}"
                               ItemsSource="{Binding BabiesList, Mode=OneWay}"
                               SeparatorVisibility="None" 
                               HasUnevenRows="True" 
                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                               BackgroundColor="Transparent">
-                        <ListView.ItemTemplate>
+                        <localViews:ListViewEx.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid BackgroundColor="{StaticResource Peach}" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
-                                        <Grid.Triggers>
+                                    <Grid  HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
+                                        <!--<Grid.Triggers>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="False">
                                                 <Setter Property="BackgroundColor" Value="{StaticResource  Peach}" />
                                             </DataTrigger>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                                <Setter Property="BackgroundColor" Value="{StaticResource Peach30}" />
+                                                <Setter Property="BackgroundColor" Value="{StaticResource MedPink50_2}" />
                                             </DataTrigger>
-                                        </Grid.Triggers>
+                                        </Grid.Triggers>-->
                                         
                                         <Grid Margin="5" BackgroundColor="{StaticResource Clear}" HorizontalOptions='FillAndExpand' VerticalOptions="FillAndExpand">
                                            <Grid.ColumnDefinitions>
@@ -324,9 +327,7 @@
                                             <localViews:LabelEx Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
                                                                 HeightRequest="35"
                                                                 Text="{helpers:Translate RemoveBaby}"
-                                                                Style="{StaticResource SmallLabel_Label}"
-                                                                TextColor="{StaticResource Red}"
-                                                                IsUnderlined="true"
+                                                                Style="{StaticResource RedLinkLabel}"
                                                                 HorizontalTextAlignment="Center" VerticalTextAlignment="End"
                                                                 HorizontalOptions="FillAndExpand" VerticalOptions="End">
                                                 <localViews:LabelEx.GestureRecognizers>
@@ -337,8 +338,8 @@
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </localViews:ListViewEx.ItemTemplate>
+                    </localViews:ListViewEx>
                 </Grid>
             </Grid>
     
@@ -353,8 +354,11 @@
                     <!-- Add caregiver control -->
                     <localViews:AddControlView Grid.Row="0" Text="{helpers:Translate AddCaregiver}" CommandEx="{Binding AddCaregiverCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                     
-                    <localViews:ListViewEx x:Name="ListCaregivers" Grid.Row="1"
+                    <localViews:ListViewEx x:Name="ListCaregivers" Grid.Row="1" 
                               ItemsSource="{Binding CaregiversList, Mode=OneWay}"
+                                           IsAlternatingItemBackgroundEnabled="True"
+                                           OddItemBackground="{StaticResource Key=MedPink50_2}"
+                                           EvenItemBackground="{StaticResource Key=Peach}"
                               SeparatorVisibility="None" 
                               HasUnevenRows="True" 
                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
@@ -373,7 +377,7 @@
                                                 <Setter Property="BackgroundColor" Value="{StaticResource  Peach}" />
                                             </DataTrigger>
                                             <DataTrigger TargetType="Grid" Binding="{Binding IsOddIndex}" Value="True">
-                                                <Setter Property="BackgroundColor" Value="{StaticResource Peach30}" />
+                                                <Setter Property="BackgroundColor" Value="{StaticResource MedPink50_2}" />
                                             </DataTrigger>
                                         </Grid.Triggers>
                                             
