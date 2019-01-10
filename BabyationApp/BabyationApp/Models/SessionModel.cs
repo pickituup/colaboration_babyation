@@ -40,6 +40,7 @@ namespace BabyationApp.Models
         private StorageType _storage = StorageType.Unspecified;
         private string _note;
         private MilkType _milk;
+        private string _feedProfileId;
 
         public SessionModel()
         {
@@ -519,6 +520,12 @@ namespace BabyationApp.Models
                     }
                 }
             }
+        }
+
+        public string FeedProfileId
+        {
+            get => _feedProfileId;
+            internal set => SetPropertyChanged(ref _feedProfileId, value);
         }
     }
 }

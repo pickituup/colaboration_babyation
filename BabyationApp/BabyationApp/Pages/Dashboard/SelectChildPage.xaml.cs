@@ -22,7 +22,6 @@ namespace BabyationApp.Pages.BottleSession
             InitializeComponent();
 
             Titlebar.IsVisible = true;
-            LeftPageType = CurrentDashboard();
             Titlebar.LeftButton.IsVisible = true;
             Titlebar.LeftButton.SetDynamicResource(StyleProperty, "CancelButton");
 
@@ -40,6 +39,9 @@ namespace BabyationApp.Pages.BottleSession
         public override void AboutToShow()
         {
             base.AboutToShow();
+
+            LeftPageType = CurrentDashboard();
+
             if (ProfileManager.Instance.CurrentProfile != null)
             {
                 ProfileManager.Instance.CurrentProfile.CurrentBaby = null;

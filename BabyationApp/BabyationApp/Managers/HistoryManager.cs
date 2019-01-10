@@ -39,30 +39,7 @@ namespace BabyationApp.Managers
 
         private HistoryManager()
         {
-            //TODO: Remove it
-            ProfileManager.Instance.CurrentBabyChanged += (object sender, EventArgs e) =>
-            {
-                GenerateChildsSessionRef();
-            };
-        }
 
-        //TODO: Remove it
-        static private Random rnd = new Random();
-        private void GenerateChildsSessionRef()
-        {
-            if (0 == ProfileManager.Instance.CurrentProfile?.Babies?.Count)
-            {
-                return;
-            }
-
-            foreach (var session in _sessions)
-            {
-                int index = rnd.Next(ProfileManager.Instance.CurrentProfile.Babies.Count);
-                BabyModel baby = ProfileManager.Instance.CurrentProfile.Babies.ElementAt(index);
-
-                session.ChildID = baby.Id;
-                session.ChildName = baby.Name;
-            }
         }
 
         public void Reset()
@@ -76,13 +53,13 @@ namespace BabyationApp.Managers
             await Sync();
         }
 
-        public async Task Sync()
+        public async Task Sync(string profileId = null)
         {
             HistoryModel historyModel;
             DataManager dataManager = DataManager.Instance;
             IEnumerable<HistoricalSession> historicalSessions;
 
-            historicalSessions = await dataManager.GetHistoricalSessions();
+            historicalSessions = await dataManager.GetHistoricalSessions(profileId);
 
             foreach (HistoricalSession historicalSession in historicalSessions)
             {
@@ -107,7 +84,8 @@ namespace BabyationApp.Managers
                         IsUsed = (historicalSession.Available == 0) ? true : false,
                         IsPreferred = (historicalSession.Preferred == 1) ? true : false,
                         Description = historicalSession.Notes,
-                        Storage = (StorageType)historicalSession.StorageType
+                        Storage = (StorageType)historicalSession.StorageType,
+                        FeedByProfileId = historicalSession.FeedByProfileId
                     };
 
                     if (historyModel.SessionType == SessionType.Pump)
@@ -324,7 +302,8 @@ namespace BabyationApp.Managers
                         Preferred = session.IsPreferred ? (byte)1 : (byte)0,
                         Notes = session.Description,
                         StorageType = (byte)session.Storage,
-                        ChildId = session.ChildID
+                        ChildId = session.ChildID,
+                        FeedByProfileId = session.FeedByProfileId
                     };
 
                     await dataManager.AddHistoricalSession(historicalSession);

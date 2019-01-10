@@ -188,9 +188,9 @@ namespace BabyationApp.Pages.Settings
             {
                 LeftPageType = ContextMyInfo.IsPrimarySelected ? typeof(SettingsPage) : typeof(CaregiverTabbedPage);
 
-                if( CaregiverFlow )
+                if( CaregiverFlow && ContextMyInfo.IsPrimarySelected)
                 {
-                    PageManager.Me.SetCurrentPage(LeftPageType);
+                    PageManager.Me.SetCurrentPage(typeof(DashboardTabPage));
                 }
             }
         }
@@ -506,6 +506,8 @@ namespace BabyationApp.Pages.Settings
 
         public void Reset()
         {
+            SetPropertyChanged(nameof(IsPrimarySelected));
+
             IsBabyDeleteRequested = false;
 
             _babies = null;
@@ -633,6 +635,8 @@ namespace BabyationApp.Pages.Settings
 
         public void Reset()
         {
+            SetPropertyChanged(nameof(IsPrimarySelected));
+
             IsCaregiverDeleteRequested = false;
 
             _caregivers = null;

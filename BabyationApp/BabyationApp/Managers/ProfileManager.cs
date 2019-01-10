@@ -375,6 +375,49 @@ namespace BabyationApp.Managers
             }
         }
 
+        public async Task UpdateProfile()
+        {
+            string currentProfileId = CurrentProfile.ProfileId;
+
+            if( CurrentProfile.CaregiverAccountSelected )
+            {
+                currentProfileId = CurrentProfile.CurrentCaregiver.ProfileId;
+            }
+
+            CurrentProfile.Babies.Clear();
+
+            IEnumerable<Children> children = await DataManager.Instance.GetChildren(currentProfileId);
+            foreach(Children child in children)
+            {
+                BabyModel babyModel = new BabyModel()
+                {
+                    Id = child.Id,
+                    Name = child.Name,
+                    Birthday = child.Birthday,
+                };
+
+                Media media = MediaManager.Instance.Get(child.MediaId);
+
+                if(media != null)
+                {
+                    babyModel.Picture = media.Image;
+                    babyModel.MediaId = media.Id;
+                }
+
+                babyModel.PropertyChanged += BabyModel_PropertyChanged;
+
+                _currentProfile.Babies.Add(babyModel);
+
+                if(_currentProfile.CurrentBaby == null)
+                {
+                    _currentProfile.CurrentBaby = babyModel;
+                }
+            }
+
+            HistoryManager.Instance.Reset();
+            await HistoryManager.Instance.Sync(currentProfileId);
+        }
+
         #endregion
 
         private async void BabyModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -437,6 +480,10 @@ namespace BabyationApp.Managers
                 user.Name = _currentProfile.Name;
 
                 await DataManager.Instance.UpdateUser(user);
+            }
+            else if( e.PropertyName == "CaregiverAccountSelected")
+            {
+                await UpdateProfile();
             }
         }
 

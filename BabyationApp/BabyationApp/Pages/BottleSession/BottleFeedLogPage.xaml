@@ -69,7 +69,7 @@
                             <!--  Date  -->
                             <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Style="{StaticResource Form_ElementHeader}" Text="{helpers:Translate Date}" TextColor="{StaticResource Gold}" />
                             <Grid Grid.Row="1" Grid.Column="0" RowSpacing="0">
-                                <localViews:DatePickerEx x:Name="DtPicker" Date="{Binding DateValue}"  Format="MM/dd" HorizontalOptions="Center" IsVisible="False" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" VerticalOptions="Center" />
+                                <localViews:DatePickerEx x:Name="DtPicker" Date="{Binding DateValue}" Format="MM/dd" HorizontalOptions="Center" IsVisible="False" MaximumDate="{Binding MaximumDate}" MinimumDate="{Binding MinimumDate}" VerticalOptions="Center" />
                                 <Label x:Name="LblDtPicker" HorizontalOptions="Center" LineBreakMode="NoWrap" Style="{StaticResource Form_ElementTrackingLabelPlaceholder}" Text="{Binding DateText}" VerticalOptions="Center">
                                     <Label.Triggers>
                                         <DataTrigger Binding="{Binding DateText, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="Label" Value="true">

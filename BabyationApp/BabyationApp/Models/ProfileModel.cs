@@ -73,7 +73,12 @@ namespace BabyationApp.Models
             }
         }
 
-        public bool CaregiverAccountSelected { get; set; }
+        private bool _caregiverAccountSelected;
+        public bool CaregiverAccountSelected 
+        { 
+            get => _caregiverAccountSelected;
+            set => SetPropertyChanged(ref _caregiverAccountSelected, value);
+        }
 
         private CaregiverModel _currentCaregiver;
         public CaregiverModel CurrentCaregiver

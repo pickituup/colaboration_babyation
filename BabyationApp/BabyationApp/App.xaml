@@ -600,13 +600,13 @@
                 </Setter>
             </Style>
             <!-- END Form label style -->
-
+          
             <!--Date picker form styles-->
             <Style x:Key="Form_ElementDatePickerLabelPlaceholder" BasedOn="{StaticResource Timer_Label}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
             </Style>
             <!--END Date picker form styles-->
-
+            
             <!-- Form style: entry -->
             <Style x:Key="Form_BaseEntry" TargetType="localEditors:EntryEx">
                 <Setter Property="BackgroundColor" Value="{StaticResource Clear}" />
@@ -677,6 +677,9 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="28" />
             </Style>
+          <Style x:Key="SessionSaveConfirmationPlainLabel" BasedOn="{StaticResource Key=SessionSaveConfirmationLabel}" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+          </Style>
             <Style x:Key="List_ColumnHeader" BasedOn="{StaticResource Form_ElementHeader}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="FontFamily" Value="{StaticResource fontHurmeSemiBold}" />

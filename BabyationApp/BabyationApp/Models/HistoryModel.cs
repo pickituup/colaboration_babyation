@@ -32,10 +32,9 @@ namespace BabyationApp.Models
         private MilkType _milk;
         private StorageType _storage;
         private string _user = "";
-        //TODO: Remove it
         private string _childID;
         private string _childName;
-
+        private string _feedByProfileId;
 
         public event HistoryItemUseNowEvent UseNowEvent;
 
@@ -257,7 +256,7 @@ namespace BabyationApp.Models
         public ICommand UseNowCommand { get; set; }
         public ICommand PreferredCommand { get; set; }
 
-        //TODO: Remove it
+
         public string ChildID
         {
             get => _childID;
@@ -267,6 +266,12 @@ namespace BabyationApp.Models
         {
             get => _childName;
             internal set => SetPropertyChanged(ref _childName, value);
+        }
+
+        public string FeedByProfileId
+        {
+            get => _feedByProfileId;
+            set => SetPropertyChanged(ref _feedByProfileId, value);
         }
     }
 }

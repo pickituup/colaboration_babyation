@@ -13,24 +13,24 @@
     x:Name="this"
     Title="{helpers:Translate SchedulePumpSessionUpper}"
     BackgroundColor="{StaticResource Peach}">
-
-
+    
+    
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            
             <!--  Common Header  -->
             <Style x:Key="GoldHeader" BasedOn="{StaticResource Label_Label}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Gold}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
             </Style>
-
+            
             <!--  Date/Time styles  -->
             <!--  Value  -->
             <Style x:Key="ScheduleDateValue" BasedOn="{StaticResource TimerLabelModified}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Navy}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
-
+            
             <!--  Placeholder  -->
             <Style x:Key="ScheduleDatePlaceholder" BasedOn="{StaticResource TimerLabelModified}" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource MedBlue}" />
@@ -38,13 +38,13 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
     <Grid x:Name="RootLayout" RowSpacing="0" Style="{StaticResource Grid_NavigationOnTop}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        
         <Grid Grid.Row="0" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
@@ -53,7 +53,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+           
             <!--  Name section  -->
             <Grid Grid.Row="0" BackgroundColor="{StaticResource LightPink}" RowSpacing="0">
                 <Grid.RowDefinitions>
@@ -70,24 +70,25 @@
                     </localEditors:EntryEx.Behaviors>
                 </localEditors:EntryEx>
             </Grid>
-
+            
             <!--  Clock image  -->
             <localViews:ImageEx Grid.Row="1" Margin="0,0,0,0" HeightRequest="50" HorizontalOptions="Center" Source="icon_timer2" VerticalOptions="End" WidthRequest="50" />
-
+            
             <!--  Date  -->
             <StackLayout Grid.Row="2" Padding="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <localPickers:MaskedDatePicker x:Name="SessionDate" Date="{Binding Date}" HeaderStyle="{StaticResource GoldHeader}" HeaderText="{helpers:Translate SelectDateUpper}" HorizontalOptions="FillAndExpand" MinimumDate="{Binding MinimumDate}" ValueStyle="{StaticResource ScheduleDateValue}" ValuePlaceholderStyle="{StaticResource Key=Form_ElementLabelPlaceholder}" ValueText="{Binding DateValue}"  >
-                <localPickers:MaskedDatePicker.Triggers>
-                    <DataTrigger Binding="{Binding DateValue, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="localPickers:MaskedDatePicker" Value="True">
-                        <Setter Property="ValueStyle" Value="{StaticResource ScheduleDateValue}" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding DateValue, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="localPickers:MaskedDatePicker" Value="False">
+                    <localPickers:MaskedDatePicker.Triggers>
+                        <DataTrigger Binding="{Binding DateValue, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="localPickers:MaskedDatePicker" Value="True">
+                            <Setter Property="ValueStyle" Value="{StaticResource ScheduleDateValue}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding DateValue, Converter={StaticResource IsNotPlaceholderValidator}}" TargetType="localPickers:MaskedDatePicker" Value="False">
                             <Setter Property="ValueStyle" Value="{StaticResource Form_ElementDatePickerLabelPlaceholder}" />
-                    </DataTrigger>
-                </localPickers:MaskedDatePicker.Triggers>
+                        </DataTrigger>
+                    </localPickers:MaskedDatePicker.Triggers>
                 </localPickers:MaskedDatePicker>
-            </StackLayout>
 
+            </StackLayout>
+            
             <!--  Time  -->
             <StackLayout Grid.Row="3" Padding="2" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="5" VerticalOptions="CenterAndExpand">
                 <localPickers:MaskedTimePicker x:Name="SessionTime" BottomText="" HeaderStyle="{StaticResource GoldHeader}" HeaderText="{helpers:Translate SelectTimeUpper}" HorizontalOptions="FillAndExpand" Time="{Binding Time}" TimeFormat="{Binding TimeFormat}" ValuePlaceholderStyle="{StaticResource Form_ElementLabelPlaceholder}" ValueStyle="{StaticResource ScheduleDateValue}" ValueText="{Binding TimeValue}" >
@@ -102,7 +103,7 @@
                 </localPickers:MaskedTimePicker>
                 <Label HorizontalOptions="Center" IsVisible="{Binding TimeAbbr, Converter={StaticResource ObjectNotNullCheckConverter}}" Style="{StaticResource BodyCopy_Label}" Text="{Binding TimeAbbr}" TextColor="{StaticResource Navy}" VerticalOptions="Center" />
             </StackLayout>
-
+           
             <!--  Checkbox  -->
             <Grid Grid.Row="4" Padding="0,10" VerticalOptions="End">
                 <Grid.ColumnDefinitions>
@@ -123,7 +124,7 @@
                 </StackLayout>
             </Grid>
         </Grid>
-
+        
         <!--  Navigation section  -->
         <Grid Grid.Row="1" RowSpacing="0">
             <StackLayout x:Name="StackBottomBar" Style="{StaticResource StackLayout_BottomNavigation}">

@@ -1580,4 +1580,25 @@ Almost as much as we look forward to taking a nap.</value>
   <data name="CommonPlaceholderDelimiter" xml:space="preserve">
     <value>__/__</value>
   </data>
+  <data name="FactoryResetInstructions" xml:space="preserve">
+    <value>Follow these steps to return your pump to factory settings</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Hold</value>
+  </data>
+  <data name="PressTheKnob" xml:space="preserve">
+    <value>Press the knob on the pump and hold</value>
+  </data>
+  <data name="PressThePowerButton" xml:space="preserve">
+    <value>Press the power button on the pump and hold both for 10 seconds</value>
+  </data>
+  <data name="PumpNameSaved" xml:space="preserve">
+    <value>Your pump name is saved</value>
+  </data>
+    <data name="Me" xml:space="preserve">
+    <value>Me</value>
+  </data>
+    <data name="Caregiver" xml:space="preserve">
+    <value>Caregiver</value>
+  </data>
 </root>

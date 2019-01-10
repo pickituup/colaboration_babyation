@@ -9,6 +9,7 @@
     xmlns:localEditors="clr-namespace:BabyationApp.Controls.TextEditors"
     xmlns:pages="clr-namespace:BabyationApp.Pages"
     xmlns:helpers="clr-namespace:BabyationApp.Helpers;assembly=BabyationApp"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     x:Class="BabyationApp.Pages.Settings.PumpSettings.PumpDetailPage"
     BackgroundColor="{StaticResource Peach}" >
 
@@ -145,9 +146,35 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Spacing="18" Padding="21">
-                <Label Text="{helpers:Translate Text=AreYouSureApplyFactoryReset}" Style="{StaticResource SessionSaveConfirmationLabel}"/>
-                <Label Text="{helpers:Translate Text=ThisCanNotBeUndone}" Style="{StaticResource SessionSaveConfirmationLabel}"/>
+            <StackLayout Spacing="21" Padding="27,30">
+                <Label Text="{helpers:Translate Text=FactoryResetInstructions}" Style="{StaticResource SessionSaveConfirmationLabel}"/>
+
+                <StackLayout Spacing="9">
+                    <Label Text="{helpers:Translate Text=ThisCanNotBeUndone}" Style="{StaticResource SessionSaveConfirmationPlainLabel}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="1. "/>
+                                <Span Text="{helpers:Translate Text=PressTheKnob}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{helpers:Translate Text=ThisCanNotBeUndone}" Style="{StaticResource SessionSaveConfirmationPlainLabel}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="2. "/>
+                                <Span Text="{helpers:Translate Text=PressThePowerButton}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{helpers:Translate Text=ThisCanNotBeUndone}" Style="{StaticResource SessionSaveConfirmationPlainLabel}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="3. "/>
+                                <Span Text="{helpers:Translate Text=Hold}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
             </StackLayout>
 
             <Grid Grid.Row="1" ColumnSpacing="0" HeightRequest="48" BackgroundColor="Black">
@@ -173,5 +200,23 @@
                                               HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
             </Grid>
         </Grid>
+
+        <AbsoluteLayout x:Name="_pumpSavedInfoOutput_AbsoluteLayout" IsVisible="False" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{StaticResource Key=Green}">
+            <ContentView WidthRequest="60" HeightRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPumpSavedCloseTapped"/>
+                </ContentView.GestureRecognizers>
+                <ffimageloading:CachedImage Source="icon_close.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </ContentView>
+
+            <Label  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,.2" Margin="27,0" Style="{StaticResource SessionSaveConfirmationLabel}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{helpers:Translate Text=PumpNameSaved}"/>
+                        <Span Text="!"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </AbsoluteLayout>
     </AbsoluteLayout>
 </pages:PageBase>

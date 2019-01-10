@@ -8,6 +8,7 @@ using BabyationApp.Common;
 using System.Windows.Input;
 using BabyationApp.Managers;
 using BabyationApp.Pages.BottleSession;
+using BabyationApp.Models;
 
 namespace BabyationApp.Pages.Dashboard
 {
@@ -44,25 +45,27 @@ namespace BabyationApp.Pages.Dashboard
 
         private void Feed()
         {
-            if (null == ProfileManager.Instance.CurrentProfile)
+            ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+            if (null == profile)
                 return;
-
-            if (ProfileManager.Instance.CurrentProfile.Babies != null &&
-                ProfileManager.Instance.CurrentProfile.Babies.Count == 1)
+                
+            if( profile.HasBabies )
             {
-                PageManager.Me.SetCurrentPage(typeof(BottleFeedSelectionPage));
-            }
-            else
-            {
-                if (ProfileManager.Instance.CurrentProfile.Babies != null)
+                if( 1 == profile.Babies.Count )
                 {
-                    PageManager.Me.SetCurrentPage(typeof(SelectChildPage),
-                        view => { (view as SelectChildPage).NextPageType = typeof(BottleFeedSelectionPage); });
+                    PageManager.Me.SetCurrentPage(typeof(BottleFeedSelectionPage));
                 }
                 else
                 {
-                    ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
+                    PageManager.Me.SetCurrentPage(typeof(SelectChildPage), view =>
+                    {
+                        (view as SelectChildPage).NextPageType = typeof(BottleFeedSelectionPage);
+                    });
                 }
+            }
+            else
+            {
+                ModalAlertPage.ShowAlertWithClose(AppResource.NoChildError);
             }
         }
         #endregion

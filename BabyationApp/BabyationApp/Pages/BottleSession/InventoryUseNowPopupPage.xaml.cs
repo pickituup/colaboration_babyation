@@ -37,6 +37,9 @@ namespace BabyationApp.Pages.BottleSession
 
                     if (SessionManager.Instance.CurrentSession != null)
                     {
+                        ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+                        SessionManager.Instance.CurrentSession.FeedProfileId = (profile.CaregiverAccountSelected ? null : profile.ProfileId);
+
                         SessionManager.Instance.CurrentSession.Milk = UseNowHistoryModelItem.Milk;
                         SessionManager.Instance.CurrentSession.Storage = UseNowHistoryModelItem.Storage;
 

@@ -144,12 +144,8 @@ namespace BabyationApp.Pages
         public Type CurrentDashboard()
         {
             ProfileModel profileModel = ProfileManager.Instance.CurrentProfile;
-            if( null != profileModel && null != profileModel.CurrentCaregiver && profileModel.CaregiverAccountSelected )
-            {
-                return typeof(CaregiverTabbedPage);
-            }
 
-            return typeof(DashboardTabPage);
+            return (profileModel?.CaregiverAccountSelected ?? false) ? typeof(CaregiverTabbedPage) : typeof(DashboardTabPage);
         }
     }
 }

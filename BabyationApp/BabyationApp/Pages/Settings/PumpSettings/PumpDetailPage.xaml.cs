@@ -254,6 +254,7 @@ namespace BabyationApp.Pages.Settings.PumpSettings
                 if (_pumpModel != null)
                 {
                     _pumpModel.Name = _pumpName;
+                    TogglePupmSaveOutput(true);
                 }
             }
         }
@@ -296,6 +297,18 @@ namespace BabyationApp.Pages.Settings.PumpSettings
                 _factoryResetDialog_Grid.TranslationX = long.MaxValue;
                 _factoryResetDialog_Grid.InputTransparent = true;
             }
+        }
+
+        private void TogglePupmSaveOutput(bool isVisible)
+        {
+            _pumpSavedInfoOutput_AbsoluteLayout.IsVisible = isVisible;
+            Titlebar.IsVisible = !isVisible;
+        }
+
+        private void OnPumpSavedCloseTapped(object sender, EventArgs e)
+        {
+            PageManager.Me.SetCurrentPage(typeof(MyPumpsPage));
+            TogglePupmSaveOutput(false);
         }
     }
 }

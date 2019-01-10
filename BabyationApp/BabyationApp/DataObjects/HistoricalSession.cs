@@ -28,5 +28,6 @@ namespace BabyationApp.DataObjects
         public byte StorageType { get; set; }
         public byte MilkType { get; set; }
         public string ChildId { get; set; }
+        public string FeedByProfileId { get; set; }
     }
 }

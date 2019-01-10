@@ -41,6 +41,9 @@ namespace BabyationApp.Pages.BottleSession
             if (null == HistorySession)
             {
                 HistorySession = HistoryManager.Instance.CreateSession(SessionType.BottleFeed);
+
+                ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+                HistorySession.FeedByProfileId = (profile.CaregiverAccountSelected ? profile.CurrentCaregiver.ProfileId : profile.ProfileId);
             }
 
             ConfigureBottleAndInventory();

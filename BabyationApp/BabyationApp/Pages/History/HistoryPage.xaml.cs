@@ -387,7 +387,9 @@ namespace BabyationApp.Pages.History
             if (sessions?.Count() > 0)
             {
                 dailySessionItems = new List<DailyHistorySessionItem>();
-               
+
+                ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+
                 for (int i = 0; i < sessions.Count(); i++) 
                 {
                     var session = sessions[i];
@@ -395,8 +397,7 @@ namespace BabyationApp.Pages.History
                     dailySessionItems.Add(new DailyHistorySessionItem
                     {
                         SessionType = session.SessionType,
-                        // TODO: Implement this 
-                        //User = x.User,
+                        User = (!String.IsNullOrEmpty(session.FeedByProfileId) && session.FeedByProfileId != profile.ProfileId ? AppResource.Caregiver: AppResource.Me),
                         ChildName = session.ChildName,
                         LeftSideVolume = session.LeftBreastMilkVolume,
                         RightSideVolume = session.RightBreastMilkVolume,
@@ -523,7 +524,7 @@ namespace BabyationApp.Pages.History
             }
         }
 
-        public string User { get; set; } = "Me";
+        public string User { get; set; }
         public string ChildName { get; set; }
 
         public DateTime StartTime { get; set; }

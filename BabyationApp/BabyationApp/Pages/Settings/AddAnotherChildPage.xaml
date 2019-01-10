@@ -26,14 +26,14 @@
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
                 
-                <localButtons:ImageButton x:Name="BtnNO" Grid.Row="0" 
+                <localButtons:ImageButton x:Name="BtnNO" Grid.Column="0" 
                                           Text="{helpers:Translate NO}" 
                                           Command="{Binding NOCommand}" 
                                           ImageNormal="icon_close" ImagePressed="icon_close4" 
                                           Style="{StaticResource DestructiveActionButton}" 
                                           HeightRequest="{Binding Source={x:Reference GridBottomBar}, Path=Height}"
                                           HorizontalOptions="FillAndExpand"  VerticalOptions="Fill" />
-                <localButtons:ImageButton x:Name="BtnSave" Grid.Row="1" 
+                <localButtons:ImageButton x:Name="BtnSave" Grid.Column="1" 
                                           Command="{Binding YESCommand}" 
                                           Text="{helpers:Translate YES}"
                                           ImageNormal="icon_checked2" ImagePressed="icon_checked3" 

@@ -24,7 +24,7 @@
                                            Command="{TemplateBinding HandleButtonClick}">
                         <Grid HorizontalOptions="Center" VerticalOptions="Center">
                             <Label Text="{TemplateBinding ValueText}" Style="{TemplateBinding ValueStyle}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{TemplateBinding Date, Converter={StaticResource ObjectNotNullCheckConverter}}"/>
-                            <Label x:Name="" Text="{TemplateBinding PlaceHolderText}" Style="{TemplateBinding ValuePlaceholderStyle}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{TemplateBinding Date, Converter={StaticResource ObjectIsNullCheckConverter}}"/>
+                            <Label Text="{TemplateBinding PlaceHolderText}" Style="{TemplateBinding ValuePlaceholderStyle}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{TemplateBinding Date, Converter={StaticResource ObjectIsNullCheckConverter}}"/>
                         </Grid>
                     </localButtons:ButtonEx>
                 </Grid>

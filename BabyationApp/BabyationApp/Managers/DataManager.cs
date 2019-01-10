@@ -700,9 +700,13 @@ namespace BabyationApp.Managers
         /// Gets Historical Sessions
         /// </summary>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<IEnumerable<HistoricalSession>> GetHistoricalSessions()
+        public async Task<IEnumerable<HistoricalSession>> GetHistoricalSessions(string profileId = null)
         {
-            return await historicalSessionTable.Where(h => h.ProfileId == _currentProfileId).ToEnumerableAsync();
+            if( String.IsNullOrEmpty(profileId) )
+            {
+                profileId = _currentProfileId;
+            }
+            return await historicalSessionTable.Where(h => h.ProfileId == profileId).ToEnumerableAsync();
         }
 
         /// <summary>
@@ -1100,8 +1104,12 @@ namespace BabyationApp.Managers
         /// </summary>
         /// <param name="profileId">string profile id</param>
         /// <returns>System.Threading.Tasks.Task</returns>
-        public async Task<IEnumerable<Children>> GetChildren(string profileId)
+        public async Task<IEnumerable<Children>> GetChildren(string profileId = null)
         {
+            if( String.IsNullOrEmpty(profileId) )
+            {
+                profileId = _currentProfileId;
+            }
             return await childrenTable.Where(c => c.ProfileId == profileId).ToEnumerableAsync();
         }
 

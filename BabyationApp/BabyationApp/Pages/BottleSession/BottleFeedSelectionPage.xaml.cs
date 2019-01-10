@@ -30,6 +30,12 @@ namespace BabyationApp.Pages.BottleSession
                 BtnStartFeeding.Clicked += (s, e) =>
                 {
                     SessionManager.Instance.StartBottleFeeding();
+                    if(SessionManager.Instance.CurrentSession != null)
+                    {
+                        ProfileModel profile = ProfileManager.Instance.CurrentProfile;
+                        SessionManager.Instance.CurrentSession.FeedProfileId = (profile.CaregiverAccountSelected ? profile.CurrentCaregiver.ProfileId : profile.ProfileId );
+                    }
+
                     PageManager.Me.SetCurrentPage(typeof(BottleFeedStartPage), view =>
                     {
                         //(view as BottleFeedStartPage).SourcePageType = typeof(DashboardTabPage);

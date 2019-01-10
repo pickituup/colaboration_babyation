@@ -469,6 +469,7 @@ namespace BabyationApp.Managers
                     historyModel.Description = _sessionModel.Note;
                     historyModel.Milk = _sessionModel.Milk;
                     historyModel.Storage = _sessionModel.Storage;
+                    historyModel.FeedByProfileId = _sessionModel.FeedProfileId;
 
                     historyManager.AddSession(historyModel);
                 }
