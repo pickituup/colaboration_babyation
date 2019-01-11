@@ -56,7 +56,7 @@
         </Grid.RowDefinitions>
         
         <!-- Add control -->
-        <views:AddControlView x:Name="AddMediaControl" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+        <views:AddControlView x:Name="AddMediaControl" TextStyle="{StaticResource Key=H2_Label}" Grid.Row="0" Text="{Binding AddControlText}" Image="{Binding AddControlImage}" ShowOutlinedButton="{Binding AddControlOutlined}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
         
         <!-- Single view -->
         <Grid Grid.Row="1" IsVisible="{Binding IsSingleViewMode}" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >

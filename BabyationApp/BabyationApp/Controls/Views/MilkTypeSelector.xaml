@@ -7,7 +7,7 @@
              x:Name="this">
 
     <ContentView.Content>
-        <StackLayout Orientation="Vertical" Padding="2" Spacing="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+        <StackLayout Orientation="Vertical" Padding="2" Spacing="12" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <Label Text="{Binding Source={x:Reference this}, Path=TitleText}"
                    Style="{StaticResource H3_Label}" TextColor="{StaticResource Navy}" 
                    HorizontalTextAlignment="Center"
@@ -23,7 +23,7 @@
 
                 <localButtons:ImageButton Grid.Column="0" ImageTextPadding="10,0,10,3.5" ImageTranslationY="{OnPlatform iOS=0.2, Android=0.55}" x:Name="BtnStorageFridge" Text="{helpers:Translate Fridge}" ImageNormal="fridge_med_blue" ImagePressed="fridge_red" Style="{StaticResource PillReversedButton}" HeightRequest="26" />
                 <localButtons:ImageButton Grid.Column="1" ImageTextPadding="10,0,10,3.5" ImageTranslationY="{OnPlatform iOS=0.2, Android=0.8}" x:Name="BtnStorageFreezer" Text="{helpers:Translate Freezer}" ImageNormal="freezer_med_blue" ImagePressed="freezer_red" Style="{StaticResource PillReversedButton}" HeightRequest="26" />
-                <localButtons:ImageButton Grid.Column="2" ImageTextPadding="10,0,10,3.5" ImageTranslationY="{OnPlatform iOS=0, Android=0.5}" ImageScale="{OnPlatform Android=0.65, iOS=0.8}" x:Name="BtnStorageFeed" Text="{helpers:Translate Feed}" ImageNormal="bottle_med_blue" ImagePressed="bottle_red" Style="{StaticResource PillReversedButton}" HeightRequest="26" />
+                <localButtons:ImageButton Grid.Column="2" ImageTextPadding="10,0,10,3.5" ImageTranslationY="{OnPlatform iOS=0, Android=-1}" ImageScale="{OnPlatform Android=0.65, iOS=0.8}" x:Name="BtnStorageFeed" Text="{helpers:Translate Bottle}" ImageNormal="bottle_med_blue" ImagePressed="bottle_red" Style="{StaticResource PillReversedButton}" HeightRequest="26" />
                 <localButtons:ImageButton Grid.Column="3" ImageTextPadding="10,0,10,3.5" ImageTranslationY="{OnPlatform iOS=0, Android=0.5}" ImageScale="{OnPlatform Android=0.65, iOS=0.8}" x:Name="BtnStorgaeTrash" Text="{helpers:Translate Trash}" ImageNormal="trash_med_blue" ImagePressed="trash_red" Style="{StaticResource PillReversedButton}" HeightRequest="26" />
             </Grid>
         </StackLayout>

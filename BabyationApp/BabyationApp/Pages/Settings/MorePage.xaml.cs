@@ -42,7 +42,7 @@ namespace BabyationApp.Pages.Settings {
 
             var items = new List<SettingItemModel>();
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.Dash,
                 Image = "dashboard_med_blue2.png",
                 ImageSelected = "dashboard_navy2.png",
@@ -52,7 +52,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text =  AppResource.History,
                 Image = "history_med_blue2.png",
                 ImageSelected = "history_navy2.png",
@@ -62,7 +62,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.Modes,
                 Image = "modes_med_blue2.png",
                 ImageSelected = "modes_navy2.png",
@@ -72,7 +72,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.Reminders,
                 Image = "timer_med_blue2.png",
                 ImageSelected = "timer_navy2.png",
@@ -82,7 +82,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.Inventory,
                 Image = "inventory_med_blue2.png",
                 ImageSelected = "inventory_navy2.png",
@@ -92,7 +92,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.Settings,
                 Image = "settings_med_blue2.png",
                 ImageSelected = "settings_navy2.png",
@@ -102,7 +102,7 @@ namespace BabyationApp.Pages.Settings {
             });
 
             items.Add(new SettingItemModel() {
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = AppResource.FAQs,
                 Image = "faqs_med_blue2.png",
                 ImageSelected = "faqs_navy2.png",
@@ -114,7 +114,7 @@ namespace BabyationApp.Pages.Settings {
             items.Add(new SettingItemModel()
             {
                 IsEnabled = true,
-                BackColorNormal = (Color)Application.Current.Resources["MedPink50"],
+                BackColorNormal = (Color)Application.Current.Resources["LightPink"],
                 Text = "Style Guide",
                 Image = "faqs_med_blue2.png",
                 ImageSelected = "faqs_navy2.png",

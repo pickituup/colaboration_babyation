@@ -83,7 +83,7 @@
                     <localEditors:EntryEx
                         HorizontalOptions="FillAndExpand"
                         HorizontalTextAlignment="Start"
-                        Placeholder="{helpers:Translate EnterPumpNickname}"
+                        Placeholder="ewdewewrewrewrewrewrewewrewrwe"
                         Style="{StaticResource Form_ElementEntry}"
                         TranslationX="{OnPlatform Android=-5,
                                                   iOS=-1}"
